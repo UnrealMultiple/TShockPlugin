@@ -94,7 +94,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
         args.Handled = true;
         if (this._sweepJob is not null)
         {
-            args.Player.SendInfoMessage("已有物品清理任务正在执行。");
+            args.Player.SendInfoMessage(GetString("已有物品清理任务正在执行。"));
             return;
         }
 
@@ -165,7 +165,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
         {
             if (source == SweepSource.Manual)
             {
-                requester!.SendSuccessMessage("没有可清理的掉落物。");
+                requester!.SendSuccessMessage(GetString("没有可清理的掉落物。"));
             }
 
             return;
@@ -174,7 +174,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
         this._sweepJob = new SweepJob(items, source, requester);
         if (source == SweepSource.Manual)
         {
-            requester!.SendInfoMessage($"已加入 {items.Count} 个掉落物，正在分批清理。");
+            requester!.SendInfoMessage(GetString($"已加入 {items.Count} 个掉落物，正在分批清理。"));
         }
     }
 
@@ -213,7 +213,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
     {   // 如果是手动清理，则只给请求者发送消息
         if (sweepJob.Source == SweepSource.Manual)
         {
-            sweepJob.Requester!.SendSuccessMessage($"已分批清理 {sweepJob.TotalItems} 个掉落物。");
+            sweepJob.Requester!.SendSuccessMessage(GetString($"已分批清理 {sweepJob.TotalItems} 个掉落物。"));
             return;
         }
         // 如果是智能清理，则给所有玩家发送消息
