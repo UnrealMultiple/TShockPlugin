@@ -1,6 +1,6 @@
 # Autoclear
 
-- Authors: 大豆子,Mute,肝帝熙恩
+- Authors: 大豆子,Mute,肝帝熙恩,十七
 - Source: TShock Official QQ Group
 - Start the cleaning countdown when the number of items on the ground reaches a certain value.
 - Customize which items or categories of items are not to be cleaned.
