@@ -2,22 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2026-07-18 07:08:49+0000\n"
-"PO-Revision-Date: 2026-03-14 01:50\n"
+"PO-Revision-Date: 2026-07-19 02:25\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
-"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 "
-"&& n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 "
-"&& n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: tshock-chinese-plugin\n"
 "X-Crowdin-Project-ID: 751499\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /master/src/AutoPluginManager/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1094\n"
+"Language: ru_RU\n"
 
 #: ../../Internal/CommandAdapter.cs:410
 #, csharp-format
@@ -32,7 +30,8 @@ msgstr ""
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr ""
 
-#: ../../Plugin.cs:59 ../../Internal/CommandAdapter.cs:523
+#: ../../Plugin.cs:59
+#: ../../Internal/CommandAdapter.cs:523
 msgid "[以下插件有新的版本更新]\n"
 msgstr ""
 
@@ -86,25 +85,30 @@ msgstr ""
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:236 ../../Internal/CommandAdapter.cs:472
+#: ../../Internal/CommandAdapter.cs:236
+#: ../../Internal/CommandAdapter.cs:472
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:232 ../../Internal/CommandAdapter.cs:468
+#: ../../Internal/CommandAdapter.cs:232
+#: ../../Internal/CommandAdapter.cs:468
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:240 ../../Internal/CommandAdapter.cs:476
+#: ../../Internal/CommandAdapter.cs:240
+#: ../../Internal/CommandAdapter.cs:476
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:250 ../../Internal/CommandAdapter.cs:486
+#: ../../Internal/CommandAdapter.cs:250
+#: ../../Internal/CommandAdapter.cs:486
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:244 ../../Internal/CommandAdapter.cs:480
+#: ../../Internal/CommandAdapter.cs:244
+#: ../../Internal/CommandAdapter.cs:480
 msgid "*热重载已启用,安装的插件已生效!"
 msgstr ""
 
@@ -172,7 +176,8 @@ msgstr ""
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr ""
 
-#: ../../Internal/CommandAdapter.cs:425 ../../Internal/CommandAdapter.cs:519
+#: ../../Internal/CommandAdapter.cs:425
+#: ../../Internal/CommandAdapter.cs:519
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr ""
 
@@ -287,3 +292,4 @@ msgstr ""
 #: ../../Internal/CommandAdapter.cs:379
 msgid "输入 /apm l {0} 查看更多, 使用 /apm -i <序号> 即可安装哦~"
 msgstr ""
+

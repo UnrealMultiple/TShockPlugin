@@ -2,10 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
 "POT-Creation-Date: 2026-07-18 07:08:49+0000\n"
-"PO-Revision-Date: 2026-03-14 01:50\n"
+"PO-Revision-Date: 2026-07-19 02:25\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,6 +15,7 @@ msgstr ""
 "X-Crowdin-Language: en\n"
 "X-Crowdin-File: /master/src/AutoPluginManager/i18n/template.pot\n"
 "X-Crowdin-File-ID: 1094\n"
+"Language: en_US\n"
 
 #: ../../Internal/CommandAdapter.cs:410
 #, csharp-format
@@ -30,7 +30,8 @@ msgstr "[AutoUpdate] Unable to get update:"
 msgid "[AutoUpdatePlugin]插件配置已重载~"
 msgstr "[AutoUpdatePlugin] Plugin configuration has been reloaded~"
 
-#: ../../Plugin.cs:59 ../../Internal/CommandAdapter.cs:523
+#: ../../Plugin.cs:59
+#: ../../Internal/CommandAdapter.cs:523
 msgid "[以下插件有新的版本更新]\n"
 msgstr "[The following plugins have new version updates]\n"
 
@@ -84,32 +85,32 @@ msgstr "{0}.{1} v{2} (by {3}) {4}"
 msgid "*使用/apm -i <序号> 即可安装哦~"
 msgstr "*Use /apm -i <number> to install~"
 
-#: ../../Internal/CommandAdapter.cs:236 ../../Internal/CommandAdapter.cs:472
+#: ../../Internal/CommandAdapter.cs:236
+#: ../../Internal/CommandAdapter.cs:472
 #, csharp-format
 msgid "*加载失败: {0}"
 msgstr "*Loading failed: {0}"
 
-#: ../../Internal/CommandAdapter.cs:232 ../../Internal/CommandAdapter.cs:468
+#: ../../Internal/CommandAdapter.cs:232
+#: ../../Internal/CommandAdapter.cs:468
 #, csharp-format
 msgid "*卸载失败: {0}"
 msgstr "*Uninstall failed: {0}"
 
-#: ../../Internal/CommandAdapter.cs:240 ../../Internal/CommandAdapter.cs:476
+#: ../../Internal/CommandAdapter.cs:240
+#: ../../Internal/CommandAdapter.cs:476
 msgid "*热加载失败的插件需要重启服务器后才会生效!"
-msgstr ""
-"*Plug-ins that fail to be hot-loaded will only take effect after the server "
-"is restarted!"
+msgstr "*Plug-ins that fail to be hot-loaded will only take effect after the server is restarted!"
 
-#: ../../Internal/CommandAdapter.cs:250 ../../Internal/CommandAdapter.cs:486
+#: ../../Internal/CommandAdapter.cs:250
+#: ../../Internal/CommandAdapter.cs:486
 msgid "*热重载已关闭,插件需要重启服务器后才会生效!"
-msgstr ""
-"*Hot reloading has been turned off, and the plug-in will not take effect "
-"until the server is restarted!"
+msgstr "*Hot reloading has been turned off, and the plug-in will not take effect until the server is restarted!"
 
-#: ../../Internal/CommandAdapter.cs:244 ../../Internal/CommandAdapter.cs:480
+#: ../../Internal/CommandAdapter.cs:244
+#: ../../Internal/CommandAdapter.cs:480
 msgid "*热重载已启用,安装的插件已生效!"
-msgstr ""
-"*Hot reloading is enabled and the installed plug-ins have taken effect!"
+msgstr "*Hot reloading is enabled and the installed plug-ins have taken effect!"
 
 #: ../../Internal/PluginAPIType.cs:15
 msgid "/plugin/get_all_plugins"
@@ -144,10 +145,8 @@ msgid "apm il 查看本地插件列表与启用状态"
 msgstr "apm il view local plugin list and activation status"
 
 #: ../../Internal/CommandAdapter.cs:39
-#, fuzzy
-#| msgid "apm l 查看可安装插件表"
 msgid "apm l [页码] 查看可安装插件表"
-msgstr "apm l view the list of installable plugins"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:43
 msgid "apm lb 查看更新排除列表"
@@ -166,10 +165,8 @@ msgid "apm rb [插件名字] 取消更新排除"
 msgstr "apm rb [plugin name] remove update exclusion"
 
 #: ../../Internal/CommandAdapter.cs:40
-#, fuzzy
-#| msgid "apm l 查看可安装插件表"
 msgid "apm s [关键词] 搜索可安装插件"
-msgstr "apm l view the list of installable plugins"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:37
 msgid "apm u [插件名] 更新所有插件或指定插件"
@@ -179,7 +176,8 @@ msgstr "apm u [plugin name] update all plugins or a specified plugin"
 msgid "你可以使用命令/apm -u 更新插件哦~"
 msgstr "You can use the command /apm -u to update the plugins~"
 
-#: ../../Internal/CommandAdapter.cs:425 ../../Internal/CommandAdapter.cs:519
+#: ../../Internal/CommandAdapter.cs:425
+#: ../../Internal/CommandAdapter.cs:519
 msgid "你的插件全是最新版本，无需更新哦~"
 msgstr "All your plugins are up to date, no need to update~"
 
@@ -192,10 +190,8 @@ msgid "删除成功, 此插件将会被检查更新~"
 msgstr "Deletion successful, this plugin will now be checked for updates~"
 
 #: ../../Internal/CommandAdapter.cs:378
-#, fuzzy
-#| msgid "可安装插件列表:"
 msgid "可安装插件列表 ({0}/{1})："
-msgstr "List of installable plugins:"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:209
 msgid "安装了个寂寞~"
@@ -207,21 +203,15 @@ msgstr "An error occurred while installing the plugin:"
 
 #: ../../Internal/CommandAdapter.cs:96
 msgid "序号无效，请附带需要关闭插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:201
 msgid "序号无效，请附带需要安装插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:146
 msgid "序号无效，请附带需要开启插件的选择项!"
-msgstr ""
-"Invalid number, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid number, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:377
 msgid "当前没有可安装的插件~"
@@ -249,9 +239,7 @@ msgstr "Plugin update exclusion list:\n"
 
 #: ../../Internal/CommandAdapter.cs:188
 msgid "无效参数，请附带需要安装插件的选择项!"
-msgstr ""
-"Invalid parameter, please include the required options for the plugin to be "
-"installed!"
+msgstr "Invalid parameter, please include the required options for the plugin to be installed!"
 
 #: ../../Internal/CommandAdapter.cs:527
 msgid "无法获取更新:"
@@ -298,13 +286,10 @@ msgid "语法错误，正确语法:/apm rb [插件名称]"
 msgstr "Invalid syntax, correct syntax:/apm rb [plugin name]"
 
 #: ../../Internal/CommandAdapter.cs:392
-#, fuzzy
-#| msgid "语法错误，正确语法:/apm i [序号]"
 msgid "语法错误，正确语法:/apm s [关键词]"
-msgstr "Invalid syntax, correct syntax:/apm i [list number]"
+msgstr ""
 
 #: ../../Internal/CommandAdapter.cs:379
-#, fuzzy
-#| msgid "*使用/apm -i <序号> 即可安装哦~"
 msgid "输入 /apm l {0} 查看更多, 使用 /apm -i <序号> 即可安装哦~"
-msgstr "*Use /apm -i <number> to install~"
+msgstr ""
+

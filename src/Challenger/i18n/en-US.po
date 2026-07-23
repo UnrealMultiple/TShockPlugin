@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-06-29 15:19:56+0000\n"
-"PO-Revision-Date: 2026-06-30 03:24\n"
+"POT-Creation-Date: 2026-07-16 16:05:41+0000\n"
+"PO-Revision-Date: 2026-07-17 02:24\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -460,8 +460,8 @@ msgstr "Snow and ice are falling from the sky"
 msgid "冲刺类饰品冷却完成"
 msgstr "Sprint accessories cooldown completed"
 
-#: ../../Challenger.CNPCs/Skeletron.cs:164
 #: ../../Challenger.CNPCs/EaterofWorldsHead.cs:39
+#: ../../Challenger.CNPCs/Skeletron.cs:164
 msgid "创死你"
 msgstr "I'll smash you!"
 
