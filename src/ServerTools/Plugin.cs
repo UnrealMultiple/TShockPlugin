@@ -16,7 +16,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 3);
+    public override Version Version => new Version(1, 3, 1, 0);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -62,6 +62,7 @@ public partial class Plugin : LazyPlugin
     {
         if (disposing)
         {
+            CommandPlaceholderHandle.Deregister();
             HookManager.Clear();
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);

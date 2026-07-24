@@ -8,6 +8,8 @@ public partial class CommandPlaceholderHandle
 {
     private static readonly List<PlaceholderResolver> _resolvers = [];
 
+    private static readonly List<string> Teams = ["none", "red", "green", "blue", "yellow", "purple"];
+
     public static void Register()
     {
         // *all*
@@ -28,6 +30,22 @@ public partial class CommandPlaceholderHandle
                 var groupName = GroupRegex().Match(placeholder).Groups[1].Value;
                 return Plugin.ActivePlayers
                     .Where(p => p.Group.Name == groupName)
+                    .Select(p => p.Name);
+            }
+        ));
+        // *队伍*
+        _resolvers.Add(new PlaceholderResolver(
+            placeholder =>
+            {
+                var match = GroupRegex().Match(placeholder);
+                return match.Success && Teams.Contains(match.Groups[1].Value);
+            },
+            placeholder =>
+            {
+                var teamName = GroupRegex().Match(placeholder).Groups[1].Value;
+                var teamIndex = Teams.IndexOf(teamName);
+                return Plugin.ActivePlayers
+                    .Where(p => p.Team == teamIndex)
                     .Select(p => p.Name);
             }
         ));
@@ -99,6 +117,11 @@ public partial class CommandPlaceholderHandle
 
     [GeneratedRegex(@"\*([^*]+)\*")]
     private static partial Regex GroupRegex();
+
+    internal static void Deregister()
+    {
+        _resolvers.Clear();
+    }
 
     private sealed class PlaceholderResolver(
         Func<string, bool> canResolve,
