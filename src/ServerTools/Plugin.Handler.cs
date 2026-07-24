@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace ServerTools;
 public partial class Plugin
