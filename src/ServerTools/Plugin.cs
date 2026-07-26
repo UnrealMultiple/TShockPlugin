@@ -3,6 +3,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace ServerTools;
 
@@ -15,7 +16,7 @@ public partial class Plugin : LazyPlugin
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(1, 3, 0, 3);
+    public override Version Version => new Version(1, 3, 1, 0);
 
     public const string ReaderPath = "ReaderPlayers";
 
@@ -29,6 +30,7 @@ public partial class Plugin : LazyPlugin
 
     public override void Initialize()
     {
+        CommandPlaceholderHandle.Register();
         ServerApi.Hooks.GamePostInitialize.Register(this, this.PostInitialize);
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameInitialize.Register(this, this.OnInitialize);
@@ -44,6 +46,7 @@ public partial class Plugin : LazyPlugin
         GetDataHandlers.KillMe.Register(this.KillMe);
         GetDataHandlers.PlayerSpawn.Register(this.OnPlayerSpawn);
         GetDataHandlers.PlayerUpdate.Register(this.OnUpdate);
+        PlayerHooks.PlayerCommand += CommandPlaceholderHandle.Handle;
         On.Terraria.NPC.Spawner.GetSpawnRate += this.Spawner_GetSpawnRate;
         HookManager.Add(typeof(TSRestPlayer).GetConstructor([typeof(string), typeof(TShockAPI.Group)])!, RestPlayerCtor);
         HookManager.Add(typeof(Commands).GetMethod("ViewAccountInfo", BindingFlags.NonPublic | BindingFlags.Static)!, ViewAccountInfo);
@@ -54,10 +57,12 @@ public partial class Plugin : LazyPlugin
         HandleCommandLine(Environment.GetCommandLineArgs());
     }
 
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
+            CommandPlaceholderHandle.Deregister();
             HookManager.Clear();
             ServerApi.Hooks.GamePostInitialize.Deregister(this, this.PostInitialize);
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);

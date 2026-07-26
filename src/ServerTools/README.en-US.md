@@ -23,6 +23,18 @@
 | /kickcheater on | servertool.admin.cheater | Enable modified client detection and kick cheaters |
 | /kickcheater off | servertool.admin.cheater | Disable modified client detection |
 
+## Command Placeholders
+
+Use `*xxx*` wildcard patterns in any command, and the system will automatically expand them to matching player names, executing the command for each matched player.
+
+| Placeholder                                                                                       |              Description               |       Example        |
+|---------------------------------------------------------------------------------------------------|:--------------------------------------:|:--------------------:|
+| `*all*`                                                                                           |          All online players           |   `/kick *all*`     |
+| `*group_name*`                                                                                    |   Players in a specific group          |  `/kick *admin*`    |
+| `*none*` `*red*` `*green*` `*blue*` `*yellow*` `*purple*` | Players on a team (None/Red/Green/Blue/Yellow/Purple) |  `/kick *red*`      |
+
+> Note: `*xxx*` patterns in command placeholders may be incorrectly parsed when stored as command aliases. Use them directly or with caution when creating aliases.
+
 ## Modified Client Detection
 
 This plugin includes a modified client detection feature that can identify and handle players using modified clients to join the server.
@@ -192,6 +204,9 @@ The plugin identifies modified clients by detecting specific network packet sign
 
 
 ## Changelog
+
+### v1.3.1.1
+- Added command placeholder feature supporting `*all*` (all players), `*group*` (specific group), `*team*` (specific team: none/red/green/blue/yellow/purple), auto-expanding and executing commands for each matched player
 
 ### v1.3.1.0
 - Fixed byte array calculation logic for modified client detection
