@@ -10,6 +10,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace ItemDecoration;
 
@@ -21,7 +22,7 @@ public class Plugin : LazyPlugin
     public override string Description => GetString("Show Item Decoration and More!!!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 1);
+    public override Version Version => new Version(3, 0, 2);
 
     public Plugin(Main game) : base(game)
     {
@@ -30,23 +31,30 @@ public class Plugin : LazyPlugin
 
     public override void Initialize()
     {
-        ServerApi.Hooks.ServerChat.Register(this, this.OnServerChat);
+        PlayerHooks.PlayerChat += this.OnPlayerChat;
         Hooks.MessageBuffer.InvokeGetData += this.MessageBuffer_InvokeGetData;
     }
-    
 
-    private void OnServerChat(ServerChatEventArgs args)
+    protected override void Dispose(bool disposing)
     {
-        var player = TShock.Players[args.Who];
-        if (args.Handled || player == null
-            || args.Text.StartsWith(TShock.Config.Settings.CommandSilentSpecifier)
-            || args.Text.StartsWith(TShock.Config.Settings.CommandSpecifier)
-            || string.IsNullOrWhiteSpace(args.Text)) // Verificar si el texto está vacío o es solo espacios en blanco.
+        if (disposing)
+        {
+            PlayerHooks.PlayerChat -= this.OnPlayerChat;
+            Hooks.MessageBuffer.InvokeGetData -= this.MessageBuffer_InvokeGetData;
+        }
+        base.Dispose(disposing);
+    }
+
+
+    private void OnPlayerChat(PlayerChatEventArgs args)
+    {
+        var player = args.Player;
+        if (args.Handled || player == null || string.IsNullOrWhiteSpace(args.RawText))
         {
             return;
         }
-        var msg = ReplacePlaceholderWithItem(player, args.Text);
-        if (!string.IsNullOrWhiteSpace(msg)) // Verificar que el mensaje procesado no esté vacío.
+        var msg = ReplacePlaceholderWithItem(player, args.RawText);
+        if (!string.IsNullOrWhiteSpace(msg))
         {
             TShock.Utils.Broadcast(string.Format(
                 TShock.Config.Settings.ChatFormat,
@@ -116,8 +124,8 @@ public class Plugin : LazyPlugin
         {
             return orig(instance, ref packetId, ref readOffset, ref start, ref length, ref messageType, maxPackets);
         }
-        
-        
+
+
         if (!this._lastSelectedItem.ContainsKey(player.Index) || this._lastSelectedItem[player.Index] != newSelectItem.type)
         {
             this._lastSelectedItem[player.Index] = newSelectItem.type;
@@ -165,7 +173,7 @@ public class Plugin : LazyPlugin
                 {
                     stringBuilder.Append(' ');
                 }
-                
+
                 stringBuilder.Append($"[c/{damageColorHex}:{selectedItem.damage}]");
             }
         }

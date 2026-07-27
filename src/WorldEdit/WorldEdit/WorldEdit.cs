@@ -55,7 +55,7 @@ public class WorldEdit : TerrariaPlugin
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(2026, 07, 20);
+    public override Version Version => new Version(2026, 07, 21);
 
     static WorldEdit()
     {
@@ -407,6 +407,8 @@ public class WorldEdit : TerrariaPlugin
         {
             HelpText = "Sets actuators in the worldedit selection."
         });
+        try
+        {
         string text = TShock.Config.Settings.StorageType.ToLowerInvariant();
 		string storageType = text;
 		if (storageType != "mysql")
@@ -430,7 +432,10 @@ public class WorldEdit : TerrariaPlugin
         }
         if (!File.Exists(path))
         {
-            Database.Query("DROP TABLE WorldEdit");
+            if (Database != null)
+            {
+                Database.Query("DROP TABLE IF EXISTS WorldEdit");
+            }
             foreach (string item in Directory.EnumerateFiles("worldedit", "undo-*.dat"))
             {
                 File.Delete(item);
@@ -477,6 +482,11 @@ public class WorldEdit : TerrariaPlugin
                 string itemNameById = EnglishLanguage.GetItemNameById(k);
 				Colors.Add(itemNameById.Substring(0, itemNameById.Length - 6).ToLowerInvariant(), paintItem.paint);
             }
+        }
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleError($"WorldEdit initialization error (database/biomes/colors): {ex}");
         }
         Selections.Add("altcheckers", (int i, int j, TSPlayer plr) => ((i + j) & 1) == 0);
         Selections.Add("checkers", (int i, int j, TSPlayer plr) => ((i + j) & 1) == 1);
