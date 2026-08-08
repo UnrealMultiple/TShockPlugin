@@ -64,6 +64,6 @@ public class Slope : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Sloped tiles. ({0})", changedTileCount);
+		plr.SendSuccessMessage(GetString("Sloped tiles. ({0})"), changedTileCount);
 	}
 }

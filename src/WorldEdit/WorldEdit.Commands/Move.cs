@@ -85,6 +85,6 @@ public class Move : WECommand
 		playerInfo.Y = destinationY;
 		playerInfo.X2 = destinationX2;
 		playerInfo.Y2 = destinationY2;
-		plr.SendInfoMessage("Moved tiles ({0}).", movedTileCount);
+		plr.SendInfoMessage(GetString("Moved tiles ({0})."), movedTileCount);
 	}
 }

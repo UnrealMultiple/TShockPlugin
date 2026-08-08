@@ -162,6 +162,6 @@ public class SPaste : WECommand
 		}
 		Tools.LoadWorldSection(worldSectionData, x, y, Tiles: false);
 		ResetSection();
-		plr.SendSuccessMessage("Pasted clipboard to selection.");
+		plr.SendSuccessMessage(GetString("Pasted clipboard to selection."));
 	}
 }

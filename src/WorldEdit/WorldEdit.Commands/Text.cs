@@ -38,6 +38,6 @@ public class Text : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Set text.");
+		plr.SendSuccessMessage(GetString("Set text."));
 	}
 }

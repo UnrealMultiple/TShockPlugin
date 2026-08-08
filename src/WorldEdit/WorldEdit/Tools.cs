@@ -28,27 +28,26 @@ public static class Tools
 
     public static bool Translate(string path, bool logError, string tempCopyPath = null)
     {
-        // 移除无意义变量 `text`，直接使用临时路径
         string tempPath = tempCopyPath ?? Path.Combine("worldedit", $"temp-{rnd.Next()}-{Interlocked.Increment(ref TranslateTempCounter)}.dat");
-        File.Copy(path, tempPath, true); // 简化参数名
+        File.Copy(path, tempPath, true);
 
         bool conversionSucceeded = true;
         try
         {
             LoadWorldDataOld(path).Write(path);
         }
-        catch (Exception ex) // 修复变量名 `value` 为更通用的 `ex`
+        catch (Exception ex)
         {
             if (logError)
             {
-                TShock.Log.ConsoleError($"[WorldEdit] File '{path}' could not be converted to Terraria v1.4:\n{ex}");
+                TShock.Log.ConsoleError(GetString("[WorldEdit] File '{0}' could not be converted to Terraria v1.4:\n{1}", path, ex));
             }
             conversionSucceeded = false;
         }
 
         if (!conversionSucceeded)
         {
-            File.Copy(tempPath, path, true); // 简化参数名
+            File.Copy(tempPath, path, true);
         }
 
         File.Delete(tempPath); // 直接使用临时路径变量

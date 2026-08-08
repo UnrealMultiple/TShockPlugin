@@ -19,11 +19,11 @@ public class KillEmpty : WECommand
 			Tools.PrepareUndo(x, y, x2, y2, plr);
 			if (_action == 255 || _action == 0)
 			{
-				plr.SendSuccessMessage("Cleared {0} empty signs.", Tools.ClearSigns(x, y, x2, y2, emptyOnly: true));
+				plr.SendSuccessMessage(GetString("Cleared {0} empty signs."), Tools.ClearSigns(x, y, x2, y2, emptyOnly: true));
 			}
 			if (_action == 255 || _action == 1)
 			{
-				plr.SendSuccessMessage("Cleared {0} empty chests.", Tools.ClearChests(x, y, x2, y2, emptyOnly: true));
+				plr.SendSuccessMessage(GetString("Cleared {0} empty chests."), Tools.ClearChests(x, y, x2, y2, emptyOnly: true));
 			}
 			ResetSection();
 		}

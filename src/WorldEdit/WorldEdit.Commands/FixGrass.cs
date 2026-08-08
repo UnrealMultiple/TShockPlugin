@@ -34,6 +34,6 @@ public class FixGrass : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Fixed grass. ({0})", fixedGrassCount);
+		plr.SendSuccessMessage(GetString("Fixed grass. ({0})"), fixedGrassCount);
 	}
 }

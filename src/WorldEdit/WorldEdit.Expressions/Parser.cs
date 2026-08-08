@@ -413,7 +413,7 @@ public static class Parser
 			return test = (ITile t) => !t.actuator();
 		}
 		default:
-			throw new ArgumentException("Invalid test.");
+			throw new ArgumentException(GetString("Invalid test."));
 		}
 	}
 

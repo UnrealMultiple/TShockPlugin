@@ -38,6 +38,6 @@ public class Actuator : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("{0} actuators. ({1})", _remove ? "Removed" : "Set", changedActuatorCount);
+		plr.SendSuccessMessage(GetString("{0} actuators. ({1})"), _remove ? GetString("Removed") : GetString("Set"), changedActuatorCount);
 	}
 }

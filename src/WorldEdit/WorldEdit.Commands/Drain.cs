@@ -32,6 +32,6 @@ public class Drain : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Drained area. ({0})", drainedTileCount);
+		plr.SendSuccessMessage(GetString("Drained area. ({0})"), drainedTileCount);
 	}
 }

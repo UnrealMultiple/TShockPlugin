@@ -124,51 +124,51 @@ public class FixGhosts : WECommand
 		List<string> removedObjects = new List<string>();
 		if (removedSignCount > 0)
 		{
-			removedObjects.Add($"signs ({removedSignCount})");
+			removedObjects.Add(GetString("signs ({0})", removedSignCount));
 		}
 		if (removedItemFrameCount > 0)
 		{
-			removedObjects.Add($"item frames ({removedItemFrameCount})");
+			removedObjects.Add(GetString("item frames ({0})", removedItemFrameCount));
 		}
 		if (removedChestCount > 0)
 		{
-			removedObjects.Add($"chests ({removedChestCount})");
+			removedObjects.Add(GetString("chests ({0})", removedChestCount));
 		}
 		if (removedLogicSensorCount > 0)
 		{
-			removedObjects.Add($"logic sensors ({removedLogicSensorCount})");
+			removedObjects.Add(GetString("logic sensors ({0})", removedLogicSensorCount));
 		}
 		if (removedTrainingDummyCount > 0)
 		{
-			removedObjects.Add($"target dummies ({removedTrainingDummyCount})");
+			removedObjects.Add(GetString("target dummies ({0})", removedTrainingDummyCount));
 		}
 		if (removedWeaponRackCount > 0)
 		{
-			removedObjects.Add($"weapon racks ({removedWeaponRackCount})");
+			removedObjects.Add(GetString("weapon racks ({0})", removedWeaponRackCount));
 		}
 		if (removedPylonCount > 0)
 		{
-			removedObjects.Add($"pylons ({removedPylonCount})");
+			removedObjects.Add(GetString("pylons ({0})", removedPylonCount));
 		}
 		if (removedDisplayDollCount > 0)
 		{
-			removedObjects.Add($"mannequins ({removedDisplayDollCount})");
+			removedObjects.Add(GetString("mannequins ({0})", removedDisplayDollCount));
 		}
 		if (removedHatRackCount > 0)
 		{
-			removedObjects.Add($"hat racks ({removedHatRackCount})");
+			removedObjects.Add(GetString("hat racks ({0})", removedHatRackCount));
 		}
 		if (removedFoodPlatterCount > 0)
 		{
-			removedObjects.Add($"food plates ({removedFoodPlatterCount})");
+			removedObjects.Add(GetString("food plates ({0})", removedFoodPlatterCount));
 		}
 		if (removedObjects.Count > 0)
 		{
-			plr.SendSuccessMessage("Fixed ghost " + string.Join(", ", removedObjects) + ".");
+			plr.SendSuccessMessage(GetString("Fixed ghost {0}.", string.Join(", ", removedObjects)));
 		}
 		else
 		{
-			plr.SendSuccessMessage("There are no ghost objects in this area.");
+			plr.SendSuccessMessage(GetString("There are no ghost objects in this area."));
 		}
 	}
 }

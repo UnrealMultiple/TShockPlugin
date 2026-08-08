@@ -537,6 +537,6 @@ public class Shape : WECommand
 		}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Set {0}{1} shape. ({2})", filled ? "filled " : "", wall ? "wall" : "tile", changedTileCount);
+		plr.SendSuccessMessage(GetString("Set {0}{1} shape. ({2})"), filled ? GetString("filled ") : "", wall ? GetString("wall") : GetString("tile"), changedTileCount);
 	}
 }

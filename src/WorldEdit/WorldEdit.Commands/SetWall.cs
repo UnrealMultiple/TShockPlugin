@@ -37,7 +37,7 @@ public class SetWall : WECommand
 			}
 		}
 		ResetSection();
-		string wallDescription = _wallType == 0 ? "air" : "wall " + _wallType;
-		plr.SendSuccessMessage("Set walls to {0}. ({1})", wallDescription, changedWallCount);
+		string wallDescription = _wallType == 0 ? GetString("air") : GetString("wall {0}", _wallType);
+		plr.SendSuccessMessage(GetString("Set walls to {0}. ({1})"), wallDescription, changedWallCount);
 	}
 }

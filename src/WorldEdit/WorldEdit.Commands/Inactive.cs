@@ -42,7 +42,7 @@ public class Inactive : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Made tiles inactive. ({0})", changedTileCount);
+			plr.SendSuccessMessage(GetString("Made tiles inactive. ({0})"), changedTileCount);
 			break;
 		}
 		case 1:
@@ -60,7 +60,7 @@ public class Inactive : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Set\ttiles' inactive\tstatus off.\t({0})", changedTileCount);
+			plr.SendSuccessMessage(GetString("Set\ttiles' inactive\tstatus off.\t({0})"), changedTileCount);
 			break;
 		}
 		case 2:
@@ -78,7 +78,7 @@ public class Inactive : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Reversed tiles'\tinactive status. ({0})", changedTileCount);
+			plr.SendSuccessMessage(GetString("Reversed tiles'\tinactive status. ({0})"), changedTileCount);
 			break;
 		}
 		}
