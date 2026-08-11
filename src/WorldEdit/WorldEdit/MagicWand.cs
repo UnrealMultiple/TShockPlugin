@@ -71,7 +71,7 @@ public class MagicWand
                         count++;
                         if (count >= MaxPointCount)
                         {
-                            Player.SendErrorMessage("Hard selection tile limit " + $"({MaxPointCount}) has been reached.");
+                            Player.SendErrorMessage(GetString("Hard selection tile limit ({0}) has been reached.", MaxPointCount));
                             return false;
                         }
                     }

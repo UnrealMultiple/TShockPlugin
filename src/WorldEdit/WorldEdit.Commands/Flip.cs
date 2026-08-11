@@ -93,6 +93,6 @@ public class Flip : WECommand
 				}
 			}
 		}
-		plr.SendSuccessMessage("Flipped clipboard.");
+		plr.SendSuccessMessage(GetString("Flipped clipboard."));
 	}
 }

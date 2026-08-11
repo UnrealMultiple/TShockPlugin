@@ -38,6 +38,6 @@ public class PaintWall : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Painted walls. ({0})", paintedWallCount);
+		plr.SendSuccessMessage(GetString("Painted walls. ({0})"), paintedWallCount);
 	}
 }

@@ -71,6 +71,6 @@ public class OutlineWall : WECommand
 		}
 
 		ResetSection();
-		plr.SendSuccessMessage("Set wall outline. ({0})", outlinedWallCount);
+		plr.SendSuccessMessage(GetString("Set wall outline. ({0})"), outlinedWallCount);
 	}
 }

@@ -75,6 +75,6 @@ public class SetGrass : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Set {1} grass. ({0})", changedGrassCount, _grass);
+		plr.SendSuccessMessage(GetString("Set {0} grass. ({1})"), _grass, changedGrassCount);
 	}
 }

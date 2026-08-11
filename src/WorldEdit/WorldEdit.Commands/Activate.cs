@@ -47,7 +47,7 @@ public class Activate : WECommand
 					}
 				}
 			}
-			emptyObjectTypes += ReportActivation("signs", activatedCount, failedCount);
+			emptyObjectTypes += ReportActivation(GetString("signs"), activatedCount, failedCount);
 		}
 
 		if (_action == 255 || _action == 1)
@@ -72,7 +72,7 @@ public class Activate : WECommand
 					}
 				}
 			}
-			emptyObjectTypes += ReportActivation("chests", activatedCount, failedCount);
+			emptyObjectTypes += ReportActivation(GetString("chests"), activatedCount, failedCount);
 		}
 
 		if (_action == 255 || _action == 2)
@@ -97,7 +97,7 @@ public class Activate : WECommand
 					}
 				}
 			}
-			emptyObjectTypes += ReportActivation("item frames", activatedCount, failedCount);
+			emptyObjectTypes += ReportActivation(GetString("item frames"), activatedCount, failedCount);
 		}
 
 		if (_action == 255 || _action == 3)
@@ -124,19 +124,19 @@ public class Activate : WECommand
 					activatedCount++;
 				}
 			}
-			emptyObjectTypes += ReportActivation("logic sensors", activatedCount, failedCount);
+			emptyObjectTypes += ReportActivation(GetString("logic sensors"), activatedCount, failedCount);
 		}
 
-		emptyObjectTypes += ActivateTileEntities(4, 378, 36, TETrainingDummy.Find, TETrainingDummy.Place, "target dummies");
-		emptyObjectTypes += ActivateTileEntities(5, 471, 54, TEWeaponsRack.Find, TEWeaponsRack.Place, "weapon racks");
-		emptyObjectTypes += ActivateTileEntities(6, 597, 54, TETeleportationPylon.Find, TETeleportationPylon.Place, "pylons");
-		emptyObjectTypes += ActivateTileEntities(7, 470, 36, TEDisplayDoll.Find, TEDisplayDoll.Place, "mannequins");
-		emptyObjectTypes += ActivateTileEntities(8, 475, 54, TEHatRack.Find, TEHatRack.Place, "hat racks");
-		emptyObjectTypes += ActivateTileEntities(9, 520, null, TEFoodPlatter.Find, TEFoodPlatter.Place, "food plates");
+		emptyObjectTypes += ActivateTileEntities(4, 378, 36, TETrainingDummy.Find, TETrainingDummy.Place, GetString("target dummies"));
+		emptyObjectTypes += ActivateTileEntities(5, 471, 54, TEWeaponsRack.Find, TEWeaponsRack.Place, GetString("weapon racks"));
+		emptyObjectTypes += ActivateTileEntities(6, 597, 54, TETeleportationPylon.Find, TETeleportationPylon.Place, GetString("pylons"));
+		emptyObjectTypes += ActivateTileEntities(7, 470, 36, TEDisplayDoll.Find, TEDisplayDoll.Place, GetString("mannequins"));
+		emptyObjectTypes += ActivateTileEntities(8, 475, 54, TEHatRack.Find, TEHatRack.Place, GetString("hat racks"));
+		emptyObjectTypes += ActivateTileEntities(9, 520, null, TEFoodPlatter.Find, TEFoodPlatter.Place, GetString("food plates"));
 
 		if (emptyObjectTypes == 10)
 		{
-			plr.SendSuccessMessage("There are no objects to activate in this area.");
+			plr.SendSuccessMessage(GetString("There are no objects to activate in this area."));
 		}
 
 		ResetSection();
@@ -182,7 +182,7 @@ public class Activate : WECommand
 			return 1;
 		}
 
-		plr.SendSuccessMessage("Activated {0}. ({1}){2}", objectName, activatedCount, failedCount > 0 ? $" Failed to activate {objectName}. ({failedCount})" : string.Empty);
+		plr.SendSuccessMessage(GetString("Activated {0}. ({1}){2}"), objectName, activatedCount, failedCount > 0 ? GetString(" Failed to activate {0}. ({1})", objectName, failedCount) : string.Empty);
 		return 0;
 	}
 }

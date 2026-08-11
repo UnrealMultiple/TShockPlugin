@@ -19,7 +19,7 @@ public class Undo : WECommand
 	{
 		if (WorldEdit.Config.DisableUndoSystemForUnrealPlayers && (!plr.RealPlayer || accountID == 0))
 		{
-			plr.SendErrorMessage("Undo system is disabled for unreal players.");
+			plr.SendErrorMessage(GetString("Undo system is disabled for unreal players."));
 			return;
 		}
 		int completedStepCount = -1;
@@ -28,9 +28,9 @@ public class Undo : WECommand
 		}
 		if (completedStepCount == 0)
 		{
-			plr.SendErrorMessage("Failed to undo any actions.");
+			plr.SendErrorMessage(GetString("Failed to undo any actions."));
 			return;
 		}
-		plr.SendSuccessMessage("Undid {0}'s last {1}action{2}.", (accountID == 0) ? "ServerConsole" : TShock.UserAccounts.GetUserAccountByID(accountID).Name, (completedStepCount == 1) ? "" : (completedStepCount + " "), (completedStepCount == 1) ? "" : "s");
+		plr.SendSuccessMessage(GetString("Undid {0}'s last {1}action{2}."), (accountID == 0) ? "ServerConsole" : TShock.UserAccounts.GetUserAccountByID(accountID).Name, (completedStepCount == 1) ? "" : (completedStepCount + " "), (completedStepCount == 1) ? "" : "s");
 	}
 }

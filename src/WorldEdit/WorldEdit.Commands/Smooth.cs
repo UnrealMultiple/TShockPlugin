@@ -89,6 +89,6 @@ public class Smooth : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Smoothed area. ({0})", smoothedTileCount);
+		plr.SendSuccessMessage(GetString("Smoothed area. ({0})"), smoothedTileCount);
 	}
 }

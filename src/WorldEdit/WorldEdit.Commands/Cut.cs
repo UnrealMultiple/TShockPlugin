@@ -53,6 +53,6 @@ public class Cut : WECommand
 		}
 		File.Copy(undoPath, clipboardPath);
 		ResetSection();
-		plr.SendSuccessMessage("Cut selection. ({0})", (x2 - x + 1) * (y2 - y + 1));
+		plr.SendSuccessMessage(GetString("Cut selection. ({0})"), (x2 - x + 1) * (y2 - y + 1));
 	}
 }

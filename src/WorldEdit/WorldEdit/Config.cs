@@ -4,40 +4,40 @@ using Newtonsoft.Json;
 namespace WorldEdit
 {
     /// <summary>
-    /// ÊÀ½ç±à¼­ÅäÖÃÀà£¬¸ºÔğ¹ÜÀíºÍ³Ö¾Ã»¯ÏµÍ³ÉèÖÃ
+    /// ä¸–ç•Œç¼–è¾‘é…ç½®ç±»ï¼Œè´Ÿè´£ç®¡ç†å’ŒæŒä¹…åŒ–ç³»ç»Ÿè®¾ç½®
     /// </summary>
     public class Config
     {
         /// <summary>
-        /// Ä§·¨°ô¹¤¾ß¿É²Ù×÷µÄ×î´ó·½¿éÊıÁ¿ÏŞÖÆ
+        /// é­”æ³•æ£’å·¥å…·å¯æ“ä½œçš„æœ€å¤§æ–¹å—æ•°é‡é™åˆ¶
         /// </summary>
         public int MagicWandTileLimit { get; set; } = 10000;
 
         /// <summary>
-        /// ×î´ó³·Ïú²Ù×÷ÀúÊ·¼ÇÂ¼ÊıÁ¿
+        /// æœ€å¤§æ’¤é”€æ“ä½œå†å²è®°å½•æ•°é‡
         /// </summary>
         public int MaxUndoCount { get; set; } = 50;
 
         /// <summary>
-        /// ÊÇ·ñ¶ÔÎ´ÈÏÖ¤Íæ¼Ò½ûÓÃ³·ÏúÏµÍ³
+        /// æ˜¯å¦å¯¹æœªè®¤è¯ç©å®¶ç¦ç”¨æ’¤é”€ç³»ç»Ÿ
         /// </summary>
         public bool DisableUndoSystemForUnrealPlayers { get; set; } = false;
 
         /// <summary>
-        /// ÊÇ·ñÔÚÔ­ÀíÍ¼ÎÄ¼şÃûÇ°Ìí¼Ó´´½¨ÕßÓÃ»§ID
+        /// æ˜¯å¦åœ¨åŸç†å›¾æ–‡ä»¶åå‰æ·»åŠ åˆ›å»ºè€…ç”¨æˆ·ID
         /// </summary>
         public bool StartSchematicNamesWithCreatorUserID { get; set; } = false;
 
         /// <summary>
-        /// Ô­ÀíÍ¼ÎÄ¼ş´æ´¢ÎÄ¼ş¼ĞÂ·¾¶
+        /// åŸç†å›¾æ–‡ä»¶å­˜å‚¨æ–‡ä»¶å¤¹è·¯å¾„
         /// </summary>
         public string SchematicFolderPath { get; set; } = "schematics";
 
         /// <summary>
-        /// ´ÓÖ¸¶¨ÎÄ¼şÂ·¾¶¶ÁÈ¡ÅäÖÃ
+        /// ä»æŒ‡å®šæ–‡ä»¶è·¯å¾„è¯»å–é…ç½®
         /// </summary>
-        /// <param name="configFilePath">ÅäÖÃÎÄ¼şÂ·¾¶</param>
-        /// <returns>ÅäÖÃÊµÀı</returns>
+        /// <param name="configFilePath">é…ç½®æ–‡ä»¶è·¯å¾„</param>
+        /// <returns>é…ç½®å®ä¾‹</returns>
         public static Config Read(string configFilePath)
         {
             try
@@ -52,21 +52,21 @@ namespace WorldEdit
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"¶ÁÈ¡ÅäÖÃÎÄ¼şÊ§°Ü: {ex.Message}");
+                Console.WriteLine(GetString("è¯»å–é…ç½®æ–‡ä»¶å¤±è´¥: {0}", ex.Message));
                 return new Config();
             }
         }
 
         /// <summary>
-        /// ½«µ±Ç°ÅäÖÃĞ´ÈëÖ¸¶¨ÎÄ¼ş
+        /// å°†å½“å‰é…ç½®å†™å…¥æŒ‡å®šæ–‡ä»¶
         /// </summary>
-        /// <param name="configFilePath">ÅäÖÃÎÄ¼şÂ·¾¶</param>
-        /// <returns>µ±Ç°ÅäÖÃÊµÀı</returns>
+        /// <param name="configFilePath">é…ç½®æ–‡ä»¶è·¯å¾„</param>
+        /// <returns>å½“å‰é…ç½®å®ä¾‹</returns>
         public Config Write(string configFilePath)
         {
             try
             {
-                // È·±£Ä¿Â¼´æÔÚ
+                // ç¡®ä¿ç›®å½•å­˜åœ¨
                 string directory = Path.GetDirectoryName(configFilePath);
                 if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
                 {
@@ -88,7 +88,7 @@ namespace WorldEdit
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ğ´ÈëÅäÖÃÎÄ¼şÊ§°Ü: {ex.Message}");
+                Console.WriteLine(GetString("å†™å…¥é…ç½®æ–‡ä»¶å¤±è´¥: {0}", ex.Message));
                 return this;
             }
         }

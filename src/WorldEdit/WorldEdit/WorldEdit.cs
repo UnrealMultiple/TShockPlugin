@@ -51,11 +51,11 @@ public class WorldEdit : TerrariaPlugin
 
     public override string Author => "Nyx Studios, massive upgrade by Anzhelika，肝帝熙恩适配1456";
 
-    public override string Description => "Adds commands for mass editing of blocks.";
+    public override string Description => GetString("Adds commands for mass editing of blocks.");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
 
-    public override Version Version => new Version(2026, 07, 21);
+    public override Version Version => new Version(2026, 08, 08);
 
     static WorldEdit()
     {
@@ -100,7 +100,7 @@ public class WorldEdit : TerrariaPlugin
         Config = Config.Read(ConfigPath);
         Tools.MAX_UNDOS = Config.MaxUndoCount;
         MagicWand.MaxPointCount = Config.MagicWandTileLimit;
-        e?.Player?.SendSuccessMessage("[WorldEdit] Successfully reloaded config.");
+        e?.Player?.SendSuccessMessage(GetString("[WorldEdit] Successfully reloaded config."));
         if (!Directory.Exists(Config.SchematicFolderPath))
         {
             Directory.CreateDirectory(Config.SchematicFolderPath);
@@ -136,20 +136,20 @@ public class WorldEdit : TerrariaPlugin
         {
             playerInfo.X = x;
             playerInfo.Y = y;
-            player.SendInfoMessage("Set point 1.");
+            player.SendInfoMessage(GetString("Set point 1."));
         }
         else if (playerInfo.Point == 2)
         {
             playerInfo.X2 = x;
             playerInfo.Y2 = y;
-            player.SendInfoMessage("Set point 2.");
+            player.SendInfoMessage(GetString("Set point 2."));
         }
         else if (playerInfo.Point == 3)
         {
             var regionNames = TShock.Regions.InAreaRegionName(x, y).ToList();
             if (regionNames.Count == 0)
             {
-                player.SendErrorMessage("No region exists there.");
+                player.SendErrorMessage(GetString("No region exists there."));
             }
             else
             {
@@ -159,7 +159,7 @@ public class WorldEdit : TerrariaPlugin
                 playerInfo.Y = rect.Top;
                 playerInfo.X2 = rect.Right;
                 playerInfo.Y2 = rect.Bottom;
-                player.SendInfoMessage("Set region.");
+                player.SendInfoMessage(GetString("Set region."));
             }
         }
         else if (playerInfo.Point == 4 && playerInfo.SavedExpression != null)
@@ -167,12 +167,12 @@ public class WorldEdit : TerrariaPlugin
             if (MagicWand.GetMagicWandSelection(x, y, playerInfo.SavedExpression, player, out var magicWand))
             {
                 playerInfo.MagicWand = magicWand;
-                player.SendSuccessMessage("Set magic wand selection.");
+                player.SendSuccessMessage(GetString("Set magic wand selection."));
                 playerInfo.SavedExpression = null;
             }
             else
             {
-                player.SendErrorMessage("Can't start counting magic wand selection from this tile.");
+                player.SendErrorMessage(GetString("Can't start counting magic wand selection from this tile."));
             }
         }
 
@@ -192,220 +192,220 @@ public class WorldEdit : TerrariaPlugin
         OnReload(null);
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.admin", EditConfig, "/worldedit", "/wedit")
         {
-            HelpText = "Edits config options."
+            HelpText = GetString("Edits config options.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.activate", Activate, "/activate")
         {
-            HelpText = "Activates non-working signs, chests or item frames."
+            HelpText = GetString("Activates non-working signs, chests or item frames.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.all", All, "/all")
         {
-            HelpText = "Sets the worldedit selection to the entire world."
+            HelpText = GetString("Sets the worldedit selection to the entire world.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.biome", Biome, "/biome")
         {
-            HelpText = "Converts biomes in the worldedit selection."
+            HelpText = GetString("Converts biomes in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.copy", Copy, "/copy", "/c")
         {
-            HelpText = "Copies the worldedit selection to the clipboard."
+            HelpText = GetString("Copies the worldedit selection to the clipboard.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.cut", Cut, "/cut")
         {
-            HelpText = "Copies the worldedit selection to the clipboard, then deletes it."
+            HelpText = GetString("Copies the worldedit selection to the clipboard, then deletes it.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.drain", Drain, "/drain")
         {
-            HelpText = "Drains liquids in the worldedit selection."
+            HelpText = GetString("Drains liquids in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.fill", Fill, "/fill")
         {
-            HelpText = "Fills the worldedit selection."
+            HelpText = GetString("Fills the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.fillwall", FillWall, "/fillwall", "/fillw")
         {
-            HelpText = "Fills the worldedit selection."
+            HelpText = GetString("Fills the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.fixghosts", FixGhosts, "/fixghosts")
         {
-            HelpText = "Fixes invisible signs, chests and item frames."
+            HelpText = GetString("Fixes invisible signs, chests and item frames.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.fixgrass", FixGrass, "/fixgrass")
         {
-            HelpText = "Fixes suffocated grass in the worldedit selection."
+            HelpText = GetString("Fixes suffocated grass in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.fixhalves", FixHalves, "/fixhalves")
         {
-            HelpText = "Fixes half blocks in the worldedit selection."
+            HelpText = GetString("Fixes half blocks in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.fixslopes", FixSlopes, "/fixslopes")
         {
-            HelpText = "Fixes covered slopes in the worldedit selection."
+            HelpText = GetString("Fixes covered slopes in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.flip", Flip, "/flip")
         {
-            HelpText = "Flips the worldedit clipboard."
+            HelpText = GetString("Flips the worldedit clipboard.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.flood", Flood, "/flood")
         {
-            HelpText = "Floods liquids in the worldedit selection."
+            HelpText = GetString("Floods liquids in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.magic.wand", MagicWandTool, "/magicwand", "/mwand")
         {
-            HelpText = "Creates worldedit selection from contiguous tiles that are matching boolean expression."
+            HelpText = GetString("Creates worldedit selection from contiguous tiles that are matching boolean expression.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.killempty", KillEmpty, "/killempty")
         {
-            HelpText = "Deletes empty signs and/or chests (only entities, doesn't remove tiles)."
+            HelpText = GetString("Deletes empty signs and/or chests (only entities, doesn't remove tiles).")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.move", Move, "/move")
         {
-            HelpText = "Moves tiles from the worldedit selection to new area."
+            HelpText = GetString("Moves tiles from the worldedit selection to new area.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.mow", Mow, "/mow")
         {
-            HelpText = "Mows grass, thorns, and vines in the worldedit selection."
+            HelpText = GetString("Mows grass, thorns, and vines in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.near", Near, "/near")
         {
             AllowServer = false,
-            HelpText = "Sets the worldedit selection to a radius around you."
+            HelpText = GetString("Sets the worldedit selection to a radius around you.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.outline", Outline, "/outline", "/ol")
         {
-            HelpText = "Sets block outline around blocks in area."
+            HelpText = GetString("Sets block outline around blocks in area.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.outlinewall", OutlineWall, "/outlinewall", "/olw")
         {
-            HelpText = "Sets wall outline around walls in area."
+            HelpText = GetString("Sets wall outline around walls in area.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.paint", Paint, "/paint", "/pa")
         {
-            HelpText = "Paints tiles in the worldedit selection."
+            HelpText = GetString("Paints tiles in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.paintwall", PaintWall, "/paintwall", "/paw")
         {
-            HelpText = "Paints walls in the worldedit selection."
+            HelpText = GetString("Paints walls in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.paste", Paste, "/paste", "/p")
         {
-            HelpText = "Pastes the clipboard to the worldedit selection."
+            HelpText = GetString("Pastes the clipboard to the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.spaste", SPaste, "/spaste", "/sp")
         {
-            HelpText = "Pastes the clipboard to the worldedit selection with certain conditions."
+            HelpText = GetString("Pastes the clipboard to the worldedit selection with certain conditions.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.point", Point1, "/point1", "/p1", "p1")
         {
-            HelpText = "Sets the positions of the worldedit selection's first point."
+            HelpText = GetString("Sets the positions of the worldedit selection's first point.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.point", Point2, "/point2", "/p2", "p2")
         {
-            HelpText = "Sets the positions of the worldedit selection's second point."
+            HelpText = GetString("Sets the positions of the worldedit selection's second point.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.history.redo", Redo, "/redo")
         {
-            HelpText = "Redoes a number of worldedit actions."
+            HelpText = GetString("Redoes a number of worldedit actions.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.region", RegionCmd, "/region")
         {
-            HelpText = "Selects a region as a worldedit selection."
+            HelpText = GetString("Selects a region as a worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.replace", Replace, "/replace", "/rep")
         {
-            HelpText = "Replaces tiles in the worldedit selection."
+            HelpText = GetString("Replaces tiles in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.replacewall", ReplaceWall, "/replacewall", "/repw")
         {
-            HelpText = "Replaces walls in the worldedit selection."
+            HelpText = GetString("Replaces walls in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.resize", Resize, "/resize")
         {
-            HelpText = "Resizes the worldedit selection in a direction."
+            HelpText = GetString("Resizes the worldedit selection in a direction.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.rotate", Rotate, "/rotate")
         {
-            HelpText = "Rotates the worldedit clipboard."
+            HelpText = GetString("Rotates the worldedit clipboard.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.schematic", Schematic, "/schematic", "/schem", "/sc", "sc")
         {
-            HelpText = "Manages worldedit schematics."
+            HelpText = GetString("Manages worldedit schematics.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.selecttype", Select, "/select")
         {
-            HelpText = "Sets the worldedit selection function."
+            HelpText = GetString("Sets the worldedit selection function.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.set", Set, "/set")
         {
-            HelpText = "Sets tiles in the worldedit selection."
+            HelpText = GetString("Sets tiles in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.setgrass", SetGrass, "/setgrass")
         {
-            HelpText = "Sets certain grass in the worldedit selection."
+            HelpText = GetString("Sets certain grass in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.setwall", SetWall, "/setwall", "/swa")
         {
-            HelpText = "Sets walls in the worldedit selection."
+            HelpText = GetString("Sets walls in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.setwire", SetWire, "/setwire", "/swi")
         {
-            HelpText = "Sets wires in the worldedit selection."
+            HelpText = GetString("Sets wires in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.shape", Shape, "/shape")
         {
-            HelpText = "Draws line/rectangle/ellipse/triangle in the worldedit selection."
+            HelpText = GetString("Draws line/rectangle/ellipse/triangle in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.shape", Shape, "/shapefill", "/shapef")
         {
-            HelpText = "Draws line/rectangle/ellipse/triangle in the worldedit selection."
+            HelpText = GetString("Draws line/rectangle/ellipse/triangle in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.shape", Shape, "/shapewall", "/shapew")
         {
-            HelpText = "Draws line/rectangle/ellipse/triangle in the worldedit selection."
+            HelpText = GetString("Draws line/rectangle/ellipse/triangle in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.shape", Shape, "/shapewallfill", "/shapewf")
         {
-            HelpText = "Draws line/rectangle/ellipse/triangle in the worldedit selection."
+            HelpText = GetString("Draws line/rectangle/ellipse/triangle in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.utils.size", Size, "/size")
         {
-            HelpText = "Shows size of clipboard or schematic."
+            HelpText = GetString("Shows size of clipboard or schematic.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.slope", Slope, "/slope")
         {
-            HelpText = "Slopes tiles in the worldedit selection."
+            HelpText = GetString("Slopes tiles in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.delslope", SlopeDelete, "/delslope", "/delslopes", "/dslope", "/dslopes")
         {
-            HelpText = "Removes slopes in the worldedit selection."
+            HelpText = GetString("Removes slopes in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.smooth", Smooth, "/smooth")
         {
-            HelpText = "Smooths blocks in the worldedit selection."
+            HelpText = GetString("Smooths blocks in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.inactive", Inactive, "/inactive", "/ia")
         {
-            HelpText = "Sets the inactive status in the worldedit selection."
+            HelpText = GetString("Sets the inactive status in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.shift", Shift, "/shift")
         {
-            HelpText = "Shifts the worldedit selection in a direction."
+            HelpText = GetString("Shifts the worldedit selection in a direction.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.selection.text", Text, "/text")
         {
-            HelpText = "Creates text with alphabet statues in the worldedit selection."
+            HelpText = GetString("Creates text with alphabet statues in the worldedit selection.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.history.undo", Undo, "/undo")
         {
-            HelpText = "Undoes a number of worldedit actions."
+            HelpText = GetString("Undoes a number of worldedit actions.")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.clipboard.scale", Scale, "/scale")
         {
-            HelpText = "Scale the clipboard"
+            HelpText = GetString("Scale the clipboard")
         });
         TShockAPI.Commands.ChatCommands.Add(new Command("worldedit.region.actuator", Actuator, "/actuator")
         {
-            HelpText = "Sets actuators in the worldedit selection."
+            HelpText = GetString("Sets actuators in the worldedit selection.")
         });
         try
         {
@@ -449,9 +449,9 @@ public class WorldEdit : TerrariaPlugin
 				File.Delete(clipboardPath);
             }
             File.Create(path).Close();
-            TShock.Log.ConsoleInfo("WorldEdit doesn't support undo/redo/clipboard files that were saved by plugin below version 1.7.");
-            TShock.Log.ConsoleInfo("These files had been deleted. However, we still support old schematic files (*.dat)");
-            TShock.Log.ConsoleInfo("Do not delete deteted.lock inside worldedit folder; this message will only show once.");
+            TShock.Log.ConsoleInfo(GetString("WorldEdit doesn't support undo/redo/clipboard files that were saved by plugin below version 1.7."));
+            TShock.Log.ConsoleInfo(GetString("These files had been deleted. However, we still support old schematic files (*.dat)"));
+            TShock.Log.ConsoleInfo(GetString("Do not delete deteted.lock inside worldedit folder; this message will only show once."));
         }
         IDbConnection database = Database;
         SqlTableCreator sqlTableCreator = new SqlTableCreator(database, Database.GetSqlQueryBuilder());
@@ -486,7 +486,7 @@ public class WorldEdit : TerrariaPlugin
         }
         catch (Exception ex)
         {
-            TShock.Log.ConsoleError($"WorldEdit initialization error (database/biomes/colors): {ex}");
+            TShock.Log.ConsoleError(GetString("WorldEdit initialization error (database/biomes/colors): {0}", ex));
         }
         Selections.Add("altcheckers", (int i, int j, TSPlayer plr) => ((i + j) & 1) == 0);
         Selections.Add("checkers", (int i, int j, TSPlayer plr) => ((i + j) & 1) == 1);
@@ -593,7 +593,7 @@ public class WorldEdit : TerrariaPlugin
                 TSPlayer tSPlayer = item?.plr;
                 if (tSPlayer != null && tSPlayer.Active)
                 {
-                    tSPlayer.SendErrorMessage("WorldEdit command failed, check logs for more details.");
+                    tSPlayer.SendErrorMessage(GetString("WorldEdit command failed, check logs for more details."));
                 }
             }
         }
@@ -603,8 +603,8 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count < 1 || e.Parameters.Count > 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //worldedit <option> [value]");
-            e.Player.SendInfoMessage("Config options: MagicWandTileLimit (wand), MaxUndoCount (undocount),\nDisableUndoSystemForUnrealPlayers (undodisable), StartSchematicNamesWithCreatorUserID (schematic)");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //worldedit <option> [value]"));
+            e.Player.SendInfoMessage(GetString("Config options: MagicWandTileLimit (wand), MaxUndoCount (undocount),\nDisableUndoSystemForUnrealPlayers (undodisable), StartSchematicNamesWithCreatorUserID (schematic)"));
             return;
         }
         switch (e.Parameters.ElementAtOrDefault(0).ToLower())
@@ -615,17 +615,17 @@ public class WorldEdit : TerrariaPlugin
 				int tileLimit;
                 if (e.Parameters.Count == 1)
                 {
-                    e.Player.SendSuccessMessage($"Magic wand tile limit is {Config.MagicWandTileLimit}.");
+                    e.Player.SendSuccessMessage(GetString("Magic wand tile limit is {0}.", Config.MagicWandTileLimit));
                 }
 				else if (!int.TryParse(e.Parameters[1], out tileLimit) || tileLimit < 0)
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //worldedit <magicwandtilelimit/wand> <amount>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //worldedit <magicwandtilelimit/wand> <amount>"));
                 }
                 else
                 {
 					Config.MagicWandTileLimit = tileLimit;
                     Config.Write(ConfigPath);
-					e.Player.SendSuccessMessage($"Magic wand tile limit set to {tileLimit}.");
+					e.Player.SendSuccessMessage(GetString("Magic wand tile limit set to {0}.", tileLimit));
                 }
                 break;
             }
@@ -635,17 +635,17 @@ public class WorldEdit : TerrariaPlugin
 				int maxUndoCount;
                 if (e.Parameters.Count == 1)
                 {
-                    e.Player.SendSuccessMessage($"Max undo count is {Config.MaxUndoCount}.");
+                    e.Player.SendSuccessMessage(GetString("Max undo count is {0}.", Config.MaxUndoCount));
                 }
 				else if (!int.TryParse(e.Parameters[1], out maxUndoCount) || maxUndoCount < 0)
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //worldedit <maxundocount/undocount> <amount>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //worldedit <maxundocount/undocount> <amount>"));
                 }
                 else
                 {
 					Config.MaxUndoCount = maxUndoCount;
                     Config.Write(ConfigPath);
-					e.Player.SendSuccessMessage($"Max undo count set to {maxUndoCount}.");
+					e.Player.SendSuccessMessage(GetString("Max undo count set to {0}.", maxUndoCount));
                 }
                 break;
             }
@@ -655,17 +655,17 @@ public class WorldEdit : TerrariaPlugin
 				bool disableUndoForUnrealPlayers;
                 if (e.Parameters.Count == 1)
                 {
-                    e.Player.SendSuccessMessage($"Disable undo system for unreal players is {Config.DisableUndoSystemForUnrealPlayers}.");
+                    e.Player.SendSuccessMessage(GetString("Disable undo system for unreal players is {0}.", Config.DisableUndoSystemForUnrealPlayers));
                 }
 				else if (!bool.TryParse(e.Parameters[1], out disableUndoForUnrealPlayers))
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //worldedit <disableundosystemforunrealplayers/undodisable> <true/false>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //worldedit <disableundosystemforunrealplayers/undodisable> <true/false>"));
                 }
                 else
                 {
 					Config.DisableUndoSystemForUnrealPlayers = disableUndoForUnrealPlayers;
                     Config.Write(ConfigPath);
-					e.Player.SendSuccessMessage($"Disable undo system for unreal players set to {disableUndoForUnrealPlayers}.");
+					e.Player.SendSuccessMessage(GetString("Disable undo system for unreal players set to {0}.", disableUndoForUnrealPlayers));
                 }
                 break;
             }
@@ -675,22 +675,22 @@ public class WorldEdit : TerrariaPlugin
                 bool result;
                 if (e.Parameters.Count == 1)
                 {
-                    e.Player.SendSuccessMessage($"Start schematic names with creator user id is {Config.StartSchematicNamesWithCreatorUserID}.");
+                    e.Player.SendSuccessMessage(GetString("Start schematic names with creator user id is {0}.", Config.StartSchematicNamesWithCreatorUserID));
                 }
                 else if (!bool.TryParse(e.Parameters[1], out result))
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //worldedit <startschematicnameswithcreatoruserid/schematic> <true/false>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //worldedit <startschematicnameswithcreatoruserid/schematic> <true/false>"));
                 }
                 else
                 {
                     Config.StartSchematicNamesWithCreatorUserID = result;
                     Config.Write(ConfigPath);
-                    e.Player.SendSuccessMessage($"Start schematic names with creator user id set to {result}.");
+                    e.Player.SendSuccessMessage(GetString("Start schematic names with creator user id set to {0}.", result));
                 }
                 break;
             }
             default:
-                e.Player.SendErrorMessage("Config options: MagicWandTileLimit (wand), MaxUndoCount (undocount),\nDisableUndoSystemForUnrealPlayers (undodisable), StartSchematicNamesWithCreatorUserID (schematic)");
+                e.Player.SendErrorMessage(GetString("Config options: MagicWandTileLimit (wand), MaxUndoCount (undocount),\nDisableUndoSystemForUnrealPlayers (undodisable), StartSchematicNamesWithCreatorUserID (schematic)"));
                 break;
         }
     }
@@ -699,13 +699,13 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //activate <sign/chest/itemframe/sensor/dummy/all>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //activate <sign/chest/itemframe/sensor/dummy/all>"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
             return;
         }
         byte action;
@@ -741,7 +741,7 @@ public class WorldEdit : TerrariaPlugin
                 action = byte.MaxValue;
                 break;
             default:
-                e.Player.SendErrorMessage("Invalid activation type '{0}'.", e.Parameters[0]);
+                e.Player.SendErrorMessage(GetString("Invalid activation type '{0}'."), e.Parameters[0]);
                 return;
         }
         _commandQueue.Add(new Activate(playerInfo.X, playerInfo.Y, playerInfo.X2, playerInfo.Y2, e.Player, action));
@@ -752,20 +752,20 @@ public class WorldEdit : TerrariaPlugin
         string text = ((e.Parameters.Count == 0) ? "" : e.Parameters[0].ToLowerInvariant());
         if (text != "off" && text != "on")
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //actuator <on/off> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //actuator <on/off> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
             return;
         }
         bool remove = text == "off";
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -780,27 +780,27 @@ public class WorldEdit : TerrariaPlugin
         playerInfo.X = x;
         playerInfo.X2 = Main.maxTilesX - 1;
         playerInfo.Y2 = Main.maxTilesY - 1;
-        e.Player.SendSuccessMessage("Selected all tiles.");
+        e.Player.SendSuccessMessage(GetString("Selected all tiles."));
     }
 
     private void Biome(CommandArgs e)
     {
         if (e.Parameters.Count != 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //biome <biome 1> <biome 2>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //biome <biome 1> <biome 2>"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
             return;
         }
         string text = e.Parameters[0].ToLowerInvariant();
 		string targetBiome = e.Parameters[1].ToLowerInvariant();
 		if (!Biomes.ContainsKey(text) || !Biomes.ContainsKey(targetBiome))
         {
-            e.Player.SendErrorMessage("Invalid biome.");
+            e.Player.SendErrorMessage(GetString("Invalid biome."));
         }
         else
         {
@@ -813,7 +813,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -825,13 +825,13 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
         }
         else
         {
@@ -844,7 +844,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
         }
         else
         {
@@ -857,23 +857,23 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
             return;
         }
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("//fill <tile> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("//fill <tile> [=> boolean expr...]"));
             return;
         }
         List<int> tileID = Tools.GetTileID(e.Parameters[0].ToLowerInvariant());
         if (tileID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[0]);
             return;
         }
         if (tileID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
         Expression expression;
@@ -881,7 +881,7 @@ public class WorldEdit : TerrariaPlugin
         {
             if (!Parser.TryParseTree(e.Parameters.Skip(1), out expression))
             {
-                e.Player.SendErrorMessage("Invalid expression!");
+                e.Player.SendErrorMessage(GetString("Invalid expression!"));
                 return;
             }
         }
@@ -897,23 +897,23 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection.");
+            e.Player.SendErrorMessage(GetString("Invalid selection."));
             return;
         }
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("//fill <tile> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("//fill <tile> [=> boolean expr...]"));
             return;
         }
         List<int> wallID = Tools.GetWallID(e.Parameters[0].ToLowerInvariant());
         if (wallID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid wall '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid wall '{0}'!"), e.Parameters[0]);
             return;
         }
         if (wallID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one wall matched!");
+            e.Player.SendErrorMessage(GetString("More than one wall matched!"));
             return;
         }
         Expression expression;
@@ -921,7 +921,7 @@ public class WorldEdit : TerrariaPlugin
         {
             if (!Parser.TryParseTree(e.Parameters.Skip(1), out expression))
             {
-                e.Player.SendErrorMessage("Invalid expression!");
+                e.Player.SendErrorMessage(GetString("Invalid expression!"));
                 return;
             }
         }
@@ -937,7 +937,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -950,7 +950,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -963,7 +963,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -976,7 +976,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -988,7 +988,7 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //flood <liquid>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //flood <liquid>"));
             return;
         }
         int liquid = 0;
@@ -1002,13 +1002,13 @@ public class WorldEdit : TerrariaPlugin
         }
         else if (!string.Equals(e.Parameters[0], "water", StringComparison.OrdinalIgnoreCase))
         {
-            e.Player.SendErrorMessage("Invalid liquid type '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid liquid type '{0}'!"), e.Parameters[0]);
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         _commandQueue.Add(new Flood(playerInfo.X, playerInfo.Y, playerInfo.X2, playerInfo.Y2, playerInfo.MagicWand, e.Player, liquid));
     }
@@ -1017,17 +1017,17 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //flip <direction>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //flip <direction>"));
             return;
         }
         if (!Tools.HasClipboard(e.Player.Account.ID))
         {
-            e.Player.SendErrorMessage("Invalid clipboard!");
+            e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
             return;
         }
         bool flipX = false;
@@ -1044,7 +1044,7 @@ public class WorldEdit : TerrariaPlugin
                     flipY = !flipY;
                     break;
                 default:
-                    e.Player.SendErrorMessage("Invalid direction '{0}'!", axis);
+                    e.Player.SendErrorMessage(GetString("Invalid direction '{0}'!"), axis);
                     return;
             }
         }
@@ -1053,7 +1053,7 @@ public class WorldEdit : TerrariaPlugin
 
     private void MagicWandTool(CommandArgs e)
     {
-        string msg = "Invalid syntax! Proper syntax: //magicwand [<X> <Y>] => boolean expr...";
+        string msg = GetString("Invalid syntax! Proper syntax: //magicwand [<X> <Y>] => boolean expr...");
         if (e.Parameters.Count < 2)
         {
             e.Player.SendErrorMessage(msg);
@@ -1078,7 +1078,7 @@ public class WorldEdit : TerrariaPlugin
         }
         if (!Parser.TryParseTree(e.Parameters.Skip(count), out var expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
@@ -1086,12 +1086,12 @@ public class WorldEdit : TerrariaPlugin
         {
 			if (!MagicWand.GetMagicWandSelection(startX, startY, expression, e.Player, out var magicWand))
             {
-                e.Player.SendErrorMessage("Can't start counting magic wand selection from this tile.");
+                e.Player.SendErrorMessage(GetString("Can't start counting magic wand selection from this tile."));
             }
             else
             {
                 playerInfo.MagicWand = magicWand;
-                e.Player.SendSuccessMessage("Set magic wand selection.");
+                e.Player.SendSuccessMessage(GetString("Set magic wand selection."));
             }
             playerInfo.SavedExpression = null;
         }
@@ -1099,7 +1099,7 @@ public class WorldEdit : TerrariaPlugin
         {
             playerInfo.SavedExpression = expression;
             playerInfo.Point = 4;
-            e.Player.SendInfoMessage("Modify a block to count hard selection.");
+            e.Player.SendInfoMessage(GetString("Modify a block to count hard selection."));
         }
     }
 
@@ -1123,13 +1123,13 @@ public class WorldEdit : TerrariaPlugin
                 action = byte.MaxValue;
                 break;
             default:
-                e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //killempty <signs/chests/all>");
+                e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //killempty <signs/chests/all>"));
                 return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         _commandQueue.Add(new KillEmpty(playerInfo.X, playerInfo.Y, playerInfo.X2, playerInfo.Y2, e.Player, action));
     }
@@ -1138,24 +1138,24 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count < 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //move <right> <down> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //move <right> <down> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
 		if (!int.TryParse(e.Parameters[0], out var horizontalOffset) || !int.TryParse(e.Parameters[1], out var verticalOffset))
         {
-            e.Player.SendErrorMessage("Invalid distance!");
+            e.Player.SendErrorMessage(GetString("Invalid distance!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 2 && !Parser.TryParseTree(e.Parameters.Skip(2), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1168,7 +1168,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -1180,12 +1180,12 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //near <radius>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //near <radius>"));
             return;
         }
         if (!int.TryParse(e.Parameters[0], out var result) || result <= 0)
         {
-            e.Player.SendErrorMessage("Invalid radius '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid radius '{0}'!"), e.Parameters[0]);
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
@@ -1193,31 +1193,31 @@ public class WorldEdit : TerrariaPlugin
         playerInfo.X2 = e.Player.TileX + result + 1;
         playerInfo.Y = e.Player.TileY - result;
         playerInfo.Y2 = e.Player.TileY + result + 2;
-        e.Player.SendSuccessMessage("Selected tiles around you!");
+        e.Player.SendSuccessMessage(GetString("Selected tiles around you!"));
     }
 
     private void Outline(CommandArgs e)
     {
         if (e.Parameters.Count < 3)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //outline <tile> <color> <state> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //outline <tile> <color> <state> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> colorID = Tools.GetColorID(e.Parameters[1].ToLowerInvariant());
         if (colorID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid color '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid color '{0}'!"), e.Parameters[0]);
             return;
         }
         if (colorID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one color matched!");
+            e.Player.SendErrorMessage(GetString("More than one color matched!"));
             return;
         }
         bool active = false;
@@ -1235,24 +1235,24 @@ public class WorldEdit : TerrariaPlugin
         }
         else if (!string.Equals(e.Parameters[2], "nactive", StringComparison.OrdinalIgnoreCase))
         {
-            e.Player.SendErrorMessage("Invalid active state '{0}'!", e.Parameters[1]);
+            e.Player.SendErrorMessage(GetString("Invalid active state '{0}'!"), e.Parameters[1]);
             return;
         }
         List<int> tileID = Tools.GetTileID(e.Parameters[0].ToLowerInvariant());
         if (tileID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[0]);
             return;
         }
         if (tileID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 3 && !Parser.TryParseTree(e.Parameters.Skip(3), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1264,41 +1264,41 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count < 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //outlinewall <wall> [color] [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //outlinewall <wall> [color] [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> colorID = Tools.GetColorID(e.Parameters[1].ToLowerInvariant());
         if (colorID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid color '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid color '{0}'!"), e.Parameters[0]);
             return;
         }
         if (colorID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one color matched!");
+            e.Player.SendErrorMessage(GetString("More than one color matched!"));
             return;
         }
         List<int> wallID = Tools.GetWallID(e.Parameters[0].ToLowerInvariant());
         if (wallID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid wall '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid wall '{0}'!"), e.Parameters[0]);
             return;
         }
         if (wallID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one wall matched!");
+            e.Player.SendErrorMessage(GetString("More than one wall matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 2 && !Parser.TryParseTree(e.Parameters.Skip(2), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1310,30 +1310,30 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //paint <color> [where] [conditions...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //paint <color> [where] [conditions...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> colorID = Tools.GetColorID(e.Parameters[0].ToLowerInvariant());
         if (colorID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid color '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid color '{0}'!"), e.Parameters[0]);
             return;
         }
         if (colorID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one color matched!");
+            e.Player.SendErrorMessage(GetString("More than one color matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1345,30 +1345,30 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //paintwall <color> [where] [conditions...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //paintwall <color> [where] [conditions...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> colorID = Tools.GetColorID(e.Parameters[0].ToLowerInvariant());
         if (colorID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid color '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid color '{0}'!"), e.Parameters[0]);
             return;
         }
         if (colorID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one color matched!");
+            e.Player.SendErrorMessage(GetString("More than one color matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1380,19 +1380,19 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
-        e.Player.SendInfoMessage("X: {0}, Y: {1}", playerInfo.X, playerInfo.Y);
+        e.Player.SendInfoMessage(GetString("X: {0}, Y: {1}"), playerInfo.X, playerInfo.Y);
         if (playerInfo.X == -1 || playerInfo.Y == -1)
         {
-            e.Player.SendErrorMessage("Invalid first point!");
+            e.Player.SendErrorMessage(GetString("Invalid first point!"));
             return;
         }
         if (!Tools.HasClipboard(e.Player.Account.ID))
         {
-            e.Player.SendErrorMessage("Invalid clipboard!");
+            e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
             return;
         }
         int alignment = 0;
@@ -1421,7 +1421,7 @@ public class WorldEdit : TerrariaPlugin
                             alignment |= 2;
                             break;
                         default:
-                            e.Player.SendErrorMessage("Invalid paste alignment '{0}'!", c);
+                            e.Player.SendErrorMessage(GetString("Invalid paste alignment '{0}'!"), c);
                             return;
                     }
                 }
@@ -1434,7 +1434,7 @@ public class WorldEdit : TerrariaPlugin
             }
             if (e.Parameters.Count > parameterIndex && !Parser.TryParseTree(e.Parameters.Skip(parameterIndex), out expression))
             {
-                e.Player.SendErrorMessage("Invalid expression!");
+                e.Player.SendErrorMessage(GetString("Invalid expression!"));
                 return;
             }
         }
@@ -1445,24 +1445,24 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
-        e.Player.SendInfoMessage("X: {0}, Y: {1}", playerInfo.X, playerInfo.Y);
+        e.Player.SendInfoMessage(GetString("X: {0}, Y: {1}"), playerInfo.X, playerInfo.Y);
         if (playerInfo.X == -1 || playerInfo.Y == -1)
         {
-            e.Player.SendErrorMessage("Invalid first point!");
+            e.Player.SendErrorMessage(GetString("Invalid first point!"));
             return;
         }
         if (!Tools.HasClipboard(e.Player.Account.ID))
         {
-            e.Player.SendErrorMessage("Invalid clipboard!");
+            e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
             return;
         }
         if (e.Parameters.Count < 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //spaste [alignment] [-flag -flag ...] [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //spaste [alignment] [-flag -flag ...] [=> boolean expr...]"));
             return;
         }
         int alignment = 0;
@@ -1497,7 +1497,7 @@ public class WorldEdit : TerrariaPlugin
                             alignment |= 2;
                             break;
                         default:
-                            e.Player.SendErrorMessage("Invalid paste alignment '{0}'!", c);
+                            e.Player.SendErrorMessage(GetString("Invalid paste alignment '{0}'!"), c);
                             return;
                     }
                 }
@@ -1536,7 +1536,7 @@ public class WorldEdit : TerrariaPlugin
             }
             if (e.Parameters.Count > i && !Parser.TryParseTree(e.Parameters.Skip(i), out expression))
             {
-                e.Player.SendErrorMessage("Invalid expression!");
+                e.Player.SendErrorMessage(GetString("Invalid expression!"));
                 return;
             }
         }
@@ -1552,25 +1552,25 @@ public class WorldEdit : TerrariaPlugin
         {
             if (!e.Player.RealPlayer)
             {
-                e.Player.SendErrorMessage("You must use this command in-game.");
+                e.Player.SendErrorMessage(GetString("You must use this command in-game."));
                 return;
             }
             playerInfo.Point = 1;
-            e.Player.SendInfoMessage("Modify a block to set point 1.");
+            e.Player.SendInfoMessage(GetString("Modify a block to set point 1."));
         }
         else if (e.Parameters.Count != 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //point1 <x> <y>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //point1 <x> <y>"));
         }
 		else if (!int.TryParse(e.Parameters[0], out pointX) || pointX < 0 || pointX >= Main.maxTilesX || !int.TryParse(e.Parameters[1], out pointY) || pointY < 0 || pointY >= Main.maxTilesY)
         {
-            e.Player.SendErrorMessage("Invalid coordinates.");
+            e.Player.SendErrorMessage(GetString("Invalid coordinates."));
         }
         else
         {
 			playerInfo.X = pointX;
 			playerInfo.Y = pointY;
-            e.Player.SendInfoMessage("Set point 1.");
+            e.Player.SendInfoMessage(GetString("Set point 1."));
         }
     }
 
@@ -1583,25 +1583,25 @@ public class WorldEdit : TerrariaPlugin
         {
             if (!e.Player.RealPlayer)
             {
-                e.Player.SendErrorMessage("You must use this command in-game.");
+                e.Player.SendErrorMessage(GetString("You must use this command in-game."));
                 return;
             }
             playerInfo.Point = 2;
-            e.Player.SendInfoMessage("Modify a block to set point 2.");
+            e.Player.SendInfoMessage(GetString("Modify a block to set point 2."));
         }
         else if (e.Parameters.Count != 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //point2 [x] [y]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //point2 [x] [y]"));
         }
 		else if (!int.TryParse(e.Parameters[0], out pointX) || pointX < 0 || pointX >= Main.maxTilesX || !int.TryParse(e.Parameters[1], out pointY) || pointY < 0 || pointY >= Main.maxTilesY)
         {
-            e.Player.SendErrorMessage("Invalid coordinates '({0}, {1})'!", e.Parameters[0], e.Parameters[1]);
+            e.Player.SendErrorMessage(GetString("Invalid coordinates '({0}, {1})'!"), e.Parameters[0], e.Parameters[1]);
         }
         else
         {
 			playerInfo.X2 = pointX;
 			playerInfo.Y2 = pointY;
-            e.Player.SendInfoMessage("Set point 2.");
+            e.Player.SendInfoMessage(GetString("Set point 2."));
         }
     }
 
@@ -1609,31 +1609,31 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         if (e.Parameters.Count > 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //redo [steps] [account]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //redo [steps] [account]"));
             return;
         }
         int result = 1;
         int iD = e.Player.Account.ID;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out result) || result <= 0))
         {
-            e.Player.SendErrorMessage("Invalid redo steps '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid redo steps '{0}'!"), e.Parameters[0]);
         }
         else if (e.Parameters.Count > 1)
         {
             if (!e.Player.HasPermission("worldedit.usage.otheraccounts"))
             {
-                e.Player.SendErrorMessage("You do not have permission to redo other player's actions.");
+                e.Player.SendErrorMessage(GetString("You do not have permission to redo other player's actions."));
                 return;
             }
             UserAccount userAccountByName = TShock.UserAccounts.GetUserAccountByName(e.Parameters[1]);
             if (userAccountByName == null)
             {
-                e.Player.SendErrorMessage("Invalid account name!");
+                e.Player.SendErrorMessage(GetString("Invalid account name!"));
                 return;
             }
             iD = userAccountByName.ID;
@@ -1645,20 +1645,20 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count > 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //region [region name]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //region [region name]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (e.Parameters.Count == 0)
         {
             playerInfo.Point = 3;
-            e.Player.SendInfoMessage("Hit a block to select that region.");
+            e.Player.SendInfoMessage(GetString("Hit a block to select that region."));
             return;
         }
         Region regionByName = TShock.Regions.GetRegionByName(e.Parameters[0]);
         if (regionByName == null)
         {
-            e.Player.SendErrorMessage("Invalid region '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid region '{0}'!"), e.Parameters[0]);
             return;
         }
         Rectangle area = regionByName.Area;
@@ -1666,48 +1666,48 @@ public class WorldEdit : TerrariaPlugin
         playerInfo.Y = area.Top;
         playerInfo.X2 = area.Right;
         playerInfo.Y2 = area.Bottom;
-        e.Player.SendSuccessMessage("Set selection to region '{0}'.", regionByName.Name);
+        e.Player.SendSuccessMessage(GetString("Set selection to region '{0}'."), regionByName.Name);
     }
 
     private void Replace(CommandArgs e)
     {
         if (e.Parameters.Count < 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //replace <from tile> <to tile> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //replace <from tile> <to tile> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> tileID = Tools.GetTileID(e.Parameters[0].ToLowerInvariant());
         if (tileID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[0]);
             return;
         }
         if (tileID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
 		List<int> targetTileIds = Tools.GetTileID(e.Parameters[1].ToLowerInvariant());
 		if (targetTileIds.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[1]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[1]);
             return;
         }
 		if (targetTileIds.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 2 && !Parser.TryParseTree(e.Parameters.Skip(2), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1719,41 +1719,41 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count < 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //replace <from tile> <to tile> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //replace <from tile> <to tile> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> tileID = Tools.GetTileID(e.Parameters[0].ToLowerInvariant());
         if (tileID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[0]);
             return;
         }
         if (tileID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
         List<int> wallID = Tools.GetWallID(e.Parameters[1].ToLowerInvariant());
         if (wallID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid wall '{0}'!", e.Parameters[1]);
+            e.Player.SendErrorMessage(GetString("Invalid wall '{0}'!"), e.Parameters[1]);
             return;
         }
         if (wallID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one wall matched!");
+            e.Player.SendErrorMessage(GetString("More than one wall matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 2 && !Parser.TryParseTree(e.Parameters.Skip(2), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -1765,18 +1765,18 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //resize <direction(s)> <amount>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //resize <direction(s)> <amount>"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         if (!int.TryParse(e.Parameters[1], out var result))
         {
-            e.Player.SendErrorMessage("Invalid resize amount '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid resize amount '{0}'!"), e.Parameters[0]);
             return;
         }
         string text = e.Parameters[0].ToLowerInvariant();
@@ -1825,11 +1825,11 @@ public class WorldEdit : TerrariaPlugin
                     }
                     break;
                 default:
-                    e.Player.SendErrorMessage("Invalid direction '{0}'!", c);
+                    e.Player.SendErrorMessage(GetString("Invalid direction '{0}'!"), c);
                     return;
             }
         }
-        e.Player.SendSuccessMessage("Resized selection.");
+        e.Player.SendSuccessMessage(GetString("Resized selection."));
     }
 
     private void Rotate(CommandArgs e)
@@ -1837,19 +1837,19 @@ public class WorldEdit : TerrariaPlugin
         int result;
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
         }
         else if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //rotate <angle>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //rotate <angle>"));
         }
         else if (!Tools.HasClipboard(e.Player.Account.ID))
         {
-            e.Player.SendErrorMessage("Invalid clipboard!");
+            e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
         }
         else if (!int.TryParse(e.Parameters[0], out result) || result % 90 != 0)
         {
-            e.Player.SendErrorMessage("Invalid angle '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid angle '{0}'!"), e.Parameters[0]);
         }
         else
         {
@@ -1862,19 +1862,19 @@ public class WorldEdit : TerrariaPlugin
         int result;
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
         }
         else if (e.Parameters.Count != 2 || (e.Parameters[0] != "+" && e.Parameters[0] != "-"))
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //scale <+/-> <amount>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //scale <+/-> <amount>"));
         }
         else if (!Tools.HasClipboard(e.Player.Account.ID))
         {
-            e.Player.SendErrorMessage("Invalid clipboard!");
+            e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
         }
         else if (!int.TryParse(e.Parameters[1], out result))
         {
-            e.Player.SendErrorMessage("Invalid amount!");
+            e.Player.SendErrorMessage(GetString("Invalid amount!"));
         }
         else
         {
@@ -1891,23 +1891,23 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (!e.Player.HasPermission("worldedit.schematic.delete"))
                 {
-                    e.Player.SendErrorMessage("You do not have permission to delete schematics.");
+                    e.Player.SendErrorMessage(GetString("You do not have permission to delete schematics."));
                     break;
                 }
                 if (e.Parameters.Count != 3 || e.Parameters[1].ToLower() != "-confirm")
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic delete -confirm <name>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic delete -confirm <name>"));
                     break;
                 }
                 string path = Path.Combine(Config.SchematicFolderPath, $"schematic-{e.Parameters[2]}.dat");
                 if (!File.Exists(path))
                 {
-                    e.Player.SendErrorMessage("Invalid schematic '{0}'!", e.Parameters[2]);
+                    e.Player.SendErrorMessage(GetString("Invalid schematic '{0}'!"), e.Parameters[2]);
                 }
                 else
                 {
                     File.Delete(path);
-                    e.Player.SendErrorMessage("Deleted schematic '{0}'.", e.Parameters[2]);
+                    e.Player.SendErrorMessage(GetString("Deleted schematic '{0}'."), e.Parameters[2]);
                 }
                 break;
             }
@@ -1916,7 +1916,7 @@ public class WorldEdit : TerrariaPlugin
                 int pageNumber;
                 if (e.Parameters.Count > 2)
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic list [page]");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic list [page]"));
                 }
                 else if (PaginationTools.TryParsePageNumber(e.Parameters, 1, e.Player, out pageNumber))
                 {
@@ -1924,8 +1924,8 @@ public class WorldEdit : TerrariaPlugin
                                                 select Path.GetFileNameWithoutExtension(s).Substring(10);
                     PaginationTools.SendPage(e.Player, pageNumber, PaginationTools.BuildLinesFromTerms(terms), new PaginationTools.Settings
                     {
-                        HeaderFormat = "Schematics ({0}/{1}):",
-                        FooterFormat = "Type //schematic list {0} for more."
+                        HeaderFormat = GetString("Schematics ({0}/{1}):"),
+                        FooterFormat = GetString("Type //schematic list {0} for more.")
                     });
                 }
                 break;
@@ -1935,12 +1935,12 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (e.Player.Account == null)
                 {
-                    e.Player.SendErrorMessage("You have to be logged in to use this command.");
+                    e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
                     break;
                 }
                 if (e.Parameters.Count != 2)
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic load <name>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic load <name>"));
                     break;
                 }
 				string schematicPath = Path.Combine(Config.SchematicFolderPath, $"schematic-{e.Parameters[1]}.dat");
@@ -1948,11 +1948,11 @@ public class WorldEdit : TerrariaPlugin
 				if (File.Exists(schematicPath))
 				{
 					File.Copy(schematicPath, clipboardPath, overwrite: true);
-                    e.Player.SendSuccessMessage("Loaded schematic '{0}' to clipboard.", e.Parameters[1]);
+                    e.Player.SendSuccessMessage(GetString("Loaded schematic '{0}' to clipboard."), e.Parameters[1]);
                 }
                 else
                 {
-                    e.Player.SendErrorMessage("Invalid schematic '{0}'!", e.Parameters[1]);
+                    e.Player.SendErrorMessage(GetString("Invalid schematic '{0}'!"), e.Parameters[1]);
                 }
                 break;
             }
@@ -1961,12 +1961,12 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (e.Player.Account == null)
                 {
-                    e.Player.SendErrorMessage("You have to be logged in to use this command.");
+                    e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
                     break;
                 }
                 if (!e.Player.HasPermission("worldedit.schematic.save"))
                 {
-                    e.Player.SendErrorMessage("You do not have permission to save schematics.");
+                    e.Player.SendErrorMessage(GetString("You do not have permission to save schematics."));
                     break;
                 }
                 if (Config.StartSchematicNamesWithCreatorUserID && e.Parameters.ElementAtOrDefault(1)?.ToLower() == "id")
@@ -1975,10 +1975,10 @@ public class WorldEdit : TerrariaPlugin
                     UserAccount userAccountByName = TShock.UserAccounts.GetUserAccountByName(text);
                     if (userAccountByName == null)
                     {
-                        e.Player.SendErrorMessage("Invalid user '" + text + "'!");
+                        e.Player.SendErrorMessage(GetString("Invalid user '{0}'!"), text);
                         break;
                     }
-                    e.Player.SendSuccessMessage($"{userAccountByName.Name}'s ID: {userAccountByName.ID}.");
+                    e.Player.SendSuccessMessage(GetString("{0}'s ID: {1}."), userAccountByName.Name, userAccountByName.ID);
                     break;
                 }
 				string overwriteOption = e.Parameters.ElementAtOrDefault(1)?.ToLower();
@@ -1986,18 +1986,18 @@ public class WorldEdit : TerrariaPlugin
 				string schematicName = e.Parameters.ElementAtOrDefault(!forceOverwrite ? 1 : 2);
 				if (string.IsNullOrWhiteSpace(schematicName))
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic save [-force/-f] <name>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic save [-force/-f] <name>"));
                     break;
                 }
                 string clipboardPath = Tools.GetClipboardPath(e.Player.Account.ID);
                 if (!File.Exists(clipboardPath))
                 {
-                    e.Player.SendErrorMessage("Invalid clipboard!");
+                    e.Player.SendErrorMessage(GetString("Invalid clipboard!"));
                     break;
                 }
 				if (!Tools.IsCorrectName(schematicName))
                 {
-                    e.Player.SendErrorMessage("Name should not contain these symbols: \"{0}\".", string.Join("\", \"", Path.GetInvalidFileNameChars()));
+                    e.Player.SendErrorMessage(GetString("Name should not contain these symbols: \"{0}\"."), string.Join("\", \"", Path.GetInvalidFileNameChars()));
                     break;
                 }
                 if (Config.StartSchematicNamesWithCreatorUserID)
@@ -2009,17 +2009,17 @@ public class WorldEdit : TerrariaPlugin
                 {
                     if (!e.Player.HasPermission("worldedit.schematic.overwrite"))
                     {
-                        e.Player.SendErrorMessage("You do not have permission to overwrite schematics.");
+                        e.Player.SendErrorMessage(GetString("You do not have permission to overwrite schematics."));
                         break;
                     }
                     if (!forceOverwrite)
                     {
-						e.Player.SendErrorMessage("Schematic '" + schematicName + "' already exists, write '//schematic save <-force/-f> " + schematicName + "' to overwrite it.");
+						e.Player.SendErrorMessage(GetString("Schematic '{0}' already exists, write '//schematic save <-force/-f> {0}' to overwrite it.", schematicName));
                         break;
                     }
                 }
 				File.Copy(clipboardPath, schematicPath, overwrite: true);
-				e.Player.SendSuccessMessage("Saved clipboard to schematic '{0}'.", schematicName);
+				e.Player.SendSuccessMessage(GetString("Saved clipboard to schematic '{0}'."), schematicName);
                 break;
             }
             case "cs":
@@ -2027,18 +2027,18 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (e.Player.Account == null)
                 {
-                    e.Player.SendErrorMessage("You have to be logged in to use this command.");
+                    e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
                     break;
                 }
                 if (!e.Player.HasPermission("worldedit.schematic.save"))
                 {
-                    e.Player.SendErrorMessage("You do not have permission to save schematics.");
+                    e.Player.SendErrorMessage(GetString("You do not have permission to save schematics."));
                     break;
                 }
 				PlayerInfo selectionInfo = e.Player.GetPlayerInfo();
 				if (selectionInfo.X == -1 || selectionInfo.Y == -1 || selectionInfo.X2 == -1 || selectionInfo.Y2 == -1)
                 {
-                    e.Player.SendErrorMessage("Invalid selection!");
+                    e.Player.SendErrorMessage(GetString("Invalid selection!"));
                     break;
                 }
 				string overwriteOption = e.Parameters.ElementAtOrDefault(1)?.ToLower();
@@ -2046,12 +2046,12 @@ public class WorldEdit : TerrariaPlugin
 				string schematicName = e.Parameters.ElementAtOrDefault(!forceOverwrite ? 1 : 2);
 				if (string.IsNullOrWhiteSpace(schematicName))
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic copysave [-force/-f] <name>");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic copysave [-force/-f] <name>"));
                     break;
                 }
 				if (!Tools.IsCorrectName(schematicName))
                 {
-                    e.Player.SendErrorMessage("Name should not contain these symbols: \"{0}\".", string.Join("\", \"", Path.GetInvalidFileNameChars()));
+                    e.Player.SendErrorMessage(GetString("Name should not contain these symbols: \"{0}\"."), string.Join("\", \"", Path.GetInvalidFileNameChars()));
                     break;
                 }
                 if (Config.StartSchematicNamesWithCreatorUserID)
@@ -2063,12 +2063,12 @@ public class WorldEdit : TerrariaPlugin
                 {
                     if (!e.Player.HasPermission("worldedit.schematic.overwrite"))
                     {
-                        e.Player.SendErrorMessage("You do not have permission to overwrite schematics.");
+                        e.Player.SendErrorMessage(GetString("You do not have permission to overwrite schematics."));
                         break;
                     }
                     if (!forceOverwrite)
                     {
-						e.Player.SendErrorMessage("Schematic '" + schematicName + "' already exists, write '//schematic copysave <-force/-f> " + schematicName + "' to overwrite it.");
+						e.Player.SendErrorMessage(GetString("Schematic '{0}' already exists, write '//schematic copysave <-force/-f> {0}' to overwrite it.", schematicName));
                         break;
                     }
                 }
@@ -2080,24 +2080,24 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (!e.Player.HasPermission("worldedit.schematic.paste"))
                 {
-                    e.Player.SendErrorMessage("//schematic paste is for server console only.\nInstead, you should use //schematic load and //paste.");
+                    e.Player.SendErrorMessage(GetString("//schematic paste is for server console only.\nInstead, you should use //schematic load and //paste."));
                     break;
                 }
                 if (e.Parameters.Count < 2)
                 {
-                    e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //schematic paste <name> [alignment] [-f] [=> boolean expr...]");
+                    e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //schematic paste <name> [alignment] [-f] [=> boolean expr...]"));
                     break;
                 }
 				string schematicPath = Path.Combine(Config.SchematicFolderPath, $"schematic-{e.Parameters[1]}.dat");
 				if (!File.Exists(schematicPath))
                 {
-                    e.Player.SendErrorMessage("Invalid schematic '{0}'!", e.Parameters[1]);
+                    e.Player.SendErrorMessage(GetString("Invalid schematic '{0}'!"), e.Parameters[1]);
                     break;
                 }
                 PlayerInfo playerInfo = e.Player.GetPlayerInfo();
                 if (playerInfo.X == -1 || playerInfo.Y == -1)
                 {
-                    e.Player.SendErrorMessage("Invalid first point!");
+                    e.Player.SendErrorMessage(GetString("Invalid first point!"));
                     break;
                 }
                 int alignment = 0;
@@ -2126,7 +2126,7 @@ public class WorldEdit : TerrariaPlugin
                                     alignment |= 2;
                                     break;
                                 default:
-                                    e.Player.SendErrorMessage("Invalid paste alignment '{0}'!", c);
+                                    e.Player.SendErrorMessage(GetString("Invalid paste alignment '{0}'!"), c);
                                     return;
                             }
                         }
@@ -2139,7 +2139,7 @@ public class WorldEdit : TerrariaPlugin
                     }
                     if (e.Parameters.Count > parameterIndex && !Parser.TryParseTree(e.Parameters.Skip(parameterIndex), out expression))
                     {
-                        e.Player.SendErrorMessage("Invalid expression!");
+                        e.Player.SendErrorMessage(GetString("Invalid expression!"));
                         break;
                     }
                 }
@@ -2147,8 +2147,8 @@ public class WorldEdit : TerrariaPlugin
                 break;
             }
             default:
-                e.Player.SendSuccessMessage("Schematics Subcommands:");
-                e.Player.SendInfoMessage("/sc delete/del <name>\n/sc list [page]\n/sc load/l <name>\n/sc save/s <name>\n" + (Config.StartSchematicNamesWithCreatorUserID ? "/sc save/s id\n" : "") + "/sc copysave/cs <name>\n/sc paste/p <name> [alignment] [-f] [=> boolean expr...]");
+                e.Player.SendSuccessMessage(GetString("Schematics Subcommands:"));
+                e.Player.SendInfoMessage(GetString("/sc delete/del <name>\n/sc list [page]\n/sc load/l <name>\n/sc save/s <name>\n{0}/sc copysave/cs <name>\n/sc paste/p <name> [alignment] [-f] [=> boolean expr...]", Config.StartSchematicNamesWithCreatorUserID ? "/sc save/s id\n" : ""));
                 break;
         }
     }
@@ -2157,26 +2157,26 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 1)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //select <selection type>");
-            e.Player.SendInfoMessage("Available selections: " + string.Join(", ", Selections.Keys) + ".");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //select <selection type>"));
+            e.Player.SendInfoMessage(GetString("Available selections: {0}.", string.Join(", ", Selections.Keys)));
             return;
         }
         if (e.Parameters[0].ToLowerInvariant() == "help")
         {
-            e.Player.SendInfoMessage("Proper syntax: //select <selection type>");
-            e.Player.SendInfoMessage("Available selections: " + string.Join(", ", Selections.Keys) + ".");
+            e.Player.SendInfoMessage(GetString("Proper syntax: //select <selection type>"));
+            e.Player.SendInfoMessage(GetString("Available selections: {0}.", string.Join(", ", Selections.Keys)));
             return;
         }
         string text = e.Parameters[0].ToLowerInvariant();
         if (!Selections.ContainsKey(text))
         {
-			string availableSelections = "Available selections: " + string.Join(", ", Selections.Keys) + ".";
-			e.Player.SendErrorMessage("Invalid selection type '{0}'!\r\n{1}", text, availableSelections);
+			string availableSelections = GetString("Available selections: {0}.", string.Join(", ", Selections.Keys));
+			e.Player.SendErrorMessage(GetString("Invalid selection type '{0}'!\r\n{1}"), text, availableSelections);
         }
         else
         {
             e.Player.GetPlayerInfo().Select = Selections[text];
-            e.Player.SendSuccessMessage("Set selection type to '{0}'.", text);
+            e.Player.SendSuccessMessage(GetString("Set selection type to '{0}'."), text);
         }
     }
 
@@ -2184,30 +2184,30 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //set <tile> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //set <tile> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> tileID = Tools.GetTileID(e.Parameters[0].ToLowerInvariant());
         if (tileID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[0]);
             return;
         }
         if (tileID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one tile matched!");
+            e.Player.SendErrorMessage(GetString("More than one tile matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2219,30 +2219,30 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //setwall <wall> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //setwall <wall> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         List<int> wallID = Tools.GetWallID(e.Parameters[0].ToLowerInvariant());
         if (wallID.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid wall '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid wall '{0}'!"), e.Parameters[0]);
             return;
         }
         if (wallID.Count > 1)
         {
-            e.Player.SendErrorMessage("More than one wall matched!");
+            e.Player.SendErrorMessage(GetString("More than one wall matched!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2254,24 +2254,24 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //setgrass <grass> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //setgrass <grass> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         if (!Biomes.Keys.Contains(e.Parameters[0].ToLowerInvariant()) || e.Parameters[0].ToLowerInvariant() == "snow")
         {
-            e.Player.SendErrorMessage("Invalid grass '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid grass '{0}'!"), e.Parameters[0]);
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2283,18 +2283,18 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count < 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //setwire <wire> <wire state> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //setwire <wire> <wire state> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         if (!int.TryParse(e.Parameters[0], out var result) || result < 1 || result > 4)
         {
-            e.Player.SendErrorMessage("Invalid wire '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid wire '{0}'!"), e.Parameters[0]);
             return;
         }
         bool state = false;
@@ -2304,13 +2304,13 @@ public class WorldEdit : TerrariaPlugin
         }
         else if (!string.Equals(e.Parameters[1], "off", StringComparison.OrdinalIgnoreCase))
         {
-            e.Player.SendErrorMessage("Invalid wire state '{0}'!", e.Parameters[1]);
+            e.Player.SendErrorMessage(GetString("Invalid wire state '{0}'!"), e.Parameters[1]);
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 2 && !Parser.TryParseTree(e.Parameters.Skip(2), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2338,10 +2338,10 @@ public class WorldEdit : TerrariaPlugin
                 fillShape = true;
                 break;
         }
-        string msg = "Invalid syntax! Proper syntax: //shape" + (createWall ? "wall" : "") + (fillShape ? "fill" : "") + " <shape> [rotate type] [flip type] <tile/wall> [=> boolean expr...]";
+        string msg = GetString("Invalid syntax! Proper syntax: //shape{0}{1} <shape> [rotate type] [flip type] <tile/wall> [=> boolean expr...]", createWall ? "wall" : "", fillShape ? "fill" : "");
         if (e.Parameters.ElementAtOrDefault(0)?.ToLower() == "help")
         {
-            e.Player.SendInfoMessage("Allowed shape types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt.");
+            e.Player.SendInfoMessage(GetString("Allowed shape types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt."));
             return;
         }
         if (e.Parameters.Count < 2)
@@ -2352,7 +2352,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         int rotateType = 0;
@@ -2381,7 +2381,7 @@ public class WorldEdit : TerrariaPlugin
                 if (e.Parameters.Count < parameterIndex + 2)
                 {
                     e.Player.SendErrorMessage(msg);
-                    e.Player.SendInfoMessage("Allowed rotate types: up/u, down/d, left/l, right/r.");
+                    e.Player.SendInfoMessage(GetString("Allowed rotate types: up/u, down/d, left/l, right/r."));
                     return;
                 }
                 switch (e.Parameters[parameterIndex])
@@ -2403,7 +2403,7 @@ public class WorldEdit : TerrariaPlugin
                         rotateType = 3;
                         break;
                     default:
-                        e.Player.SendErrorMessage("Invalid rotate type! Allowed types: up/u, down/d, left/l, right/r.");
+                        e.Player.SendErrorMessage(GetString("Invalid rotate type! Allowed types: up/u, down/d, left/l, right/r."));
                         break;
                 }
                 parameterIndex++;
@@ -2415,8 +2415,8 @@ public class WorldEdit : TerrariaPlugin
                 if (e.Parameters.Count < parameterIndex + 3)
                 {
                     e.Player.SendErrorMessage(msg);
-                    e.Player.SendInfoMessage("Allowed rotate types: up/u, down/d.");
-                    e.Player.SendInfoMessage("Allowed flip types: left/l, right/r.");
+                    e.Player.SendInfoMessage(GetString("Allowed rotate types: up/u, down/d."));
+                    e.Player.SendInfoMessage(GetString("Allowed flip types: left/l, right/r."));
                     return;
                 }
                 switch (e.Parameters[parameterIndex])
@@ -2430,7 +2430,7 @@ public class WorldEdit : TerrariaPlugin
                         rotateType = 1;
                         break;
                     default:
-                        e.Player.SendErrorMessage("Invalid rotate type! Allowed types: up/u, down/d.");
+                        e.Player.SendErrorMessage(GetString("Invalid rotate type! Allowed types: up/u, down/d."));
                         break;
                 }
                 switch (e.Parameters[parameterIndex + 1])
@@ -2444,13 +2444,13 @@ public class WorldEdit : TerrariaPlugin
                         flipType = 1;
                         break;
                     default:
-                        e.Player.SendErrorMessage("Invalid flip type! Allowed types: left/l, right/r.");
+                        e.Player.SendErrorMessage(GetString("Invalid flip type! Allowed types: left/l, right/r."));
                         break;
                 }
                 parameterIndex += 2;
                 break;
             default:
-                e.Player.SendErrorMessage("Invalid shape type! Allowed types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt.");
+                e.Player.SendErrorMessage(GetString("Invalid shape type! Allowed types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt."));
                 return;
         }
         if (e.Parameters.Count < parameterIndex)
@@ -2464,12 +2464,12 @@ public class WorldEdit : TerrariaPlugin
             List<int> wallID = Tools.GetWallID(e.Parameters[parameterIndex].ToLowerInvariant());
             if (wallID.Count == 0)
             {
-                e.Player.SendErrorMessage("Invalid wall '{0}'!", e.Parameters[parameterIndex]);
+                e.Player.SendErrorMessage(GetString("Invalid wall '{0}'!"), e.Parameters[parameterIndex]);
                 return;
             }
             if (wallID.Count > 1)
             {
-                e.Player.SendErrorMessage("More than one wall matched!");
+                e.Player.SendErrorMessage(GetString("More than one wall matched!"));
                 return;
             }
             materialType = wallID[0];
@@ -2479,12 +2479,12 @@ public class WorldEdit : TerrariaPlugin
             List<int> tileID = Tools.GetTileID(e.Parameters[parameterIndex].ToLowerInvariant());
             if (tileID.Count == 0)
             {
-                e.Player.SendErrorMessage("Invalid tile '{0}'!", e.Parameters[parameterIndex]);
+                e.Player.SendErrorMessage(GetString("Invalid tile '{0}'!"), e.Parameters[parameterIndex]);
                 return;
             }
             if (tileID.Count > 1)
             {
-                e.Player.SendErrorMessage("More than one tile matched!");
+                e.Player.SendErrorMessage(GetString("More than one tile matched!"));
                 return;
             }
             materialType = tileID[0];
@@ -2492,7 +2492,7 @@ public class WorldEdit : TerrariaPlugin
         Expression expression = null;
         if (e.Parameters.Count > ++parameterIndex && !Parser.TryParseTree(e.Parameters.Skip(parameterIndex), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2509,7 +2509,7 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (e.Player.Account == null)
                 {
-                    e.Player.SendErrorMessage("You have to be logged in to use this command.");
+                    e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
                     break;
                 }
                 UserAccount userAccount = e.Player.Account;
@@ -2517,23 +2517,23 @@ public class WorldEdit : TerrariaPlugin
                 {
                     if (!e.Player.HasPermission("worldedit.usage.otheraccounts"))
                     {
-                        e.Player.SendErrorMessage("You do not have permission to view other player's clipboards.");
+                        e.Player.SendErrorMessage(GetString("You do not have permission to view other player's clipboards."));
                         break;
                     }
                     userAccount = TShock.UserAccounts.GetUserAccountByName(e.Parameters[1]);
                     if (userAccount == null)
                     {
-                        e.Player.SendErrorMessage("Invalid account name!");
+                        e.Player.SendErrorMessage(GetString("Invalid account name!"));
                         break;
                     }
                 }
                 if (!Tools.HasClipboard(userAccount.ID))
                 {
-                    e.Player.SendErrorMessage(userAccount.Name + " doesn't have a clipboard.");
+                    e.Player.SendErrorMessage(GetString("{0} doesn't have a clipboard.", userAccount.Name));
                     break;
                 }
 				WorldSectionData clipboardData = Tools.LoadWorldData(Tools.GetClipboardPath(userAccount.ID));
-				e.Player.SendSuccessMessage($"{userAccount.Name}'s clipboard size: {clipboardData.Tiles.GetLength(0) - 1}x{clipboardData.Tiles.GetLength(1) - 1}.");
+				e.Player.SendSuccessMessage(GetString("{0}'s clipboard size: {1}x{2}."), userAccount.Name, clipboardData.Tiles.GetLength(0) - 1, clipboardData.Tiles.GetLength(1) - 1);
                 break;
             }
             case "s":
@@ -2541,21 +2541,21 @@ public class WorldEdit : TerrariaPlugin
             {
                 if (!e.Player.HasPermission("worldedit.schematic"))
                 {
-                    e.Player.SendErrorMessage("You do not have permission to use this command.");
+                    e.Player.SendErrorMessage(GetString("You do not have permission to use this command."));
                     break;
                 }
                 string path = Path.Combine("worldedit", $"schematic-{e.Parameters[1]}.dat");
                 if (!File.Exists(path))
                 {
-                    e.Player.SendErrorMessage("Invalid schematic '{0}'!", e.Parameters[1]);
+                    e.Player.SendErrorMessage(GetString("Invalid schematic '{0}'!"), e.Parameters[1]);
                     break;
                 }
                 WorldSectionData worldSectionData = Tools.LoadWorldData(path);
-                e.Player.SendSuccessMessage($"Schematic's size ('{e.Parameters[1]}'): {worldSectionData.Tiles.GetLength(0) - 1}x{worldSectionData.Tiles.GetLength(1) - 1}.");
+                e.Player.SendSuccessMessage(GetString("Schematic's size ('{0}'): {1}x{2}."), e.Parameters[1], worldSectionData.Tiles.GetLength(0) - 1, worldSectionData.Tiles.GetLength(1) - 1);
                 break;
             }
             default:
-                e.Player.SendErrorMessage("//size <clipboard/c> [user name]\n//size <schematic/s> <name>");
+                e.Player.SendErrorMessage(GetString("//size <clipboard/c> [user name]\n//size <schematic/s> <name>"));
                 break;
         }
     }
@@ -2564,25 +2564,25 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //slope <type> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //slope <type> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         int slopeID = Tools.GetSlopeID(e.Parameters[0].ToLowerInvariant());
         if (slopeID == -1)
         {
-            e.Player.SendErrorMessage("Invalid type '{0}'! Available slopes: none (0), t (1), tr (2), tl (3), br (4), bl (5)", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid type '{0}'! Available slopes: none (0), t (1), tr (2), tl (3), br (4), bl (5)"), e.Parameters[0]);
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2597,7 +2597,7 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         if (e.Parameters.Count >= 1)
@@ -2605,12 +2605,12 @@ public class WorldEdit : TerrariaPlugin
             slopeType = Tools.GetSlopeID(e.Parameters[0].ToLowerInvariant());
             if (slopeType == -1)
             {
-                e.Player.SendErrorMessage("Invalid type '{0}'! Available slopes: none (0), t (1), tr (2), tl (3), br (4), bl (5)", e.Parameters[0]);
+                e.Player.SendErrorMessage(GetString("Invalid type '{0}'! Available slopes: none (0), t (1), tr (2), tl (3), br (4), bl (5)"), e.Parameters[0]);
                 return;
             }
             if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
             {
-                e.Player.SendErrorMessage("Invalid expression!");
+                e.Player.SendErrorMessage(GetString("Invalid expression!"));
                 return;
             }
         }
@@ -2622,13 +2622,13 @@ public class WorldEdit : TerrariaPlugin
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 0 && !Parser.TryParseTree(e.Parameters, out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2640,13 +2640,13 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //inactive <status(on/off/reverse)> [=> boolean expr...]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //inactive <status(on/off/reverse)> [=> boolean expr...]"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         int inacType = 2;
@@ -2661,13 +2661,13 @@ public class WorldEdit : TerrariaPlugin
         }
         else if (text != "reverse")
         {
-            e.Player.SendErrorMessage("Invalid status! Proper: on, off, reverse");
+            e.Player.SendErrorMessage(GetString("Invalid status! Proper: on, off, reverse"));
             return;
         }
         Expression expression = null;
         if (e.Parameters.Count > 1 && !Parser.TryParseTree(e.Parameters.Skip(1), out expression))
         {
-            e.Player.SendErrorMessage("Invalid expression!");
+            e.Player.SendErrorMessage(GetString("Invalid expression!"));
         }
         else
         {
@@ -2679,18 +2679,18 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Parameters.Count != 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //shift <direction> <amount>");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //shift <direction> <amount>"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
             return;
         }
         if (!int.TryParse(e.Parameters[1], out var result) || result < 0)
         {
-            e.Player.SendErrorMessage("Invalid shift amount '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid shift amount '{0}'!"), e.Parameters[0]);
             return;
         }
         string text = e.Parameters[0].ToLowerInvariant();
@@ -2715,26 +2715,26 @@ public class WorldEdit : TerrariaPlugin
                     playerInfo.Y2 -= result;
                     break;
                 default:
-                    e.Player.SendErrorMessage("Invalid direction '{0}'!", c);
+                    e.Player.SendErrorMessage(GetString("Invalid direction '{0}'!"), c);
                     return;
             }
         }
-        e.Player.SendSuccessMessage("Shifted selection.");
+        e.Player.SendSuccessMessage(GetString("Shifted selection."));
     }
 
     private void Text(CommandArgs e)
     {
         if (e.Parameters.Count == 0)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //text <text> (\\n for new line)");
-            e.Player.SendInfoMessage("In the beginning of new line:");
-            e.Player.SendSuccessMessage("\\m for middle position\n\\r for right position\n\\s<num> (for example \\s3) for line spacing\n\\c for cropped statue (2 blocks heigh, without stand)");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //text <text> (\\n for new line)"));
+            e.Player.SendInfoMessage(GetString("In the beginning of new line:"));
+            e.Player.SendSuccessMessage(GetString("\\m for middle position\n\\r for right position\n\\s<num> (for example \\s3) for line spacing\n\\c for cropped statue (2 blocks heigh, without stand)"));
             return;
         }
         PlayerInfo playerInfo = e.Player.GetPlayerInfo();
         if (playerInfo.X == -1 || playerInfo.Y == -1 || playerInfo.X2 == -1 || playerInfo.Y2 == -1)
         {
-            e.Player.SendErrorMessage("Invalid selection!");
+            e.Player.SendErrorMessage(GetString("Invalid selection!"));
         }
         else
         {
@@ -2746,31 +2746,31 @@ public class WorldEdit : TerrariaPlugin
     {
         if (e.Player.Account == null)
         {
-            e.Player.SendErrorMessage("You have to be logged in to use this command.");
+            e.Player.SendErrorMessage(GetString("You have to be logged in to use this command."));
             return;
         }
         if (e.Parameters.Count > 2)
         {
-            e.Player.SendErrorMessage("Invalid syntax! Proper syntax: //undo [steps] [account]");
+            e.Player.SendErrorMessage(GetString("Invalid syntax! Proper syntax: //undo [steps] [account]"));
             return;
         }
         int result = 1;
         int iD = e.Player.Account.ID;
         if (e.Parameters.Count > 0 && (!int.TryParse(e.Parameters[0], out result) || result <= 0))
         {
-            e.Player.SendErrorMessage("Invalid undo steps '{0}'!", e.Parameters[0]);
+            e.Player.SendErrorMessage(GetString("Invalid undo steps '{0}'!"), e.Parameters[0]);
         }
         else if (e.Parameters.Count > 1)
         {
             if (!e.Player.HasPermission("worldedit.usage.otheraccounts"))
             {
-                e.Player.SendErrorMessage("You do not have permission to undo other player's actions.");
+                e.Player.SendErrorMessage(GetString("You do not have permission to undo other player's actions."));
                 return;
             }
             UserAccount userAccountByName = TShock.UserAccounts.GetUserAccountByName(e.Parameters[1]);
             if (userAccountByName == null)
             {
-                e.Player.SendErrorMessage("Invalid account name!");
+                e.Player.SendErrorMessage(GetString("Invalid account name!"));
                 return;
             }
             iD = userAccountByName.ID;

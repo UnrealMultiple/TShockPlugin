@@ -37,6 +37,6 @@ public class Set : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Set tiles. ({0})", changedTileCount);
+		plr.SendSuccessMessage(GetString("Set tiles. ({0})"), changedTileCount);
 	}
 }

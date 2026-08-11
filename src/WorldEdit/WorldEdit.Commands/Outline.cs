@@ -74,6 +74,6 @@ public class Outline : WECommand
 		}
 
 		ResetSection();
-		plr.SendSuccessMessage("Set outline. ({0})", outlinedTileCount);
+		plr.SendSuccessMessage(GetString("Set outline. ({0})"), outlinedTileCount);
 	}
 }

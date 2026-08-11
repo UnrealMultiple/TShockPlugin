@@ -41,6 +41,6 @@ public class ReplaceWall : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Replaced walls. ({0})", replacedWallCount);
+		plr.SendSuccessMessage(GetString("Replaced walls. ({0})"), replacedWallCount);
 	}
 }

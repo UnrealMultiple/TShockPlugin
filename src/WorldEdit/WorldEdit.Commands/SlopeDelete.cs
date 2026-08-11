@@ -77,6 +77,6 @@ internal class SlopeDelete : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Removed slopes. ({0})", removedSlopeCount);
+		plr.SendSuccessMessage(GetString("Removed slopes. ({0})"), removedSlopeCount);
 	}
 }

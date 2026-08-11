@@ -39,6 +39,6 @@ public class Mow : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Mowed grass, thorns, and vines. ({0})", removedTileCount);
+		plr.SendSuccessMessage(GetString("Mowed grass, thorns, and vines. ({0})"), removedTileCount);
 	}
 }

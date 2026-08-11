@@ -31,6 +31,6 @@ public class FixHalves : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Fixed half blocks. ({0})", fixedHalfBlockCount);
+		plr.SendSuccessMessage(GetString("Fixed half blocks. ({0})"), fixedHalfBlockCount);
 	}
 }

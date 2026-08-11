@@ -31,6 +31,6 @@ public class FixSlopes : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Fixed slopes. ({0})", fixedSlopeCount);
+		plr.SendSuccessMessage(GetString("Fixed slopes. ({0})"), fixedSlopeCount);
 	}
 }

@@ -162,7 +162,7 @@ public abstract class WECommand
 		{
 			if (!canEditEventArgs.CanEdit.Value)
 			{
-				plr.SendErrorMessage("You do not have permission to use this command in this area.");
+				plr.SendErrorMessage(GetString("You do not have permission to use this command in this area."));
 			}
 			return canEditEventArgs.CanEdit.Value;
 		}
@@ -173,7 +173,7 @@ public abstract class WECommand
 		bool bypassRegionPermission = plr.HasPermission("worldedit.usage.noregion");
 		if (!bypassRegionPermission && !plr.IsLoggedIn)
 		{
-			plr.SendErrorMessage("You have to be logged in to use this command.");
+			plr.SendErrorMessage(GetString("You have to be logged in to use this command."));
 			return false;
 		}
         Rectangle area = new Rectangle(x, y, x2 - x, y2 - y);
@@ -183,7 +183,7 @@ public abstract class WECommand
             !TShock.Regions.CanBuild(x2, y2, plr) ||
             !TShock.Regions.CanBuild(x, y2, plr))
         {
-            plr.SendErrorMessage("You do not have permission to use this command outside of your regions.");
+            plr.SendErrorMessage(GetString("You do not have permission to use this command outside of your regions."));
             return false;
         }
         return true;

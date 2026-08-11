@@ -115,6 +115,6 @@ public class Rotate : WECommand
 		}
 		}
 		writer?.Close();
-		plr.SendSuccessMessage("Rotated clipboard {0} degrees.", _degrees);
+		plr.SendSuccessMessage(GetString("Rotated clipboard {0} degrees."), _degrees);
 	}
 }

@@ -38,6 +38,6 @@ public class Paint : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Painted tiles. ({0})", paintedTileCount);
+		plr.SendSuccessMessage(GetString("Painted tiles. ({0})"), paintedTileCount);
 	}
 }

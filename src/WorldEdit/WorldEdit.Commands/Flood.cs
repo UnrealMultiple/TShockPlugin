@@ -35,6 +35,6 @@ public class Flood : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Flooded area. ({0})", floodedTileCount);
+		plr.SendSuccessMessage(GetString("Flooded area. ({0})"), floodedTileCount);
 	}
 }

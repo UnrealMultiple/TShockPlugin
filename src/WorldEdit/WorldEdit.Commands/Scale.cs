@@ -100,6 +100,6 @@ public class Scale : WECommand
 				}
 			}
 		}
-		plr.SendSuccessMessage("Clipboard {0}creased by {1} times.", _addition ? "in" : "de", _scale);
+		plr.SendSuccessMessage(GetString(_addition ? "Clipboard increased by {0} times." : "Clipboard decreased by {0} times."), _scale);
 	}
 }

@@ -41,6 +41,6 @@ public class Replace : WECommand
 			}
 		}
 		ResetSection();
-		plr.SendSuccessMessage("Replaced tiles. ({0})", replacedTileCount);
+		plr.SendSuccessMessage(GetString("Replaced tiles. ({0})"), replacedTileCount);
 	}
 }

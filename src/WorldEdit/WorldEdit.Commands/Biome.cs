@@ -38,6 +38,6 @@ public class Biome : WECommand
 			}
 			ResetSection();
 		}
-		plr.SendSuccessMessage("Converted biomes. ({0})", convertedTileCount);
+		plr.SendSuccessMessage(GetString("Converted biomes. ({0})"), convertedTileCount);
 	}
 }

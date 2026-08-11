@@ -45,7 +45,7 @@ public class SetWire : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Set wire. ({0})", changedWireCount);
+			plr.SendSuccessMessage(GetString("Set wire. ({0})"), changedWireCount);
 			break;
 		}
 		case 2:
@@ -63,7 +63,7 @@ public class SetWire : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Set wire 2. ({0})", changedWireCount);
+			plr.SendSuccessMessage(GetString("Set wire 2. ({0})"), changedWireCount);
 			break;
 		}
 		case 3:
@@ -81,7 +81,7 @@ public class SetWire : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Set wire 3. ({0})", changedWireCount);
+			plr.SendSuccessMessage(GetString("Set wire 3. ({0})"), changedWireCount);
 			break;
 		}
 		case 4:
@@ -99,7 +99,7 @@ public class SetWire : WECommand
 				}
 			}
 			ResetSection();
-			plr.SendSuccessMessage("Set wire 4. ({0})", changedWireCount);
+			plr.SendSuccessMessage(GetString("Set wire 4. ({0})"), changedWireCount);
 			break;
 		}
 		}
