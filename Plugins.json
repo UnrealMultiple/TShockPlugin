@@ -2978,7 +2978,7 @@
   },
   {
     "Name": "WorldEdit",
-    "Version": "2026.7.21",
+    "Version": "2026.8.8",
     "Author": "Nyx Studios, massive upgrade by Anzhelika，肝帝熙恩适配1456",
     "Description": {
       "en-US": "Adds commands for mass editing of blocks.",
