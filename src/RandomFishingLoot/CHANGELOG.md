@@ -8,6 +8,7 @@
 - 钓鱼浮标与宝匣 ID 改用 Terraria 命名常量（ProjectileID / ItemID），不再硬编码魔法数字，并修正了旧硬编码区间误把钓鱼武器（CrystalSerpent/Toxikarp/Bladetongue）当作宝匣放行的问题
 - 配置了不支持的 Mode 时不再静默切换：回退为 progression_items 并在控制台日志、/fishrand 状态和重载提示中显示警告
 - 旧版配置升级时保留用户配置（Enabled、AnnounceToPlayer、Mode、BlockedItemIds、RandomNpc）
+- 移除钩子注册状态的冗余布尔标记，Initialize/Dispose 直接成对注册/注销
 - Restructured code by concern: entry, commands, config, validation, default tables, progression, quest fish, NPC pool, network, models, roll pools
 - Config auto-generation: `tshock/RandomFishingLoot.json` is written on first start with full default tables and notes
 - Fishing bobber and crate IDs now use named Terraria constants (ProjectileID / ItemID) instead of magic numbers; fixed the old hardcoded ranges that treated fishing weapons (CrystalSerpent/Toxikarp/Bladetongue) as crates

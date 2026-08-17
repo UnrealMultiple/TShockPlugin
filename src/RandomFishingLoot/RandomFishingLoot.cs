@@ -19,12 +19,6 @@ public sealed partial class RandomFishingLoot : TerrariaPlugin
     private string _configPath = "";
     private string _loadSummary = "未加载";
     private List<string> _configWarnings = new();
-    private bool _rollHooked;
-    private bool _enemyHooked;
-    private bool _giveHooked;
-    private bool _projectilePacketHooked;
-    private bool _projectileKillHooked;
-    private bool _leaveHooked;
 
     public override string Name => "随机渔获";
     public override string Author => "愚蠢";
@@ -47,18 +41,12 @@ public sealed partial class RandomFishingLoot : TerrariaPlugin
         });
 
         HookEvents.Terraria.Projectile.FishingCheck_RollItemDrop += OnFishingRollItemDrop;
-        _rollHooked = true;
         HookEvents.Terraria.Projectile.FishingCheck_RollEnemySpawns += OnFishingRollEnemySpawns;
-        _enemyHooked = true;
         HookEvents.Terraria.Projectile.AI_061_FishingBobber_GiveItemToPlayer += OnFishingGiveItem;
-        _giveHooked = true;
 
         GetDataHandlers.NewProjectile.Register(OnNewProjectilePacket);
-        _projectilePacketHooked = true;
         GetDataHandlers.ProjectileKill.Register(OnProjectileKillPacket);
-        _projectileKillHooked = true;
         ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
-        _leaveHooked = true;
     }
 
     protected override void Dispose(bool disposing)
@@ -68,41 +56,13 @@ public sealed partial class RandomFishingLoot : TerrariaPlugin
             _pendingChoices.Clear();
             _networkCatches.Clear();
 
-            if (_rollHooked)
-            {
-                HookEvents.Terraria.Projectile.FishingCheck_RollItemDrop -= OnFishingRollItemDrop;
-                _rollHooked = false;
-            }
+            HookEvents.Terraria.Projectile.FishingCheck_RollItemDrop -= OnFishingRollItemDrop;
+            HookEvents.Terraria.Projectile.FishingCheck_RollEnemySpawns -= OnFishingRollEnemySpawns;
+            HookEvents.Terraria.Projectile.AI_061_FishingBobber_GiveItemToPlayer -= OnFishingGiveItem;
 
-            if (_enemyHooked)
-            {
-                HookEvents.Terraria.Projectile.FishingCheck_RollEnemySpawns -= OnFishingRollEnemySpawns;
-                _enemyHooked = false;
-            }
-
-            if (_giveHooked)
-            {
-                HookEvents.Terraria.Projectile.AI_061_FishingBobber_GiveItemToPlayer -= OnFishingGiveItem;
-                _giveHooked = false;
-            }
-
-            if (_projectilePacketHooked)
-            {
-                GetDataHandlers.NewProjectile.UnRegister(OnNewProjectilePacket);
-                _projectilePacketHooked = false;
-            }
-
-            if (_projectileKillHooked)
-            {
-                GetDataHandlers.ProjectileKill.UnRegister(OnProjectileKillPacket);
-                _projectileKillHooked = false;
-            }
-
-            if (_leaveHooked)
-            {
-                ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
-                _leaveHooked = false;
-            }
+            GetDataHandlers.NewProjectile.UnRegister(OnNewProjectilePacket);
+            GetDataHandlers.ProjectileKill.UnRegister(OnProjectileKillPacket);
+            ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
 
             foreach (Command command in _commands)
                 Commands.ChatCommands.Remove(command);
