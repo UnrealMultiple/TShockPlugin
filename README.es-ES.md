@@ -171,6 +171,7 @@
 | [QRCoder](./src/QRCoder/README.md) | 0.0% | Generador de Códigos QR | [LazyAPI](./src/LazyAPI/README.md) |
 | [RainbowChat](./src/RainbowChat/README.md) | 0.0% | Colores aleatorios en el chat |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 0.0% | Transmisión aleatoria |  |
+| [RandomFishingLoot](./src/RandomFishingLoot/README.md) | 0.0% | 按当前进度阶段替换钓到的物品 |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 0.0% | Punto de aparición aleatorio |  |
 | [RealTime](./src/RealTime/README.md) | 0.0% | Sincroniza la hora del servidor con la hora real |  |
 | [RebirthCoin](./src/RebirthCoin/README.md) | 0.0% | Consume ítems designados para revivir al jugador |  |
