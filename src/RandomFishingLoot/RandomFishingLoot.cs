@@ -18,6 +18,7 @@ public sealed partial class RandomFishingLoot : TerrariaPlugin
     private FishingLootConfig _config = FishingLootConfig.CreateDefault();
     private string _configPath = "";
     private string _loadSummary = "未加载";
+    private List<string> _configWarnings = new();
     private bool _rollHooked;
     private bool _enemyHooked;
     private bool _giveHooked;

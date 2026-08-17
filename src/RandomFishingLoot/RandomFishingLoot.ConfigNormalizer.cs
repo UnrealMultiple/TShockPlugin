@@ -5,13 +5,16 @@ namespace RandomFishingLoot;
 
 public sealed partial class RandomFishingLoot
 {
-    private FishingLootConfig NormalizeConfig(FishingLootConfig config)
+    private FishingLootConfig NormalizeConfig(FishingLootConfig config, List<string> warnings)
     {
         FishingLootConfig upgraded = UpgradeLegacyConfig(config);
         HashSet<int> blocked = new(upgraded.BlockedItemIds.Where(id => id > 0));
 
         upgraded.Notes ??= new List<string>();
-        upgraded.Mode = NormalizeMode(upgraded.Mode);
+        upgraded.Mode = NormalizeMode(upgraded.Mode, out string? modeWarning);
+        if (modeWarning != null)
+            warnings.Add(modeWarning);
+
         upgraded.RandomNpc ??= new RandomNpcConfig();
         upgraded.RandomNpc.ReplaceChancePercent = Math.Clamp(upgraded.RandomNpc.ReplaceChancePercent, 0, 100);
         upgraded.RandomNpc.BlockedNpcIds = upgraded.RandomNpc.BlockedNpcIds.Where(id => id > 0).Distinct().OrderBy(id => id).ToList();
@@ -32,10 +35,14 @@ public sealed partial class RandomFishingLoot
         if (config.Stages.Count > 0 || config.AlwaysAvailable.Count > 0)
             return config;
 
+        // 旧格式（无阶段/常驻池）配置：重建默认渔获表，但保留所有用户已配置的字段。
         FishingLootConfig upgraded = BuildDefaultConfig();
         upgraded.Enabled = config.Enabled;
         upgraded.AnnounceToPlayer = config.AnnounceToPlayer;
-        upgraded.Mode = "progression_items";
+        if (!string.IsNullOrWhiteSpace(config.Mode))
+            upgraded.Mode = config.Mode;
+        upgraded.BlockedItemIds = config.BlockedItemIds ?? new List<int>();
+        upgraded.RandomNpc = config.RandomNpc ?? new RandomNpcConfig();
         return upgraded;
     }
 
@@ -137,13 +144,19 @@ public sealed partial class RandomFishingLoot
             .ToList();
     }
 
-    private static string NormalizeMode(string? mode)
+    private static string NormalizeMode(string? mode, out string? warning)
     {
         string value = (mode ?? string.Empty).Trim().ToLowerInvariant();
-        return value switch
-        {
-            "progression_items" or "items" => "progression_items",
-            _ => "random_npcs"
-        };
+        warning = null;
+
+        if (value.Length == 0 || value is "progression_items" or "items")
+            return "progression_items";
+
+        if (value is "random_npcs" or "npcs" or "npc")
+            return "random_npcs";
+
+        // 未知模式不再静默切换，回退到默认模式并向管理员告警。
+        warning = $"配置中的 Mode \"{mode}\" 不受支持，已回退为 progression_items（可选值：progression_items / random_npcs）。";
+        return "progression_items";
     }
 }

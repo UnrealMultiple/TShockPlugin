@@ -167,13 +167,31 @@ public sealed partial class RandomFishingLoot
         }
     }
 
+    private static readonly HashSet<int> _fishingBobberIds =
+    [
+        ProjectileID.BobberWooden,
+        ProjectileID.BobberReinforced,
+        ProjectileID.BobberFiberglass,
+        ProjectileID.BobberFisherOfSouls,
+        ProjectileID.BobberGolden,
+        ProjectileID.BobberMechanics,
+        ProjectileID.BobbersittingDuck,
+        ProjectileID.BobberFleshcatcher,
+        ProjectileID.BobberHotline,
+        ProjectileID.BobberBloody,
+        ProjectileID.BobberScarab,
+        ProjectileID.FishingBobber,
+        ProjectileID.FishingBobberGlowingStar,
+        ProjectileID.FishingBobberGlowingLava,
+        ProjectileID.FishingBobberGlowingKrypton,
+        ProjectileID.FishingBobberGlowingXenon,
+        ProjectileID.FishingBobberGlowingArgon,
+        ProjectileID.FishingBobberGlowingViolet,
+        ProjectileID.FishingBobberGlowingRainbow
+    ];
+
     private static bool IsFishingBobber(int projectileType)
     {
-        return projectileType is >= 360 and <= 366
-            or 381
-            or 382
-            or 760
-            or 775
-            or >= 986 and <= 993;
+        return _fishingBobberIds.Contains(projectileType);
     }
 }

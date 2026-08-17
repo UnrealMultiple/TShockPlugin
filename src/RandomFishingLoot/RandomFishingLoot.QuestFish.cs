@@ -5,16 +5,37 @@ namespace RandomFishingLoot;
 
 public sealed partial class RandomFishingLoot
 {
-    // 原版钓鱼宝匣 ID，取自 FishingCheck_RollItemDropOld 的 crate 分支（1.4.5.6）。
+    // 原版钓鱼宝匣 ItemID，取自 FishingCheck_RollItemDropOld 的 crate 分支（1.4.5.6）。
+    // 使用命名常量而非魔法数字，Terraria 版本更新时由编译器直接校验。
     // 服务端网络路径无法预知客户端的宝匣判定，只能靠这一杆客户端上报的 itemId 识别。
     private static readonly HashSet<int> _crateItemIds =
     [
-        2334, 2335, 2336, // 木匣 / 铁匣 / 金匣
-        3203, 3204, 3205, 3206, 3207, 3208, 3209, 3210, 3211, // 腐化/猩红/神圣/丛林/天空/海洋/冰冻/地牢匣
-        3979, 3980, 3981, 3982, 3983, 3984, 3985, 3986, 3987, // 各生物群系硬模式匣
-        4405, 4406, 4407, 4408, // 冰冻匣 / 绿洲匣 变体
-        4877, 4878, // 黑曜石匣 / 狱石匣
-        5002, 5003, // 海洋匣 变体
+        ItemID.WoodenCrate,
+        ItemID.IronCrate,
+        ItemID.GoldenCrate,
+        ItemID.CorruptFishingCrate,
+        ItemID.CrimsonFishingCrate,
+        ItemID.DungeonFishingCrate,
+        ItemID.FloatingIslandFishingCrate,
+        ItemID.HallowedFishingCrate,
+        ItemID.JungleFishingCrate,
+        ItemID.WoodenCrateHard,
+        ItemID.IronCrateHard,
+        ItemID.GoldenCrateHard,
+        ItemID.CorruptFishingCrateHard,
+        ItemID.CrimsonFishingCrateHard,
+        ItemID.DungeonFishingCrateHard,
+        ItemID.FloatingIslandFishingCrateHard,
+        ItemID.HallowedFishingCrateHard,
+        ItemID.JungleFishingCrateHard,
+        ItemID.FrozenCrate,
+        ItemID.FrozenCrateHard,
+        ItemID.OasisCrate,
+        ItemID.OasisCrateHard,
+        ItemID.LavaCrate,
+        ItemID.LavaCrateHard,
+        ItemID.OceanCrate,
+        ItemID.OceanCrateHard
     ];
 
     private static bool IsCrateItem(int itemId)

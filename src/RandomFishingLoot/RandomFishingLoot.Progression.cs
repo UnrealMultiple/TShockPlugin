@@ -118,7 +118,7 @@ public sealed partial class RandomFishingLoot
     private static string BuildLoadSummary(FishingLootConfig config)
     {
         int stageItems = config.Stages.Sum(stage => stage.Items.Count);
-        string mode = NormalizeMode(config.Mode) == "random_npcs" ? "随机生物" : "进度物品";
+        string mode = NormalizeMode(config.Mode, out _) == "random_npcs" ? "随机生物" : "进度物品";
         string questFish = config.AllowQuestFish ? "，允许钓任务鱼" : "，不钓任务鱼";
         string crate = config.AllowCrates ? "，保留宝匣" : "，宝匣被替换";
         return $"随机渔获已载入：模式 {mode}；常驻 {config.AlwaysAvailable.Count} 项，阶段 {config.Stages.Count} 个，阶段物品 {stageItems} 项{questFish}{crate}。";

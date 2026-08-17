@@ -1,6 +1,8 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
+using TShockAPI;
+
 namespace RandomFishingLoot;
 
 public sealed partial class RandomFishingLoot
@@ -34,9 +36,18 @@ public sealed partial class RandomFishingLoot
                 config = JsonSerializer.Deserialize<FishingLootConfig>(json, JsonOptions) ?? FishingLootConfig.CreateDefault();
             }
 
-            _config = NormalizeConfig(config);
+            List<string> warnings = new();
+            _config = NormalizeConfig(config, warnings);
+            _configWarnings = warnings;
             _npcPool = BuildNpcPool(_config.RandomNpc);
             _loadSummary = BuildLoadSummary(_config);
+
+            foreach (string warning in warnings)
+            {
+                TShock.Log.ConsoleInfo($"[RandomFishingLoot] {warning}");
+                _loadSummary += Environment.NewLine + warning;
+            }
+
             _pendingChoices.Clear();
             _networkCatches.Clear();
             return true;
