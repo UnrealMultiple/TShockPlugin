@@ -168,6 +168,7 @@
 | [QRCoder](./src/QRCoder/README.en-US.md) | 100.0% | QR Code Generator | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [RainbowChat](./src/RainbowChat/README.en-US.md) | 100.0% | Random chat color |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 100.0% | Random broadcast |  |
+| [RandomFishingLoot](./src/RandomFishingLoot/README.en-US.md) | 100.0% | Replace caught fishing loot with progression-based stage loot |  |
 | [RandRespawn](./src/RandRespawn/README.en-US.md) | 100.0% | Random spawn point |  |
 | [RealTime](./src/RealTime/README.en-US.md) | 62.5% | Synchronize server time with real time |  |
 | [RebirthCoin](./src/RebirthCoin/README.en-US.md) | 100.0% | Consume designated items to revive player |  |

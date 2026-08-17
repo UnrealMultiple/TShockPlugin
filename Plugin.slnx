@@ -112,6 +112,7 @@
   <Project Path="src/QRCoder/QRCoder.csproj" />
   <Project Path="src/RainbowChat/RainbowChat.csproj" />
   <Project Path="src/RandomBroadcast/RandomBroadcast.csproj" />
+  <Project Path="src/RandomFishingLoot/RandomFishingLoot.csproj" />
   <Project Path="src/RandRespawn/RandRespawn.csproj" />
   <Project Path="src/RealTime/RealTime.csproj" />
   <Project Path="src/RebirthCoin/RebirthCoin.csproj" />

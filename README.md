@@ -164,6 +164,7 @@
 | [QRCoder](./src/QRCoder/README.md) | 二维码生成器 | [LazyAPI](./src/LazyAPI/README.md) |
 | [RainbowChat](./src/RainbowChat/README.md) | 每次说话颜色不一样 |  |
 | [RandomBroadcast](./src/RandomBroadcast/README.md) | 随机广播 |  |
+| [RandomFishingLoot](./src/RandomFishingLoot/README.md) | 随机渔获 |  |
 | [RandRespawn](./src/RandRespawn/README.md) | 随机出生点 |  |
 | [RealTime](./src/RealTime/README.md) | 使服务器内时间同步现实时间 |  |
 | [RebirthCoin](./src/RebirthCoin/README.md) | 复活币 |  |
