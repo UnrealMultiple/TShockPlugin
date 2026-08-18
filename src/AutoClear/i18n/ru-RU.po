@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-06-29 04:14:02+0000\n"
-"PO-Revision-Date: 2025-06-30 01:26\n"
+"POT-Creation-Date: 2026-07-23 00:22:29+0000\n"
+"PO-Revision-Date: 2026-07-23 02:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,26 @@ msgstr ""
 "X-Crowdin-File-ID: 1090\n"
 "Language: ru_RU\n"
 
-#: ../../AutoClear.cs:164
+#: ../../AutoClear.cs:230
 #, csharp-format
 msgid "包含：【投掷武器[c/FFFFFF:{0}]】-【挥动武器[c/FFFFFF:{1}]】-【普通物品[c/FFFFFF:{2}]】-【装备[c/FFFFFF:{3}]】-【时装[c/FFFFFF:{4}]】"
 msgstr ""
 
-#: ../../AutoClear.cs:13
+#: ../../AutoClear.cs:216
+#, csharp-format
+msgid "已分批清理 {0} 个掉落物。"
+msgstr ""
+
+#: ../../AutoClear.cs:177
+#, csharp-format
+msgid "已加入 {0} 个掉落物，正在分批清理。"
+msgstr ""
+
+#: ../../AutoClear.cs:97
+msgid "已有物品清理任务正在执行。"
+msgstr ""
+
+#: ../../AutoClear.cs:17
 msgid "智能扫地机"
 msgstr ""
 
@@ -30,8 +44,12 @@ msgstr ""
 msgid "智能扫地机: 由于存在事件或BOSS，已跳过自动清理"
 msgstr ""
 
-#: ../../AutoClear.cs:163
+#: ../../AutoClear.cs:229
 #, csharp-format
 msgid "智能扫地机已清扫：[c/FFFFFF:{0}]种物品"
+msgstr ""
+
+#: ../../AutoClear.cs:168
+msgid "没有可清理的掉落物。"
 msgstr ""
 

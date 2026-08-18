@@ -1,0 +1,1334 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2026-08-17 11:04:47+0000\n"
+"PO-Revision-Date: 2026-08-18 01:02\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/WorldEdit/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1653\n"
+"Language: en_US\n"
+
+#: ../../WorldEdit.Commands/Activate.cs:185
+#, csharp-format
+msgid " Failed to activate {0}. ({1})"
+msgstr ""
+
+#: ../../WorldEdit/Tools.cs:43
+#, csharp-format
+msgid "[WorldEdit] File '{0}' could not be converted to Terraria v1.4:\n"
+"{1}"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:103
+msgid "[WorldEdit] Successfully reloaded config."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Actuator.cs:41
+msgid "{0} actuators. ({1})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2532
+#, csharp-format
+msgid "{0} doesn't have a clipboard."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2536
+msgid "{0}'s clipboard size: {1}x{2}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1981
+msgid "{0}'s ID: {1}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:865
+#: ../../WorldEdit/WorldEdit.cs:905
+msgid "//fill <tile> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2083
+msgid "//schematic paste is for server console only.\n"
+"Instead, you should use //schematic load and //paste."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2558
+msgid "//size <clipboard/c> [user name]\n"
+"//size <schematic/s> <name>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2151
+#, csharp-format
+msgid "/sc delete/del <name>\n"
+"/sc list [page]\n"
+"/sc load/l <name>\n"
+"/sc save/s <name>\n"
+"{0}/sc copysave/cs <name>\n"
+"/sc paste/p <name> [alignment] [-f] [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2731
+msgid "\\m for middle position\n"
+"\\r for right position\n"
+"\\s<num> (for example \\s3) for line spacing\n"
+"\\c for cropped statue (2 blocks heigh, without stand)"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:185
+msgid "Activated {0}. ({1}){2}"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:199
+msgid "Activates non-working signs, chests or item frames."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:54
+msgid "Adds commands for mass editing of blocks."
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWall.cs:40
+msgid "air"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2419
+msgid "Allowed flip types: left/l, right/r."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2384
+msgid "Allowed rotate types: up/u, down/d, left/l, right/r."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2418
+msgid "Allowed rotate types: up/u, down/d."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2344
+msgid "Allowed shape types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2161
+#: ../../WorldEdit/WorldEdit.cs:2167
+#: ../../WorldEdit/WorldEdit.cs:2173
+#, csharp-format
+msgid "Available selections: {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:175
+#: ../../WorldEdit/WorldEdit.cs:1089
+msgid "Can't start counting magic wand selection from this tile."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:75
+msgid "chests"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:135
+#, csharp-format
+msgid "chests ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/KillEmpty.cs:26
+msgid "Cleared {0} empty chests."
+msgstr ""
+
+#: ../../WorldEdit.Commands/KillEmpty.cs:22
+msgid "Cleared {0} empty signs."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Copy.cs:19
+msgid "clipboard"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:607
+#: ../../WorldEdit/WorldEdit.cs:693
+msgid "Config options: MagicWandTileLimit (wand), MaxUndoCount (undocount),\n"
+"DisableUndoSystemForUnrealPlayers (undodisable), StartSchematicNamesWithCreatorUserID (schematic)"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Biome.cs:41
+msgid "Converted biomes. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:207
+msgid "Converts biomes in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Copy.cs:19
+msgid "Copied selection to {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:215
+msgid "Copies the worldedit selection to the clipboard, then deletes it."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:211
+msgid "Copies the worldedit selection to the clipboard."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:396
+msgid "Creates text with alphabet statues in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:255
+msgid "Creates worldedit selection from contiguous tiles that are matching boolean expression."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Cut.cs:56
+msgid "Cut selection. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1910
+msgid "Deleted schematic '{0}'."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:259
+msgid "Deletes empty signs and/or chests (only entities, doesn't remove tiles)."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:658
+#, csharp-format
+msgid "Disable undo system for unreal players is {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:668
+#, csharp-format
+msgid "Disable undo system for unreal players set to {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:454
+msgid "Do not delete deteted.lock inside worldedit folder; this message will only show once."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Drain.cs:35
+msgid "Drained area. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:219
+msgid "Drains liquids in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:356
+#: ../../WorldEdit/WorldEdit.cs:360
+#: ../../WorldEdit/WorldEdit.cs:364
+#: ../../WorldEdit/WorldEdit.cs:368
+msgid "Draws line/rectangle/ellipse/triangle in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:195
+msgid "Edits config options."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Redo.cs:31
+msgid "Failed to redo any actions."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Undo.cs:31
+msgid "Failed to undo any actions."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Shape.cs:540
+msgid "filled "
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:223
+#: ../../WorldEdit/WorldEdit.cs:227
+msgid "Fills the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:167
+#, csharp-format
+msgid "Fixed ghost {0}."
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGrass.cs:37
+msgid "Fixed grass. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixHalves.cs:34
+msgid "Fixed half blocks. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixSlopes.cs:34
+msgid "Fixed slopes. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:243
+msgid "Fixes covered slopes in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:239
+msgid "Fixes half blocks in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:231
+msgid "Fixes invisible signs, chests and item frames."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:235
+msgid "Fixes suffocated grass in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Flip.cs:96
+msgid "Flipped clipboard."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:247
+msgid "Flips the worldedit clipboard."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Flood.cs:38
+msgid "Flooded area. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:251
+msgid "Floods liquids in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:135
+msgid "food plates"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:163
+#, csharp-format
+msgid "food plates ({0})"
+msgstr ""
+
+#: ../../WorldEdit/MagicWand.cs:74
+#, csharp-format
+msgid "Hard selection tile limit ({0}) has been reached."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:134
+msgid "hat racks"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:159
+#, csharp-format
+msgid "hat racks ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1655
+msgid "Hit a block to select that region."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2730
+msgid "In the beginning of new line:"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1636
+#: ../../WorldEdit/WorldEdit.cs:2526
+#: ../../WorldEdit/WorldEdit.cs:2773
+msgid "Invalid account name!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:744
+msgid "Invalid activation type '{0}'."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1238
+msgid "Invalid active state '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1877
+msgid "Invalid amount!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1852
+msgid "Invalid angle '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:803
+msgid "Invalid biome."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1030
+#: ../../WorldEdit/WorldEdit.cs:1395
+#: ../../WorldEdit/WorldEdit.cs:1460
+#: ../../WorldEdit/WorldEdit.cs:1848
+#: ../../WorldEdit/WorldEdit.cs:1873
+#: ../../WorldEdit/WorldEdit.cs:1995
+msgid "Invalid clipboard!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1215
+#: ../../WorldEdit/WorldEdit.cs:1279
+#: ../../WorldEdit/WorldEdit.cs:1325
+#: ../../WorldEdit/WorldEdit.cs:1360
+msgid "Invalid color '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1598
+msgid "Invalid coordinates '({0}, {1})'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1567
+msgid "Invalid coordinates."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1047
+#: ../../WorldEdit/WorldEdit.cs:1828
+#: ../../WorldEdit/WorldEdit.cs:2718
+msgid "Invalid direction '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1152
+msgid "Invalid distance!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:768
+#: ../../WorldEdit/WorldEdit.cs:884
+#: ../../WorldEdit/WorldEdit.cs:924
+#: ../../WorldEdit/WorldEdit.cs:1081
+#: ../../WorldEdit/WorldEdit.cs:1158
+#: ../../WorldEdit/WorldEdit.cs:1255
+#: ../../WorldEdit/WorldEdit.cs:1301
+#: ../../WorldEdit/WorldEdit.cs:1336
+#: ../../WorldEdit/WorldEdit.cs:1371
+#: ../../WorldEdit/WorldEdit.cs:1437
+#: ../../WorldEdit/WorldEdit.cs:1539
+#: ../../WorldEdit/WorldEdit.cs:1710
+#: ../../WorldEdit/WorldEdit.cs:1756
+#: ../../WorldEdit/WorldEdit.cs:2142
+#: ../../WorldEdit/WorldEdit.cs:2210
+#: ../../WorldEdit/WorldEdit.cs:2245
+#: ../../WorldEdit/WorldEdit.cs:2274
+#: ../../WorldEdit/WorldEdit.cs:2313
+#: ../../WorldEdit/WorldEdit.cs:2495
+#: ../../WorldEdit/WorldEdit.cs:2585
+#: ../../WorldEdit/WorldEdit.cs:2613
+#: ../../WorldEdit/WorldEdit.cs:2631
+#: ../../WorldEdit/WorldEdit.cs:2670
+msgid "Invalid expression!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1390
+#: ../../WorldEdit/WorldEdit.cs:1455
+#: ../../WorldEdit/WorldEdit.cs:2100
+msgid "Invalid first point!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2447
+msgid "Invalid flip type! Allowed types: left/l, right/r."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2268
+msgid "Invalid grass '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1005
+msgid "Invalid liquid type '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1424
+#: ../../WorldEdit/WorldEdit.cs:1500
+#: ../../WorldEdit/WorldEdit.cs:2129
+msgid "Invalid paste alignment '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1188
+msgid "Invalid radius '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1624
+msgid "Invalid redo steps '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1661
+msgid "Invalid region '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1779
+msgid "Invalid resize amount '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2406
+msgid "Invalid rotate type! Allowed types: up/u, down/d, left/l, right/r."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2433
+msgid "Invalid rotate type! Allowed types: up/u, down/d."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1905
+#: ../../WorldEdit/WorldEdit.cs:1955
+#: ../../WorldEdit/WorldEdit.cs:2094
+#: ../../WorldEdit/WorldEdit.cs:2550
+msgid "Invalid schematic '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2174
+msgid "Invalid selection type '{0}'!\r\n"
+"{1}"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:816
+#: ../../WorldEdit/WorldEdit.cs:940
+#: ../../WorldEdit/WorldEdit.cs:953
+#: ../../WorldEdit/WorldEdit.cs:966
+#: ../../WorldEdit/WorldEdit.cs:979
+#: ../../WorldEdit/WorldEdit.cs:1011
+#: ../../WorldEdit/WorldEdit.cs:1132
+#: ../../WorldEdit/WorldEdit.cs:1147
+#: ../../WorldEdit/WorldEdit.cs:1171
+#: ../../WorldEdit/WorldEdit.cs:1209
+#: ../../WorldEdit/WorldEdit.cs:1273
+#: ../../WorldEdit/WorldEdit.cs:1319
+#: ../../WorldEdit/WorldEdit.cs:1354
+#: ../../WorldEdit/WorldEdit.cs:1682
+#: ../../WorldEdit/WorldEdit.cs:1728
+#: ../../WorldEdit/WorldEdit.cs:1774
+#: ../../WorldEdit/WorldEdit.cs:2041
+#: ../../WorldEdit/WorldEdit.cs:2193
+#: ../../WorldEdit/WorldEdit.cs:2228
+#: ../../WorldEdit/WorldEdit.cs:2263
+#: ../../WorldEdit/WorldEdit.cs:2292
+#: ../../WorldEdit/WorldEdit.cs:2355
+#: ../../WorldEdit/WorldEdit.cs:2573
+#: ../../WorldEdit/WorldEdit.cs:2600
+#: ../../WorldEdit/WorldEdit.cs:2625
+#: ../../WorldEdit/WorldEdit.cs:2649
+#: ../../WorldEdit/WorldEdit.cs:2688
+#: ../../WorldEdit/WorldEdit.cs:2737
+msgid "Invalid selection!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:708
+#: ../../WorldEdit/WorldEdit.cs:761
+#: ../../WorldEdit/WorldEdit.cs:796
+#: ../../WorldEdit/WorldEdit.cs:834
+#: ../../WorldEdit/WorldEdit.cs:847
+#: ../../WorldEdit/WorldEdit.cs:860
+#: ../../WorldEdit/WorldEdit.cs:900
+msgid "Invalid selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2453
+msgid "Invalid shape type! Allowed types: line/l, rectangle/r, ellipse/e, isoscelestriangle/it, righttriangle/rt."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2693
+msgid "Invalid shift amount '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2664
+msgid "Invalid status! Proper: on, off, reverse"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:702
+msgid "Invalid syntax! Proper syntax: //activate <sign/chest/itemframe/sensor/dummy/all>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:755
+msgid "Invalid syntax! Proper syntax: //actuator <on/off> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:790
+msgid "Invalid syntax! Proper syntax: //biome <biome 1> <biome 2>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1025
+msgid "Invalid syntax! Proper syntax: //flip <direction>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:991
+msgid "Invalid syntax! Proper syntax: //flood <liquid>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2643
+msgid "Invalid syntax! Proper syntax: //inactive <status(on/off/reverse)> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1126
+msgid "Invalid syntax! Proper syntax: //killempty <signs/chests/all>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1056
+msgid "Invalid syntax! Proper syntax: //magicwand [<X> <Y>] => boolean expr..."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1141
+msgid "Invalid syntax! Proper syntax: //move <right> <down> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1183
+msgid "Invalid syntax! Proper syntax: //near <radius>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1203
+msgid "Invalid syntax! Proper syntax: //outline <tile> <color> <state> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1267
+msgid "Invalid syntax! Proper syntax: //outlinewall <wall> [color] [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1313
+msgid "Invalid syntax! Proper syntax: //paint <color> [where] [conditions...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1348
+msgid "Invalid syntax! Proper syntax: //paintwall <color> [where] [conditions...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1563
+msgid "Invalid syntax! Proper syntax: //point1 <x> <y>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1594
+msgid "Invalid syntax! Proper syntax: //point2 [x] [y]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1617
+msgid "Invalid syntax! Proper syntax: //redo [steps] [account]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1648
+msgid "Invalid syntax! Proper syntax: //region [region name]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1676
+#: ../../WorldEdit/WorldEdit.cs:1722
+msgid "Invalid syntax! Proper syntax: //replace <from tile> <to tile> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1768
+msgid "Invalid syntax! Proper syntax: //resize <direction(s)> <amount>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1844
+msgid "Invalid syntax! Proper syntax: //rotate <angle>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1869
+msgid "Invalid syntax! Proper syntax: //scale <+/-> <amount>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2049
+msgid "Invalid syntax! Proper syntax: //schematic copysave [-force/-f] <name>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1899
+msgid "Invalid syntax! Proper syntax: //schematic delete -confirm <name>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1919
+msgid "Invalid syntax! Proper syntax: //schematic list [page]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1943
+msgid "Invalid syntax! Proper syntax: //schematic load <name>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2088
+msgid "Invalid syntax! Proper syntax: //schematic paste <name> [alignment] [-f] [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1989
+msgid "Invalid syntax! Proper syntax: //schematic save [-force/-f] <name>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2160
+msgid "Invalid syntax! Proper syntax: //select <selection type>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2187
+msgid "Invalid syntax! Proper syntax: //set <tile> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2257
+msgid "Invalid syntax! Proper syntax: //setgrass <grass> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2222
+msgid "Invalid syntax! Proper syntax: //setwall <wall> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2286
+msgid "Invalid syntax! Proper syntax: //setwire <wire> <wire state> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2341
+#, csharp-format
+msgid "Invalid syntax! Proper syntax: //shape{0}{1} <shape> [rotate type] [flip type] <tile/wall> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2682
+msgid "Invalid syntax! Proper syntax: //shift <direction> <amount>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2567
+msgid "Invalid syntax! Proper syntax: //slope <type> [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1465
+msgid "Invalid syntax! Proper syntax: //spaste [alignment] [-flag -flag ...] [=> boolean expr...]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2729
+msgid "Invalid syntax! Proper syntax: //text <text> (\\n for new line)"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2754
+msgid "Invalid syntax! Proper syntax: //undo [steps] [account]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:662
+msgid "Invalid syntax! Proper syntax: //worldedit <disableundosystemforunrealplayers/undodisable> <true/false>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:622
+msgid "Invalid syntax! Proper syntax: //worldedit <magicwandtilelimit/wand> <amount>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:642
+msgid "Invalid syntax! Proper syntax: //worldedit <maxundocount/undocount> <amount>"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:606
+msgid "Invalid syntax! Proper syntax: //worldedit <option> [value]"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:682
+msgid "Invalid syntax! Proper syntax: //worldedit <startschematicnameswithcreatoruserid/schematic> <true/false>"
+msgstr ""
+
+#: ../../WorldEdit.Expressions/Parser.cs:416
+msgid "Invalid test."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:871
+#: ../../WorldEdit/WorldEdit.cs:1244
+#: ../../WorldEdit/WorldEdit.cs:1688
+#: ../../WorldEdit/WorldEdit.cs:1699
+#: ../../WorldEdit/WorldEdit.cs:1734
+#: ../../WorldEdit/WorldEdit.cs:2199
+#: ../../WorldEdit/WorldEdit.cs:2482
+msgid "Invalid tile '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2579
+#: ../../WorldEdit/WorldEdit.cs:2608
+msgid "Invalid type '{0}'! Available slopes: none (0), t (1), tr (2), tl (3), br (4), bl (5)"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2761
+msgid "Invalid undo steps '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1978
+msgid "Invalid user '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:911
+#: ../../WorldEdit/WorldEdit.cs:1290
+#: ../../WorldEdit/WorldEdit.cs:1745
+#: ../../WorldEdit/WorldEdit.cs:2234
+#: ../../WorldEdit/WorldEdit.cs:2467
+msgid "Invalid wall '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2297
+msgid "Invalid wire '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2307
+msgid "Invalid wire state '{0}'!"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:100
+msgid "item frames"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:131
+#, csharp-format
+msgid "item frames ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1951
+msgid "Loaded schematic '{0}' to clipboard."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:127
+msgid "logic sensors"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:139
+#, csharp-format
+msgid "logic sensors ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Inactive.cs:45
+msgid "Made tiles inactive. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:618
+#, csharp-format
+msgid "Magic wand tile limit is {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:628
+#, csharp-format
+msgid "Magic wand tile limit set to {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:332
+msgid "Manages worldedit schematics."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:133
+msgid "mannequins"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:155
+#, csharp-format
+msgid "mannequins ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:638
+#, csharp-format
+msgid "Max undo count is {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:648
+#, csharp-format
+msgid "Max undo count set to {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1102
+msgid "Modify a block to count hard selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1559
+msgid "Modify a block to set point 1."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1590
+msgid "Modify a block to set point 2."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1220
+#: ../../WorldEdit/WorldEdit.cs:1284
+#: ../../WorldEdit/WorldEdit.cs:1330
+#: ../../WorldEdit/WorldEdit.cs:1365
+msgid "More than one color matched!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:876
+#: ../../WorldEdit/WorldEdit.cs:1249
+#: ../../WorldEdit/WorldEdit.cs:1693
+#: ../../WorldEdit/WorldEdit.cs:1704
+#: ../../WorldEdit/WorldEdit.cs:1739
+#: ../../WorldEdit/WorldEdit.cs:2204
+#: ../../WorldEdit/WorldEdit.cs:2487
+msgid "More than one tile matched!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:916
+#: ../../WorldEdit/WorldEdit.cs:1295
+#: ../../WorldEdit/WorldEdit.cs:1750
+#: ../../WorldEdit/WorldEdit.cs:2239
+#: ../../WorldEdit/WorldEdit.cs:2472
+msgid "More than one wall matched!"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Move.cs:88
+msgid "Moved tiles ({0})."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:263
+msgid "Moves tiles from the worldedit selection to new area."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Mow.cs:42
+msgid "Mowed grass, thorns, and vines. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:267
+msgid "Mows grass, thorns, and vines in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2000
+#: ../../WorldEdit/WorldEdit.cs:2054
+msgid "Name should not contain these symbols: \"{0}\"."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:152
+msgid "No region exists there."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Paint.cs:41
+msgid "Painted tiles. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/PaintWall.cs:41
+msgid "Painted walls. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:284
+msgid "Paints tiles in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:288
+msgid "Paints walls in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/SPaste.cs:165
+#: ../../WorldEdit.Commands/Paste.cs:106
+msgid "Pasted clipboard to selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:296
+msgid "Pastes the clipboard to the worldedit selection with certain conditions."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:292
+msgid "Pastes the clipboard to the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2166
+msgid "Proper syntax: //select <selection type>"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:132
+msgid "pylons"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:151
+#, csharp-format
+msgid "pylons ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Redo.cs:34
+msgid "Redid {0}'s last {1}action{2}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:308
+msgid "Redoes a number of worldedit actions."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Actuator.cs:41
+msgid "Removed"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SlopeDelete.cs:80
+msgid "Removed slopes. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:380
+msgid "Removes slopes in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Replace.cs:44
+msgid "Replaced tiles. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/ReplaceWall.cs:44
+msgid "Replaced walls. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:316
+msgid "Replaces tiles in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:320
+msgid "Replaces walls in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1832
+msgid "Resized selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:324
+msgid "Resizes the worldedit selection in a direction."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Inactive.cs:81
+msgid "Reversed tiles'\tinactive status. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Rotate.cs:118
+msgid "Rotated clipboard {0} degrees."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:328
+msgid "Rotates the worldedit clipboard."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2022
+msgid "Saved clipboard to schematic '{0}'."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:404
+msgid "Scale the clipboard"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Copy.cs:19
+msgid "schematic"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2071
+#, csharp-format
+msgid "Schematic '{0}' already exists, write '//schematic copysave <-force/-f> {0}' to overwrite it."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2017
+#, csharp-format
+msgid "Schematic '{0}' already exists, write '//schematic save <-force/-f> {0}' to overwrite it."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2554
+msgid "Schematic's size ('{0}'): {1}x{2}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1927
+msgid "Schematics ({0}/{1}):"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2150
+msgid "Schematics Subcommands:"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:783
+msgid "Selected all tiles."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1196
+msgid "Selected tiles around you!"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:312
+msgid "Selects a region as a worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Actuator.cs:41
+msgid "Set"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetGrass.cs:78
+msgid "Set {0} grass. ({1})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Shape.cs:540
+msgid "Set {0}{1} shape. ({2})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:170
+#: ../../WorldEdit/WorldEdit.cs:1094
+msgid "Set magic wand selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Outline.cs:77
+msgid "Set outline. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:139
+#: ../../WorldEdit/WorldEdit.cs:1573
+msgid "Set point 1."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:145
+#: ../../WorldEdit/WorldEdit.cs:1604
+msgid "Set point 2."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:162
+msgid "Set region."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1669
+msgid "Set selection to region '{0}'."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2179
+msgid "Set selection type to '{0}'."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Text.cs:41
+msgid "Set text."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Set.cs:40
+msgid "Set tiles. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/OutlineWall.cs:74
+msgid "Set wall outline. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWall.cs:41
+msgid "Set walls to {0}. ({1})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWire.cs:66
+msgid "Set wire 2. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWire.cs:84
+msgid "Set wire 3. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWire.cs:102
+msgid "Set wire 4. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWire.cs:48
+msgid "Set wire. ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Inactive.cs:63
+msgid "Set\ttiles' inactive\tstatus off.\t({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:408
+msgid "Sets actuators in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:276
+msgid "Sets block outline around blocks in area."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:344
+msgid "Sets certain grass in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:388
+msgid "Sets the inactive status in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:300
+msgid "Sets the positions of the worldedit selection's first point."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:304
+msgid "Sets the positions of the worldedit selection's second point."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:336
+msgid "Sets the worldedit selection function."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:272
+msgid "Sets the worldedit selection to a radius around you."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:203
+msgid "Sets the worldedit selection to the entire world."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:340
+msgid "Sets tiles in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:280
+msgid "Sets wall outline around walls in area."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:348
+msgid "Sets walls in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:352
+msgid "Sets wires in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2722
+msgid "Shifted selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:392
+msgid "Shifts the worldedit selection in a direction."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:372
+msgid "Shows size of clipboard or schematic."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:50
+msgid "signs"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:127
+#, csharp-format
+msgid "signs ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Slope.cs:67
+msgid "Sloped tiles. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:376
+msgid "Slopes tiles in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Smooth.cs:92
+msgid "Smoothed area. ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:384
+msgid "Smooths blocks in the worldedit selection."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:678
+#, csharp-format
+msgid "Start schematic names with creator user id is {0}."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:688
+#, csharp-format
+msgid "Start schematic names with creator user id set to {0}."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:130
+msgid "target dummies"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:143
+#, csharp-format
+msgid "target dummies ({0})"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:171
+msgid "There are no ghost objects in this area."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:139
+msgid "There are no objects to activate in this area."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:453
+msgid "These files had been deleted. However, we still support old schematic files (*.dat)"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Shape.cs:540
+msgid "tile"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1928
+msgid "Type //schematic list {0} for more."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Undo.cs:34
+msgid "Undid {0}'s last {1}action{2}."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Redo.cs:22
+#: ../../WorldEdit.Commands/Undo.cs:22
+msgid "Undo system is disabled for unreal players."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:400
+msgid "Undoes a number of worldedit actions."
+msgstr ""
+
+#: ../../WorldEdit.Commands/Shape.cs:540
+msgid "wall"
+msgstr ""
+
+#: ../../WorldEdit.Commands/SetWall.cs:40
+#, csharp-format
+msgid "wall {0}"
+msgstr ""
+
+#: ../../WorldEdit.Commands/Activate.cs:131
+msgid "weapon racks"
+msgstr ""
+
+#: ../../WorldEdit.Commands/FixGhosts.cs:147
+#, csharp-format
+msgid "weapon racks ({0})"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:596
+msgid "WorldEdit command failed, check logs for more details."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:452
+msgid "WorldEdit doesn't support undo/redo/clipboard files that were saved by plugin below version 1.7."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:489
+#, csharp-format
+msgid "WorldEdit initialization error (database/biomes/colors): {0}"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1387
+#: ../../WorldEdit/WorldEdit.cs:1452
+msgid "X: {0}, Y: {1}"
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1894
+msgid "You do not have permission to delete schematics."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2012
+#: ../../WorldEdit/WorldEdit.cs:2066
+msgid "You do not have permission to overwrite schematics."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1630
+msgid "You do not have permission to redo other player's actions."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1969
+#: ../../WorldEdit/WorldEdit.cs:2035
+msgid "You do not have permission to save schematics."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2767
+msgid "You do not have permission to undo other player's actions."
+msgstr ""
+
+#: ../../WorldEdit.Commands/WECommand.cs:165
+msgid "You do not have permission to use this command in this area."
+msgstr ""
+
+#: ../../WorldEdit.Commands/WECommand.cs:186
+msgid "You do not have permission to use this command outside of your regions."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2544
+msgid "You do not have permission to use this command."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:2520
+msgid "You do not have permission to view other player's clipboards."
+msgstr ""
+
+#: ../../WorldEdit.Commands/WECommand.cs:176
+#: ../../WorldEdit/WorldEdit.cs:828
+#: ../../WorldEdit/WorldEdit.cs:1020
+#: ../../WorldEdit/WorldEdit.cs:1383
+#: ../../WorldEdit/WorldEdit.cs:1448
+#: ../../WorldEdit/WorldEdit.cs:1612
+#: ../../WorldEdit/WorldEdit.cs:1840
+#: ../../WorldEdit/WorldEdit.cs:1865
+#: ../../WorldEdit/WorldEdit.cs:1938
+#: ../../WorldEdit/WorldEdit.cs:1964
+#: ../../WorldEdit/WorldEdit.cs:2030
+#: ../../WorldEdit/WorldEdit.cs:2512
+#: ../../WorldEdit/WorldEdit.cs:2749
+msgid "You have to be logged in to use this command."
+msgstr ""
+
+#: ../../WorldEdit/WorldEdit.cs:1555
+#: ../../WorldEdit/WorldEdit.cs:1586
+msgid "You must use this command in-game."
+msgstr ""
+
+#: ../../WorldEdit/Config.cs:91
+#, csharp-format
+msgid "写入配置文件失败: {0}"
+msgstr ""
+
+#: ../../WorldEdit/Config.cs:55
+#, csharp-format
+msgid "读取配置文件失败: {0}"
+msgstr ""
+

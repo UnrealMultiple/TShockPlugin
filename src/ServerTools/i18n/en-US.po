@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-04-03 13:17:23+0000\n"
-"PO-Revision-Date: 2026-04-04 01:57\n"
+"POT-Creation-Date: 2026-07-26 16:24:44+0000\n"
+"PO-Revision-Date: 2026-07-27 02:37\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "[{0}] => 死亡{1}次"
 msgstr "[{0}] => Died {1} Times"
 
-#: ../../Plugin.Handler.cs:148
+#: ../../Plugin.Handler.cs:149
 #, csharp-format
 msgid "[ServerTools] {0} 被系统保护"
 msgstr "[ServerTools] {0} protected by the system"
@@ -32,16 +32,16 @@ msgstr "[ServerTools] {0} protected by the system"
 msgid "[ServerTools] 世界未开启困难模式，禁止玩家 [{0}]使用恶魔心饰品栏"
 msgstr "[ServerTools] The world is not Hardmode, players [{0}] are prohibited from using the Demon heart"
 
-#: ../../Plugin.Handler.cs:95
+#: ../../Plugin.Handler.cs:96
 #, csharp-format
 msgid "[ServerTools] 玩家 [{0}] 因多饰品被冻结3秒，自动施行清理多饰品装备[i:{1}]"
 msgstr "[ServerTools] Player [{0}] was frozen for 3 seconds due to multiple accessories, and the multi-accessory equipment was automatically cleared [i:{1}]"
 
-#: ../../Plugin.Handler.cs:198
+#: ../../Plugin.Handler.cs:199
 msgid "{0} 最后登录使用的IP为 {1}."
 msgstr "{0} Last IP used to log in is {1}."
 
-#: ../../Plugin.Handler.cs:187
+#: ../../Plugin.Handler.cs:188
 msgid "{0} 最后的登录时间为 {1} {2} UTC{3}."
 msgstr "{0} Last login time is {1} {2} UTC{3}."
 
@@ -50,11 +50,11 @@ msgstr "{0} Last login time is {1} {2} UTC{3}."
 msgid "{0} 在线时长: {1}分钟"
 msgstr "{0} Online time: {1} Minutes"
 
-#: ../../Plugin.Handler.cs:197
+#: ../../Plugin.Handler.cs:198
 msgid "{0} 权限组为 {1}."
 msgstr "{0} Permission group is {1}."
 
-#: ../../Plugin.Handler.cs:199
+#: ../../Plugin.Handler.cs:200
 msgid "{0} 注册时间为 {1} {2} UTC{3}."
 msgstr "{0} Registered at {1} {2} UTC{3}."
 
@@ -69,7 +69,7 @@ msgstr ""
 msgid "{0} 读取成功，写入角色{1}!"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:196
+#: ../../Plugin.Handler.cs:197
 msgid "{0} 账户ID为 {1}."
 msgstr "{0} Account ID is {1}."
 
@@ -105,7 +105,7 @@ msgstr ""
 msgid "/spawnrate rate [生成率] 设置NPC生成速率（越小越快）"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:454
+#: ../../Plugin.Handler.cs:455
 msgid "仅允许软核进入!"
 msgstr "Only softcore character allowed!"
 
@@ -113,21 +113,21 @@ msgstr "Only softcore character allowed!"
 msgid "你不能过于频繁的使用此指令!"
 msgstr "You cannot use this command too frequently!"
 
-#: ../../Plugin.Handler.cs:340
+#: ../../Plugin.Handler.cs:341
 #, csharp-format
 msgid "你因召唤物数量超过{0}被踢出"
 msgstr "You were kicked out because the number of summons exceeded {0}"
 
-#: ../../Plugin.Handler.cs:336
+#: ../../Plugin.Handler.cs:337
 #, csharp-format
 msgid "你因哨兵数量超过{0}被踢出"
 msgstr "You were kicked out because the number of sentries exceeded {0}"
 
-#: ../../Plugin.Handler.cs:347
+#: ../../Plugin.Handler.cs:348
 msgid "你因多鱼线被石化3秒钟!"
 msgstr "You have been petrified for 3 seconds because of too many fishing lines!"
 
-#: ../../Plugin.Handler.cs:253
+#: ../../Plugin.Handler.cs:254
 #, csharp-format
 msgid "你将在{0}秒后被踢出!"
 msgstr "You will be kicked out in {0} seconds!"
@@ -178,7 +178,7 @@ msgstr "You must be in journey mode to set the difficulty!"
 msgid "有效的难度模式: master，journey，normal，expert"
 msgstr "Valid difficulty modes: journey, normal, expert, master"
 
-#: ../../Plugin.cs:14
+#: ../../Plugin.cs:15
 msgid "服务器工具"
 msgstr "Server Utility"
 
@@ -194,12 +194,12 @@ msgstr "Death Rank ({0}/{1}):"
 msgid "没有死亡数据!"
 msgstr "No death data!"
 
-#: ../../Plugin.Handler.cs:204
+#: ../../Plugin.Handler.cs:205
 msgid "用户 {0} 不存在."
 msgstr "User {0} does not exist."
 
-#: ../../Plugin.Handler.cs:415
-#: ../../Plugin.Handler.cs:426
+#: ../../Plugin.Handler.cs:416
+#: ../../Plugin.Handler.cs:427
 msgid "禁止双箱!"
 msgstr "No double chest opened allowed!"
 
@@ -225,13 +225,13 @@ msgstr ""
 msgid "设置生成速率{{spawnRate: {0}, maxSpawn: {1}}}"
 msgstr ""
 
-#: ../../Plugin.Handler.cs:171
-#: ../../Plugin.Handler.cs:209
+#: ../../Plugin.Handler.cs:172
+#: ../../Plugin.Handler.cs:210
 msgid "语法错误，正确语法: {0}accountinfo <username>."
 msgstr "Invalid Syntax, correct syntax: {0}accountinfo <username>."
 
-#: ../../Plugin.Handler.cs:249
-#: ../../Plugin.Handler.cs:257
+#: ../../Plugin.Handler.cs:250
+#: ../../Plugin.Handler.cs:258
 msgid "请在单人模式中结束死亡状态重新进入服务器!"
 msgstr "Please end the death state in single-player mode and re-enter the server!"
 
@@ -250,7 +250,7 @@ msgstr "Enter {0} online ranking {{0}} to see more"
 msgid "输入 {0}死亡排行 {{0}} 查看更多"
 msgstr "Enter {0}Death Rank {{0}} to see more"
 
-#: ../../Plugin.Handler.cs:471
+#: ../../Plugin.Handler.cs:472
 #, csharp-format
 msgid "退出服务器时处于死亡状态！\n"
 "请等待死亡结束，还有{0:0}秒结束！"
