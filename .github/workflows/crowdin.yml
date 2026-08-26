@@ -20,7 +20,7 @@ jobs:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Crowdin upload sources and download translations
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v3
         with:
           crowdin_branch_name: 'master'
 
