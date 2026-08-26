@@ -66,9 +66,9 @@
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.en-US.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AutoClear](./src/AutoClear/README.en-US.md) | 75.0% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoClear](./src/AutoClear/README.en-US.md) | 37.5% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoFish](./src/AutoFish/README.en-US.md) | 4.0% | Automatic fishing Reload | [LazyAPI](./src/LazyAPI/README.en-US.md) |
-| [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 89.2% | Update plugins automatically in one key |  |
+| [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 81.5% | Update plugins automatically in one key |  |
 | [AutoReset](./src/AutoReset/README.en-US.md) | 86.7% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoStoreItems](./src/AutoStoreItems/README.en-US.md) | 100.0% | Automatic storage | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoTeam](./src/AutoTeam/README.en-US.md) | 100.0% | Automatic team formation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
