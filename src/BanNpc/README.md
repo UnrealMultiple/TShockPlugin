@@ -1,7 +1,9 @@
 # BanNpc 阻止怪物生成
 
-- 作者: GK
+- 作者: GK，唉唉有新增 Boss 全局滑动窗口速率限制功能
 - 出处: GK
+
+**扩展功能：Boss 全局滑动窗口限流**：针对指定 Boss NPC，配置多段时间窗口召唤次数阈值；任意窗口触发阈值后，全局锁死该 Boss 召唤，锁死冷却结束后重新开始统计；仅拦截玩家发起的 Boss 召唤，雕像、其他插件生成的 NPC 不做拦截。
 
 ## 指令
 
@@ -15,13 +17,29 @@
 > 配置文件位置：tshock/BanNPC.zh-CN.json
 ```json5
 {
-  "阻止怪物生成表": []
+  "阻止怪物生成表": [],
+  "Boss速率限制配置": [
+    {
+      "NpcId": 146,//需要限流的 Boss NPC ID
+      "PlayerCooldownSeconds": 0,
+      "GlobalMaxAlive": 2,//该 Boss 同时存活最大数量，超出阻止召唤
+      "DenyMessage": "召唤过于频繁，已暂时封禁，请稍后再尝试！",//触发限流时发送的提示文本
+      "BroadcastDeny": true,
+      "RateWindows": [
+        {"WindowSeconds":60,"MaxCount":30},//`WindowSeconds`窗口时长 (秒)`MaxCount`该窗口内允许最大召唤次数
+        {"WindowSeconds":300,"MaxCount":180}
+      ]
+    }
+  ]
 }
+
 ```
 
 ## 更新日志
 
-
+### v1.0.0.5
+- 新增 Boss 全局多段滑动窗口速率限制；触发阈值全局锁死 Boss 召唤；成功召唤才计入统计；区分玩家召唤与其他来源生成
+- 
 ### v1.0.0.4
 - 准备更新TS 5.2.1
 - 修正文档
