@@ -150,7 +150,7 @@ jobs:
 
       - name: 上传翻译模板至 Crowdin
         continue-on-error: true
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v3
         if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'UnrealMultiple/TShockPlugin'
         with:
           crowdin_branch_name: 'master'
