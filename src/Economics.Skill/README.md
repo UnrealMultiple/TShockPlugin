@@ -294,6 +294,10 @@ function main(skill, ply, pos, vel){
 你可以通过`importNamespace`函数访问这些程序集中的公开类
 
 ## 更新日志
+
+### V3.1.0.0
+— 适配显示信息占位符
+
 ### v2.0.1.0
 - 添加 GetString
 

@@ -1,5 +1,5 @@
-using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Economics.Core.ConfigFiles;
 
@@ -23,6 +23,9 @@ public class Setting : JsonConfigBase<Setting>
     [JsonProperty("显示信息下移")]
     public int StatusTextShiftDown = 0;
 
+    [JsonProperty("显示信息内容")]
+    public List<string> StatusTextContent = [];
+
     [JsonProperty("渐变颜色")]
     public List<string> GradientColor = [];
 
@@ -33,6 +36,20 @@ public class Setting : JsonConfigBase<Setting>
 
     protected override void SetDefault()
     {
+        this.StatusTextContent =
+        [
+            "玩家名称：{player}",
+            "世界名称：{world}",
+            "玩家生命：{life}/{maxlife}",
+            "玩家魔法：{mana}/{maxmana}",
+            "当前延迟: {ping}",
+            "在线玩家: {online}/{maxonline}",
+            "货币信息: {currencies}",
+            "当前职业：{level}",
+            "升级职业：{levelRank}",
+            "当前技能：{skill}"
+        ];
+
         this.GradientColor =
         [
             "[c/00ffbf:{0}]",

@@ -25,7 +25,7 @@ public class Economics : TerrariaPlugin
     public override string Description => GetString("提供经济系统API");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 0, 0);
+    public override Version Version => new Version(3, 1, 0, 0);
 
     public readonly static List<TSPlayer> ServerPlayers = [];
 
@@ -37,8 +37,6 @@ public class Economics : TerrariaPlugin
     public static ICurrencyService CurrencyService { get; private set; }
     public static IExchangeService ExchangeService { get; private set; }
     #nullable enable
-
-    private long TimerCount;
 
     private readonly Dictionary<TSPlayer, PingData> PlayerPing = [];
 
@@ -66,7 +64,6 @@ public class Economics : TerrariaPlugin
             GetDataHandlers.TileEdit.Register(this.OnTileEdit);
             GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
             GetDataHandlers.NPCStrike.UnRegister(this.OnNpcStrikeData);
-            PlayerHandler.OnPlayerCountertop -= this.PlayerHandler_OnPlayerCountertop;
         }
         base.Dispose(disposing);
     }
@@ -99,10 +96,11 @@ public class Economics : TerrariaPlugin
     public override void Initialize()
     {
         Setting.Load();
+        RegisterCorePlaceholders();
         var currencyManager = new CurrencyManager();
         CurrencyService = new CurrencyService(currencyManager);
         ExchangeService = new ExchangeService(CurrencyService);
-
+        TimingUtils.Schedule(30, this.Onsecond);
         Helper.InitCommand();
         ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
         ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
@@ -112,19 +110,46 @@ public class Economics : TerrariaPlugin
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
         GetDataHandlers.KillMe.Register(this.OnKillMe);
         GetDataHandlers.NPCStrike.Register(this.OnNpcStrikeData);
-        PlayerHandler.OnPlayerCountertop += this.PlayerHandler_OnPlayerCountertop;
     }
 
-    private void PlayerHandler_OnPlayerCountertop(PlayerCountertopArgs args)
+    private void Onsecond()
     {
-        var playerCurrencys = CurrencyService.GetPlayerCurrencyRecords(args.Player!.Name);
-        args.Messages.Add(new(GetString($"当前延迟: {args.Ping.GetPing():F1}ms"), 7));
-        args.Messages.Add(new(GetString($"玩家名称: {args.Player!.Name}"), 1));
-        args.Messages.Add(new(GetString($"货币数量: {string.Join(", ", playerCurrencys.Take(5).Select(c => c.ToString()))}{(playerCurrencys.Length > 5 ? "..." : string.Empty)}"), 3));
-        args.Messages.Add(new(GetString($"在线人数: {TShock.Utils.GetActivePlayerCount()}/{Main.maxPlayers}"), 4));
-        args.Messages.Add(new(GetString($"世界名称: {Main.worldName}"), 9));
-        args.Messages.Add(new(GetString($"当前生命: {args.Player.TPlayer.statLife}/{args.Player.TPlayer.statLifeMax}"), 5));
-        args.Messages.Add(new(GetString($"当前魔力: {args.Player.TPlayer.statMana}/{args.Player.TPlayer.statManaMax}"), 6));
+        for (var i = ServerPlayers.Count - 1; i >= 0; i--)
+        {
+            if(ServerPlayers[i] is TSPlayer { Active: true } player)
+            {
+                if (Setting.Instance.StatusText)
+                {
+                    Helper.CountertopUpdate(player);
+                }
+                PingService.SendPing(player);
+            }
+
+        }
+
+        foreach (var (npc, _) in this.Strike.Where(x => x.Key == null || !x.Key.active).ToList())
+        {
+            this.Strike.Remove(npc, out var _);
+        }
+    }
+
+    private static void RegisterCorePlaceholders()
+    {
+        PlaceholderManager.Register("player", p => p?.Name ?? "?");
+        PlaceholderManager.Register("ping", p => PingService.GetData(p)?.CurrentPing.ToString("F1") ?? "?");
+        PlaceholderManager.Register("online", p => TShock.Utils.GetActivePlayerCount().ToString());
+        PlaceholderManager.Register("maxonline", p => TShock.Config.Settings.MaxSlots.ToString());
+        PlaceholderManager.Register("world", p => Main.worldName);
+        PlaceholderManager.Register("life", p => p.TPlayer.statLife.ToString());
+        PlaceholderManager.Register("maxlife", p => p.TPlayer.statLifeMax.ToString());
+        PlaceholderManager.Register("mana", p => p.TPlayer.statMana.ToString());
+        PlaceholderManager.Register("maxmana", p => p.TPlayer.statManaMax.ToString());
+        PlaceholderManager.Register("currencies", p =>
+        {
+            var records = CurrencyService.GetPlayerCurrencyRecords(p.Name);
+            return string.Join(", ", records.Take(5).Select(c => c.ToString())) +
+                   (records.Length > 5 ? "..." : "");
+        });
     }
 
     private void OnKillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -153,39 +178,6 @@ public class Economics : TerrariaPlugin
             }
             action();
             TimingUtils.scheduled.Dequeue();
-        }
-
-        this.TimerCount++;
-        if (this.TimerCount % 60 == 0)
-        {
-            for (var i = ServerPlayers.Count - 1; i >= 0; i--)
-            {
-                var ply = ServerPlayers[i];
-                if (ply == null || !ply.Active)
-                {
-                    continue;
-                }
-                this.Ping(ply, data =>
-                {
-                    var status = new PlayerCountertopArgs()
-                    {
-                        Ping = data,
-                        Player = data.TSPlayer
-                    };
-                    if (Setting.Instance.StatusText && !PlayerHandler.PlayerCountertopUpdate(status))
-                    {
-                        Helper.CountertopUpdate(status);
-                    }
-                });
-            }
-        }
-        if (this.TimerCount % (60 * Setting.Instance.SaveTime) == 0)
-        {
-            // 数据保存由 CurrencyManager 内部处理，无需显式调用
-            foreach (var (npc, _) in this.Strike.Where(x => x.Key == null || !x.Key.active).ToList())
-            {
-                this.Strike.Remove(npc, out var _);
-            }
         }
     }
 
@@ -318,26 +310,6 @@ public class Economics : TerrariaPlugin
         this.Strike.Remove(args.npc, out var _);
     }
 
-    public void Ping(TSPlayer player, Action<PingData> action)
-    {
-        var data = new PingData()
-        {
-            TSPlayer = player,
-            action = action
-        };
-        this.PlayerPing[player] = data;
-        var num = -1;
-        for (var i = 0; i < Main.item.Length; i++)
-        {
-            if (Main.item[i] != null && (!Main.item[i].active || Main.item[i].playerIndexTheItemIsReservedFor == 255))
-            {
-                num = i;
-                break;
-            }
-        }
-        NetMessage.TrySendData(39, player.Index, -1, null, num);
-    }
-
     public static void RemoveAssemblyCommands(Assembly assembly)
     {
         Commands.ChatCommands.RemoveAll(cmd => cmd.GetType().Assembly == assembly);
@@ -356,22 +328,13 @@ public class Economics : TerrariaPlugin
 
     private void OnGetData(GetDataEventArgs args)
     {
-        if (args.Handled || args.MsgID != PacketTypes.ItemOwner || TShock.Players[args.Msg.whoAmI] == null)
+        if (args.Handled || args.MsgID != PacketTypes.RemoveItemOwner || TShock.Players[args.Msg.whoAmI] == null)
         {
             return;
         }
         using BinaryReader binaryReader = new(new MemoryStream(args.Msg.readBuffer, args.Index, args.Length));
-        int num = binaryReader.ReadInt16();
-        if (binaryReader.ReadByte() == byte.MaxValue)
-        {
-
-            if (this.PlayerPing.TryGetValue(TShock.Players[args.Msg.whoAmI], out var data))
-            {
-                data.End = DateTime.Now;
-                data.action.Invoke(data);
-                this.PlayerPing.Remove(TShock.Players[args.Msg.whoAmI]);
-            }
-        }
+        int itemIndex = binaryReader.ReadInt16();
+        PingService.OnResponseReceived(TShock.Players[args.Msg.whoAmI], itemIndex);
     }
 
     private void OnLeave(LeaveEventArgs args)
