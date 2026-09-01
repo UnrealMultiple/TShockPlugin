@@ -5,12 +5,6 @@ namespace Economics.Core.ConfigFiles;
 
 public class Setting : JsonConfigBase<Setting>
 {
-    [JsonProperty("保存时间间隔")]
-    public int SaveTime = 30;
-
-    [JsonProperty("显示收益")]
-    public bool ShowAboveHead = true;
-
     [JsonProperty("禁用雕像")]
     public bool IgnoreStatue = false;
 
