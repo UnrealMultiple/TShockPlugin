@@ -342,6 +342,7 @@ public class Economics : TerrariaPlugin
         var player = TShock.Players[args.Who];
         if (player != null)
         {
+            PingService.RemovePlayer(player);
             ServerPlayers.Remove(player);
         }
     }
@@ -351,6 +352,7 @@ public class Economics : TerrariaPlugin
         var player = TShock.Players[args.Who];
         if (player != null)
         {
+            PingService.SendPing(player);
             ServerPlayers.Add(player);
         }
     }
