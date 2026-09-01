@@ -9,13 +9,13 @@ namespace Economics.Core.Extensions;
 
 public static class GameProgress
 {
-    public static List<string> Names = typeof(ProgressType).GetFields()
+    public static List<string> Names = [.. typeof(ProgressType).GetFields()
         .Where(f => f.FieldType == typeof(ProgressType))
-        .Select(f => f.GetCustomAttribute<ProgressName>()!.Names.First()).ToList();
+        .Select(f => f.GetCustomAttribute<ProgressName>()!.Names.First())];
 
-    public static List<string> _names = typeof(ProgressType).GetFields()
+    public static List<string> _names = [.. typeof(ProgressType).GetFields()
         .Where(f => f.FieldType == typeof(ProgressType))
-        .SelectMany(f => f.GetCustomAttribute<ProgressName>()!.Names).ToList();
+        .SelectMany(f => f.GetCustomAttribute<ProgressName>()!.Names)];
 
 
     public static Dictionary<string, bool> GetProgress(this TSPlayer Player)

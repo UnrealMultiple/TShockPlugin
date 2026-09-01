@@ -32,16 +32,27 @@ public class Setting : JsonConfigBase<Setting>
     {
         this.StatusTextContent =
         [
-            "玩家名称：{player}",
-            "世界名称：{world}",
-            "玩家生命：{life}/{maxlife}",
-            "玩家魔法：{mana}/{maxmana}",
-            "当前延迟: {ping}",
-            "在线玩家: {online}/{maxonline}",
-            "货币信息: {currencies}",
-            "当前职业：{level}",
-            "升级职业：{levelRank}",
-            "当前技能：{skill}"
+            "[i:1503]玩家名称: {player}",
+            "[i:2502]延迟: {ping}ms",
+            "[i:267]在线人数: {online}/{maxonline}",
+            "[i:893]世界名称: {world}",
+            "[i:29]生命值: {life}/{maxlife}",
+            "[i:110]魔力值: {mana}/{maxmana}",
+            "[i:17]游戏时间: {time}",
+            "[i:3122]群系: {biomes}",
+            "[i:3123]当前区域: {region}",
+            "[i:1327]复活计时: {respawntimer}",
+            "[i:2450]渔夫任务鱼: {anglerfishname}",
+            "[i:2450]渔夫任务ID: {anglerfishid}",
+            "[i:3036]钓鱼地点: {anglerfishingbiome}",
+            "[i:2374]渔夫任务状态: {anglerfishcompleted}",
+            "[i:346]玩家组别: {playergroup}",
+            "[i:855]幸运值: {playerluck}",
+            "[i:58]存活状态: {playerisalive}",
+            "[i:74]货币信息: {currencies}",
+            "[i:1999]当前职业: {level}",
+            "[i:2000]升级职业: {levelRank}",
+            "[i:531]当前技能: {skill}"
         ];
 
         this.GradientColor =

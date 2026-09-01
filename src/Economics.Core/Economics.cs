@@ -3,7 +3,6 @@ using Economics.Core.DB;
 using Economics.Core.EventArgs.PlayerEventArgs;
 using Economics.Core.Events;
 using Economics.Core.Extensions;
-using Economics.Core.Model;
 using Economics.Core.Services;
 using Economics.Core.Utility;
 using Economics.Core.Utils;
@@ -38,14 +37,31 @@ public class Economics : TerrariaPlugin
     public static IExchangeService ExchangeService { get; private set; }
     #nullable enable
 
-    private readonly Dictionary<TSPlayer, PingData> PlayerPing = [];
-
     public Economics(Main game) : base(game)
     {
         if (!Directory.Exists(SaveDirPath))
         {
             Directory.CreateDirectory(SaveDirPath);
         }
+    }
+
+    public override void Initialize()
+    {
+        Setting.Load();
+        RegisterCorePlaceholders();
+        var currencyManager = new CurrencyManager();
+        CurrencyService = new CurrencyService(currencyManager);
+        ExchangeService = new ExchangeService(CurrencyService);
+        TimingUtils.Schedule(60, this.Onsecond);
+        Helper.InitCommand();
+        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
+        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
+        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
+        ServerApi.Hooks.NpcKilled.Register(this, this.OnKillNpc);
+        ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
+        ServerApi.Hooks.GamePostUpdate.Register(this, this.OnGamePostUpdate);
+        GetDataHandlers.KillMe.Register(this.OnKillMe);
+        GetDataHandlers.NPCStrike.Register(this.OnNpcStrikeData);
     }
 
     protected override void Dispose(bool disposing)
@@ -60,7 +76,7 @@ public class Economics : TerrariaPlugin
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnLeave);
             ServerApi.Hooks.NpcKilled.Deregister(this, this.OnKillNpc);
             ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
-            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
+            ServerApi.Hooks.GamePostUpdate.Deregister(this, this.OnGamePostUpdate);
             GetDataHandlers.TileEdit.Register(this.OnTileEdit);
             GetDataHandlers.KillMe.UnRegister(this.OnKillMe);
             GetDataHandlers.NPCStrike.UnRegister(this.OnNpcStrikeData);
@@ -93,30 +109,27 @@ public class Economics : TerrariaPlugin
         }
     }
 
-    public override void Initialize()
+    
+
+    private void OnGamePostUpdate(System.EventArgs args)
     {
-        Setting.Load();
-        RegisterCorePlaceholders();
-        var currencyManager = new CurrencyManager();
-        CurrencyService = new CurrencyService(currencyManager);
-        ExchangeService = new ExchangeService(CurrencyService);
-        TimingUtils.Schedule(30, this.Onsecond);
-        Helper.InitCommand();
-        ServerApi.Hooks.NetGreetPlayer.Register(this, this.OnGreet);
-        ServerApi.Hooks.NetGetData.Register(this, this.OnGetData);
-        ServerApi.Hooks.ServerLeave.Register(this, this.OnLeave);
-        ServerApi.Hooks.NpcKilled.Register(this, this.OnKillNpc);
-        ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
-        ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
-        GetDataHandlers.KillMe.Register(this.OnKillMe);
-        GetDataHandlers.NPCStrike.Register(this.OnNpcStrikeData);
+        ++TimingUtils.Timer;
+        while (TimingUtils.scheduled.TryPeek(out var action, out var time))
+        {
+            if (time > TimingUtils.Timer)
+            {
+                break;
+            }
+            action();
+            TimingUtils.scheduled.Dequeue();
+        }
     }
 
     private void Onsecond()
     {
-        for (var i = ServerPlayers.Count - 1; i >= 0; i--)
+        foreach (var player in ServerPlayers)
         {
-            if(ServerPlayers[i] is TSPlayer { Active: true } player)
+            if(player is { Active: true })
             {
                 if (Setting.Instance.StatusText)
                 {
@@ -144,6 +157,18 @@ public class Economics : TerrariaPlugin
         PlaceholderManager.Register("maxlife", p => p.TPlayer.statLifeMax.ToString());
         PlaceholderManager.Register("mana", p => p.TPlayer.statMana.ToString());
         PlaceholderManager.Register("maxmana", p => p.TPlayer.statManaMax.ToString());
+        PlaceholderManager.Register("time", p => Helper.GetCurrentTime());
+        PlaceholderManager.Register("biomes", p => p.GetFormattedBiomesList());
+        PlaceholderManager.Register("region", p => p.CurrentRegion == null ? GetString("空区域") : p.CurrentRegion.Name);
+        PlaceholderManager.Register("respawntimer", p => p.TPlayer.respawnTimer == 0 ? GetString("未死亡") : (p.TPlayer.respawnTimer / 60).ToString());
+        PlaceholderManager.Register("anglerfishname", p => Helper.GetAnglerQuestFishName());
+        PlaceholderManager.Register("anglerfishid", p => Helper.GetAnglerQuestFishId().ToString());
+        PlaceholderManager.Register("anglerfishingbiome", p => Helper.GetAnglerQuestFishingBiome());
+        PlaceholderManager.Register("anglerfishcompleted", p => Main.anglerWhoFinishedToday.Exists((string x) => x == p.Name) ? GetString("已完成") : GetString("未完成"));
+        PlaceholderManager.Register("playergroup", p => p.Group.Name);
+        PlaceholderManager.Register("playerluck", p => p.TPlayer.luck.ToString());
+        PlaceholderManager.Register("playerisalive", p => p.Dead ? GetString("已死亡") : GetString("存活"));
+        PlaceholderManager.Register("currentbiomes", p => p.GetFormattedBiomesList());
         PlaceholderManager.Register("currencies", p =>
         {
             var records = CurrencyService.GetPlayerCurrencyRecords(p.Name);
@@ -164,20 +189,6 @@ public class Economics : TerrariaPlugin
                 CurrencyService.DeductCurrency(e.Player.Name, currency.Name, Convert.ToInt64(drop));
                 e.Player.SendErrorMessage(GetString($"你因死亡掉落{drop:F0}个{currency.Name}!"));
             }
-        }
-    }
-
-    private void OnUpdate(System.EventArgs args)
-    {
-        ++TimingUtils.Timer;
-        while (TimingUtils.scheduled.TryPeek(out var action, out var time))
-        {
-            if (time > TimingUtils.Timer)
-            {
-                break;
-            }
-            action();
-            TimingUtils.scheduled.Dequeue();
         }
     }
 

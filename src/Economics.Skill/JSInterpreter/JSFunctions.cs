@@ -60,4 +60,10 @@ public class JSFunctions
     {
         TimingUtils.Delayed(interval, action);
     }
+
+    [JavaScriptFunction("FrameTimer")]
+    public static FrameTimer CreateFrameTimer(int intervalFrames, bool triggerOnFirstTick = false)
+    {
+        return new FrameTimer(intervalFrames, triggerOnFirstTick);
+    }
 }
