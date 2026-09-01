@@ -118,8 +118,6 @@
 > 配置文件位置：tshock/Economics/Economics.json
 ```json5
 {
-  "保存时间间隔": 30,
-  "显示收益": true,
   "禁用雕像": false,
   "显示信息": true,
   "显示信息左移": 60,
