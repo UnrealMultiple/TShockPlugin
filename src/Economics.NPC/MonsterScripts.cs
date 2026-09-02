@@ -42,13 +42,22 @@ public static class MonsterScripts
     public static bool Enabled { get; set; } = true;
 
     /// <summary>确保脚本目录存在（幂等，可在插件 Initialize 时调用）。</summary>
-    public static void EnsureCreated() => Directory.CreateDirectory(ScriptsDir);
+    public static void EnsureCreated()
+    {
+        Directory.CreateDirectory(ScriptsDir);
+    }
 
     /// <summary>插件停用时释放所有脚本引擎。</summary>
-    public static void Dispose() => Manager.Dispose();
+    public static void Dispose()
+    {
+        Manager.Dispose();
+    }
 
     /// <summary>reload 所有怪物脚本（下次帧生效，仅重编译变化的文件）。</summary>
-    public static void Reload() => Manager.ReloadAll();
+    public static void Reload()
+    {
+        Manager.ReloadAll();
+    }
 
     private static ScriptManager CreateManager()
     {
@@ -77,9 +86,15 @@ public static class MonsterScripts
         return new ScriptManager(options);
     }
 
-    private static string KeyFor(int netId) => netId + ".js";
+    private static string KeyFor(int netId)
+    {
+        return netId + ".js";
+    }
 
-    private static bool HasScript(int netId) => File.Exists(Path.Combine(ScriptsDir, KeyFor(netId)));
+    private static bool HasScript(int netId)
+    {
+        return File.Exists(Path.Combine(ScriptsDir, KeyFor(netId)));
+    }
 
     /// <summary>怪物生成时调用。</summary>
     public static void OnNpcSpawn(int npcId)

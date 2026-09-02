@@ -1,3 +1,4 @@
+using Economics.Core.Utils;
 using Economics.Script;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -39,6 +40,18 @@ public class MonsterAiFunctions
     public static int ActivePlayerCount()
     {
         return TShock.Utils.GetActivePlayerCount();
+    }
+
+    /// <summary>
+    /// 创建一个帧计时器（<see cref="FrameTimer"/>），用于在怪物 AI 脚本中按帧间隔执行某些逻辑。
+    /// </summary>
+    /// <param name="intervalFrames"></param>
+    /// <param name="triggerOnFirstTick"></param>
+    /// <returns></returns>
+    [ScriptFunction("FrameTimer")]
+    public static FrameTimer CreateFrameTimer(int intervalFrames, bool triggerOnFirstTick = false)
+    {
+        return new FrameTimer(intervalFrames, triggerOnFirstTick);
     }
 
     /// <summary>
