@@ -151,7 +151,7 @@ function ai(npc, index, time, struck) {
         if (time >= next) {
             st.next[e] = time + cfg.interval;
 
-            if (cfg.chat) Broadcast(cfg.chat);
+            if (cfg.chat) Broadcast(cfg.chat, 255, 255, 255);
 
             for (var s = 0; s < cfg.shots.length; s++) {
                 var sh = cfg.shots[s];
@@ -192,7 +192,7 @@ function ai(npc, index, time, struck) {
     // ---------- 血量事件（50% 血量） ----------
     if (!st.hpFired && npc.life / npc.lifeMax <= HP_EVENT_THRESHOLD) {
         st.hpFired = true;
-        Broadcast(HP_EVENT_CHAT);
+        Broadcast(HP_EVENT_CHAT, 255, 255, 255);
 
         for (var h = 0; h < HP_EVENT_SHOTS.length; h++) {
             var hp = HP_EVENT_SHOTS[h];
@@ -220,5 +220,5 @@ function onKill(npc) {
     }
 
     delete state[npc.whoAmI];
-    Broadcast("克苏鲁的右眼陨落了！");
+    Broadcast("克苏鲁的右眼陨落了！", 255, 255, 255);
 }
