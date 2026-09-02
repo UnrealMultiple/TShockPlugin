@@ -4,6 +4,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Economics.Core\Economics.Core.csproj" />
+		<ProjectReference Include="..\Economics.Script\Economics.Script.csproj" />
 	</ItemGroup>
 
 </Project>

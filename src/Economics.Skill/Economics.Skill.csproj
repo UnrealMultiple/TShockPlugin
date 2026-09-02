@@ -2,15 +2,9 @@
 
 	<Import Project="..\..\template.targets" />
 
-    <PropertyGroup>
-        <EmbedNuGetDlls>Acornima.dll;Jint.dll</EmbedNuGetDlls>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Jint" Version="4.16.0" />
-    </ItemGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\Economics.RPG\Economics.RPG.csproj" />
+      <ProjectReference Include="..\Economics.Script\Economics.Script.csproj" />
     </ItemGroup>
+
 </Project>

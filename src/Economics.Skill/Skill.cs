@@ -1,12 +1,14 @@
-﻿using Economics.Skill.DB;
+using Economics.Skill.DB;
 using Economics.Skill.Events;
 using Economics.Skill.Internal;
+using Economics.Skill.Scripting;
 using Economics.Skill.Setting;
 using Economics.Core.EventArgs.PlayerEventArgs;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 using Economics.Core.Utils;
 
 namespace Economics.Skill;
@@ -28,24 +30,12 @@ public class Skill : TerrariaPlugin
 
     public Skill(Main game) : base(game)
     {
-        AppDomain.CurrentDomain.AssemblyResolve += this.CurrentDomain_AssemblyResolve;
-    }
-
-    private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
-    {
-        var resourceName = $"embedded.{new AssemblyName(args.Name).Name}.dll";
-        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-        if (stream != null)
-        {
-            var assemblyData = new byte[stream.Length];
-            stream.ReadExactly(assemblyData);
-            return Assembly.Load(assemblyData);
-        }
-        return null;
     }
 
     public override void Initialize()
     {
+        SkillScripts.EnsureCreated();   // 加载时即创建技能脚本目录
+        GeneralHooks.ReloadEvent += this.OnReload;
         Config.Load();
         PlayerSKillManager = new();
         ServerApi.Hooks.NpcStrike.Register(this, this.OnStrike);
@@ -70,11 +60,19 @@ public class Skill : TerrariaPlugin
         });
     }
 
+    // TShock /reload 也触发：重新读取并编译变化的技能脚本
+    private void OnReload(ReloadEventArgs args)
+    {
+        SkillScripts.Reload();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
+            GeneralHooks.ReloadEvent -= this.OnReload;
             Config.UnLoad();
+            SkillScripts.Dispose();
             Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             ServerApi.Hooks.NpcStrike.Deregister(this, this.OnStrike);
