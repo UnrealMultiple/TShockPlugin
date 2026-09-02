@@ -1,42 +1,75 @@
-using Economics.Core;
 using Economics.Core.Extensions;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
+using TShockAPI.Hooks;
 
 namespace Economics.NPC;
 
 [ApiVersion(2, 1)]
-public class Plugin : TerrariaPlugin
+public class Plugin(Main game) : TerrariaPlugin(game)
 {
     public override string Author => "少司命，千亦";
 
     public override string Description => GetString("修改NPC掉落货币!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 0, 0);
-
-    public Plugin(Main game) : base(game)
-    {
-    }
+    public override Version Version => new Version(3, 1, 0, 0);
 
     public override void Initialize()
     {
+        MonsterScripts.EnsureCreated();
         Config.Load();
         Core.Events.PlayerHandler.OnPlayerKillNpc += this.OnPlayerKillNpc;
+        ServerApi.Hooks.NpcSpawn.Register(this, this.OnNpcSpawn);
+        ServerApi.Hooks.NpcStrike.Register(this, this.OnNpcStrike);
+        ServerApi.Hooks.NpcKilled.Register(this, this.OnNpcKilled);
+        ServerApi.Hooks.GameUpdate.Register(this, this.OnGameUpdate);
+        GeneralHooks.ReloadEvent += this.OnReload;
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
+            GeneralHooks.ReloadEvent -= this.OnReload;
             Core.Economics.RemoveAssemblyCommands(Assembly.GetExecutingAssembly());
             Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             Core.Events.PlayerHandler.OnPlayerKillNpc -= this.OnPlayerKillNpc;
+            ServerApi.Hooks.NpcSpawn.Deregister(this, this.OnNpcSpawn);
+            ServerApi.Hooks.NpcStrike.Deregister(this, this.OnNpcStrike);
+            ServerApi.Hooks.NpcKilled.Deregister(this, this.OnNpcKilled);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnGameUpdate);
+            MonsterScripts.Dispose();
             Config.UnLoad();
         }
         base.Dispose(disposing);
+    }
+
+    private void OnReload(ReloadEventArgs args)
+    {
+        MonsterScripts.Reload();
+    }
+
+    private void OnNpcSpawn(NpcSpawnEventArgs args)
+    {
+        MonsterScripts.OnNpcSpawn(args.NpcId);
+    }
+
+    private void OnNpcStrike(NpcStrikeEventArgs args)
+    {
+        MonsterScripts.OnNpcStrike(args.Npc, args.Damage);
+    }
+
+    private void OnNpcKilled(NpcKilledEventArgs args)
+    {
+        MonsterScripts.OnNpcKilled(args.npc);
+    }
+
+    private void OnGameUpdate(EventArgs args)
+    {
+        MonsterScripts.OnUpdate();
     }
 
     private void OnPlayerKillNpc(Core.EventArgs.PlayerEventArgs.PlayerKillNpcArgs args)

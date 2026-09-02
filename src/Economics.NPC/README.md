@@ -9,7 +9,9 @@
 
 ## 指令
 
-无
+- `/npcreload` —— 重读怪物 AI 脚本（权限 `economics.npc.admin`）。<br/>
+  新增脚本文件在对应怪下次生成时即时生效；**修改已有脚本**后执行此命令（或 `/reload`）重新编译。
+- `/reload` —— TShock 全局 reload，本插件也会借此重读怪物 AI 脚本（与 `/npcreload` 效果相同）。
 
 ## 进度限制
 Economics文档：[进度限制值](../Economics.Core/README.md)
@@ -44,7 +46,66 @@ Economics文档：[进度限制值](../Economics.Core/README.md)
   }
 }
 ```
-## 更新日志
+## JS 怪物 AI（新增）
+
+基于 `Economics.Script` 实现，用 JS 自定义怪物 AI 行为。无需复杂配置：
+在 `tshock/Economics/NPCJSScripts/` 放一个以怪物 netID 命名的 `.js` 文件即生效。
+
+```jsonc
+// NPC.json 中新增开关（可选，默认 true）
+{
+  "启用JS怪物AI": true
+}
+```
+
+脚本目录（运行期自动创建）：
+
+```
+tshock/Economics/NPCJSScripts/
+   123.js      <-- 怪物 netID 为 123 的 AI
+```
+
+可定义的事件钩子（都可省略）：
+
+```
+onSpawn(npc)            怪物生成时
+ai(npc, index, time, struck)   每帧调用，核心：用来修改 AI
+onStrike(npc, damage)   被玩家命中时
+onKill(npc)             被击杀时
+```
+
+- `npc` —— `Terraria.NPC`，可直接读写 `npc.ai[0..3]`、`npc.velocity`、`npc.position`、`npc.aiStyle`、`npc.life` 等。
+- `index` —— `npc.whoAmI`；`time` —— 存活秒数；`struck` —— 被命中次数。
+- 脚本还能通过 CLR 访问 `Terraria` / `TShockAPI` / `Economics` API，并调用宿主函数：
+
+| 宿主函数 | 说明 |
+|---|---|
+| `Say(msg)` | 向控制台输出 |
+| `Broadcast(msg, r, g, b)` | 向所有玩家广播（RGB 默认 255） |
+| `ActivePlayerCount()` | 当前活跃玩家数 |
+| `SpawnNpc(netId, x, y)` | 在指定像素坐标召唤 1 只怪物 |
+| `SpawnProjectile(npcIndex, x, y, vx, vy, type, damage, knockback, ai0?, ai1?, ai2?)` | 发射弹幕（Owner 固定为 `Main.myPlayer`）。发射速度 `vx/vy` 由脚本自行计算，可实现“出生时朝锁定玩家射过去”（参考插件里 96/44 弹幕就是锁定玩家：在脚本里找出范围内最近玩家，用方向×锁定速度作为 `vx/vy`） |
+
+示例（`123.js`）：
+
+```javascript
+function onSpawn(npc) {
+    Say("自定义怪物 " + npc.FullName + " 出现了");
+    npc.aiStyle = -1;   // 关闭原版 AI（可选）
+}
+
+function ai(npc, index, time, struck) {
+    // 修改 npc.ai[] / npc.velocity / npc.position 即可改变 AI 行为（写法由使用者自定）
+    npc.ai[0] += 0.1;   // 示例
+}
+```
+
+> 完整示例：`src/Economics.NPC/Examples/50.js`（史莱姆王）与 `src/Economics.NPC/Examples/4.js`（克苏鲁的右眼）复刻了原「自定义怪物血量」配置里两个 Boss 的逻辑：
+> - `50.js`：血量随人数缩放、防御 12、范围内 buff 137、每 10/20 秒按配置发射贴图弹幕并喊话、死亡广播。
+> - `4.js`：血量随人数缩放、双重光环(毒/火)、三档定时弹幕(15s/1.5s/0.2s 连射)、血线事件(四向弹雨+喊话)、死亡召唤 10 只小怪。
+> 把它们复制为 `tshock/Economics/NPCJSScripts/50.js`、`4.js` 即可使用。
+
+> 注意：`ai` 每帧调用（60/s），请保持轻量。脚本有 2 秒超时 / 20 万条语句上限 / 栈溢出保护，防止拖垮服务器。
 
 ### v2.1.0.0
 - **破坏性变更**："转换率更改"的"转换率"字段语义修正为"默认击杀奖励的加成系数"，填 `1.5` 表示"拿到默认奖励的 150%"。此前实现把它当成奖励池总量用，导致设置 `1.5` 的 Boss 实际只到账 1-5 块钱。升级后请根据新语义重新评估配置值

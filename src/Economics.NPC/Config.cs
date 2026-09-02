@@ -1,4 +1,4 @@
-﻿using Economics.Core.ConfigFiles;
+using Economics.Core.ConfigFiles;
 using Newtonsoft.Json;
 
 namespace Economics.NPC;
@@ -6,6 +6,9 @@ namespace Economics.NPC;
 public class Config : JsonConfigBase<Config>
 {
     protected override string Filename => "NPC.json";
+
+    [JsonProperty("启用JS怪物AI")]
+    public bool EnabledJSScript { get; set; } = true;
 
     public class NpcAllocationRatioOption
     {
@@ -27,4 +30,9 @@ public class Config : JsonConfigBase<Config>
 
     [JsonProperty("转换率更改")]
     public Dictionary<int, NpcAllocationRatioOption> AllocationRatio = [];
+
+    protected override void Initialize()
+    {
+        MonsterScripts.Enabled = this.EnabledJSScript;
+    }
 }

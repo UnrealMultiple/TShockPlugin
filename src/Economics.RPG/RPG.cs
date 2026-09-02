@@ -1,13 +1,10 @@
 ﻿using Economics.RPG.Setting;
-using Economics.Core.ConfigFiles;
-using Economics.Core.EventArgs.PlayerEventArgs;
-using Economics.Core.Events;
 using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
-using Newtonsoft.Json;
+using Economics.Core.Utils;
 
 namespace Economics.RPG;
 
@@ -19,7 +16,7 @@ public class RPG(Main game) : TerrariaPlugin(game)
     public override string Description => GetString("提供RPG玩法!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 0, 0);
+    public override Version Version => new Version(3, 1, 0, 0);
 
     public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 
@@ -29,7 +26,8 @@ public class RPG(Main game) : TerrariaPlugin(game)
         PlayerLevelManager = new();
         PlayerHooks.PlayerPermission += this.PlayerHooks_PlayerPermission;
         PlayerHooks.PlayerChat += this.PlayerHooks_PlayerChat;
-        PlayerHandler.OnPlayerCountertop += this.OnCounterTop;
+        PlaceholderManager.Register("level", p => PlayerLevelManager.GetLevel(p.Name)?.Name ?? "?");
+        PlaceholderManager.Register("levelRank", p => string.Join(",", PlayerLevelManager.GetLevel(p.Name)?.RankLevels.Select(x => $"{x.Name}") ?? []));
     }
 
     protected override void Dispose(bool disposing)
@@ -40,7 +38,6 @@ public class RPG(Main game) : TerrariaPlugin(game)
             Core.Economics.RemoveAssemblyRest(Assembly.GetExecutingAssembly());
             PlayerHooks.PlayerPermission -= this.PlayerHooks_PlayerPermission;
             PlayerHooks.PlayerChat -= this.PlayerHooks_PlayerChat;
-            PlayerHandler.OnPlayerCountertop -= this.OnCounterTop;
             Config.UnLoad();
         }
         base.Dispose(disposing);
@@ -63,13 +60,6 @@ public class RPG(Main game) : TerrariaPlugin(game)
             }
         }
         return false;
-    }
-
-    private void OnCounterTop(PlayerCountertopArgs args)
-    {
-        var level = PlayerLevelManager.GetLevel(args.Player!.Name);
-        args.Messages.Add(new(GetString($"当前职业: {level.Name}"), 10));
-        args.Messages.Add(new(GetString($"升级职业: {string.Join(",", level.RankLevels.Select(x => $"{x.Name}"))}"), 11));
     }
 
     private void PlayerHooks_PlayerChat(PlayerChatEventArgs e)

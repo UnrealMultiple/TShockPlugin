@@ -61,6 +61,7 @@
   <Project Path="src/Economics.Regain/Economics.Regain.csproj" />
   <Project Path="src/Economics.RPG/Economics.RPG.csproj" />
   <Project Path="src/Economics.Shop/Economics.Shop.csproj" />
+  <Project Path="src/Economics.Script/Economics.Script.csproj" />
   <Project Path="src/Economics.Skill/Economics.Skill.csproj" />
   <Project Path="src/Economics.Task/Economics.Task.csproj" />
   <Project Path="src/Economics.WeaponPlus/Economics.WeaponPlus.csproj" />

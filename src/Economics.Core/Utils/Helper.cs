@@ -1,15 +1,13 @@
-﻿using Economics.Core.Attributes;
-using Economics.Core.Command;
+﻿using Economics.Core.Command;
 using Economics.Core.ConfigFiles;
-using Economics.Core.EventArgs.PlayerEventArgs;
-using Economics.Core.Extensions;
+using Terraria;
 using Microsoft.Xna.Framework;
-using Rests;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using TerrariaApi.Server;
 using TShockAPI;
+using Terraria.Localization;
+using Terraria.ID;
 
 namespace Economics.Core.Utils;
 
@@ -80,14 +78,54 @@ public partial class Helper
     }
 
 
-    public static void CountertopUpdate(PlayerCountertopArgs args)
+    public static void CountertopUpdate(TSPlayer player)
     {
         StringBuilder sb = new();
         string down = new('\n', Setting.Instance.StatusTextShiftDown);
-        string Left = new(' ', Setting.Instance.StatusTextShiftLeft);
+        string left = new(' ', Setting.Instance.StatusTextShiftLeft);
         sb.AppendLine(down);
-        args.Messages.OrderBy(x => x.Order).ForEach(x => sb.AppendLine(GetGradientText(x.Message) + Left));
-        args.Player?.SendData(PacketTypes.Status, sb.ToString(), 0, 1);
+        Setting.Instance.StatusTextContent.ForEach(m => sb.AppendLine(PlaceholderManager.Resolve(m, player) + left));
+        player?.SendData(PacketTypes.Status, sb.ToString(), 0, 0x01f);
+    }
+
+    public static string GetCurrentTime()
+    {
+        var num = Main.time / 3600.0;
+        num += 4.5;
+        if (!Main.dayTime)
+        {
+            num += 15.0;
+        }
+        num %= 24.0;
+        return string.Format("{0}:{1:D2}", (int) Math.Floor(num), (int) Math.Floor(num % 1.0 * 60.0));
+    }
+
+    public static string GetAnglerQuestFishName()
+    {
+        var itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
+        return (string) Lang.GetItemName(itemID);
+
+    }
+    public static int GetAnglerQuestFishId()
+    {
+        var itemID = Main.anglerQuestItemNetIDs[Main.anglerQuest];
+        return itemID;
+    }
+
+    private static readonly Regex fishMissionPlaceRegex = new(@"(?<=（抓捕位置：|\(Capturado no |\(Поймано в |\(można złapać w |\(Se trouve |\(Se encuentra en |\(Caught ).*?(?=）|\))");
+    private static readonly Regex fishMissionPlaceExceptionalCasesRegex = new(@"(?<=（|\().*?(?=）|\))");
+
+    public static string GetAnglerQuestFishingBiome()
+    {
+        var itemId = Main.anglerQuestItemNetIDs[Main.anglerQuest];
+        var questText = Language.GetTextValue($"AnglerQuestText.Quest_{ItemID.Search.GetName(itemId)}");
+        return Language.ActiveCulture.Name switch
+        {
+            "en-US" or "fr-FR" or "es-ES" or "ru-RU" or "zh-Hans" or "pt-BR" or "pl-PL" =>
+                fishMissionPlaceRegex.Match(questText).ToString(),
+            _ =>
+                fishMissionPlaceExceptionalCasesRegex.Match(questText).ToString()
+        };
     }
 
     [GeneratedRegex(@"\[(?<type>[^\]]+):(?<id>\d+)\]")]

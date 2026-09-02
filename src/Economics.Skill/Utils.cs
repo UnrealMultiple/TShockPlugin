@@ -1,5 +1,5 @@
-﻿using Economics.Skill.Enumerates;
-using Economics.Skill.JSInterpreter;
+using Economics.Skill.Enumerates;
+using Economics.Skill.Scripting;
 using Economics.Skill.Model;
 using Economics.Core.Extensions;
 using Terraria;
@@ -60,7 +60,7 @@ public class Utils
         var pos = Player.TPlayer.Center + Player.TPlayer.ItemOffSet();
         //原始角度速度参数
         var vel = Player.TPlayer.ItemOffSet();
-        Interpreter.ExecuteScript(skill.Skill!, Player, pos, vel, skill.Level);
+        SkillScripts.Execute(skill.Skill!, Player, pos, vel, skill.Level);
     }
 
     public static void EmitSkill(GetDataHandlers.NewProjectileEventArgs e, PlayerSKillManager.PlayerSkill skill)
@@ -69,6 +69,6 @@ public class Utils
         var pos = e.Position;
         //原始角度速度参数
         var vel = e.Velocity;
-        Interpreter.ExecuteScript(skill.Skill!, e.Player, pos, vel, skill.Level, e.Index);
+        SkillScripts.Execute(skill.Skill!, e.Player, pos, vel, skill.Level, e.Index);
     }
 }

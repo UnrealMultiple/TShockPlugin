@@ -118,12 +118,22 @@
 > 配置文件位置：tshock/Economics/Economics.json
 ```json5
 {
-  "保存时间间隔": 30,
-  "显示收益": true,
   "禁用雕像": false,
   "显示信息": true,
   "显示信息左移": 60,
   "显示信息下移": 0,
+  "显示信息内容": [
+    "玩家名称：{player}",
+    "世界名称：{world}",
+    "玩家生命：{life}/{maxlife}",
+    "玩家魔法：{mana}/{maxmana}",
+    "当前延迟: {ping}",
+    "在线玩家: {online}/{maxonline}",
+    "货币信息: {currencies}",
+    "当前职业：{level}",
+    "升级职业：{levelRank}",
+    "当前技能：{skill}"
+  ],
   "渐变颜色": [
     "[c/00ffbf:{0}]",
     "[c/1aecb8:{0}]",
@@ -219,6 +229,11 @@ var resetResult = Core.Economics.CurrencyService.ResetAllCurrencies();
 ```
 
 ## 更新日志
+
+### v3.1.0.0
+- 修复无法获取Ping值
+- 移除废弃的PlayerHandler.OnPlayerCountertop事件，改为使用PlaceholderManager注册占位符
+- 在配置中添加自定义显示信息，现在显示信息完全由使用者控制，插件只提供占位符
 
 ### v3.0.0.0
 - **重大架构重构**: 重新设计货币系统，提供更清晰的 API 接口
