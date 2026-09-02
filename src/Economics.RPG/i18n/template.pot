@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.RPG\n"
-"POT-Creation-Date: 2026-08-29 05:48:01+0000\n"
-"PO-Revision-Date: 2026-08-29 05:48:01+0000\n"
+"POT-Creation-Date: 2026-09-02 13:08:09+0000\n"
+"PO-Revision-Date: 2026-09-02 13:08:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,8 +44,8 @@ msgstr ""
 msgid "你因重置等级被踢出!"
 msgstr ""
 
-#: ../../RankCommand.cs:25
 #: ../../ResetCareer.cs:23
+#: ../../RankCommand.cs:25
 msgid "你必须登陆才能使用此命令!"
 msgstr ""
 
@@ -59,11 +59,6 @@ msgstr ""
 msgid "升级所需 {0}: {1}"
 msgstr ""
 
-#: ../../RPG.cs:72
-#, csharp-format
-msgid "升级职业: {0}"
-msgstr ""
-
 #: ../../RankCommand.cs:47
 #: ../../RankCommand.cs:83
 #, csharp-format
@@ -72,11 +67,6 @@ msgstr ""
 
 #: ../../RankCommand.cs:107
 msgid "已经满级了，无法继续升级!"
-msgstr ""
-
-#: ../../RPG.cs:71
-#, csharp-format
-msgid "当前职业: {0}"
 msgstr ""
 
 #: ../../RankCommand.cs:52
@@ -95,7 +85,7 @@ msgstr ""
 msgid "成功升级至 {0}!"
 msgstr ""
 
-#: ../../RPG.cs:19
+#: ../../RPG.cs:16
 msgid "提供RPG玩法!"
 msgstr ""
 

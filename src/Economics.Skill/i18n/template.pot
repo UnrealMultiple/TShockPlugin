@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.Skill\n"
-"POT-Creation-Date: 2026-05-06 05:28:07+0000\n"
-"PO-Revision-Date: 2026-05-06 05:28:07+0000\n"
+"POT-Creation-Date: 2026-09-02 13:08:11+0000\n"
+"PO-Revision-Date: 2026-09-02 13:08:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -205,7 +205,7 @@ msgstr ""
 msgid "技能重置成功!"
 msgstr ""
 
-#: ../../Skill.cs:102
+#: ../../Skill.cs:58
 msgid "无"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "无效得技能序号!"
 msgstr ""
 
-#: ../../Skill.cs:100
+#: ../../Skill.cs:56
 msgid "无效技能"
 msgstr ""
 
@@ -260,11 +260,6 @@ msgstr ""
 msgid "目标玩家不存在或不在线!"
 msgstr ""
 
-#: ../../Skill.cs:103
-#, csharp-format
-msgid "绑定技能: {0}"
-msgstr ""
-
 #: ../../Utils.cs:19
 msgid "绑定此技能需要手持一个武器!"
 msgstr ""
@@ -281,7 +276,7 @@ msgstr ""
 msgid "装备"
 msgstr ""
 
-#: ../../Skill.cs:18
+#: ../../Skill.cs:21
 msgid "让玩家拥有技能!"
 msgstr ""
 
