@@ -1,4 +1,4 @@
-﻿using LazyAPI.Attributes;
+using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
 
 namespace AdditionalPylons;
@@ -43,4 +43,16 @@ internal class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.Chinese, "万能晶塔数量上限")]
     [LocalizedPropertyName(CultureType.English, "MaxUniversalPylons")]
     public int MaxUniversalPylons = 2;
+
+    [LocalizedPropertyName(CultureType.Chinese, "地狱晶塔数量上限")]
+    [LocalizedPropertyName(CultureType.English, "MaxUnderworldPylons")]
+    public int MaxUnderworldPylons = 2;
+
+    [LocalizedPropertyName(CultureType.Chinese, "微光晶塔数量上限")]
+    [LocalizedPropertyName(CultureType.English, "MaxShimmerPylons")]
+    public int MaxShimmerPylons = 2;
+
+    [LocalizedPropertyName(CultureType.Chinese, "晶塔无需城镇环境")]
+    [LocalizedPropertyName(CultureType.English, "NoTownEnvironment")]
+    public bool NoTownEnvironment = false;
 }
