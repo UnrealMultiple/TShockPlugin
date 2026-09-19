@@ -12,18 +12,17 @@ namespace AdditionalPylons;
 public class AdditionalPylonsPlugin : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 0);
+    public override Version Version => new(1, 1, 0);
     public override string Author => "Stealownz,肝帝熙恩优化1449";
     public override string Description => GetString("自定义各类晶塔数量上限，可配置跳过城镇 NPC 和群落检查");
 
     public AdditionalPylonsPlugin(Main game) : base(game) { }
 
     private const string permission_infiniteplace = "AdditionalPylons";
+
     // Track the actual item, including denied types, to handle direct pylon-to-pylon
     // switches without repeating limit messages on every player update.
     private readonly Dictionary<int, int> playersHoldingPylon = new();
-    private readonly PylonConditionHooks conditionHooks = new();
-    public bool IsDisposed { get; private set; }
 
     public override void Initialize()
     {
@@ -31,47 +30,67 @@ public class AdditionalPylonsPlugin : LazyPlugin
         GetDataHandlers.PlaceTileEntity.Register(this.OnPlaceTileEntity, HandlerPriority.High);
         GetDataHandlers.SendTileRect.Register(this.OnSendTileRect, HandlerPriority.High);
         ServerApi.Hooks.ServerLeave.Register(this, this.OnServerLeave);
-        // Install hooks before config load; the flag is checked at runtime,
-        // so toggling NoTownEnvironment plus /reload takes effect immediately.
-        try
-        {
-            this.conditionHooks.Install();
-            Console.WriteLine($"[AdditionalPylons] v{this.Version} pylon condition hooks installed; " +
-                "town NPC and biome teleport checks follow 晶塔无需城镇环境 (NoTownEnvironment).");
-        }
-        catch (Exception exception)
-        {
-            Console.Error.WriteLine($"[AdditionalPylons] v{this.Version} FAILED to install pylon condition hooks: {exception}");
-            Console.Error.WriteLine("[AdditionalPylons] Placement limits keep working, but NoTownEnvironment will have no effect until this is fixed.");
-        }
+
+        On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonHaveEnoughNPCsAroundIt += this.IgnoreNpcRequirement;
+        On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonAcceptTeleportation += this.IgnoreBiomeRequirement;
     }
 
     protected override void Dispose(bool isDisposing)
     {
-        if (this.IsDisposed) return;
         if (isDisposing)
         {
-            this.conditionHooks.Dispose();
+            On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonHaveEnoughNPCsAroundIt -= this.IgnoreNpcRequirement;
+            On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonAcceptTeleportation -= this.IgnoreBiomeRequirement;
+
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             GetDataHandlers.PlaceTileEntity.UnRegister(this.OnPlaceTileEntity);
             GetDataHandlers.SendTileRect.UnRegister(this.OnSendTileRect);
             ServerApi.Hooks.ServerLeave.Deregister(this, this.OnServerLeave);
+
             foreach (var playerId in this.playersHoldingPylon.Keys.ToArray())
             {
                 if (TShock.Players[playerId]?.Active == true)
                     this.SendPlayerPylonSystem(playerId, true);
             }
+
             this.playersHoldingPylon.Clear();
         }
+
         base.Dispose(isDisposing);
-        this.IsDisposed = true;
     }
 
     private void OnServerLeave(LeaveEventArgs e) => this.playersHoldingPylon.Remove(e.Who);
 
+    private static bool IsKnownPylon(TeleportPylonInfo info) =>
+        info.TypeOfPylon >= 0 && info.TypeOfPylon < TeleportPylonType.Count;
+
+    private bool IgnoreNpcRequirement(
+        On.Terraria.GameContent.TeleportPylonsSystem.orig_DoesPylonHaveEnoughNPCsAroundIt orig,
+        TeleportPylonsSystem self,
+        TeleportPylonInfo info,
+        int count)
+    {
+        if (Configuration.Instance.NoTownEnvironment && Main.netMode == 2 && IsKnownPylon(info))
+            return true;
+
+        return orig(self, info, count);
+    }
+
+    private bool IgnoreBiomeRequirement(
+        On.Terraria.GameContent.TeleportPylonsSystem.orig_DoesPylonAcceptTeleportation orig,
+        TeleportPylonsSystem self,
+        TeleportPylonInfo info,
+        Player player)
+    {
+        if (Configuration.Instance.NoTownEnvironment && Main.netMode == 2 && IsKnownPylon(info))
+            return true;
+
+        return orig(self, info, player);
+    }
+
     private void OnSendTileRect(object? sender, GetDataHandlers.SendTileRectEventArgs e)
     {
-        if (this.IsDisposed || e.Handled || !e.Player.HasPermission(permission_infiniteplace)) return;
+        if (e.Handled || !e.Player.HasPermission(permission_infiniteplace)) return;
         if (e.Width != 3 || e.Length != 4) return;
 
         var savePosition = e.Data.Position;
@@ -99,7 +118,8 @@ public class AdditionalPylonsPlugin : LazyPlugin
 
     private void OnPlayerUpdate(object? sender, GetDataHandlers.PlayerUpdateEventArgs e)
     {
-        if (this.IsDisposed || e.Handled) return;
+        if (e.Handled) return;
+
         var inventory = e.Player.TPlayer.inventory;
         if (e.SelectedItem < 0 || e.SelectedItem >= inventory.Length) return;
 
@@ -107,6 +127,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
         var isHoldingPylon = e.Player.HasPermission(permission_infiniteplace)
             && PylonLimits.GetPylonTypeFromItemId(holdingItem) != TeleportPylonType.Count;
         var wasHoldingPylon = this.playersHoldingPylon.TryGetValue(e.PlayerId, out var previousItem);
+
         if (wasHoldingPylon && isHoldingPylon && previousItem == holdingItem) return;
 
         // Restoring the list must never depend on any quota, including when the
@@ -116,6 +137,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
             this.SendPlayerPylonSystem(e.PlayerId, true);
             this.playersHoldingPylon.Remove(e.PlayerId);
         }
+
         if (isHoldingPylon)
         {
             this.playersHoldingPylon[e.PlayerId] = holdingItem;
@@ -125,7 +147,8 @@ public class AdditionalPylonsPlugin : LazyPlugin
 
     private void OnPlaceTileEntity(object? sender, GetDataHandlers.PlaceTileEntityEventArgs e)
     {
-        if (this.IsDisposed || e.Handled || e.Type != 7) return;
+        if (e.Handled || e.Type != 7) return;
+
         if (!e.Player.HasPermission(permission_infiniteplace))
         {
             TSPlayer.All.SendTileRect(e.X, e.Y, 3, 4);
@@ -145,6 +168,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
         if (!addPylons)
         {
             if (type == TeleportPylonType.Count) return;
+
             var count = Main.PylonSystem.Pylons.Count(pylon => pylon.TypeOfPylon == type);
             if (count >= PylonLimits.GetLimit(Configuration.Instance, type))
             {
@@ -156,10 +180,13 @@ public class AdditionalPylonsPlugin : LazyPlugin
         foreach (var pylon in Main.PylonSystem.Pylons)
         {
             if (!PylonLimits.ShouldSendPylon(addPylons, type, pylon.TypeOfPylon)) continue;
+
             Terraria.Net.NetManager.Instance.SendToClient(
-                NetTeleportPylonModule.SerializePylonWasAddedOrRemoved(pylon,
-                    addPylons ? NetTeleportPylonModule.SubPacketType.PylonWasAdded
-                              : NetTeleportPylonModule.SubPacketType.PylonWasRemoved),
+                NetTeleportPylonModule.SerializePylonWasAddedOrRemoved(
+                    pylon,
+                    addPylons
+                        ? NetTeleportPylonModule.SubPacketType.PylonWasAdded
+                        : NetTeleportPylonModule.SubPacketType.PylonWasRemoved),
                 playerId);
         }
     }
