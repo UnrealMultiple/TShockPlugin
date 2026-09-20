@@ -25,6 +25,11 @@
 ### v1.0.0
 - 添加插件
 
+## 致谢
+
+- 学习了 [SpclPerm](https://github.com/UnrealMultiple/TShockPlugin/tree/master/src/SpclPerm) 服主特权插件的实现思路
+- SpclPerm 作者: 羽学
+
 ## 反馈
 - 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
 - 次优先：TShock官方群：816771079
