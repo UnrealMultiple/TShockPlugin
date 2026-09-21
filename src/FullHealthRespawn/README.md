@@ -18,6 +18,10 @@
 
 ## 更新日志
 
+### v1.2.0
+- 使用 ConcurrentQueue 替代 Task.Delay，在 GameUpdate 中处理恢复
+- 添加 manifest.json 文件
+
 ### v1.1.0
 - 等待时间改为0.5秒
 - 简化代码，移除不必要的功能

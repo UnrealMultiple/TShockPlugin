@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -17,7 +18,10 @@ public class FullHealthRespawn : TerrariaPlugin
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "MiMo";
     public override string Description => GetString("复活满血");
-    public override Version Version => new Version(1, 1, 0);
+    public override Version Version => new Version(1, 2, 0);
+
+    // 使用线程安全的队列存储待处理的玩家
+    private readonly ConcurrentQueue<TSPlayer> _restoreQueue = new();
 
     public FullHealthRespawn(Main game) : base(game) { }
 
@@ -28,6 +32,7 @@ public class FullHealthRespawn : TerrariaPlugin
     {
         PlayerSpawn += this.OnSpawn!;
         ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
+        ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
     }
 
     /// <summary>
@@ -39,8 +44,20 @@ public class FullHealthRespawn : TerrariaPlugin
         {
             PlayerSpawn -= this.OnSpawn!;
             ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
+            ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
         }
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    /// 游戏更新事件 - 从队列中取出并执行恢复
+    /// </summary>
+    private void OnUpdate(EventArgs args)
+    {
+        while (_restoreQueue.TryDequeue(out var player))
+        {
+            RestoreHealth(player);
+        }
     }
 
     /// <summary>
@@ -52,11 +69,8 @@ public class FullHealthRespawn : TerrariaPlugin
         if (plr == null)
             return;
 
-        // 进服时恢复
-        Task.Delay(500).ContinueWith(_ =>
-        {
-            RestoreHealth(plr);
-        });
+        // 加入队列，等待 GameUpdate 处理
+        _restoreQueue.Enqueue(plr);
     }
 
     /// <summary>
@@ -69,11 +83,8 @@ public class FullHealthRespawn : TerrariaPlugin
         if (plr == null || !plr.Active)
             return;
 
-        // 延迟执行，避免与 SSC 冲突
-        Task.Delay(500).ContinueWith(_ =>
-        {
-            RestoreHealth(plr);
-        });
+        // 加入队列，等待 GameUpdate 处理
+        _restoreQueue.Enqueue(plr);
     }
 
     /// <summary>
