@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Restore full health on respawn"
+  },
+  "README.es-ES": {
+    "Description": "Restaurar salud completa al reaparecer"
+  },
+  "README": {
+    "Description": "复活满血"
+  }
+}
