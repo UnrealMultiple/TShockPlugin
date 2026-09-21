@@ -124,6 +124,7 @@
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 94.9% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 83.3% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
+| [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 0.0% | Restore full health on respawn |  |
 | [GenerateMap](./src/GenerateMap/README.en-US.md) | 11.1% | Generate map |  |
 | [GhostView](./src/GhostView/README.md) | 0.0% | spectate in ghost mode after death, reconnect does not reset respawn cooldown |  |
 | [GolfRewards](./src/GolfRewards/README.en-US.md) | 100.0% | Golf rewards |  |

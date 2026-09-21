@@ -127,6 +127,7 @@
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 94.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
+| [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 0.0% | Restaurar salud completa al reaparecer |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 0.0% | Generar mapas |  |
 | [GhostView](./src/GhostView/README.md) | 0.0% | espectar en modo fantasma tras la muerte, la reconexión no reinicia el tiempo de reaparición |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 0.0% | Recompensas de golf |  |
