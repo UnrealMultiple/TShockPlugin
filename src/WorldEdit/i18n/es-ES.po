@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-08-17 11:04:47+0000\n"
-"PO-Revision-Date: 2026-08-18 01:02\n"
+"POT-Creation-Date: 2026-09-19 06:58:35+0000\n"
+"PO-Revision-Date: 2026-09-20 03:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -879,8 +879,8 @@ msgstr ""
 msgid "Paints walls in the worldedit selection."
 msgstr ""
 
-#: ../../WorldEdit.Commands/SPaste.cs:165
 #: ../../WorldEdit.Commands/Paste.cs:106
+#: ../../WorldEdit.Commands/SPaste.cs:165
 msgid "Pasted clipboard to selection."
 msgstr ""
 
@@ -1218,8 +1218,8 @@ msgstr ""
 msgid "Undid {0}'s last {1}action{2}."
 msgstr ""
 
-#: ../../WorldEdit.Commands/Redo.cs:22
 #: ../../WorldEdit.Commands/Undo.cs:22
+#: ../../WorldEdit.Commands/Redo.cs:22
 msgid "Undo system is disabled for unreal players."
 msgstr ""
 
