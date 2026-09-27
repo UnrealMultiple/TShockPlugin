@@ -40,6 +40,7 @@
   <Project Path="src/CNPCShop/CNPCShop.csproj" />
   <Project Path="src/ConsoleSql/ConsoleSql.csproj" />
   <Project Path="src/ConvertWorld/ConvertWorld.csproj" />
+  <Project Path="src/CreateSpawn/CreateSpawn.csproj" />
   <Project Path="src/CriticalHit/CriticalHit.csproj" />
   <Project Path="src/DamageRuleLoot/DamageRuleLoot.csproj" />
   <Project Path="src/DamageStatistic/DamageStatistic.csproj" />
@@ -57,11 +58,12 @@
   <Project Path="src/Economics.Core/Economics.Core.csproj" />
   <Project Path="src/Economics.Deal/Economics.Deal.csproj" />
   <Project Path="src/Economics.NPC/Economics.NPC.csproj" />
+  <Project Path="src/Economics.Plugin/Economics.Plugin.csproj" />
   <Project Path="src/Economics.Projectile/Economics.Projectile.csproj" />
   <Project Path="src/Economics.Regain/Economics.Regain.csproj" />
   <Project Path="src/Economics.RPG/Economics.RPG.csproj" />
-  <Project Path="src/Economics.Shop/Economics.Shop.csproj" />
   <Project Path="src/Economics.Script/Economics.Script.csproj" />
+  <Project Path="src/Economics.Shop/Economics.Shop.csproj" />
   <Project Path="src/Economics.Skill/Economics.Skill.csproj" />
   <Project Path="src/Economics.Task/Economics.Task.csproj" />
   <Project Path="src/Economics.WeaponPlus/Economics.WeaponPlus.csproj" />
@@ -149,7 +151,6 @@
   <Project Path="src/VeinMiner/VeinMiner.csproj" />
   <Project Path="src/VotePlus/VotePlus.csproj" />
   <Project Path="src/WeaponPlus/WeaponPlus.csproj" />
-  <Project Path="src/WorldEdit/WorldEdit.csproj" />
   <Project Path="src/WikiLangPackLoader/WikiLangPackLoader.csproj" />
-  <Project Path="src/CreateSpawn/CreateSpawn.csproj" />
+  <Project Path="src/WorldEdit/WorldEdit.csproj" />
 </Solution>
