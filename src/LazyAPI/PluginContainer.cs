@@ -10,7 +10,7 @@ public class PluginContainer(Main game) : LazyPlugin(game)
 {
     public override string Author => "cc004 & members of UnrealMultiple";
 
-    public override Version Version => new Version(1, 0, 3, 0);
+    public override Version Version => new Version(1, 0, 3, 1);
 
     public override void Initialize()
     {

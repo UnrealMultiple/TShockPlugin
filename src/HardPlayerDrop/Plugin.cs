@@ -12,7 +12,7 @@ public class Plugin : TerrariaPlugin
     #region 插件模版信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 0, 3);
+    public override Version Version => new Version(1, 0, 3, 1);
     public override string Description => GetString("根据玩家血量计算死亡后会掉落多少生命水晶");
     #endregion
 
@@ -43,7 +43,7 @@ public class Plugin : TerrariaPlugin
             return;
         }
 
-        var itemIndex = Item.NewItem(null, (int) plr.X, (int) plr.Y, plr.TPlayer.width, plr.TPlayer.height, 29, drop_amount, true, 0, true);
+        var itemIndex = Item.NewItem(null, plr.TPlayer.Center, 29, drop_amount, 0, NewItemOwnership.None, null, null, true);
     }
     #endregion
 

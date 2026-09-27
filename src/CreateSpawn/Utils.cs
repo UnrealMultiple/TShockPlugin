@@ -190,7 +190,7 @@ internal static class Utils
         for (var slot = 0; slot < 40; slot++)
         {
             var item = chest.item[slot];
-            if (item?.active == true)
+            if (item?.IsAir == false)
             {
                 // 克隆物品并记录其原来所在箱子的位置
                 chestItems.Add(new ChestItems

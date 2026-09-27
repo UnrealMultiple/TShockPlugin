@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 8);
+    public override Version Version => new Version(1, 0, 8, 1);
 
     private readonly string PATH = Path.Combine(TShock.SavePath, "PermaBuff.json");
 

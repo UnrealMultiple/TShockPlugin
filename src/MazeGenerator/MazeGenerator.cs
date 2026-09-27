@@ -15,7 +15,7 @@ public class MazeGenerator : TerrariaPlugin
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
     public override string Description => GetString("迷宫生成器");
-    public override Version Version => new (1, 0, 0, 0);
+    public override Version Version => new (1, 0, 0, 1);
 
     public static MazeGenerator Instance { get; private set; } = null!;
     public MazeGameManager GameManager { get; private set; } = null!;

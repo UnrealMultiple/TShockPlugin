@@ -43,7 +43,8 @@ public class SpawnProjectile
         projectile.velocity.Y = SpeedY;
         projectile.damage = Damage;
         projectile.knockBack = KnockBack;
-        projectile.identity = num;
+        projectile.key = new ProjectileKey(Owner, num, ++Projectile.slotGenerations[num]);
+        projectile.whoAmI = num;
         projectile.gfxOffY = 0f;
         projectile.stepSpeed = 1f;
         projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
@@ -51,23 +52,12 @@ public class SpawnProjectile
 
         projectile.honeyWet = Collision.honey;
         projectile.shimmerWet = Collision.shimmer;
-        Main.projectileIdentity[Owner, num] = num;
+        Projectile.keyToIndex[Owner, num] = num;
         projectile.FindBannerToAssociateTo(spawnSource);
         if (projectile.aiStyle != 61) return 0;
         projectile.ai[0] = ai0;
         projectile.ai[1] = ai1;
         projectile.ai[2] = ai2;
-
-        if (Type > 0 && Type < ProjectileID.Count)
-        {
-            if (ProjectileID.Sets.NeedsUUID[Type]) projectile.projUUID = projectile.identity;
-
-            if (ProjectileID.Sets.StardustDragon[Type])
-            {
-                var num2 = Main.projectile[(int) projectile.ai[0]].projUUID;
-                if (num2 >= 0) projectile.ai[0] = num2;
-            }
-        }
 
         if (Main.netMode != 0 && Owner == Main.myPlayer) NetMessage.SendData(27, -1, -1, null, num);
 

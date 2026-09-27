@@ -47,7 +47,8 @@ internal static class Collect
         val.velocity.Y = SpeedY;
         val.damage = Damage;
         val.knockBack = KnockBack;
-        val.identity = num;
+        val.key = new ProjectileKey(Owner, num, ++Projectile.slotGenerations[num]);
+        val.whoAmI = num;
         val.gfxOffY = 0f;
         val.stepSpeed = 1f;
         val.wet = Collision.WetCollision(val.position, val.width, val.height);
@@ -57,7 +58,7 @@ internal static class Collect
         }
         val.honeyWet = Collision.honey;
         val.shimmerWet = Collision.shimmer;
-        Main.projectileIdentity[Owner, num] = num;
+        Projectile.keyToIndex[Owner, num] = num;
         val.FindBannerToAssociateTo(spawnSource);
         if (val.aiStyle == 1)
         {
@@ -74,23 +75,6 @@ internal static class Collect
             val.ai[0] = val.position.X;
             val.ai[1] = val.position.Y;
         }
-        if (Type > 0 && Type < ProjectileID.Count)
-        {
-            if (ProjectileID.Sets.NeedsUUID[Type])
-            {
-                val.projUUID = val.identity;
-            }
-
-            // Use a guard clause to avoid accessing Main.projectile when not needed
-            if (ProjectileID.Sets.StardustDragon[Type] && val.ai[0] >= 0)
-            {
-                var projUUID = Main.projectile[(int) val.ai[0]].projUUID;
-                if (projUUID >= 0)
-                {
-                    val.ai[0] = projUUID;
-                }
-            }
-        }
         if (Type == 249)
         {
             val.frame = Main.rand.Next(5);
@@ -106,12 +90,12 @@ internal static class Collect
         return MyNewProjectile(spawnSource, postion.X, postion.Y, velocity.X, velocity.Y, Type, Damage, KnockBack, Owner, ai0, ai1, ai2);
     }
 
-    public static int MyNewItem(IEntitySource? source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, bool noBroadcast = false, int prefixGiven = 0, bool noGrabDelay = false, bool reverseLookup = false)
+    public static int MyNewItem(IEntitySource? source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, bool noBroadcast = false, int prefixGiven = 0, NewItemOwnership ownership = NewItemOwnership.None)
     {
-        return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
+        return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, ownership);
     }
 
-    public static int MyNewItem(IEntitySource? source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
+    public static int MyNewItem(IEntitySource? source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, NewItemOwnership ownership = NewItemOwnership.None)
     {
         if (WorldGen.generatingWorld)
         {
@@ -163,11 +147,15 @@ internal static class Collect
             num = Item.PickAnItemSlotToSpawnItemOn();
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new WorldItem();
+        var item = new Item();
+        item.SetDefaults(Type);
+        item.Prefix(pfix);
+        item.stack = Stack;
+        Main.item[num] = new WorldItem(item)
+        {
+            whoAmI = num
+        };
         var val = Main.item[num];
-        val.SetDefaults(Type);
-        val.Prefix(pfix);
-        val.stack = Stack;
         val.position.X = X + (Width / 2) - (val.width / 2);
         val.position.Y = Y + (Height / 2) - (val.height / 2);
         val.wet = Collision.WetCollision(val.position, val.width, val.height);
@@ -185,7 +173,7 @@ internal static class Collect
         val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
         if (Options.HighlightNewItems && val.type >= 0 && !ItemID.Sets.NeverAppearsAsNewInInventory[val.type])
         {
-            val.newAndShiny = true;
+            val.inner.newAndShiny = true;
         }
         else if (Main.netMode == 0)
         {

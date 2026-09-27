@@ -13,11 +13,11 @@ namespace CaiBotLite;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class CaiBotLite(Main game) : TerrariaPlugin(game)
 {
-    public static readonly Version VersionNum = new (2026, 07, 7, 1);
+    public static readonly Version VersionNum = new (2026, 09, 28, 1);
     internal static int InitCode = -1;
     internal static bool DebugMode = Program.LaunchParameters.ContainsKey("-caidebug");
     private const string CharacterInfoKey = "CaiBotLite.CharacterInfo";
-    public override string Author => "Cai,羽学,西江";
+    public override string Author => "Cai, 羽学, 西江";
     public override string Description => "CaiBot官方机器人的适配插件";
     public override string Name => "CaiBotLitePlugin";
 
@@ -36,6 +36,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         ServerApi.Hooks.ServerLeave.Register(this, OnServerLeave);
         ServerApi.Hooks.GamePostUpdate.Register(this, OnGameUpdate);
         On.Terraria.MessageBuffer.GetData += LoginHelper.On_MessageBufferOnGetData;
+        On.Terraria.Netplay.UpdateInMainThread += NetplayOnUpdateInMainThread;
         GeneralHooks.ReloadEvent += GeneralHooksOnReloadEvent;
         PlayerHooks.PlayerPostLogin += PlayerHooksOnPlayerPostLogin;
         GetDataHandlers.KillMe.Register(KillMe, HandlerPriority.Highest);
@@ -61,6 +62,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
             ServerApi.Hooks.ServerLeave.Deregister(this, OnServerLeave);
             ServerApi.Hooks.GamePostUpdate.Deregister(this, OnGameUpdate);
             On.Terraria.MessageBuffer.GetData -= LoginHelper.On_MessageBufferOnGetData;
+            On.Terraria.Netplay.UpdateInMainThread -= NetplayOnUpdateInMainThread;
             GeneralHooks.ReloadEvent -= GeneralHooksOnReloadEvent;
             PlayerHooks.PlayerPostLogin -= PlayerHooksOnPlayerPostLogin;
             GetDataHandlers.KillMe.UnRegister(KillMe);
@@ -87,7 +89,20 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         }
 
         _timer++;
-        LoginHelper.ProcessLoginQueue();
+    }
+    
+    private static void NetplayOnUpdateInMainThread(On.Terraria.Netplay.orig_UpdateInMainThread orig)
+    {
+        orig();
+        try
+        {
+            LoginHelper.ProcessLoginQueue();
+        }
+        catch (Exception ex)
+        {
+            TShock.Log.ConsoleError("[CaiBotLite] 处理登录队列发生错误：" + ex);
+        }
+        
     }
 
     private static void KillMe(object? sender, GetDataHandlers.KillMeEventArgs e)
@@ -301,7 +316,7 @@ public class CaiBotLite(Main game) : TerrariaPlugin(game)
         }
 
         InitCode = new Random().Next(10000000, 99999999);
-        TShock.Log.ConsoleError($"[CaiBotLite]您的服务器绑定码为: {InitCode}");
+        TShock.Log.ConsoleError($"[CaiBotLite] 您的服务器绑定码为: {InitCode}");
     }
     
     private static void ClearCharacterInfoForActivePlayers()

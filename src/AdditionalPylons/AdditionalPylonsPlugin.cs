@@ -12,7 +12,7 @@ namespace AdditionalPylons;
 public class AdditionalPylonsPlugin : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(1, 1, 0);
+    public override Version Version => new(1, 1, 1);
     public override string Author => "Stealownz,肝帝熙恩优化1449";
     public override string Description => GetString("自定义各类晶塔数量上限，可配置跳过城镇 NPC 和群落检查");
 

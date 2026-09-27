@@ -14,7 +14,7 @@ public class DamageRuleLoot : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学 西江小子";
-    public override Version Version => new Version(1, 3, 5);
+    public override Version Version => new Version(1, 3, 5, 1);
     public override string Description => GetString("根据输出排名榜决定是否掉落宝藏袋的惩罚，并对各个BOSS进行相对的伤害规则处理");
     #endregion
 
@@ -61,9 +61,9 @@ public class DamageRuleLoot : TerrariaPlugin
     #endregion
 
     #region 伤怪建表法+暴击计数法
-    private double OnStrikeNPC(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet,int owner, Entity entity)
+    private int OnStrikeNPC(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool fromNet, int owner, Entity entity)
     {
-        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, owner, entity);
+        var damage = orig(self, Damage, knockBack, hitDirection, crit, fromNet, owner, entity);
         var strike = StrikeNPC.strikeNPC.Find(x => x.npcIndex == self.whoAmI && x.npcID == self.netID);
 
         if (fromNet && entity is Player plr)
@@ -116,9 +116,9 @@ public class DamageRuleLoot : TerrariaPlugin
     #endregion
 
     #region 打怪伤BOSS法
-    private double AddDamage(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool noEffect, bool fromNet,int owner, Entity entity)
+    private int AddDamage(On.Terraria.NPC.orig_StrikeNPC orig, NPC self, int Damage, float knockBack, int hitDirection, bool crit, bool fromNet, int owner, Entity entity)
     {
-        var damage = orig(self, Damage, knockBack, hitDirection, crit, noEffect, fromNet, owner,entity);
+        var damage = orig(self, Damage, knockBack, hitDirection, crit, fromNet, owner,entity);
         if (fromNet && entity is Player plr)
         {
             //不是雕像怪

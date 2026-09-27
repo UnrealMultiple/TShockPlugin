@@ -12,7 +12,7 @@ public class SurfaceBlock : LazyPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override string Author => "羽学 Cai 西江小子 熙恩";
     public override string Description => GetString("禁止特定弹幕在地表产生");
-    public override Version Version => new Version(2, 0, 0, 3);
+    public override Version Version => new Version(2, 0, 0, 4);
     #endregion
 
     #region 注册与卸载钩子
@@ -180,7 +180,8 @@ public class SurfaceBlock : LazyPlugin
     {
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var stack = plr.SelectedItem.stack;
-        var MyItem = Item.NewItem(null, (int) plr.X, (int) plr.Y, item.width, item.height, item.type, stack);
+        var MyItem = Item.NewItem(null,
+            new Microsoft.Xna.Framework.Vector2(plr.X + item.width / 2f, plr.Y + item.height / 2f), item.type, stack);
         if (MyItem >= 0 && MyItem < Main.item.Length)
         {
             var newItem = Main.item[MyItem];

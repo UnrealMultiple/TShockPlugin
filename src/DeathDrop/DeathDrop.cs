@@ -13,7 +13,7 @@ public class DeathDrop : TerrariaPlugin
 
     public override string Author => "大豆子，肝帝熙恩更新优化";
     public override string Description => GetString("怪物死亡随机和自定义掉落物品");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 6, 1);
 
     public DeathDrop(Main game) : base(game)
     {
@@ -72,10 +72,8 @@ public class DeathDrop : TerrariaPlugin
 
                 var itemNumber = Item.NewItem(
                     null,
-                    (int) args.npc.position.X,
-                    (int) args.npc.position.Y,
-                    item.width,
-                    item.height,
+                    new Microsoft.Xna.Framework.Vector2(args.npc.position.X + item.width / 2f,
+                        args.npc.position.Y + item.height / 2f),
                     item.type,
                     dropAmount
                 );
@@ -103,10 +101,8 @@ public class DeathDrop : TerrariaPlugin
 
                     var dropItemNumber = Item.NewItem(
                         null,
-                        (int) npcPosition.X,
-                        (int) npcPosition.Y,
-                        dropItem.width,
-                        dropItem.height,
+                        new Microsoft.Xna.Framework.Vector2(npcPosition.X + dropItem.width / 2f,
+                            npcPosition.Y + dropItem.height / 2f),
                         dropItem.type,
                         dropAmount
                     );

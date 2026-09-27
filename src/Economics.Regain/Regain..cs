@@ -17,7 +17,7 @@ public class Regain : TerrariaPlugin
     public override string Description => GetString("对玩家的物品进行回收!");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 0, 0, 0);
+    public override Version Version => new Version(3, 0, 0, 1);
 
     public Regain(Main game) : base(game)
     {

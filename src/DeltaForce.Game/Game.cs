@@ -16,7 +16,7 @@ public class Game(Main game) : LazyPlugin(game)
 
     public override string Name => "三角洲行动";
 
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static Client Client { get; private set; } = new();
 

@@ -13,7 +13,7 @@ public class Plugin : TerrariaPlugin
 {
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 3, 5);
+    public override Version Version => new Version(1, 3, 5, 1);
     public override string Author => "羽学";
     public override string Description => GetString("清理怪物身边掉落物");
     #endregion

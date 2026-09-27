@@ -56,7 +56,7 @@ public sealed partial class GroundCraft : TerrariaPlugin
     public override string Name => "GroundCraft";
     public override string Author => "愚蠢";
     public override string Description => GetString("地上合成：把掉落物丢在一起，根据 JSON 配方和环境/进度条件自动合成。");
-    public override Version Version => new(1, 1, 0);
+    public override Version Version => new(1, 1, 0, 1);
 
     private static string DataDirectory => Path.Combine(TShock.SavePath, "GroundCraft");
     private static string ConfigPath => Path.Combine(DataDirectory, "config.json");

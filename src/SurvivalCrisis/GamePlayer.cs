@@ -235,7 +235,7 @@ namespace SurvivalCrisis
 		#region Methods
 		public bool Equipped(int itemType)
 		{
-			return TPlayer.armor.Count(item => item.active && item.type == itemType) > 0;
+			return TPlayer.armor.Count(item => item.IsAir == false && item.type == itemType) > 0;
 		}
 		public void OnHurt(GetDataHandlers.PlayerDamageEventArgs args)
 		{
@@ -503,35 +503,35 @@ namespace SurvivalCrisis
 			for (int i = 0; i < player.inventory.Length - 1; i++)
 			{
 				var item = player.inventory[i];
-				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos, box, item.type, item.stack, false, item.prefix);
+				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos + box / 2f, item.type, item.stack, item.prefix);
 				TSPlayer.All.SendData(PacketTypes.ItemDrop, "", idx);
 				item.netDefaults(0);
 			}
 			for (int i = 0; i < player.miscEquips.Length; i++)
 			{
 				var item = player.miscEquips[i];
-				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos, box, item.type, item.stack, false, item.prefix);
+				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos + box / 2f, item.type, item.stack, item.prefix);
 				TSPlayer.All.SendData(PacketTypes.ItemDrop, "", idx);
 				item.netDefaults(0);
 			}
 			for (int i = 0; i < 3; i++)
 			{
 				var item = player.armor[i];
-				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos, box, item.type, item.stack, false, item.prefix);
+				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos + box / 2f, item.type, item.stack, item.prefix);
 				TSPlayer.All.SendData(PacketTypes.ItemDrop, "", idx);
 				item.netDefaults(0);
 			}
 			for (int i = 5; i < 13; i++)
 			{
 				var item = player.armor[i];
-				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos, box, item.type, item.stack, false, item.prefix);
+				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos + box / 2f, item.type, item.stack, item.prefix);
 				TSPlayer.All.SendData(PacketTypes.ItemDrop, "", idx);
 				item.netDefaults(0);
 			}
 			for (int i = 15; i < player.armor.Length; i++)
 			{
 				var item = player.armor[i];
-				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos, box, item.type, item.stack, false, item.prefix);
+				var idx = Item.NewItem(new EntitySource_DebugCommand(), pos + box / 2f, item.type, item.stack, item.prefix);
 				TSPlayer.All.SendData(PacketTypes.ItemDrop, "", idx);
 				item.netDefaults(0);
 			}

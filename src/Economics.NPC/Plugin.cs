@@ -15,7 +15,7 @@ public class Plugin(Main game) : TerrariaPlugin(game)
     public override string Description => GetString("修改NPC掉落货币!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 1, 0, 0);
+    public override Version Version => new Version(3, 1, 0, 1);
 
     public override void Initialize()
     {

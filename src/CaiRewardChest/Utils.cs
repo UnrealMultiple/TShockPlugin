@@ -28,8 +28,8 @@ public static class Utils
 
     private static void GiveItemByDrop(TSPlayer plr, int type, int stack, int prefix)
     {
-        var number = Item.NewItem(new EntitySource_DebugCommand(), (int) plr.X, (int) plr.Y, plr.TPlayer.width,
-            plr.TPlayer.height, type, stack, true, prefix, true);
+        var number = Item.NewItem(new EntitySource_DebugCommand(), plr.TPlayer.Center, type, stack, prefix,
+            NewItemOwnership.None, null, null, true);
         Main.item[number].playerIndexTheItemIsReservedFor = plr.Index;
         plr.SendData(PacketTypes.ItemDrop, number: number, number2: 1f);
         plr.SendData(PacketTypes.ItemOwner, null, number);

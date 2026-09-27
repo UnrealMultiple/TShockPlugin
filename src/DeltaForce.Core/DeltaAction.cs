@@ -13,7 +13,7 @@ public partial class DeltaAction(Main game) : LazyPlugin(game)
     public override string Author => "少司命";
     public override string Name => "三角洲行动";
     public override string Description => "三角洲行动是一个基于Terraria的模组，旨在为玩家提供全新的游戏体验。";
-    public override Version Version => new(1, 0, 0, 0);
+    public override Version Version => new(1, 0, 0, 1);
 
     internal static DeltaServer DeltaServer = new(Config.Instance.Socket);
 

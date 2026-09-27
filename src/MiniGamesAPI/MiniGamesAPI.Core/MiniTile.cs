@@ -19,12 +19,16 @@ public class MiniTile
     {
         this.X = x;
         this.Y = y;
-        this.Tile = new Tile(tile);
+        Tile copy = new Tile();
+        copy.CopyFrom(tile);
+        this.Tile = copy;
     }
 
     public void Place()
     {
-        Main.tile[this.X, this.Y] = new Tile(this.Tile);
+        Tile copy = new Tile();
+        copy.CopyFrom(this.Tile);
+        Main.tile[this.X, this.Y] = copy;
     }
 
     public void Kill(bool fail = false, bool effectOnly = false, bool noitem = false)

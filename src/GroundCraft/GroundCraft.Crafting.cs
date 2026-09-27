@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -408,7 +408,7 @@ public sealed partial class GroundCraft
                 continue;
             }
 
-            item.TurnToAir(true);
+            item.TurnToAir();
             ClearConsumedItem(drop.Index);
             _stableScans.Remove(drop.Index);
         }
@@ -420,15 +420,11 @@ public sealed partial class GroundCraft
     {
         int index = Item.NewItem(
             new EntitySource_WorldEvent(),
-            (int)center.X - 8,
-            (int)center.Y - 8,
-            16,
-            16,
+            center,
             itemType,
             stack,
-            false,
             0,
-            true);
+            NewItemOwnership.None);
 
         if (index >= 0)
             SyncItem(index);

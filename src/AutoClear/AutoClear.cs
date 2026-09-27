@@ -16,7 +16,7 @@ public class AutoClear(Main game) : LazyPlugin(game)
     public override string Author => "大豆子[Mute适配1447]，肝帝熙恩十七更新";
     public override string Description => GetString("智能扫地机");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 2, 0);
+    public override Version Version => new Version(1, 2, 0, 1);
 
     private bool _sweepScheduled;
     private DateTime _sweepScheduledAt;
@@ -234,12 +234,12 @@ public class AutoClear(Main game) : LazyPlugin(game)
 
     private static SweepCategory? GetSweepCategory(WorldItem item)
     {
-        if (item.damage > 0)
+        if (item.inner.damage > 0)
         {
             return item.maxStack > 1 ? SweepCategory.Throwable : item.maxStack == 1 ? SweepCategory.Swinging : null;
         }
 
-        if (item.damage < 0)
+        if (item.inner.damage < 0)
         {
             return item.maxStack > 1 ? SweepCategory.Regular : item.maxStack == 1 ? SweepCategory.Vanity : null;
         }

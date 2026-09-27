@@ -671,7 +671,7 @@ public class Commands
 
         var item = TShock.Utils.GetItemById(plr.SelectedItem.type);
         var MyIndex = new TSPlayer(plr.Index);
-        var MyItem = Item.NewItem(null, (int) MyIndex.X, (int) MyIndex.Y, item.width, item.height, item.type, item.stack);
+        var MyItem = Item.NewItem(null, new Vector2(MyIndex.X + item.width / 2f, MyIndex.Y + item.height / 2f), item.type, item.stack);
 
         if (MyItem >= 0 && MyItem < Main.item.Length)
         {
@@ -847,7 +847,7 @@ public class Commands
 
                     if (find)
                     {
-                        var MyItem = Item.NewItem(null, (int) MyIndex.X, (int) MyIndex.Y, item.width, item.height, item.type, item.stack);
+                        var MyItem = Item.NewItem(null, new Vector2(MyIndex.X + item.width / 2f, MyIndex.Y + item.height / 2f), item.type, item.stack);
                         var newItem = Main.item[MyItem];
                         MyNewItem(plr, item, newItem, data.damage, data.stack, data.prefix, data.scale, data.knockBack, data.useTime, data.useAnimation, data.shoot, data.shootSpeed, data.ammo, data.useAmmo);
                         inv.SetDefaults(0);

@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
 
     public override string Name => "TransferPatch";
 
-    public override Version Version => new Version(1, 0, 0, 2);
+    public override Version Version => new Version(1, 0, 0, 3);
 
     public Plugin(Main game) : base(game)
     {

@@ -16,7 +16,7 @@ public class Plugin : LazyPlugin
     public override string Author => "少司命";
     public override string Description => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 1, 5);
+    public override Version Version => new Version(1, 0, 1, 6);
 
     private readonly HttpClient _client  = new ();
 

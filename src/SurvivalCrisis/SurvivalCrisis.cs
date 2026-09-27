@@ -189,7 +189,7 @@ namespace SurvivalCrisis
 
         #endregion
         #region Plugin Infos
-        public override Version Version => new (1,0,0);
+        public override Version Version => new (1,0,0,1);
         public override string Author => "TOFOUT";
         public override string Name => nameof(SurvivalCrisis);
         public override string Description => "a survival game";
@@ -948,7 +948,7 @@ namespace SurvivalCrisis
                 {
                     if (Rand.NextDouble() < probability)
                     {
-                        Item.NewItem(new EntitySource_DebugCommand(), pos, rBox, type, stack, false, prefix);
+                        Item.NewItem(new EntitySource_DebugCommand(), pos + rBox / 2f, type, stack, prefix);
                     }
                 }
                 switch (args.npc.type)

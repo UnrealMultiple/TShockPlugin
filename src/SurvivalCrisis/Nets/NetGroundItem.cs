@@ -26,7 +26,7 @@ namespace SurvivalCrisis.Nets
 
         public bool Active
 		{
-			get => Item.active && Stack > 0 && ID > 0;
+			get => Item.IsAir == false && Stack > 0 && ID > 0;
 			set 
 			{
 				value &= Stack > 0 && ID > 0;
