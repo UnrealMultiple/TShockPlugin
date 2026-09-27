@@ -108,7 +108,7 @@
 | [DwTP](./src/DwTP/README.md) | 定位传送 |  |
 | [Economics.Core](./src/Economics.Core/README.md) | 经济插件前置 |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [Economics.Core](./src/Economics.Core/README.md) |
-| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [Economics.Core](./src/Economics.Core/README.md) |
+| [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [Economics.Core](./src/Economics.Core/README.md) [Economics.Script]() |
 | [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [Economics.Core](./src/Economics.Core/README.md) |
@@ -120,6 +120,7 @@
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
+| [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 复活满血 |  |
 | [GenerateMap](./src/GenerateMap/README.md) | 生成地图 |  |
 | [GhostView](./src/GhostView/README.md) | 死亡后能在鬼魂状态下观战，重连不刷新复活cd |  |
 | [GolfRewards](./src/GolfRewards/README.md) | 高尔夫奖励 |  |
