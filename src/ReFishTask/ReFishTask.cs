@@ -12,7 +12,7 @@ public class ReFishTask : TerrariaPlugin
     #region 插件信息
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "羽学";
-    public override Version Version => new Version(1, 4, 5);
+    public override Version Version => new Version(1, 4, 5, 1);
     public override string Description => GetString("当你完成渔夫任务时可无限接渔夫任务");
     #endregion
 

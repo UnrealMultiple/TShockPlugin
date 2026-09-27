@@ -16,7 +16,7 @@ public class Platform(Main game) : TerrariaPlugin(game)
     public override string Description => GetString("判断玩家设备");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new (2026, 02, 15, 0);
+    public override Version Version => new (2026, 09, 28, 0);
 
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]

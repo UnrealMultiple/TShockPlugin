@@ -12,7 +12,7 @@ public class MainPlugin(Main game) : TerrariaPlugin(game)
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
   
-    public override Version Version => new Version(1, 2, 0);
+    public override Version Version => new Version(1, 2, 0, 1);
 
     public override string Author => "Cjx重构 ，肝帝熙恩简单修改";
     public override string Description => GetString("无限宝箱插件");

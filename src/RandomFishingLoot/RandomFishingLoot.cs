@@ -23,7 +23,7 @@ public sealed partial class RandomFishingLoot : TerrariaPlugin
     public override string Name => "随机渔获";
     public override string Author => "愚蠢";
     public override string Description => "按当前进度阶段替换钓到的物品。";
-    public override Version Version => new(2, 5, 0);
+    public override Version Version => new(2, 5, 0, 1);
 
     public RandomFishingLoot(Main game) : base(game)
     {

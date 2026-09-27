@@ -14,7 +14,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("让原本在普通难度下不掉落宝物袋的Boss开始掉落此类稀有战利品。");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 1, 3, 4);
+    public override Version Version => new Version(1, 1, 3, 5);
 
     public Plugin(Main game) : base(game)
     {
@@ -48,62 +48,62 @@ public class Plugin : TerrariaPlugin
             switch (eventArgs.npc.netID) // 检查NPC类型。EOL（可能是“End of Level”的缩写，意为阶段结束）和史莱姆女皇拥有特殊的掉落机制，所以我打算替换它。
             {
                 case Terraria.ID.NPCID.KingSlime:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.KingSlimeBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.KingSlimeBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.EyeofCthulhu:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.EyeOfCthulhuBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.EyeOfCthulhuBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.EaterofWorldsHead:
                 case Terraria.ID.NPCID.EaterofWorldsBody:
                 case Terraria.ID.NPCID.EaterofWorldsTail:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.EaterOfWorldsBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.EaterOfWorldsBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.BrainofCthulhu:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.BrainOfCthulhuBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.BrainOfCthulhuBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.QueenBee:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.QueenBeeBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.QueenBeeBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.SkeletronHead:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.SkeletronBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.SkeletronBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.Deerclops:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.DeerclopsBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.DeerclopsBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.WallofFlesh:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.WallOfFleshBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.WallOfFleshBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.DukeFishron:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.FishronBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.FishronBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.QueenSlimeBoss:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.QueenSlimeBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.QueenSlimeBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.Retinazer:
                 case Terraria.ID.NPCID.Spazmatism:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.TwinsBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.TwinsBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.TheDestroyer:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.DestroyerBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.DestroyerBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.SkeletronPrime:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.SkeletronPrimeBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.SkeletronPrimeBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.Plantera:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.PlanteraBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.PlanteraBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.Golem:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.GolemBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.GolemBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.MoonLordCore:
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.MoonLordBossBag);
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.MoonLordBossBag, 1);
                     return;
                 case Terraria.ID.NPCID.HallowBoss: //eol 636
                     if (eventArgs.npc.AI_120_HallowBoss_IsGenuinelyEnraged()) // 检查当前是否处于白天末期（eol: end of the day），如果是的话，则丢弃Terraprisma
                     {
-                        Terraria.Item.NewItem(new EntitySource_DebugCommand(), (int) eventArgs.npc.position.X, (int) eventArgs.npc.position.Y, (int) eventArgs.npc.Size.X, (int) eventArgs.npc.Size.Y, Terraria.ID.ItemID.EmpressBlade, 1);//5005 TerraPrisma
+                        Terraria.Item.NewItem(new EntitySource_DebugCommand(), eventArgs.npc.Center, Terraria.ID.ItemID.EmpressBlade, 1);//5005 TerraPrisma
                     } // DropItemInstanced() 方法将通知每个客户端存在一个物品，但在服务器端不会占用一个活跃的物品槽位，因此该物品不会被覆盖，这样每个客户端都可以收集这个物品。
-                    eventArgs.npc.DropItemInstanced(eventArgs.npc.position, eventArgs.npc.Size, Terraria.ID.ItemID.FairyQueenBossBag); //4782 eol Boss宝藏袋
+                    Terraria.GameContent.ItemDropRules.CommonCode.DropItemLocalPerClientAndSetNPCMoneyTo0(eventArgs.npc, Terraria.ID.ItemID.FairyQueenBossBag, 1); //4782 eol Boss宝藏袋
                     return;
             }
 

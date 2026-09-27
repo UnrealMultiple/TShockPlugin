@@ -27,7 +27,7 @@ public class Plugin : TerrariaPlugin
     public override string Description => GetString("Lagrange.XocMat机器人适配插件");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 0, 7);
+    public override Version Version => new Version(1, 0, 0, 8);
 
     internal static readonly List<TSPlayer> ServerPlayers = new();
 

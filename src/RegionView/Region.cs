@@ -221,7 +221,9 @@ public class Region
         {
             // As of API version 1.22, Main.tile.get now only returns a link to the tile data heap, and the tile was getting lost at Main.tile[x, y] = fakeTile.
             // This is why we actually have to copy the tile now.
-            this.RealTiles[index] = new Tile(Main.tile[x, y]);
+            Tile copy = new Tile();
+            copy.CopyFrom(Main.tile[x, y]);
+            this.RealTiles[index] = copy;
             fakeTile = Main.tile[x, y];
         }
 

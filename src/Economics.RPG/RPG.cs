@@ -16,7 +16,7 @@ public class RPG(Main game) : TerrariaPlugin(game)
     public override string Description => GetString("提供RPG玩法!");
 
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(3, 1, 0, 0);
+    public override Version Version => new Version(3, 1, 0, 1);
 
     public static PlayerLevelManager PlayerLevelManager { get; private set; } = null!;
 

@@ -15,7 +15,7 @@ public class BadApplePlayer : TerrariaPlugin
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
     public override string Description => GetString("BadApple播放器");
-    public override Version Version => new (1, 0, 0, 1);
+    public override Version Version => new (1, 0, 0, 2);
 
     private const int BaseWall = WallID.DiamondGemspark;
     private const int BaseColor = PaintID.WhitePaint;

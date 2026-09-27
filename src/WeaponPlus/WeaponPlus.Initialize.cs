@@ -122,7 +122,7 @@ public partial class WeaponPlus : TerrariaPlugin
                 var text3 = cointostring((long) (select.allCost * config.ResetTheWeaponReturnMultiple), out var items2);
                 foreach (var item in items2)
                 {
-                    var num = Item.NewItem(new EntitySource_DebugCommand(), args.Player.TPlayer.Center, new Vector2(5f, 5f), item.type, item.stack, true, 0, true);
+                    var num = Item.NewItem(new EntitySource_DebugCommand(), args.Player.TPlayer.Center + new Vector2(2.5f, 2.5f), item.type, item.stack, 0, NewItemOwnership.None, null, null, true);
                     Main.item[num].playerIndexTheItemIsReservedFor = args.Player.Index;
                     args.Player.SendData((PacketTypes) 21, "", num, 1f);
                     args.Player.SendData((PacketTypes) 22, null, num);

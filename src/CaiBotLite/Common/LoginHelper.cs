@@ -97,6 +97,8 @@ internal static class LoginHelper
              && type != PacketTypes.ItemOwner
              && type != PacketTypes.SyncLoadout
              && type != PacketTypes.Placeholder
+             && type != PacketTypes.RemoveItemOwner
+             && type != PacketTypes.PlayerPlatformInfo
              && type != PacketTypes.LoadNetModule)
            )
         {

@@ -16,7 +16,7 @@ public class GhostView(Main game) : TerrariaPlugin(game)
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "Eustia";
     public override string Description => GetString("死亡后能在鬼魂状态下观战，重连不刷新复活cd");
-    public override Version Version => new (1, 0, 0);
+    public override Version Version => new (1, 0, 0, 1);
 
     public override void Initialize()
     {

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 using Terraria;
 using Terraria.ID;
@@ -146,7 +146,7 @@ public sealed partial class GroundCraft
         foreach (AnimatedIngredient ingredient in animation.Ingredients)
         {
             WorldItem item = Main.item[ingredient.Index];
-            item.TurnToAir(true);
+            item.TurnToAir();
             ClearConsumedItem(ingredient.Index);
             _lockedItemIndexes.Remove(ingredient.Index);
             _stableScans.Remove(ingredient.Index);
@@ -177,7 +177,7 @@ public sealed partial class GroundCraft
             if (!item.active)
                 continue;
 
-            item.noGrabDelay = 0;
+            item.grabDelayTime = 0;
             item.playerIndexTheItemIsReservedFor = 255;
             item.velocity = Vector2.Zero;
             SyncItem(ingredient.Index);
@@ -259,12 +259,10 @@ public sealed partial class GroundCraft
 
     private static void LockAnimatedItem(WorldItem item)
     {
-        item.noGrabDelay = CraftAnimationNoGrabDelay;
+        item.grabDelayTime = CraftAnimationNoGrabDelay;
         item.playerIndexTheItemIsReservedFor = 255;
-        item.ownIgnore = -1;
-        item.ownTime = 0;
         item.beingGrabbed = false;
-        item.keepTime = Math.Max(item.keepTime, 10);
+        item.timeToKeepReservation = Math.Max(item.timeToKeepReservation, 10);
     }
 
     private void ReassertLockedItem(int index)

@@ -31,7 +31,7 @@ public class Challenger : TerrariaPlugin
     public override string Description => GetString("增强游戏难度，更好的游戏体验");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(1, 2, 0);
+    public override Version Version => new(1, 2, 0, 1);
 
     public Challenger(Main game)
         : base(game)
@@ -1166,7 +1166,7 @@ public class Challenger : TerrariaPlugin
 
                 if (Timer % config.RoyalGel_Timer == 0)
                 {
-                    var num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f), new Vector2(36f, 36f), list, 1, false, 0, false);
+                    var num = Item.NewItem(null, player.Center + new Vector2(Main.rand.Next(-860, 861), -600f) + new Vector2(18f, 18f), list, 1, 0);
                     Main.item[num].color = new Color(Main.rand.Next(256), Main.rand.Next(256), Main.rand.Next(256));
                     TSPlayer.All.SendData((PacketTypes) 88, null, num, 1f, 0f, 0f, 0);
                 }
@@ -1228,7 +1228,7 @@ public class Challenger : TerrariaPlugin
         var itemId = config.VolatileGelatin[randomIndex];
 
         // 创建掉落物，使用随机选中的itemId
-        Item.NewItem(null, args.Npc.Center, new Vector2(20f, 20f), itemId);
+        Item.NewItem(null, args.Npc.Center + new Vector2(10f, 10f), itemId);
     }
 
 

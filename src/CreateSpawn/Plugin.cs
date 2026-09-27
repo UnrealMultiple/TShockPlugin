@@ -14,7 +14,7 @@ public class CreateSpawn(Main game) : LazyPlugin(game)
 
     public override string Author => "少司命 羽学 Eustia";
 
-    public override Version Version => new (1, 0, 1, 1);
+    public override Version Version => new (1, 0, 1, 2);
 
     public override string Description => "使用指令复制区域建筑,支持保存建筑文件、跨地图粘贴";
     

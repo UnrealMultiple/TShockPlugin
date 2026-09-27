@@ -14,7 +14,7 @@ public class RealTime : TerrariaPlugin
     public override string Author => "十七";
     public override string Description => GetString("同步现实时间");
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2, 7, 0, 7);
+    public override Version Version => new Version(2, 7, 0, 8);
     private static readonly Random rand = new Random();
     private int realTimeSyncTimer = 0;   // 同步时间计时器
     private int npcWeatherTimer = 0;     // NPC/渔夫/月相计时器
@@ -81,7 +81,7 @@ public class RealTime : TerrariaPlugin
         orig();
         if (!Main.dayTime)
         {
-            Main.UpdateTime_SpawnTownNPCs(true);
+            Main.UpdateTime_SpawnTownNPCs();
         }
     }
     #endregion

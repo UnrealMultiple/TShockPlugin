@@ -90,7 +90,6 @@ public class CProjectile
     {
         if (Main.projectile[index] != null && Main.projectile[index].active)
         {
-            Main.projectileIdentity[Main.projectile[index].owner, Main.projectile[index].identity] = -1;
             Main.projectile[index].timeLeft = 0;
             if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
             {
@@ -104,11 +103,11 @@ public class CProjectile
                 else if (Main.projectile[index].friendly && !Main.projectile[index].npcProj && !ProjectileID.Sets.RocketsSkipDamageForPlayers[Main.projectile[index].type] 
                          && (Main.projectile[index].owner == Main.myPlayer || Main.getGoodWorld))
                 {
-                    Main.projectile[index].BombsHurtPlayers(projRectangle); 
+                    Main.projectile[index].SelfHurtPlayers(); 
                 }
             }
             Main.projectile[index].active = false;
-            TSPlayer.All.SendData((PacketTypes) 29, "", Main.projectile[index].identity, Main.projectile[index].owner, 0f, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes) 29, "", (int) Main.projectile[index].key, 0f, 0f);
             if (Collect.cprojs[index] != null)
             {
                 Collect.cprojs[index].isActive = false;
@@ -120,7 +119,6 @@ public class CProjectile
     {
         if (this.proj != null && this.proj.active)
         {
-            Main.projectileIdentity[this.proj.owner, this.proj.identity] = -1;
             this.proj.timeLeft = 0;
             if (Main.getGoodWorld && Main.projectile[index].aiStyle == 16)
             {
@@ -134,11 +132,11 @@ public class CProjectile
                 else if (Main.projectile[index].friendly && !Main.projectile[index].npcProj && !ProjectileID.Sets.RocketsSkipDamageForPlayers[type] 
                          && (Main.projectile[index].owner == Main.myPlayer || Main.getGoodWorld))
                 {
-                    Main.projectile[index].BombsHurtPlayers(projRectangle); 
+                    Main.projectile[index].SelfHurtPlayers(); 
                 }
             }
             this.proj.active = false;
-            TSPlayer.All.SendData((PacketTypes) 29, "", this.proj.identity, this.proj.owner, 0f, 0f, 0);
+            TSPlayer.All.SendData((PacketTypes) 29, "", (int) this.proj.key, 0f, 0f);
             if (Collect.cprojs[this.proj.whoAmI] != null)
             {
                 Collect.cprojs[this.proj.whoAmI].isActive = false;

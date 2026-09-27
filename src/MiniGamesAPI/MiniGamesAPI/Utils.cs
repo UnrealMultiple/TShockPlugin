@@ -16,7 +16,9 @@ public static class Utils
     public static int DropItem(float x, float y, int netid, int stack, byte prefix)
     {
         var itemById = TShock.Utils.GetItemById(netid);
-        var num = Item.NewItem(new EntitySource_DebugCommand(), (int) x, (int) y, itemById.width, itemById.height, netid, stack, false, prefix, false);
+        var num = Item.NewItem(new EntitySource_DebugCommand(),
+            new Microsoft.Xna.Framework.Vector2(x + itemById.width / 2f, y + itemById.height / 2f), netid, stack, prefix,
+            NewItemOwnership.None);
         TSPlayer.All.SendData((PacketTypes) 21, "", num, 0f, 0f, 0f, 0);
         return num;
     }

@@ -21,7 +21,7 @@ public class WeaponPlus : TerrariaPlugin
 
     public override string Description => GetString("允许在基础属性上强化任何武器, Allow any weapon to be strengthened on basic attributes");
 
-    public override Version Version => new Version(3, 0, 0, 0);
+    public override Version Version => new Version(3, 0, 0, 1);
     #endregion
 
     #region 实例变量
@@ -418,14 +418,14 @@ public class WeaponPlus : TerrariaPlugin
     #endregion
 
     #region 新物品
-    public static int MyNewItem(IEntitySource source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, bool noBroadcast = false, int prefixGiven = 0, bool noGrabDelay = false, bool reverseLookup = false)
+    public static int MyNewItem(IEntitySource source, Vector2 pos, Vector2 randomBox, int Type, int Stack = 1, bool noBroadcast = false, int prefixGiven = 0, NewItemOwnership ownership = NewItemOwnership.None)
     {
-        return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, noGrabDelay, reverseLookup);
+        return MyNewItem(source, (int) pos.X, (int) pos.Y, (int) randomBox.X, (int) randomBox.Y, Type, Stack, noBroadcast, prefixGiven, ownership);
     }
     
     // TODO: 可能需要更新
 
-    public static int MyNewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, bool noGrabDelay = false, bool reverseLookup = false)
+    public static int MyNewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack = 1, bool noBroadcast = false, int pfix = 0, NewItemOwnership ownership = NewItemOwnership.None)
     {
         if (WorldGen.generatingWorld)
         {
@@ -477,11 +477,15 @@ public class WeaponPlus : TerrariaPlugin
             num = Item.PickAnItemSlotToSpawnItemOn();
         }
         Main.timeItemSlotCannotBeReusedFor[num] = 0;
-        Main.item[num] = new WorldItem();
+        var newItem = new Item();
+        newItem.SetDefaults(Type);
+        newItem.Prefix(pfix);
+        newItem.stack = Stack;
+        Main.item[num] = new WorldItem(newItem)
+        {
+            whoAmI = num
+        };
         var val = Main.item[num];
-        val.SetDefaults(Type);
-        val.Prefix(pfix);
-        val.stack = Stack;
         val.position.X = X + (Width / 2) - (val.width / 2);
         val.position.Y = Y + (Height / 2) - (val.height / 2);
         val.wet = Collision.WetCollision(val.position, val.width, val.height);
@@ -499,7 +503,7 @@ public class WeaponPlus : TerrariaPlugin
         val.timeSinceItemSpawned = ItemID.Sets.OverflowProtectionTimeOffset[val.type];
         if (ItemSlot.Options.HighlightNewItems && val.type >= 0 && !ItemID.Sets.NeverAppearsAsNewInInventory[val.type])
         {
-            val.newAndShiny = true;
+            val.inner.newAndShiny = true;
         }
         else if (Main.netMode == 0)
         {
@@ -524,7 +528,7 @@ public class WeaponPlus : TerrariaPlugin
             {
                 var stack = player.inventory[i].stack;
                 var prefix = player.inventory[i].prefix;
-                player.inventory[i].TurnToAir(false);
+                player.inventory[i].TurnToAir();
                 TShock.Players[whoAmI].SendData((PacketTypes) 5, "", whoAmI, i);
                 switch (model)
                 {
@@ -542,7 +546,7 @@ public class WeaponPlus : TerrariaPlugin
                         var obj3 = Main.item[num2];
                         obj3.inner.knockBack += item.orig_knockBack * 0.05f * item.knockBack_level;
                         Main.item[num2].inner.useAnimation = item.orig_useAnimation - item.useSpeed_level;
-                        Main.item[num2].inner.useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].useAnimation);
+                        Main.item[num2].inner.useTime = (int) (item.orig_useTime * 1f / item.orig_useAnimation * Main.item[num2].inner.useAnimation);
                         var obj4 = Main.item[num2];
                         obj4.inner.shootSpeed += item.orig_shootSpeed * 0.05f * item.shootSpeed_level;
                         TShock.Players[whoAmI].SendData((PacketTypes) 21, null, num2);

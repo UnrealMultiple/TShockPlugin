@@ -13,7 +13,7 @@ public class Plugin : LazyPlugin
 {
     public override string Author => "cmgy";
     public override string Description => GetString("");
-    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 7);
+    public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!; public override Version Version => new Version(1, 0, 0, 8);
     public Plugin(Main game) : base(game) { }
 
     public override void Initialize()

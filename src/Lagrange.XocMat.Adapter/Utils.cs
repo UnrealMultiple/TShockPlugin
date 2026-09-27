@@ -540,7 +540,7 @@ internal class Utils
                         }
                         else
                         {
-                            player.Loadouts[0].Armor[num].TurnToAir(false);
+                            player.Loadouts[0].Armor[num].TurnToAir();
                             player.armor[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                             player.armor[num].stack = data.inventory[i].Stack;
                             player.armor[num].prefix = data.inventory[i].PrefixId;
@@ -567,7 +567,7 @@ internal class Utils
                         }
                         else
                         {
-                            player.Loadouts[0].Dye[num].TurnToAir(false);
+                            player.Loadouts[0].Dye[num].TurnToAir();
                             player.dye[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                             player.dye[num].stack = data.inventory[i].Stack;
                             player.dye[num].prefix = data.inventory[i].PrefixId;
@@ -593,7 +593,7 @@ internal class Utils
                         }
                         else
                         {
-                            player.Loadouts[1].Armor[num].TurnToAir(false);
+                            player.Loadouts[1].Armor[num].TurnToAir();
                             player.armor[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                             player.armor[num].stack = data.inventory[i].Stack;
                             player.armor[num].prefix = data.inventory[i].PrefixId;
@@ -619,7 +619,7 @@ internal class Utils
                         }
                         else
                         {
-                            player.Loadouts[1].Dye[num].TurnToAir(false);
+                            player.Loadouts[1].Dye[num].TurnToAir();
                             player.dye[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                             player.dye[num].stack = data.inventory[i].Stack;
                             player.dye[num].prefix = data.inventory[i].PrefixId;
@@ -647,7 +647,7 @@ internal class Utils
                             }
                             else
                             {
-                                player.Loadouts[2].Armor[num].TurnToAir(false);
+                                player.Loadouts[2].Armor[num].TurnToAir();
                                 player.armor[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                                 player.armor[num].stack = data.inventory[i].Stack;
                                 player.armor[num].prefix = data.inventory[i].PrefixId;
@@ -674,7 +674,7 @@ internal class Utils
                         }
                         else
                         {
-                            player.Loadouts[2].Dye[num].TurnToAir(false);
+                            player.Loadouts[2].Dye[num].TurnToAir();
                             player.dye[num] = TShock.Utils.GetItemById(data.inventory[i].NetId);
                             player.dye[num].stack = data.inventory[i].Stack;
                             player.dye[num].prefix = data.inventory[i].PrefixId;
@@ -714,7 +714,7 @@ internal class Utils
             for (var y = 0; y < Main.maxTilesY; y++)
             {
                 var tile = MapHelper.CreateMapTile(x, y, byte.MaxValue);
-                var col = MapHelper.GetMapTileXnaColor(tile);
+                var col = MapHelper.GetMapTileXnaColor(tile, x, y);
                 image[x, y] = new Rgba32(col.R, col.G, col.B, col.A);
             }
         }
