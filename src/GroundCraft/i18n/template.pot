@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GroundCraft\n"
-"POT-Creation-Date: 2026-09-19 06:58:00+0000\n"
-"PO-Revision-Date: 2026-09-19 06:58:00+0000\n"
+"POT-Creation-Date: 2026-09-27 17:14:31+0000\n"
+"PO-Revision-Date: 2026-09-27 17:14:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "图块 {0}"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:444
+#: ../../GroundCraft.Crafting.cs:440
 #, csharp-format
 msgid "地上合成：{0} x{1}"
 msgstr ""
@@ -163,7 +163,7 @@ msgstr ""
 msgid "工匠作坊"
 msgstr ""
 
-#: ../../GroundCraft.Crafting.cs:458
+#: ../../GroundCraft.Crafting.cs:454
 #, csharp-format
 msgid "已清除被消耗的掉落物：{0}。如果你还看到旧材料，那是客户端残影，实际已经不存在。"
 msgstr ""

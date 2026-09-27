@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Economics.WeaponPlus\n"
-"POT-Creation-Date: 2026-05-06 05:28:08+0000\n"
-"PO-Revision-Date: 2026-05-06 05:28:08+0000\n"
+"POT-Creation-Date: 2026-09-27 17:14:27+0000\n"
+"PO-Revision-Date: 2026-09-27 17:14:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,12 +36,12 @@ msgstr ""
 msgid "[武器强化EC版]重新加载配置完毕。"
 msgstr ""
 
-#: ../../WeaponPlus.cs:519
+#: ../../WeaponPlus.cs:523
 #, csharp-format
 msgid "{0} Modify Item {1} {2}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:586
+#: ../../WeaponPlus.cs:590
 #, csharp-format
 msgid "{0}不足！"
 msgstr ""
@@ -129,7 +129,7 @@ msgid ""
 "当前状态：伤害 +{0:0.00%}，大小 +{1:0.00%}，击退 +{2:0.00%}，攻速 +{3:0.00%}，射弹飞速 +{4:0.00%}"
 msgstr ""
 
-#: ../../WeaponPlus.cs:574
+#: ../../WeaponPlus.cs:578
 msgid "当前该类型升级已达到上限，无法升级"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 msgid "所有玩家的所有强化数据全部清理成功！"
 msgstr ""
 
-#: ../../WeaponPlus.cs:583
+#: ../../WeaponPlus.cs:587
 #, csharp-format
 msgid "扣除{0}：{1}，当前剩余：{2}"
 msgstr ""

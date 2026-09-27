@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RegionView\n"
-"POT-Creation-Date: 2025-01-29 16:03:11+0000\n"
-"PO-Revision-Date: 2025-01-29 16:03:11+0000\n"
+"POT-Creation-Date: 2026-09-27 17:14:52+0000\n"
+"PO-Revision-Date: 2026-09-27 17:14:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgid ""
 msgstr ""
 
 #: ../../Region.cs:212
-#: ../../Region.cs:255
+#: ../../Region.cs:257
 msgid "区域尚未设置虚拟图块。"
 msgstr ""
 

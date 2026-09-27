@@ -113,6 +113,7 @@
 | [Economics.Core](./src/Economics.Core/README.en-US.md) | 17.5% | Economic plugin prerequisite |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 83.9% | Trading plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.NPC](./src/Economics.NPC/README.en-US.md) | 100.0% | Custom monster rewards | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.Script]() |
+| [Economics.Plugin](./src/Economics.Plugin/README.md) | 0.0% | JavaScript plugin |  |
 | [Economics.Projectile](./src/Economics.Projectile/README.en-US.md) | 100.0% | Custom projectiles | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | 100.0% | Item recycling | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 93.5% | RPG plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
