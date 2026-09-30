@@ -7,7 +7,8 @@ public static class GameTime
     public const double TicksPerGameMinute = 60.0;
     public const double DawnMinutes = 270.0;      // 04:30
     public const double DuskMinutes = 1170.0;     // 19:30
-    public const double NightLengthTicks = 32400.0;
+    public const double NightLengthTicks = 32400.0;    // 19:30 -> 04:30
+    public const double DayLengthTicks = 54000.0;     // 04:30 -> 19:30
     public const double MinutesPerCycle = 1440.0;
 
     // 某个钟点算不算夜晚。白天是 04:30–19:29，其余（19:30–04:29）都算夜晚。
@@ -29,6 +30,11 @@ public static class GameTime
     // 只在触发点落入自己那扇窄窗内才为真。窗口刻意很窄：专用服务器只在有客户端
     // 连接时才推进世界，所以 04:30 空服的服务器根本没有 04:30 可报，更不该在下午
     // 拿一条过期的任务凑数。宽度单位是游戏分钟，30 即覆盖 04:30-05:00。
+    //
+    // 触发点所在半日的剩余刻数就是窗口的自然上限：越过半日边界时 Main.time 会归零、
+    // dayTime 翻转，同一个偏移量再比就没有意义了（那已是下半天的事）。所以窗口被
+    // 截到半日结束，而不是让它跨过去 —— 例如 19:20 触发只剩 10 分钟到日落，就只播
+    // 19:20-19:30。这是有意为之：宁可窗口短，也不在半日切换那一帧上误判。
     public static bool IsInWindow(int hour, int minute, double time, bool dayTime, double windowTicks)
     {
         // 触发点必须落在和它同一半日里，否则夜间配置会被拿去白天的 Main.time 上比。
@@ -36,7 +42,8 @@ public static class GameTime
             return false;
 
         double offset = TriggerOffsetTicks(hour, minute);
-        return time >= offset && time < offset + windowTicks;
+        double limit = Math.Min(offset + windowTicks, dayTime ? DayLengthTicks : NightLengthTicks);
+        return time >= offset && time < limit;
     }
 
     // 把当前游戏时刻格式化成 HH:mm。
