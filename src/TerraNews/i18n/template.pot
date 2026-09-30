@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TerraNews\n"
+"POT-Creation-Date: 2026-09-30 05:30:00+0000\n"
+"PO-Revision-Date: 2026-09-30 05:30:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../TerraNewsPlugin.cs:30
+msgid "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:52
+msgid "[TerraNews] 已加载，但配置中 Enabled=false，插件保持静默。使用 /terranews reload 可重新载入。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:58
+#, csharp-format
+msgid "[TerraNews] 已加载。总开关=开；每日播报 {0:00}:{1:00}（游戏内时间，窗口 {2}s = 04:30–05:00）。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:60
+#, csharp-format
+msgid "[TerraNews] 功能开关：{0}"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:61
+msgid "[TerraNews] 任务鱼图标使用原版聊天物品标签 [i:物品ID]，玩家可悬停查看详情。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:81
+#, csharp-format
+msgid "[TerraNews] 配置读取失败（{0}），已使用默认配置。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:100
+#, csharp-format
+msgid "[TerraNews][diag] dayTime={0} time={1:0.0} clock={2} halfDay={3} announced={4} quest={5} moon={6} storm={7} severity={8:0.00} merchant={9}"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:330
+msgid "泰拉新闻：查看今日渔夫任务。子命令 broadcast|storm|merchant 立即播报，reload 重载配置。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:346
+msgid "泰拉新闻已在配置中关闭（Enabled=false）。管理员可用 /terranews reload 重新载入。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:378
+#, csharp-format
+msgid "你没有权限使用该命令（需要 {0}）。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:392
+#, csharp-format
+msgid "你没有权限（需要 {0}）。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:398
+#, csharp-format
+msgid "该功能已在配置中关闭（Features.{0}=false）。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:414
+msgid "[TerraNews] 配置已重新载入。"
+msgstr ""

@@ -1,11 +1,5 @@
-using System;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Linq;
+namespace TerraNews;
 
-namespace TerraNews.Core;
-
-/// <summary>A one-shot world event the plugin wants to announce.</summary>
 public enum NewsKind
 {
     None,
@@ -15,10 +9,9 @@ public enum NewsKind
 }
 
 /// <summary>
-/// Rising-edge detection for the world events TerraNews reports on, over primitive inputs so
-/// it runs without a server. Sandstorm state comes from Sandstorm.Happening/Severity; the
-/// merchant is NPC 368 and her stock lives in Main.travelShop, re-rolled by
-/// Chest.SetupTravelShop() just before she spawns.
+/// Rising-edge detection for the world events TerraNews reports on. The merchant is NPC 368
+/// and her stock lives in Main.travelShop, re-rolled by Chest.SetupTravelShop() just before
+/// she spawns.
 /// </summary>
 public sealed class WorldEventWatcher
 {
@@ -39,7 +32,6 @@ public sealed class WorldEventWatcher
     {
         NewsKind kind = NewsKind.None;
 
-        // Rising edge: the storm has just started.
         if (happening && !_stormWasHappening)
         {
             // A storm can begin already at full intensity; don't follow it with a "it got
@@ -51,12 +43,11 @@ public sealed class WorldEventWatcher
         {
             _stormMaxAnnounced = false;
         }
-        // The intensity ramps up over time; tell people when it peaks.
-        else if (happening && !_stormMaxAnnounced && severity >= maxSeverityThreshold)
+        else if (!_stormMaxAnnounced && severity >= maxSeverityThreshold)
         {
+            // Intensity ramps up over time; tell people when it peaks.
             _stormMaxAnnounced = true;
-            if (kind == NewsKind.None)
-                kind = NewsKind.SandstormMaxed;
+            kind = NewsKind.SandstormMaxed;
         }
 
         _stormWasHappening = happening;
@@ -71,7 +62,6 @@ public sealed class WorldEventWatcher
         return arrived;
     }
 
-    /// <summary>Human readable intensity for a 0..1 severity value.</summary>
     public static string SeverityText(float severity)
     {
         if (severity >= 0.95f) return "狂暴";
@@ -81,18 +71,15 @@ public sealed class WorldEventWatcher
     }
 
     /// <summary>Merchant's de-duplicated stock; Main.travelShop is 40 slots where 0 means empty.</summary>
-    public static List<int> MerchantStock(int[]? travelShop, string iconFormat = "[i:{0}]")
+    public static List<int> MerchantStock(int[]? travelShop)
     {
         var items = new List<int>();
         if (travelShop is null)
             return items;
 
-        for (int i = 0; i < travelShop.Length; i++)
-        {
-            int id = travelShop[i];
+        foreach (int id in travelShop)
             if (id > 0 && !items.Contains(id))
                 items.Add(id);
-        }
 
         return items;
     }
@@ -103,11 +90,7 @@ public sealed class WorldEventWatcher
         if (stock.Count == 0)
             return "（今日货架是空的）";
 
-        var parts = new List<string>(stock.Count);
-        foreach (int id in stock)
-            parts.Add("[i:" + id.ToString(CultureInfo.InvariantCulture) + "]");
-
-        return string.Join(separator, parts);
+        return string.Join(separator, stock.Select(id => "[i:" + id + "]"));
     }
 
     /// <summary>Emits the {items} line once per row of perLine; perLine &lt;= 0 disables wrapping.</summary>
@@ -116,9 +99,10 @@ public sealed class WorldEventWatcher
         if (perLine <= 0 || templates is null)
             return templates ?? new List<string>();
 
-        var groups = new List<List<int>>();
-        for (int i = 0; i < stock.Count; i += perLine)
-            groups.Add(stock.Skip(i).Take(perLine).ToList());
+        var groups = stock.Select((id, i) => new { id, i })
+            .GroupBy(x => x.i / perLine)
+            .Select(g => g.Select(x => x.id).ToList())
+            .ToList();
 
         if (groups.Count <= 1)
             return templates;

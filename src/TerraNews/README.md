@@ -38,45 +38,65 @@
 {
   // 总开关。关闭后除 reload 外所有指令都会提示已关闭
   "Enabled": true,
-  // 每项功能单独开关，缺省全部为开
+  // 每项功能单独开关，默认为全开
   "Features": {
-    "DailyQuestBoard": true,    // 04:30 整条每日播报
-    "QuestFishIcon": true,      // 任务鱼可交互图标
-    "FishingLocation": true,    // 钓鱼地点 / 深度 / 提示
-    "AnglerStatus": true,       // 渔夫状态
-    "MoonPhase": true,          // 今日月相
-    "Sandstorm": true,          // 沙尘暴 / 暴风雪预警
-    "SandstormPeak": true,      // 风暴达到最强时的补报
-    "TravelingMerchant": true,  // 旅商货架
-    "ServerLog": true           // 同时写 TShock 日志
+    "DailyQuestBoard": true,      // 04:30 的整条每日播报
+    "QuestFishIcon": true,        // 任务鱼的可交互图标
+    "FishingLocation": true,      // 钓鱼地点、深度、Y 区间、提示
+    "AnglerStatus": true,         // 渔夫当前状态
+    "MoonPhase": true,            // 今日月相
+    "Sandstorm": true,            // 沙尘暴 / 暴风雪开始时的预警
+    "SandstormPeak": true,        // 风暴达到峰值时的补报
+    "TravelingMerchant": true,    // 旅商货架播报
+    "ServerLog": true             // 同时写入 TShock 日志
   },
-  "BroadcastHour": 4,           // 每日播报小时（游戏内）
-  "BroadcastMinute": 30,        // 每日播报分钟（游戏内）
-  "TriggerWindowSeconds": 30,   // 触发窗口，秒=游戏内分钟。30 即 04:30–05:00
-  "StartupDelaySeconds": 5,     // 插件加载后的静默期
-  "SandstormPeakSeverity": 0.95,
-  "MerchantItemsPerLine": 5,    // 货架每行图标数，0 = 不换行
-  "NameSource": "both",         // zh / en / both
-  "Diagnostics": false,
-  "CommandPermission": "",      // /terranews 权限，空 = 所有人
-  "AdminPermission": "",        // 管理子命令权限，空 = tshock.admin
-  "CommandAliases": ["新闻", "泰拉新闻", "news"]
+  "BroadcastHour": 4,             // 每日播报小时（游戏内）
+  "BroadcastMinute": 30,          // 每日播报分钟（游戏内）
+  "TriggerWindowSeconds": 30,     // 触发窗口，单位是游戏内分钟
+  "StartupDelaySeconds": 5,       // 插件加载后的静默期
+  "SandstormPeakSeverity": 0.95,  // 风暴峰值阈值
+  "MerchantItemsPerLine": 5,      // 货架每行图标数，0 = 不换行
+  "NameSource": "both",           // 鱼名来源：zh | vanilla | both
+  "Diagnostics": false,           // 每秒一行诊断日志
+  "CommandPermission": "",        // 留空 = 所有人
+  "AdminPermission": "",          // 留空 = tshock.admin
+  "CommandAliases": ["新闻", "泰拉新闻", "news"],
+  "DailyLines": [
+    "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
+    "[c/FFD966:任务鱼] [c/FFFFFF:{icon}]",
+    "[c/B39DDB:今日月相] [c/FFFFFF:{moon}]",
+    "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
+  ],
+  "SandstormLines": [
+    "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
+    "[c/FFD966:{storm}]",
+    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}]",
+    "[c/888888:沙漠起黄沙，雪原飞暴雪，出行注意（游戏时间 {time}）]"
+  ],
+  "SandstormPeakLines": [
+    "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
+    "[c/FF6B6B:{storm} 已达最强]",
+    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}]",
+    "[c/888888:能见度极差，建议尽快返回城镇（游戏时间 {time}）]"
+  ],
+  "MerchantLines": [
+    "[c/4FC3F7:========== 泰拉新闻 · 旅商到访 ==========]",
+    "[c/FFD966:今日货架（悬停查看详情）]",
+    "[c/FFFFFF:{items}]",
+    "[c/888888:共 {count} 件 · 售完即止（游戏时间 {time}）]"
+  ]
 }
 ```
 
-### 播报模板
+### 占位符
 
-四组模板都可自定义，支持整行颜色标签 `[c/4FC3F7:内容]`，也支持行内多段
-`[c/FFD966:标签] [c/FFFFFF:内容]`。
+- 每日：`{icon}` `{name}` `{name_zh}` `{name_en}` `{name_vanilla}` `{biome}` `{depth}`
+  `{yrange}` `{tip}` `{angler}` `{time}` `{id}` `{moon}` `{moon_bonus}`
+- 天气：`{storm}` `{severity}` `{remaining}` `{time}` `{moon}`
+- 旅商：`{items}` `{count}` `{time}` `{moon}`
 
-- `DailyLines` —— 可用 `{icon}` `{name}` `{name_zh}` `{name_en}` `{name_vanilla}` `{biome}` `{depth}` `{yrange}` `{tip}` `{angler}` `{moon}` `{moon_bonus}` `{time}` `{id}`
-- `SandstormLines` / `SandstormPeakLines` —— `{storm}` `{severity}` `{remaining}` `{time}` `{moon}`
-- `MerchantLines` —— `{items}` `{count}` `{time}` `{moon}`
-
-> 默认模板只用了 `{icon}` `{moon}` `{time}`，因为其余信息都在图标悬停提示里。
-> 想换回长版看板，把 `DailyLines` 改成下面这样即可（`FishingLocation`、`AnglerStatus`
-> 两个开关随之重新生效）：
->
+> 默认模板故意很简短，任务鱼的名称与钓法都在 `{icon}` 的悬停提示里。所有占位符都**依然可用**，
+> 想换回完整看板只需改写 `DailyLines`，例如：
 > ```json5
 > "DailyLines": [
 >   "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
@@ -88,33 +108,32 @@
 >   "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
 > ]
 > ```
->
-> `{angler}` 只能输出纯文本，不能自带颜色标签——外层标签被剥掉后嵌套标签会变成字面文本。
+> 注意 `{angler}` 只能输出纯文本，不能自带颜色标签。
 
-关掉某项功能后，**依赖它的整行会一起消失**，不会留下一个没有内容的标签。
-已被手动关闭的功能，指令会明确告知原因，例如
-`该功能已在配置中关闭（Features.TravelingMerchant=false）。`
+### 开关行为
+
+- 关掉某项后，**依赖它的整行会消失**，不会留下没有内容的标签
+- 默认模板不使用 `{biome}` `{depth}` `{tip}` `{angler}` `{moon_bonus}`，所以默认配置下
+  `FishingLocation` 与 `AnglerStatus` 两个开关不影响输出，改写 `DailyLines` 后才会生效
+- 手动调用已关闭的功能会明确告知原因
 
 ## 更新日志
+
+### v1.3.0
+- 改用仓库统一的 `GetString` 国际化机制，补充 `i18n` 翻译模板
+- 精简插件结构，移除仅为多端共享而存在的抽象层
+- 合并四处重复的权限与功能开关检查
+
 ### v1.2.1
-- 每日看板精简：任务鱼只留可交互图标，不再重复输出名称、钓鱼地点、深度、提示与渔夫状态
-- 月相不再显示钓鱼力加成
-- 新增 `weather` 指令别名，与 tModLoader 版统一用词
-- 旧版默认模板自动迁移为精简版（逐行比对，只有完全未改动才会替换）
+- 每日看板从 7 行精简为 4 行：任务鱼只留可交互图标，名称与钓法在悬停提示里
+- 未被改动的 1.2.0 默认模板在升级时自动替换，手工改过的模板保持不变
 
 ### v1.2.0
-- 新增总开关 + 每项功能单独开关（`Enabled` 与 `Features`）
-- 1.1 的平铺布尔配置自动迁移到 `Features` 块
-- 支持旅商货架图标按行数换行
-
-### v1.1.0
-- 天气播报拆分为「预警」与「最强补报」两套模板
-- 任务鱼目录扩充到 41 条，覆盖全部进度阶段
-
-### v1.0.0
-- 添加插件
+- 新增 `Features` 逐项开关，取代 1.0 的平铺布尔项
+- 新增 `MerchantItemsPerLine` 货架换行
 
 ## 反馈
-- 优先发issued -> 共同维护的插件库：https://github.com/UnrealMultiple/TShockPlugin
-- 次优先：TShock官方群：816771079
-- 大概率看不到但是也可以：国内社区trhub.cn ，bbstr.net , tr.monika.love
+
+- 问题反馈：https://github.com/UnrealMultiple/TShockPlugin/issues
+- TShock 交流群：816771079
+- TRHub：https://trhub.cn ；BBSTR：https://bbstr.net ；TR 主页：https://tr.monika.love

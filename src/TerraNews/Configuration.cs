@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TerraNews.Core;
 
 namespace TerraNews;
 
@@ -25,8 +22,6 @@ public static class LegacyFeatureKeys
 /// <summary>Plain JSON POCO so the config round-trips through the server folder and hot-reloads.</summary>
 public class TerraNewsConfig
 {
-    // ---------------------------------------------------------------- master switch
-
     /// <summary>Master switch: silent when false, except /terranews reload so it can be flipped back.</summary>
     [JsonProperty("Enabled")]
     public bool Enabled { get; set; } = true;
@@ -35,9 +30,7 @@ public class TerraNewsConfig
     [JsonProperty("Features", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public FeatureSwitches Features { get; set; } = new();
 
-    // ---------------------------------------------------------------- timing
-
-    /// <summary>Game time hour (0-23) of the daily broadcast. 04:30 is dawn, the moment the Angler rolls a new quest.</summary>
+    /// <summary>Game time hour (0-23) of the daily broadcast; 04:30 is when the Angler rolls a new quest.</summary>
     [JsonProperty("BroadcastHour")]
     public int BroadcastHour { get; set; } = 4;
 
@@ -45,7 +38,7 @@ public class TerraNewsConfig
     [JsonProperty("BroadcastMinute")]
     public int BroadcastMinute { get; set; } = 30;
 
-    /// <summary>Trigger window in real seconds; at 60x, 30 means 04:30-05:00 in-game.</summary>
+    /// <summary>Trigger window in game minutes; the default 30 covers 04:30-05:00.</summary>
     [JsonProperty("TriggerWindowSeconds")]
     public int TriggerWindowSeconds { get; set; } = 30;
 
@@ -53,17 +46,13 @@ public class TerraNewsConfig
     [JsonProperty("StartupDelaySeconds")]
     public int StartupDelaySeconds { get; set; } = 5;
 
-    // ---------------------------------------------------------------- thresholds
-
     /// <summary>Severity (0-1) at which the storm counts as "peak".</summary>
     [JsonProperty("SandstormPeakSeverity")]
     public float SandstormPeakSeverity { get; set; } = 0.95f;
 
-    /// <summary>How many merchant icons fit on one chat line. 0 = never wrap.</summary>
+    /// <summary>How many merchant icons fit on one chat line; 0 = never wrap.</summary>
     [JsonProperty("MerchantItemsPerLine")]
     public int MerchantItemsPerLine { get; set; } = 5;
-
-    // ---------------------------------------------------------------- appearance
 
     /// <summary>Fish name source: zh | vanilla | both.</summary>
     [JsonProperty("NameSource")]
@@ -71,23 +60,19 @@ public class TerraNewsConfig
 
     /// <summary>Log one line per second with the state the trigger is watching.</summary>
     [JsonProperty("Diagnostics")]
-    public bool Diagnostics { get; set; } = false;
+    public bool Diagnostics { get; set; }
 
-    // ---------------------------------------------------------------- permissions
-
-    /// <summary>Permission node for /terranews. Empty = everyone.</summary>
+    /// <summary>Permission node for /terranews; empty = everyone.</summary>
     [JsonProperty("CommandPermission")]
     public string CommandPermission { get; set; } = "";
 
-    /// <summary>Permission node for the admin subcommands. Empty = tshock.admin.</summary>
+    /// <summary>Permission node for the admin subcommands; empty = tshock.admin.</summary>
     [JsonProperty("AdminPermission")]
     public string AdminPermission { get; set; } = "";
 
     /// <summary>Extra aliases for /terranews.</summary>
     [JsonProperty("CommandAliases", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public string[] CommandAliases { get; set; } = { "新闻", "泰拉新闻", "news" };
-
-    // ---------------------------------------------------------------- templates
 
     /// <summary>
     /// Daily board, deliberately terse because the {icon} hover tooltip already says the rest.
@@ -145,11 +130,9 @@ public class TerraNewsConfig
         "[c/888888:共 {count} 件 · 售完即止（游戏时间 {time}）]"
     };
 
-    // ---------------------------------------------------------------- derived
-
     [JsonIgnore]
-    public string ResolvedCommandPermission =>
-        string.IsNullOrWhiteSpace(CommandPermission) ? null! : CommandPermission;
+    public string? ResolvedCommandPermission =>
+        string.IsNullOrWhiteSpace(CommandPermission) ? null : CommandPermission;
 
     [JsonIgnore]
     public string ResolvedAdminPermission =>
@@ -163,8 +146,6 @@ public class TerraNewsConfig
             "vanilla" or "en" or "en_us" => "vanilla",
             _ => "both"
         };
-
-    // ---------------------------------------------------------------- io
 
     public void Sanitize()
     {
@@ -186,8 +167,7 @@ public class TerraNewsConfig
             SandstormPeakLines = new List<string>(SandstormLines);
         if (MerchantLines is null || MerchantLines.Count == 0)
             MerchantLines = new List<string> { "[c/4FC3F7:旅商到访] [c/FFFFFF:{items}]" };
-        if (CommandAliases is null)
-            CommandAliases = Array.Empty<string>();
+        CommandAliases ??= Array.Empty<string>();
     }
 
     public static TerraNewsConfig Load(string path, out string? error)
@@ -255,12 +235,10 @@ public class TerraNewsConfig
             if (legacy is null || legacy.Type != JTokenType.Boolean)
                 continue;
 
-            bool value = legacy.Value<bool>();
-            bool alreadyConfigured = features is JObject obj && obj[entry.Value.ToString()] is not null;
-            if (alreadyConfigured)
+            if (features is JObject obj && obj[entry.Value.ToString()] is not null)
                 continue;
 
-            cfg.Features.Set(entry.Value, value);
+            cfg.Features.Set(entry.Value, legacy.Value<bool>());
         }
     }
 
@@ -274,20 +252,17 @@ public class TerraNewsConfig
             return;
 
         for (int i = 0; i < LegacyDailyLines.Length; i++)
-        {
             if (!string.Equals(cfg.DailyLines[i], LegacyDailyLines[i], StringComparison.Ordinal))
                 return;
-        }
 
-        var fresh = new TerraNewsConfig();
-        cfg.DailyLines = fresh.DailyLines;
+        cfg.DailyLines = new TerraNewsConfig().DailyLines;
     }
 
     public static void Save(string path, TerraNewsConfig cfg)
     {
         string? dir = Path.GetDirectoryName(path);
         if (!string.IsNullOrEmpty(dir))
-            Directory.CreateDirectory(dir!);
+            Directory.CreateDirectory(dir);
 
         File.WriteAllText(path, JsonConvert.SerializeObject(cfg, Formatting.Indented));
     }

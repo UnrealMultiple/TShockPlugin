@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace TerraNews.Core;
+namespace TerraNews;
 
 /// <summary>Depth band used by the vanilla fishing height check (Projectile heightLevel).</summary>
 public enum DepthBand
@@ -15,9 +12,7 @@ public enum DepthBand
     /// <summary>heightLevel 2 - worldSurface &lt;= Y &lt; rockLayer (underground).</summary>
     Underground,
     /// <summary>heightLevel 3 - rockLayer &lt;= Y (cavern / hell entry).</summary>
-    Cavern,
-    /// <summary>heightLevel 4 - bottom of the world (underworld).</summary>
-    Underworld
+    Cavern
 }
 
 /// <summary>
@@ -32,18 +27,9 @@ public sealed record QuestFishHint(
     DepthBand Depth,
     string Tip);
 
-public static class QuestFishCatalog
+/// <summary>The 41 vanilla Angler quest fish, keyed by Main.anglerQuestItemNetIDs value.</summary>
+public static class QuestFish
 {
-    /// <summary>Vanilla Angler quest pool - Main.anglerQuestItemNetIDs.</summary>
-    public static readonly int[] QuestPool =
-    {
-        2450, 2451, 2452, 2453, 2454, 2455, 2456, 2457, 2458, 2459,
-        2460, 2461, 2462, 2463, 2464, 2465, 2466, 2467, 2468, 2469,
-        2470, 2471, 2472, 2473, 2474, 2475, 2476, 2477, 2478, 2479,
-        2480, 2481, 2482, 2483, 2484, 2485, 2486, 2487, 2488, 4393,
-        4394
-    };
-
     private static readonly Dictionary<int, QuestFishHint> Hints = new()
     {
         // --- SurfaceDrops ---
@@ -112,29 +98,6 @@ public static class QuestFishCatalog
 
     public static bool TryGet(int netId, out QuestFishHint hint) => Hints.TryGetValue(netId, out hint!);
 
-    /// <summary>
-    /// Display name per nameSource ("zh"/"en"/"both"). The vanilla name is passed in rather
-    /// than looked up because reading it needs localisation tables that differ per host.
-    /// </summary>
-    public static string NameText(QuestFishHint hint, string nameSource, string vanillaName)
-    {
-        // The catalog carries the English name it was written from, which is also what the
-        // vanilla tables return, so prefer the game's answer when it is a real lookup.
-        string en = string.IsNullOrWhiteSpace(vanillaName) ? hint.NameEn : vanillaName;
-
-        if (string.Equals(nameSource, "zh", StringComparison.OrdinalIgnoreCase))
-            return hint.NameZh;
-
-        if (string.Equals(nameSource, "en", StringComparison.OrdinalIgnoreCase))
-            return en;
-
-        return string.Equals(hint.NameZh, en, StringComparison.Ordinal)
-            ? hint.NameZh
-            : $"{hint.NameZh}（{en}）";
-    }
-
-    public static string BiomeText(QuestFishHint hint) => hint.Biome;
-
     public static string DepthText(QuestFishHint hint) => hint.Depth switch
     {
         DepthBand.Sky => "天空",
@@ -145,20 +108,19 @@ public static class QuestFishCatalog
     };
 
     /// <summary>Human readable Y range for a depth band, using the live world values.</summary>
-    public static string DepthRangeText(DepthBand band, double worldSurface, double rockLayer, int maxTilesY)
+    public static string DepthRangeText(DepthBand band, double worldSurface, double rockLayer)
     {
-        double skyBottom = worldSurface * 0.5;
-        double hellTop = maxTilesY - 300;
+        double skyBottom = Math.Round(worldSurface * 0.5);
+        double surface = Math.Round(worldSurface);
+        double rock = Math.Round(rockLayer);
 
         return band switch
         {
-            DepthBand.Sky => $"（Y < {F(skyBottom)}）",
-            DepthBand.Surface => $"（Y {F(skyBottom)} ~ {F(worldSurface)}）",
-            DepthBand.Underground => $"（Y {F(worldSurface)} ~ {F(rockLayer)}）",
-            DepthBand.Cavern => $"（Y >= {F(rockLayer)}）",
+            DepthBand.Sky => $"（Y < {skyBottom}）",
+            DepthBand.Surface => $"（Y {skyBottom} ~ {surface}）",
+            DepthBand.Underground => $"（Y {surface} ~ {rock}）",
+            DepthBand.Cavern => $"（Y >= {rock}）",
             _ => string.Empty
         };
     }
-
-    private static string F(double v) => ((int)Math.Round(v)).ToString();
 }
