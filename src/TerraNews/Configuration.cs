@@ -85,7 +85,8 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    // 1.2.0 的默认看板，仅为升级时能认出来并替换掉而保留。
+    // 早期开发版那套七行看板，只为让老配置能被认出来并换成新默认而保留。
+    // 它依赖已经删掉的 {name} {biome} {depth} {yrange} {tip} 占位符。
     internal static readonly string[] LegacyDailyLines =
     {
         "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
@@ -246,8 +247,8 @@ public class TerraNewsConfig
         }
     }
 
-    // 把仍然是 1.2.0 出货文案的 DailyLines 换成新默认，让升级真的改变玩家看到的东西。
-    // 任何一处被手工改过的 DailyLines 都原样保留——那是管理员自己的措辞。
+    // 把 DailyLines 逐字比对，凡是还等于早期那套七行看板的就换成新默认，
+    // 让升级真的改变玩家看到的东西。改过一个字的都原样保留——那是管理员自己的措辞。
     private static void MigrateDailyTemplates(TerraNewsConfig cfg)
     {
         if (cfg.DailyLines is null || cfg.DailyLines.Count != LegacyDailyLines.Length)
