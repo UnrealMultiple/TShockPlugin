@@ -96,6 +96,7 @@
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
+| [DailyMerchant](./src/DailyMerchant/README.md) | 旅商每日到访 |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 |  |
 | [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 三角洲行动玩法插件的特勤处 | [LazyAPI](./src/LazyAPI/README.md) [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [linq2db]() |
 | [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 三角洲行动玩法游戏插件 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [LazyAPI](./src/LazyAPI/README.md) |
