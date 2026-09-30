@@ -20,12 +20,10 @@ public enum DepthBand
     Underworld
 }
 
-/// <summary>One quest fish and where it has to be fished.</summary>
-/// <remarks>
-/// The biome + depth pair mirrors the vanilla conditions in
-/// <c>GameContentFishDropPopulator</c> (see AddQuestFish calls), which is the code path
-/// that actually decides whether the Angler's quest fish can be reeled in.
-/// </remarks>
+/// <summary>
+/// One quest fish and where it has to be fished; the biome + depth pair mirrors the
+/// GameContentFishDropPopulator.AddQuestFish conditions that actually gate the catch.
+/// </summary>
 public sealed record QuestFishHint(
     int NetId,
     string NameEn,
@@ -115,14 +113,9 @@ public static class QuestFishCatalog
     public static bool TryGet(int netId, out QuestFishHint hint) => Hints.TryGetValue(netId, out hint!);
 
     /// <summary>
-    /// Builds the display name for a quest fish.
-    ///
-    /// The vanilla name is passed in rather than looked up, because reading it needs the
-    /// game's localisation tables - which differ between the two hosts. The joining rule
-    /// lives here so both hosts spell the result identically.
+    /// Display name per nameSource ("zh"/"en"/"both"). The vanilla name is passed in rather
+    /// than looked up because reading it needs localisation tables that differ per host.
     /// </summary>
-    /// <param name="nameSource">"zh", "en" or "both".</param>
-    /// <param name="vanillaName">The name the game itself would show, in its own language.</param>
     public static string NameText(QuestFishHint hint, string nameSource, string vanillaName)
     {
         // The catalog carries the English name it was written from, which is also what the

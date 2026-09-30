@@ -1,13 +1,9 @@
 namespace TerraNews.Core;
 
 /// <summary>
-/// Encapsulates the "fire at most once per half day, and only inside the trigger window"
-/// state machine so the rule can be unit tested without a running server.
-///
-/// Terraria restarts <c>Main.time</c> at 0 twice a day - at 04:30 (Main.dayTime flips to
-/// true) and at 19:30 (flips to false). Counting those restarts gives a monotonic half-day
-/// id, which is what "already announced" is tracked against. That survives server lag,
-/// /time set jumps and restarts, none of which a naive "Main.time == X" check would.
+/// "At most once per half day, and only inside the trigger window", as a testable state
+/// machine. Terraria restarts Main.time at 04:30 and 19:30; counting those restarts gives a
+/// monotonic half-day id, which survives lag, /time set jumps and restarts.
 /// </summary>
 public sealed class HalfDayTrigger
 {
@@ -18,8 +14,6 @@ public sealed class HalfDayTrigger
 
     /// <summary>Half-day id for which a broadcast was already sent; -1 means none yet.</summary>
     public int AnnouncedHalfDay { get; private set; } = -1;
-
-    public double LastTime => _lastTime;
 
     /// <summary>Advances the half-day counter for one server tick. Returns true to broadcast.</summary>
     public bool Tick(double time, bool dayTime, int hour, int minute, double windowTicks)
@@ -37,10 +31,7 @@ public sealed class HalfDayTrigger
         AnnouncedHalfDay = HalfDayIndex;
     }
 
-    /// <summary>
-    /// True when the trigger moment is inside its window and nothing was announced for the
-    /// current half day yet. Anything later in the day - 16:30 included - is not a trigger.
-    /// </summary>
+    /// <summary>True when the trigger is inside its window and this half day has not fired yet.</summary>
     public bool ShouldAnnounce(double time, bool dayTime, int hour, int minute, double windowTicks) =>
         AnnouncedHalfDay != HalfDayIndex
         && GameTime.IsInWindow(hour, minute, time, dayTime, windowTicks);

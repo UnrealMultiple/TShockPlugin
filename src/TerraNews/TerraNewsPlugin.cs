@@ -17,16 +17,11 @@ using GameTime = TerraNews.Core.GameTime;
 namespace TerraNews;
 
 /// <summary>
-/// 泰拉新闻 / TerraNews - a small TShock news desk.
-///
-///  * 04:30 every game day: the Angler's quest fish, where to catch it, and tonight's moon.
-///  * Sandstorm / blizzard onset (and optionally its peak).
-///  * Traveling Merchant arrival, stock shown as icons only.
-///
-/// Everything is driven from ServerApi.Hooks.GameUpdate, which TShock raises from
-/// Main.Update. A dedicated server only calls Main.Update while
-/// Netplay.HasFullyConnectedClients is true, so news is only ever broadcast to a server
-/// that actually has somebody online.
+/// 泰拉新闻 / TerraNews - a small TShock news desk: the 04:30 Angler quest fish and moon,
+/// sandstorm / blizzard onset, and the Traveling Merchant's shelf. Driven from
+/// ServerApi.Hooks.GameUpdate, which TShock raises from Main.Update - and a dedicated server
+/// only calls Main.Update while a client is connected, so news only ever reaches a populated
+/// server.
 /// </summary>
 [ApiVersion(2, 1)]
 public class TerraNewsPlugin : TerrariaPlugin
@@ -123,8 +118,8 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         if (warmingUp || !Config.Enabled)
         {
-            // Keep the state machines advancing even while muted, so turning a feature back
-            // on mid-day does not replay an edge that has already gone past.
+            // Keep the state machines advancing even while muted, so re-enabling mid-day
+            // does not replay an edge that has already gone past.
             _trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks);
             _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
             _events.TickMerchant(NPC.AnyNPCs(MerchantNpcId));
@@ -269,10 +264,7 @@ public class TerraNewsPlugin : TerrariaPlugin
         }
     }
 
-    /// <summary>
-    /// Plain text only: the caller wraps it in its own [c/......] tag, otherwise a nested
-    /// colour tag would end up visible as literal text once the outer tag is stripped.
-    /// </summary>
+    /// <summary>Plain text only: the caller wraps it in its own tag, or a nested one shows literally.</summary>
     private static string AnglerStatus()
     {
         if (Main.anglerQuestFinished)
@@ -287,9 +279,7 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     // ------------------------------------------------------------------ rendering
 
-    /// <summary>
-    /// Substitutes every {placeholder} in a template and resolves the leading colour tag.
-    /// </summary>
+    /// <summary>Substitutes every {placeholder} in a template and resolves the leading colour tag.</summary>
     private static ChatLine RenderLine(string template, Dictionary<string, string> context)
     {
         string text = template ?? string.Empty;
@@ -304,8 +294,7 @@ public class TerraNewsPlugin : TerrariaPlugin
         var result = new List<ChatLine>(templates.Count);
         foreach (string template in templates)
         {
-            // A line whose placeholders all belong to switched-off features is dropped
-            // rather than rendered as a dangling label.
+            // A line whose placeholders all belong to switched-off features is dropped entirely.
             if (!FeatureMap.ShouldRender(template, features))
                 continue;
 
@@ -333,10 +322,7 @@ public class TerraNewsPlugin : TerrariaPlugin
             target.SendMessage(row.Text, row.R, row.G, row.B);
     }
 
-    /// <summary>
-    /// Mirrors a broadcast into the server log. The item tag is rewritten to a readable
-    /// [物品#ID] marker because the log has no client to render the icon.
-    /// </summary>
+    /// <summary>Mirrors a broadcast into the log, rewriting [i:ID] to [物品#ID] since no client renders it there.</summary>
     private static void LogRendered(ChatLine[] rendered, FeatureSwitches features)
     {
         if (!features.ServerLog)
@@ -418,8 +404,7 @@ public class TerraNewsPlugin : TerrariaPlugin
 
             case "storm":
             case "sandstorm":
-            // `weather` is what the tModLoader mod calls it, so the two hosts speak the
-            // same vocabulary even though they are separate commands.
+            // `weather` is the tModLoader mod's name for this, so both hosts speak one vocabulary.
             case "weather":
             case "天气":
                 if (!IsAdmin(args.Player))

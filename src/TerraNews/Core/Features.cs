@@ -36,10 +36,8 @@ public enum Feature
 }
 
 /// <summary>
-/// The three broadcast channels. Unlike a Feature, a channel is something a *player*
-/// can see arrive as news, so it is the unit the server/client authority handshake talks
-/// about. The display-only features (icon, location, status, moon) have no channel:
-/// they shape a line inside a broadcast the channel already owns.
+/// The three broadcast channels: a unit a *player* can see arrive as news, so it is what the
+/// server/client authority handshake talks about. Display-only features own no channel.
 /// </summary>
 [Flags]
 public enum NewsChannel
@@ -50,10 +48,7 @@ public enum NewsChannel
     Merchant = 1 << 2
 }
 
-/// <summary>
-/// The on/off block that both hosts serialise. Every switch defaults to on, so a fresh
-/// config runs the full bulletin and an admin only flips what they want off.
-/// </summary>
+/// <summary>The on/off block both hosts serialise; every switch defaults to on.</summary>
 public class FeatureSwitches
 {
     public bool DailyQuestBoard { get; set; } = true;
@@ -112,32 +107,6 @@ public class FeatureSwitches
             case Feature.TravelingMerchant: TravelingMerchant = value; break;
             case Feature.ServerLog: ServerLog = value; break;
         }
-    }
-
-    /// <summary>All features that are currently enabled.</summary>
-    public List<Feature> Enabled()
-    {
-        var result = new List<Feature>();
-        foreach (Feature feature in All)
-        {
-            if (this[feature])
-                result.Add(feature);
-        }
-
-        return result;
-    }
-
-    /// <summary>All features that are currently disabled.</summary>
-    public List<Feature> Disabled()
-    {
-        var result = new List<Feature>();
-        foreach (Feature feature in All)
-        {
-            if (!this[feature])
-                result.Add(feature);
-        }
-
-        return result;
     }
 
     /// <summary>Which broadcast channels this host produces.</summary>
@@ -201,13 +170,10 @@ public static class FeatureMap
         ByPlaceholder.TryGetValue(placeholder, out Feature feature) ? feature : null;
 
     /// <summary>
-    /// Decides whether a template line should be sent at all.
-    ///
     /// A line is dropped when every placeholder it uses belongs to a disabled feature, so
-    /// switching 月相 off removes the moon line instead of leaving a dangling label. A line
-    /// with no placeholders is static text and is always kept; a line that mixes a disabled
-    /// placeholder with a live one (a label plus the fish name) is kept and the disabled part
-    /// simply renders empty.
+    /// switching 月相 off removes the moon line instead of leaving a dangling label. Static
+    /// lines are always kept, and a line mixing a disabled placeholder with a live one stays
+    /// with the disabled part rendering empty.
     /// </summary>
     public static bool ShouldRender(string? template, FeatureSwitches? features)
     {
@@ -233,46 +199,13 @@ public static class FeatureMap
 }
 
 /// <summary>
-/// Decides who renders a news item when both sides have the mod.
-///
-/// The rule the brief asks for: the server owns a channel as soon as it broadcasts it, and
-/// a client never re-renders a channel the server already sends. Pure logic, so the whole
-/// matrix is unit tested rather than reasoned about at runtime.
+/// Decides who renders a news item when both sides have the mod: the server owns a channel
+/// as soon as it broadcasts it, and a client never re-renders a channel the server sends.
+/// The mask itself is state, and lives in NewsHub; this is only the rule applied to it.
 /// </summary>
-public sealed class AuthorityResolver
+public static class AuthorityResolver
 {
-    /// <summary>Channels the server broadcasts, or null while the handshake is outstanding.</summary>
-    public NewsChannel? ServerMask { get; private set; }
-
-    /// <summary>Ticks since the mask last changed; used to re-request if the reply is lost.</summary>
-    public int HandshakeAge { get; private set; }
-
-    public bool HasServerMask => ServerMask.HasValue;
-
-    /// <summary>Records the mask the server announced.</summary>
-    public void ReceiveMask(NewsChannel mask)
-    {
-        if (ServerMask == mask)
-        {
-            HandshakeAge++;
-            return;
-        }
-
-        ServerMask = mask;
-        HandshakeAge = 0;
-    }
-
-    /// <summary>Forgets the mask, e.g. when the player leaves the world.</summary>
-    public void Reset()
-    {
-        ServerMask = null;
-        HandshakeAge = 0;
-    }
-
-    /// <summary>
-    /// Server side: it renders whenever its own configuration enables the channel. The mask
-    /// is about what clients are told, not about what the server does.
-    /// </summary>
+    /// <summary>Server side: it renders whenever its own configuration enables the channel.</summary>
     public static bool ServerRenders(NewsChannel channel, FeatureSwitches features) =>
         (features.Channels() & channel) == channel;
 

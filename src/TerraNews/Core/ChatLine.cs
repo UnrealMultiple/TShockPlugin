@@ -4,29 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace TerraNews.Core;
 
-/// <summary>
-/// One rendered chat line: the text TShock will send plus the RGB to send it in.
-/// </summary>
+/// <summary>One rendered chat line: the text TShock sends plus the RGB to send it in.</summary>
 public readonly record struct ChatLine(string Text, byte R, byte G, byte B)
 {
     public static readonly ChatLine White = new(string.Empty, 255, 255, 255);
 }
 
 /// <summary>
-/// Resolves the base colour of a chat line so TShock can send it as a real RGB colour,
-/// rather than leaving every line to the client's default white.
-///
-/// Two shapes of line are handled:
-///   * <c>[c/4FC3F7:whole line]</c> - one colour tag wrapping everything. The tag is
-///     stripped and its colour becomes the line colour. The closing bracket is matched from
-///     the END of the line so an item tag such as <c>[i:2451]</c> inside the payload does
-///     not truncate it.
-///   * <c>[c/FFD966:label] [c/FFFFFF:value]</c> - several inline tags. Bracket matching
-///     cannot tell these apart from an item tag, so the line is passed through untouched
-///     and the client renders the inline colours itself, which is exactly what vanilla
-///     does.
-///
-/// Either way the text is never mangled: the payload always reaches the player intact.
+/// Resolves a chat line's base colour so TShock can send real RGB instead of default white.
+/// A single tag wrapping the whole line ([c/4FC3F7:...], closing bracket matched from the end
+/// so an [i:2451] inside it does not truncate it) is stripped and applied here; several
+/// inline tags ([c/FFD966:label] [c/FFFFFF:value]) cannot be told apart from item tags by
+/// bracket matching, so the line passes through and the client renders the colours itself.
+/// Either way the payload reaches the player intact.
 /// </summary>
 public static class ChatLineParser
 {
@@ -67,9 +57,6 @@ public static class ChatLineParser
             (byte)((rgb >> 8) & 0xFF),
             (byte)(rgb & 0xFF));
     }
-
-    /// <summary>Strips a leading line colour tag, keeping any item tags intact.</summary>
-    public static string StripColorTag(string? line) => Parse(line).Text;
 
     /// <summary>
     /// Rewrites interactive item tags into something a plain text log can represent.

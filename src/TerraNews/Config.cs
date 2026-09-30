@@ -6,11 +6,7 @@ using TerraNews.Core;
 
 namespace TerraNews;
 
-/// <summary>
-/// Flat boolean keys used by TerraNews 1.0 and 1.1, mapped onto the Features block that
-/// replaced them. Only consulted while loading, and only for keys the new file does not
-/// already define, so upgrading never overwrites a deliberate choice.
-/// </summary>
+/// <summary>1.0/1.1 flat booleans mapped onto the Features block, for keys the new file omits.</summary>
 public static class LegacyFeatureKeys
 {
     public static readonly IReadOnlyDictionary<string, Feature> Map = new Dictionary<string, Feature>(StringComparer.OrdinalIgnoreCase)
@@ -26,26 +22,16 @@ public static class LegacyFeatureKeys
     };
 }
 
-/// <summary>
-/// Plugin configuration: a plain JSON POCO (Newtonsoft) so it round-trips through the
-/// server config folder and can be hot-reloaded with /terranews reload.
-/// </summary>
+/// <summary>Plain JSON POCO so the config round-trips through the server folder and hot-reloads.</summary>
 public class TerraNewsConfig
 {
     // ---------------------------------------------------------------- master switch
 
-    /// <summary>
-    /// Master switch. When false the plugin loads but stays completely silent: no automatic
-    /// broadcast, no /terranews output, nothing in the log. /terranews reload still works so
-    /// the switch can be flipped back without restarting the server.
-    /// </summary>
+    /// <summary>Master switch: silent when false, except /terranews reload so it can be flipped back.</summary>
     [JsonProperty("Enabled")]
     public bool Enabled { get; set; } = true;
 
-    /// <summary>
-    /// Per-feature switches, one per news item. Every one of them defaults to on, so a fresh
-    /// config runs the full bulletin and an admin only has to flip the ones they want off.
-    /// </summary>
+    /// <summary>Per-feature switches; all default on so a fresh config runs the full bulletin.</summary>
     [JsonProperty("Features", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public FeatureSwitches Features { get; set; } = new();
 
@@ -59,12 +45,7 @@ public class TerraNewsConfig
     [JsonProperty("BroadcastMinute")]
     public int BroadcastMinute { get; set; } = 30;
 
-    /// <summary>
-    /// Width of the trigger window, in real seconds. Terraria's clock runs at 60x, so one
-    /// real second is one in-game minute: the default 30 covers 04:30 - 05:00, which
-    /// survives a brief server hiccup while staying firmly in the early morning. Once the
-    /// window closes the board for that day is not sent late - /terranews shows it instead.
-    /// </summary>
+    /// <summary>Trigger window in real seconds; at 60x, 30 means 04:30-05:00 in-game.</summary>
     [JsonProperty("TriggerWindowSeconds")]
     public int TriggerWindowSeconds { get; set; } = 30;
 
@@ -109,14 +90,9 @@ public class TerraNewsConfig
     // ---------------------------------------------------------------- templates
 
     /// <summary>
-    /// Daily board, sent once at the configured time.
+    /// Daily board, deliberately terse because the {icon} hover tooltip already says the rest.
     /// Placeholders: {icon} {name} {name_zh} {name_en} {name_vanilla} {biome} {depth}
     /// {yrange} {tip} {angler} {time} {id} {moon} {moon_bonus}
-    ///
-    /// The default is deliberately terse. The hover tooltip on {icon} already carries the
-    /// fish's name, biome, depth band and how to hook it, so repeating that in the chat log
-    /// only made the bulletin harder to read at a glance. The placeholders are all still
-    /// available for a server that wants the long form back in its own templates.
     /// </summary>
     [JsonProperty("DailyLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> DailyLines { get; set; } = new()
@@ -127,10 +103,7 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    /// <summary>
-    /// The 1.2.0 default daily board. Kept only so an upgrade can recognise a config that
-    /// still carries the long form and swap it for the terse one.
-    /// </summary>
+    /// <summary>The 1.2.0 default board, kept only so an upgrade can recognise and swap it.</summary>
     internal static readonly string[] LegacyDailyLines =
     {
         "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
@@ -242,15 +215,15 @@ public class TerraNewsConfig
             MigrateDailyTemplates(cfg);
             cfg.Sanitize();
 
-            // Write the upgraded shape back so the admin can see the new Features block
-            // instead of editing a file whose keys the plugin has quietly stopped reading.
+            // Write the upgraded shape back so the admin sees the new block rather than
+            // editing a file whose keys we quietly stopped reading; a read-only folder must
+            // not stop the plugin from running.
             try
             {
                 Save(path, cfg);
             }
             catch
             {
-                // A read-only config folder must not stop the plugin from running.
             }
 
             return cfg;
@@ -262,11 +235,7 @@ public class TerraNewsConfig
         }
     }
 
-    /// <summary>
-    /// TerraNews 1.0 used flat booleans (ShowItemIcon, AnnounceSandstorm, ...). They are
-    /// folded into the new Features block, but only where the new key is absent, so a
-    /// hand-edited 1.1 config is never overwritten by a stale legacy value.
-    /// </summary>
+    /// <summary>1.0's flat booleans, folded into Features only where the new key is absent.</summary>
     private static void MigrateLegacySwitches(TerraNewsConfig cfg, string json)
     {
         JObject root;
@@ -296,13 +265,8 @@ public class TerraNewsConfig
     }
 
     /// <summary>
-    /// TerraNews 1.2 shipped a long daily board: the fish's name, the location, the depth,
-    /// the tip, the moon bonus and the Angler's status. The hover tooltip on the item icon
-    /// already says all of that, so 1.2.1 cuts the board down to the icon and the moon.
-    ///
-    /// A config that still holds the *shipped* 1.2.0 wording is swapped for the new default,
-    /// so upgrading actually changes what players see. A config whose DailyLines were edited
-    /// in any way is left completely alone - that is the admin's wording, not ours.
+    /// Swaps the untouched 1.2.0 wording for the new default, so upgrading really changes
+    /// what players see. DailyLines edited in any way are the admin's wording and left alone.
     /// </summary>
     private static void MigrateDailyTemplates(TerraNewsConfig cfg)
     {

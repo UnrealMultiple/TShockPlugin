@@ -3,16 +3,10 @@ using System;
 namespace TerraNews.Core;
 
 /// <summary>
-/// Pure helpers for Terraria's game clock. Kept free of engine state so the arithmetic
-/// can be unit tested without a running server.
-///
-/// Terraria time facts (Terraria 1.4.5):
-///   * Main.dayLength  = 54000 ticks == 15 in-game hours (04:30 -> 19:30)
-///   * Main.nightLength = 32400 ticks ==  9 in-game hours (19:30 -> 04:30)
-///   * Main.time restarts at 0 at 04:30 and again at 19:30, and Main.dayTime flips there.
-///   * Main.mfwh_UpdateTime_StartDay calls Main.mfwh_AnglerQuestSwap() right before time = 0,
-///     so 04:30 is exactly when the day's quest fish is rolled.
-///   * 1 in-game hour = 3600 ticks, so 1 in-game minute = 60 ticks = 1 real second.
+/// Pure helpers for Terraria's game clock, free of engine state so the arithmetic is testable.
+/// 1.4.5 facts: day = 54000 ticks (04:30-19:30), night = 32400 ticks, Main.time restarts at 0
+/// at both boundaries, 1 in-game minute = 60 ticks = 1 real second, and the Angler rolls the
+/// day's quest fish on the very frame Main.time hits 0 at dawn.
 /// </summary>
 public static class GameTime
 {
@@ -20,7 +14,6 @@ public static class GameTime
     public const double DawnMinutes = 270.0;      // 04:30
     public const double DuskMinutes = 1170.0;      // 19:30
     public const double NightLengthTicks = 32400.0;
-    public const double DayLengthTicks = 54000.0;
     public const double MinutesPerCycle = 1440.0;
 
     /// <summary>Total in-game minutes of the requested wall clock time.</summary>
@@ -42,13 +35,10 @@ public static class GameTime
     }
 
     /// <summary>
-    /// True only while the trigger moment is inside its own open window.
-    ///
-    /// The window is deliberately narrow. A dedicated server only ticks the world while a
-    /// client is connected, so a server that was empty at 04:30 has no 04:30 to report -
-    /// and it must not announce a stale task in the afternoon instead. The width is given
-    /// in real seconds, and Terraria's clock runs at 60x, so 30 s is 30 in-game minutes:
-    /// a window of 30 covers 04:30 - 05:00.
+    /// The window is deliberately narrow: a dedicated server only ticks the world while a
+    /// client is connected, so a server empty at 04:30 has no 04:30 to report and must not
+    /// announce a stale task in the afternoon instead. Width is real seconds at 60x, so 30 is
+    /// 30 in-game minutes, i.e. 04:30-05:00.
     /// </summary>
     public static bool IsInWindow(int hour, int minute, double time, bool dayTime, double windowTicks)
     {
@@ -57,14 +47,6 @@ public static class GameTime
 
         double offset = TriggerOffsetTicks(hour, minute);
         return time >= offset && time < offset + windowTicks;
-    }
-
-    /// <summary>True when the requested clock time has already been reached in the current half day.</summary>
-    public static bool HasPassed(int hour, int minute, double time, bool dayTime)
-    {
-        if (IsDaytimeRequest(hour, minute) != dayTime)
-            return false;
-        return time >= TriggerOffsetTicks(hour, minute);
     }
 
     /// <summary>Formats the current game clock as HH:mm.</summary>

@@ -15,14 +15,10 @@ public enum NewsKind
 }
 
 /// <summary>
-/// Watches the world-event flags TerraNews reports on. All logic is pure and takes
-/// primitive inputs so it can be exercised without a running server.
-///
-/// Sources:
-///   * Sandstorm : Terraria.GameContent.Events.Sandstorm.Happening / Severity / TimeLeft
-///   * Merchant  : NPC.AnyNPCs(NPCID 368); the stock lives in Main.travelShop, which the
-///                 server re-rolls in Chest.SetupTravelShop() right before spawning her
-///                 (WorldGen.cs, then NetMessage.SendTravelShop(-1)).
+/// Rising-edge detection for the world events TerraNews reports on, over primitive inputs so
+/// it runs without a server. Sandstorm state comes from Sandstorm.Happening/Severity; the
+/// merchant is NPC 368 and her stock lives in Main.travelShop, re-rolled by
+/// Chest.SetupTravelShop() just before she spawns.
 /// </summary>
 public sealed class WorldEventWatcher
 {
@@ -46,8 +42,8 @@ public sealed class WorldEventWatcher
         // Rising edge: the storm has just started.
         if (happening && !_stormWasHappening)
         {
-            // A storm can begin already at full intensity; do not follow it up with a
-            // "it got worse" bulletin for the same storm.
+            // A storm can begin already at full intensity; don't follow it with a "it got
+            // worse" bulletin for the same storm.
             _stormMaxAnnounced = severity >= maxSeverityThreshold;
             kind = NewsKind.SandstormStarted;
         }
@@ -67,10 +63,7 @@ public sealed class WorldEventWatcher
         return kind;
     }
 
-    /// <summary>
-    /// Feeds one tick of merchant presence. Returns whether she just showed up.
-    /// A reload resets the detector so a merchant that is already in town still gets news.
-    /// </summary>
+    /// <summary>One tick of merchant presence; true on the tick she shows up.</summary>
     public bool TickMerchant(bool present)
     {
         bool arrived = present && !_merchantWasPresent;
@@ -87,10 +80,7 @@ public sealed class WorldEventWatcher
         return "初起";
     }
 
-    /// <summary>
-    /// Collects the merchant's non-empty stock. Main.travelShop is a fixed 40-slot int[]
-    /// where 0 means "empty slot", so the leading zeros are simply skipped.
-    /// </summary>
+    /// <summary>Merchant's de-duplicated stock; Main.travelShop is 40 slots where 0 means empty.</summary>
     public static List<int> MerchantStock(int[]? travelShop, string iconFormat = "[i:{0}]")
     {
         var items = new List<int>();
@@ -120,11 +110,7 @@ public sealed class WorldEventWatcher
         return string.Join(separator, parts);
     }
 
-    /// <summary>
-    /// Rewrites the merchant templates so a long shelf wraps instead of running off the
-    /// side of the screen. Every line that contains {items} is emitted once per row; the
-    /// header and footer lines around it are emitted once. perLine &lt;= 0 disables wrapping.
-    /// </summary>
+    /// <summary>Emits the {items} line once per row of perLine; perLine &lt;= 0 disables wrapping.</summary>
     public static List<string> ExpandItemLines(List<string>? templates, IReadOnlyList<int> stock, int perLine)
     {
         if (perLine <= 0 || templates is null)

@@ -3,12 +3,9 @@ using System;
 namespace TerraNews.Core;
 
 /// <summary>
-/// Moon phase name and its effect on fishing power.
-///
-/// Main.moonPhase is a 0-7 int; the vanilla order runs Full -> waning -> Empty -> waxing.
-/// The multipliers are taken verbatim from Player.Fishing_GetPowerMultiplier() in Terraria
-/// 1.4.5, which is the only place the game applies the moon bonus, so the news never
-/// disagrees with what a player sees in the fishing power tooltip.
+/// Moon phase name and its fishing power effect. Main.moonPhase is a 0-7 int running Full ->
+/// waning -> Empty -> waxing, and the multipliers are verbatim from
+/// Player.Fishing_GetPowerMultiplier() in 1.4.5 so the news never disagrees with the tooltip.
 /// </summary>
 public static class MoonPhases
 {
@@ -57,13 +54,6 @@ public static class MoonPhases
         if (percent < 0)
             return $"钓鱼力 ×{multiplier:0.00}（{percent}%）";
         return $"钓鱼力 ×{multiplier:0.00}";
-    }
-
-    /// <summary>Whether this phase is one of the two the Angler likes best (full / new).</summary>
-    public static bool IsNotable(int phase)
-    {
-        int p = Wrap(phase);
-        return p == 0 || p == 4;
     }
 
     private static int Wrap(int phase) => ((phase % Count) + Count) % Count;
