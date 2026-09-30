@@ -16,14 +16,6 @@ public sealed class WorldEventWatcher
     private bool _stormMaxAnnounced;
     private bool _merchantWasPresent;
 
-    // /terranews reload 会把它清零，好让下一刻把当前状态当作新事件报出去。
-    public void Reset()
-    {
-        _stormWasHappening = false;
-        _stormMaxAnnounced = false;
-        _merchantWasPresent = false;
-    }
-
     // 喂进一个服务器刻的风暴状态，返回这一刻的事件（没有则 None）。
     public NewsKind TickSandstorm(bool happening, float severity, float maxSeverityThreshold)
     {

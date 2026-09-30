@@ -20,7 +20,7 @@ public class TerraNewsPlugin : TerrariaPlugin
     public const int MerchantNpcId = 368;
 
     public override string Name => "TerraNews";
-    public override string Author => "TerraNews";
+    public override string Author => "不是现在";
     // 尚未发布，版本号固定在 1.0.0。
     public override Version Version => new(1, 0, 0);
     public override string Description => GetString("泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。");
@@ -31,7 +31,6 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     private readonly HalfDayTrigger _trigger = new();
     private readonly WorldEventWatcher _events = new();
-    private readonly List<Command> _commands = new();
 
     private DateTime? _pluginStart;
     private DateTime _lastDiag = DateTime.MinValue;
@@ -50,11 +49,9 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     public void OnGameInitialize(EventArgs args)
     {
-        RegisterCommand();
-
         if (!Config.Enabled)
         {
-            TShock.Log.Warn(GetString("[TerraNews] 已加载，但配置中 Enabled=false，插件保持静默。使用 /terranews reload 可重新载入。"));
+            TShock.Log.Warn(GetString("[TerraNews] 已加载，但配置中 Enabled=false，插件保持静默。改完 tshock/TerraNews.json 后需重启服务器。"));
             return;
         }
 
@@ -69,7 +66,6 @@ public class TerraNewsPlugin : TerrariaPlugin
         {
             ServerApi.Hooks.GameInitialize.Deregister(this, OnGameInitialize);
             ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-            UnregisterCommands();
         }
 
         base.Dispose(disposing);
@@ -294,15 +290,6 @@ public class TerraNewsPlugin : TerrariaPlugin
             TSPlayer.All.SendMessage(row.Text, row.R, row.G, row.B);
     }
 
-    private static void Send(TSPlayer target, List<string> lines, Dictionary<string, string> context, FeatureSwitches features)
-    {
-        if (target is null || lines is null || lines.Count == 0)
-            return;
-
-        foreach (ChatLine row in BuildLines(lines, context, features))
-            target.SendMessage(row.Text, row.R, row.G, row.B);
-    }
-
     // 把播报镜像进日志，并把 [i:ID] 改写成 [物品#ID] —— 日志里没有客户端来渲染图标。
     private static void LogRendered(ChatLine[] rendered, FeatureSwitches features)
     {
@@ -314,126 +301,5 @@ public class TerraNewsPlugin : TerrariaPlugin
             sb.Append("  ").AppendLine(ChatLineParser.ToLogText(row.Text));
 
         TShock.Log.Info(sb.ToString().TrimEnd());
-    }
-
-    // 指令部分
-
-    private void RegisterCommand()
-    {
-        UnregisterCommands();
-
-        var names = new List<string> { "terranews" };
-        names.AddRange((Config.CommandAliases ?? Array.Empty<string>())
-            .Where(a => !string.IsNullOrWhiteSpace(a)));
-
-        var cmd = new Command(MainCommand, names.ToArray())
-        {
-            HelpText = GetString("泰拉新闻：查看今日渔夫任务。子命令 broadcast|storm|merchant 立即播报，reload 重载配置。")
-        };
-
-        _commands.Add(cmd);
-        Commands.ChatCommands.Add(cmd);
-    }
-
-    private void UnregisterCommands()
-    {
-        foreach (var cmd in _commands)
-            Commands.ChatCommands.Remove(cmd);
-        _commands.Clear();
-    }
-
-    private void MainCommand(CommandArgs args)
-    {
-        string sub = args.Parameters.Count > 0 ? args.Parameters[0].ToLowerInvariant() : string.Empty;
-        FeatureSwitches features = Config.Features;
-
-        // 指令就是开关本身的时候，总开关不该拦住它。
-        if (sub is not ("reload" or "重载" or "reloadconfig") && !Config.Enabled)
-        {
-            args.Player.SendErrorMessage(GetString("泰拉新闻已在配置中关闭（Enabled=false）。管理员可用 /terranews reload 重新载入。"));
-            return;
-        }
-
-        if (sub is "broadcast" or "daily" or "日常")
-        {
-            if (Gate(args, Feature.DailyQuestBoard) != GateResult.Ok)
-                return;
-
-            var context = BuildDailyContext(features);
-            Send(args.Player, Config.DailyLines, context, features);
-            Broadcast(Config.DailyLines, context, features);
-            return;
-        }
-
-        if (sub is "storm" or "sandstorm" or "weather" or "天气")
-        {
-            if (Gate(args, Feature.Sandstorm) != GateResult.Ok)
-                return;
-
-            BroadcastStorm(NewsKind.SandstormStarted, features);
-            return;
-        }
-
-        if (sub is "merchant" or "shop" or "旅商")
-        {
-            if (Gate(args, Feature.TravelingMerchant) != GateResult.Ok)
-                return;
-
-            BroadcastMerchant(features);
-            return;
-        }
-
-        if (sub is "reload" or "重载" or "reloadconfig")
-        {
-            if (Gate(args, null) != GateResult.Ok)
-                return;
-
-            ReloadConfig(args.Player);
-            return;
-        }
-
-        // 单独输入 /terranews：每个有权限的人都会拿到今日看板。
-        if (Config.ResolvedCommandPermission is { } node && !args.Player.HasPermission(node))
-        {
-            args.Player.SendErrorMessage(GetString($"你没有权限使用该命令（需要 {node}）。"));
-            return;
-        }
-
-        Send(args.Player, Config.DailyLines, BuildDailyContext(features), features);
-    }
-
-    private enum GateResult { Ok, Denied, Disabled }
-
-    // 管理员校验 + 功能开关校验，按管理员预期的顺序给出提示。
-    private static GateResult Gate(CommandArgs args, Feature? feature)
-    {
-        if (!args.Player.HasPermission(Config.ResolvedAdminPermission))
-        {
-            args.Player.SendErrorMessage(GetString($"你没有权限（需要 {Config.ResolvedAdminPermission}）。"));
-            return GateResult.Denied;
-        }
-
-        if (feature.HasValue && !Config.Features[feature.Value])
-        {
-            args.Player.SendErrorMessage(GetString($"该功能已在配置中关闭（Features.{feature.Value}=false）。"));
-            return GateResult.Disabled;
-        }
-
-        return GateResult.Ok;
-    }
-
-    private void ReloadConfig(TSPlayer player)
-    {
-        LoadConfig();
-        _events.Reset();
-        _worldIsSnowy = null;
-        _pluginStart = DateTime.UtcNow;
-        _ready = false;
-        RegisterCommand();
-
-        player.SendMessage(GetString("[TerraNews] 配置已重新载入。"), 120, 220, 255);
-
-        if (Config.Enabled)
-            Send(player, Config.DailyLines, BuildDailyContext(Config.Features), Config.Features);
     }
 }

@@ -11,37 +11,25 @@
 - 任务鱼的名称、产地、深度、钓法提示**都在图标的悬停提示里**，聊天框中不再重复一遍
 - 沙尘暴与暴风雪是同一个原版事件，按地形扫描分开播报，可用 `StormType` 固定
 - 每日任务与换任务是同一帧触发的（`Main.mfwh_AnglerQuestSwap`），所以播报的一定是新任务
-- 服务器**无玩家在线时世界不推进**，此时不会触发播报；玩家进服后可用 `/terranews` 手动查看
+- 服务器**无玩家在线时世界不推进**，此时不会触发播报
+- 本插件**不注册任何指令**，全部内容按配置自动播报；改完配置需重启服务器
 - 每日播报效果：
 
 ```
 ========== 泰拉新闻 · 今日渔夫任务 ==========
 任务鱼 [i:2466]
 今日月相 娥眉月
-（游戏时间 04:30）输入 /terranews 可随时重新查看今日任务
 ```
 
 > 自定义模板时请注意：**含物品图标的行只能用一个颜色标签包住整行**，
 > 否则图标会显示成 `[i:2466]` 这样的字符串。原因见下方
 > [颜色标签与物品图标不能嵌套](#️-颜色标签与物品图标不能嵌套)。
 
-## 指令
-
-| 语法 | 别名 | 权限 | 说明 |
-|-----|:----:|:----:|:----:|
-| /terranews | /新闻 /泰拉新闻 /news | 所有人 | 查看今日渔夫任务 + 月相 |
-| /terranews broadcast | daily 日常 | tshock.admin | 立即全服播报今日任务 |
-| /terranews storm | sandstorm weather 天气 | tshock.admin | 立即播报天气预警 |
-| /terranews merchant | shop 旅商 | tshock.admin | 立即播报旅商货架 |
-| /terranews reload | 重载 reloadconfig | tshock.admin | 重载配置并重置事件检测状态 |
-
-> 指令别名可在配置的 `CommandAliases` 中修改。
-
 ## 配置
 > 配置文件位置：tshock/TerraNews.json
 ```json5
 {
-  // 总开关。关闭后除 reload 外所有指令都会提示已关闭
+  // 总开关。关闭后插件完全静默，改完需重启服务器
   "Enabled": true,
   // 每项功能单独开关，默认为全开
   "Features": {
@@ -59,52 +47,50 @@
   "TriggerWindowSeconds": 30,     // 触发窗口，单位是游戏内分钟
   "StartupDelaySeconds": 5,       // 插件加载后的静默期
   "SandstormPeakSeverity": 0.95,  // 风暴峰值阈值
-  "StormType": "auto",             // auto | sandstorm | blizzard
+  "StormType": "auto",            // auto | sandstorm | blizzard
   "MerchantItemsPerLine": 5,      // 货架每行图标数，0 = 不换行
   "Diagnostics": false,           // 每秒一行诊断日志
-  "CommandPermission": "",        // 留空 = 所有人
-  "AdminPermission": "",          // 留空 = tshock.admin
-  "CommandAliases": ["新闻", "泰拉新闻", "news"],
   "DailyLines": [
     "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
     "[c/FFD966:任务鱼 {icon}]",
-    "[c/FFFFFF:今日月相 {moon}]",
-    "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
+    "[c/FFFFFF:今日月相 {moon}]"
   ],
   "SandstormLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FFD966:{storm}]",
-    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    "[c/FFD966:{storm}已登陆]",
+    "[c/FFFFFF:强度 {severity}]"
   ],
   "BlizzardLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FFD966:{storm}]",
-    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    "[c/FFD966:{storm}已登陆]",
+    "[c/FFFFFF:强度 {severity}]"
   ],
   "SandstormPeakLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
     "[c/FF6B6B:{storm}已达最强]",
-    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    "[c/FFFFFF:强度 {severity}]"
   ],
   "BlizzardPeakLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
     "[c/FF6B6B:{storm}已达最强]",
-    "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    "[c/FFFFFF:强度 {severity}]"
   ],
   "MerchantLines": [
     "[c/4FC3F7:========== 泰拉新闻 · 旅商到访 ==========]",
     "[c/FFD966:今日货架（悬停查看详情）]",
-    "[c/FFFFFF:{items}]",
-    "[c/888888:共 {count} 件 · 售完即止（游戏时间 {time}）]"
+    "[c/FFFFFF:{items}]"
   ]
 }
 ```
 
 ### 占位符
 
-- 每日：`{icon}` `{angler}` `{time}` `{id}` `{moon}` `{moon_bonus}`
+- 每日：`{icon}` `{angler}` `{id}` `{moon}` `{moon_bonus}` `{time}`
 - 天气：`{storm}` `{severity}` `{remaining}` `{time}` `{moon}`
 - 旅商：`{items}` `{count}` `{time}` `{moon}`
+
+> 默认模板只用到其中一部分，想加就自己写进 `DailyLines`。
+> `{angler}` 输出纯文本，不能自带颜色标签；`{icon}` 所在行不能嵌套颜色标签（见下）。
 
 > **任务鱼只有 ID**：名称、产地、深度、钓法全部来自原版物品标签 `{icon}` 的悬停提示，
 > 插件不再自带鱼的介绍数据。想自定义看板只需改写 `DailyLines`，例如：
@@ -159,7 +145,7 @@
 沙尘暴误报成暴风雪。
 
 因此插件不问玩家，改**抽样扫描地表明层**，数沙块(32)与雪块(51)谁多。这个结果只与世界
-地形有关，扫描一次后缓存，`/terranews reload` 会清空缓存。
+地形有关，扫描一次后缓存，重启服务器时重新扫描。
 
 > 实测：默认世界与"一直下雨"种子的沙漠地表都约为雪原的 4 倍（沙 8830 / 雪 2378、
 > 沙 7516 / 雪 1600），所以 `auto` 的判定结果都是沙尘暴。
@@ -187,7 +173,6 @@
 - 关掉某项后，**依赖它的整行会消失**，不会留下没有内容的标签
 - 默认模板不使用 `{angler}` `{moon_bonus}`，所以默认配置下 `AnglerStatus` 不影响输出，
   改写 `DailyLines` 后才会生效
-- 手动调用已关闭的功能会明确告知原因
 
 ## 更新日志
 
@@ -197,8 +182,9 @@
 - 每天游戏内 04:30 全服播报今日渔夫任务鱼与今日月相，任务鱼用可悬停的原版物品图标
 - 沙尘暴 / 暴风雪开始与达到最强时播报预警，沙漠与雪原分开播报，可用 `StormType` 固定
 - 旅商到访时播报今日货架（纯图标，可悬停）
-- 总开关加 8 项逐项功能开关，支持 `/terranews reload` 热重载
-- 兼容 1.0 的平铺布尔配置，老配置自动迁移
+- 总开关加 8 项逐项功能开关
+- 全部自动播报，不注册任何指令
+- 兼容早期版本遗留的平铺布尔配置，老配置自动迁移
 
 ## 反馈
 

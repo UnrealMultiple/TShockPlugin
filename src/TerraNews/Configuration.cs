@@ -21,7 +21,7 @@ public static class LegacyFeatureKeys
 // 纯 JSON POCO，配置放在服务端目录下并支持热重载。
 public class TerraNewsConfig
 {
-    // 总开关：关闭时保持静默，但 /terranews reload 仍可用，好把它再打开而不必重启。
+    // 总开关：关闭时插件完全静默，得改配置再重启才会生效。
     [JsonProperty("Enabled")]
     public bool Enabled { get; set; } = true;
 
@@ -61,28 +61,15 @@ public class TerraNewsConfig
     [JsonProperty("Diagnostics")]
     public bool Diagnostics { get; set; }
 
-    // /terranews 的权限节点；留空 = 所有人。
-    [JsonProperty("CommandPermission")]
-    public string CommandPermission { get; set; } = "";
-
-    // 管理子命令的权限节点；留空 = tshock.admin。
-    [JsonProperty("AdminPermission")]
-    public string AdminPermission { get; set; } = "";
-
-    // /terranews 的额外别名。
-    [JsonProperty("CommandAliases", ObjectCreationHandling = ObjectCreationHandling.Replace)]
-    public string[] CommandAliases { get; set; } = { "新闻", "泰拉新闻", "news" };
-
     // 每日看板，刻意做得很短，因为 {icon} 的悬停提示已经包含了其余信息。
-    // 占位符：{icon} {angler} {time} {id} {moon} {moon_bonus}
+    // 占位符：{icon} {angler} {id} {moon} {moon_bonus} {time}
     // 含 {icon} 的行必须用「一个颜色标签包住整行」的写法，否则图标会变成一串字符。
     [JsonProperty("DailyLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> DailyLines { get; set; } = new()
     {
         "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
         "[c/FFD966:任务鱼 {icon}]",
-        "[c/FFFFFF:今日月相 {moon}]",
-        "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
+        "[c/FFFFFF:今日月相 {moon}]"
     };
 
     // 早期开发版那套七行看板，只为让老配置能被认出来并换成新默认而保留。
@@ -103,18 +90,18 @@ public class TerraNewsConfig
     public List<string> SandstormLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FFD966:{storm}]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+        "[c/FFD966:{storm}已登陆]",
+        "[c/FFFFFF:强度 {severity}]"
     };
 
-    // 暴风雪。占位符与沙尘暴相同；原版只有一个 Sandstorm 事件，雪与沙按玩家所在
-    // 生物群系区分，所以这里也拆成两套模板，播报时才说对名字。
+    // 暴风雪。占位符与沙尘暴相同；原版只有一个 Sandstorm 事件，雪与沙按地形区分，
+    // 所以这里也拆成两套模板，播报时才说对名字。
     [JsonProperty("BlizzardLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> BlizzardLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FFD966:{storm}]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+        "[c/FFD966:{storm}已登陆]",
+        "[c/FFFFFF:强度 {severity}]"
     };
 
     // 沙尘暴达到最强时的补报，占位符与 SandstormLines 相同。
@@ -123,7 +110,7 @@ public class TerraNewsConfig
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
         "[c/FF6B6B:{storm}已达最强]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+        "[c/FFFFFF:强度 {severity}]"
     };
 
     // 暴风雪达到最强时的补报，占位符与 BlizzardLines 相同。
@@ -132,7 +119,7 @@ public class TerraNewsConfig
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
         "[c/FF6B6B:{storm}已达最强]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+        "[c/FFFFFF:强度 {severity}]"
     };
 
     // 旅商到访。占位符：{items} {count} {time} {moon}。
@@ -141,18 +128,8 @@ public class TerraNewsConfig
     {
         "[c/4FC3F7:========== 泰拉新闻 · 旅商到访 ==========]",
         "[c/FFD966:今日货架（悬停查看详情）]",
-        "[c/FFFFFF:{items}]",
-        "[c/888888:共 {count} 件 · 售完即止（游戏时间 {time}）]"
+        "[c/FFFFFF:{items}]"
     };
-
-    [JsonIgnore]
-    public string? ResolvedCommandPermission =>
-        string.IsNullOrWhiteSpace(CommandPermission) ? null : CommandPermission;
-
-    [JsonIgnore]
-    public string ResolvedAdminPermission =>
-        string.IsNullOrWhiteSpace(AdminPermission) ? "tshock.admin" : AdminPermission;
-
 
     public void Sanitize()
     {
@@ -166,14 +143,17 @@ public class TerraNewsConfig
         Features ??= new FeatureSwitches();
 
         if (DailyLines is null || DailyLines.Count == 0)
-            DailyLines = new List<string> { "[c/4FC3F7:今日渔夫任务] [c/FFFFFF:{icon} {name}]" };
+            DailyLines = new List<string> { "[c/FFD966:任务鱼 {icon}]" };
         if (SandstormLines is null || SandstormLines.Count == 0)
-            SandstormLines = new List<string> { "[c/E0A458:天气预警] [c/FFFFFF:{storm}]" };
+            SandstormLines = new List<string> { "[c/FFD966:{storm}已登陆]" };
+        if (BlizzardLines is null || BlizzardLines.Count == 0)
+            BlizzardLines = new List<string>(SandstormLines);
         if (SandstormPeakLines is null || SandstormPeakLines.Count == 0)
             SandstormPeakLines = new List<string>(SandstormLines);
+        if (BlizzardPeakLines is null || BlizzardPeakLines.Count == 0)
+            BlizzardPeakLines = new List<string>(SandstormPeakLines);
         if (MerchantLines is null || MerchantLines.Count == 0)
             MerchantLines = new List<string> { "[c/4FC3F7:旅商到访] [c/FFFFFF:{items}]" };
-        CommandAliases ??= Array.Empty<string>();
     }
 
     public static TerraNewsConfig Load(string path, out string? error)
