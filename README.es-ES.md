@@ -100,6 +100,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.md) | 0.0% | Generación de puntos de aparición | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 0.0% | Indicación de golpe crítico |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
+| [DailyMerchant](./src/DailyMerchant/README.md) | 0.0% | Mercader itinerante diario: el vanilla solo le da un ~22% de probabilidad por día, aquí llega todos los días |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |
@@ -116,7 +117,7 @@
 | [Economics.Core](./src/Economics.Core/README.md) | 0.0% | Plugin económico |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 0.0% | Plugin de comercio | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.NPC](./src/Economics.NPC/README.md) | 0.0% | Recompensas personalizadas de monstruos | [Economics.Core](./src/Economics.Core/README.md) [Economics.Script]() |
-| [Economics.Plugin](./src/Economics.Plugin/README.md) | 0.0% | 用于JavaScript开发的插件 |  |
+| [Economics.Plugin](./src/Economics.Plugin/README.md) | 0.0% | 用于JavaScript开发的插件 | [Economics.Script]() |
 | [Economics.Projectile](./src/Economics.Projectile/README.md) | 0.0% | Proyectiles personalizados | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Regain](./src/Economics.Regain/README.md) | 0.0% | Reciclaje de objetos | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | 0.0% | Plugin RPG | [Economics.Core](./src/Economics.Core/README.md) |

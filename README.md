@@ -93,10 +93,10 @@
 | [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
+| [DailyMerchant](./src/DailyMerchant/README.md) | 旅商每日到访：原版每天只有约 22% 机会，这里改成每天必到 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
-| [DailyMerchant](./src/DailyMerchant/README.md) | 旅商每日到访 |  |
 | [DeathDrop](./src/DeathDrop/README.md) | 怪物死亡随机和自定义掉落物品 |  |
 | [DeltaForce.Core](./src/DeltaForce.Core/README.md) | 三角洲行动玩法插件的特勤处 | [LazyAPI](./src/LazyAPI/README.md) [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [linq2db]() |
 | [DeltaForce.Game](./src/DeltaForce.Game/README.md) | 三角洲行动玩法游戏插件 | [DeltaForce.Protocol](./src/DeltaForce.Protocol/README.md) [LazyAPI](./src/LazyAPI/README.md) |
@@ -110,7 +110,7 @@
 | [Economics.Core](./src/Economics.Core/README.md) | 经济插件前置 |  |
 | [Economics.Deal](./src/Economics.Deal/README.md) | 交易插件 | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.NPC](./src/Economics.NPC/README.md) | 自定义怪物奖励 | [Economics.Core](./src/Economics.Core/README.md) [Economics.Script]() |
-| [Economics.Plugin](./src/Economics.Plugin/README.md) | 用于JavaScript开发的插件 |  |
+| [Economics.Plugin](./src/Economics.Plugin/README.md) | 用于JavaScript开发的插件 | [Economics.Script]() |
 | [Economics.Projectile](./src/Economics.Projectile/README.md) | 自定义弹幕 | [Economics.Core](./src/Economics.Core/README.md) [Economics.RPG](./src/Economics.RPG/README.md) |
 | [Economics.Regain](./src/Economics.Regain/README.md) | 物品回收 | [Economics.Core](./src/Economics.Core/README.md) |
 | [Economics.RPG](./src/Economics.RPG/README.md) | RPG | [Economics.Core](./src/Economics.Core/README.md) |

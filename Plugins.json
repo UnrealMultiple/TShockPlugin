@@ -879,6 +879,29 @@
     "HotReload": true
   },
   {
+    "Name": "DailyMerchant",
+    "Version": "1.0",
+    "Author": "不是现在",
+    "Description": {
+      "en-US": "Daily Travelling Merchant: vanilla only gives him about a 22% chance per day, this makes him show up every day; spawning and broadcasts stay vanilla.",
+      "de-DE": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "it-IT": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "fr-FR": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "es-ES": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "ru-RU": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "zh-CN": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "pt-BR": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "pl-PL": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "ja-JP": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "ko-KR": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。",
+      "zh-Hant": "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。"
+    },
+    "AssemblyName": "DailyMerchant",
+    "Path": "DailyMerchant.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "DamageRuleLoot",
     "Version": "1.3.5.1",
     "Author": "羽学 西江小子",
@@ -3282,30 +3305,6 @@
     },
     "AssemblyName": "ShortCommand",
     "Path": "ShortCommand.dll",
-    "Dependencies": [],
-    "HotReload": true
-  }
-,
-  {
-    "Name": "DailyMerchant",
-    "Version": "1.0",
-    "Author": "不是现在",
-    "Description": {
-      "en-US": "Daily Travelling Merchant: vanilla only gives him a ~22% chance per day, this makes him show up every day",
-      "de-DE": "Täglicher Händler: Vanilla gibt ihm nur ~22% Wahrscheinlichkeit pro Tag, hier kommt er jeden Tag",
-      "it-IT": "Mercante itinerante giornaliero: in vanilla ha solo ~22% di probabilità al giorno, qui arriva ogni giorno",
-      "fr-FR": "Marchand ambulant quotidien : en vanilla il n'a que ~22% de chances par jour, ici il vient chaque jour",
-      "es-ES": "Mercader itinerante diario: el vanilla solo le da ~22% de probabilidad por día, aquí llega todos los días",
-      "ru-RU": "Ежедневный странствующий торговец: в ванилле у него всего ~22% шанс в день, здесь он приходит каждый день",
-      "zh-CN": "旅商每日到访：原版每天只有约 22% 机会，这里改成每天必到",
-      "pt-BR": "Mercador itinerante diário: no versão original ele tem apenas ~22% de chance por dia, aqui vem todos os dias",
-      "pl-PL": "Codzienny wędrowiec: w oryginale ma tylko ~22% szans dziennie, tutaj przychodzi codziennie",
-      "ja-JP": "毎日の行商人：バニラでは1日約22%の確率でしか来ませんが、ここでは毎日やってきます",
-      "ko-KR": "매일 방문하는 상인: 바닐라에서는 하루에 약 22% 확률로만 오지만, 여기서는 매일 방문합니다",
-      "zh-Hant": "旅商每日到訪：原版每天只有約 22% 機會，這裡改成每天必到"
-    },
-    "AssemblyName": "DailyMerchant",
-    "Path": "DailyMerchant.dll",
     "Dependencies": [],
     "HotReload": true
   }
