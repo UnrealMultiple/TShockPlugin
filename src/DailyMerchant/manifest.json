@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "Daily Travelling Merchant: vanilla only gives him a ~22% chance per day, this makes him show up every day"
+  },
+  "README.es-ES": {
+    "Description": "Mercader itinerante diario: el vanilla solo le da un ~22% de probabilidad por día, aquí llega todos los días"
+  },
+  "README": {
+    "Description": "旅商每日到访：原版每天只有约 22% 机会，这里改成每天必到"
+  }
+}
