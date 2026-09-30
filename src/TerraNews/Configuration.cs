@@ -71,12 +71,13 @@ public class TerraNewsConfig
 
     // 每日看板，刻意做得很短，因为 {icon} 的悬停提示已经包含了其余信息。
     // 占位符：{icon} {angler} {time} {id} {moon} {moon_bonus}
+    // 含 {icon} 的行必须用「一个颜色标签包住整行」的写法，否则图标会变成一串字符。
     [JsonProperty("DailyLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> DailyLines { get; set; } = new()
     {
         "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
-        "[c/FFD966:任务鱼] [c/FFFFFF:{icon}]",
-        "[c/B39DDB:今日月相] [c/FFFFFF:{moon}]",
+        "[c/FFD966:任务鱼 {icon}]",
+        "[c/FFFFFF:今日月相 {moon}]",
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
@@ -92,24 +93,41 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    // 沙尘暴/暴风雪。占位符：{storm} {severity} {remaining} {time} {moon}。
+    // 沙尘暴。占位符：{storm} {severity} {remaining} {time} {moon}。
     [JsonProperty("SandstormLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> SandstormLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
         "[c/FFD966:{storm}]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}]",
-        "[c/888888:沙漠起黄沙，雪原飞暴雪，出行注意（游戏时间 {time}）]"
+        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
     };
 
-    // 风暴达到最强时的补报，占位符与 SandstormLines 相同。
+    // 暴风雪。占位符与沙尘暴相同；原版只有一个 Sandstorm 事件，雪与沙按玩家所在
+    // 生物群系区分，所以这里也拆成两套模板，播报时才说对名字。
+    [JsonProperty("BlizzardLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> BlizzardLines { get; set; } = new()
+    {
+        "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
+        "[c/FFD966:{storm}]",
+        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    };
+
+    // 沙尘暴达到最强时的补报，占位符与 SandstormLines 相同。
     [JsonProperty("SandstormPeakLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> SandstormPeakLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FF6B6B:{storm} 已达最强]",
-        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}]",
-        "[c/888888:能见度极差，建议尽快返回城镇（游戏时间 {time}）]"
+        "[c/FF6B6B:{storm}已达最强]",
+        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
+    };
+
+    // 暴风雪达到最强时的补报，占位符与 BlizzardLines 相同。
+    [JsonProperty("BlizzardPeakLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> BlizzardPeakLines { get; set; } = new()
+    {
+        "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
+        "[c/FF6B6B:{storm}已达最强]",
+        "[c/FFFFFF:强度 {severity} · 预计持续 {remaining}（游戏时间 {time}）]"
     };
 
     // 旅商到访。占位符：{items} {count} {time} {moon}。

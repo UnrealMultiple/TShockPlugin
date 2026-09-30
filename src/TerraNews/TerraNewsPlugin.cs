@@ -21,7 +21,8 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     public override string Name => "TerraNews";
     public override string Author => "TerraNews";
-    public override Version Version => new(1, 4, 0);
+    // 尚未发布，版本号固定在 1.0.0。
+    public override Version Version => new(1, 0, 0);
     public override string Description => GetString("泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。");
 
     private static string ConfigPath => Path.Combine(TShock.SavePath, ConfigFileName);
@@ -125,10 +126,8 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         // 2) 天气
         NewsKind storm = _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
-        if (storm == NewsKind.SandstormStarted && features[Feature.Sandstorm])
-            Broadcast(Config.SandstormLines, BuildSandstormContext(), features);
-        else if (storm == NewsKind.SandstormMaxed && features[Feature.SandstormPeak])
-            Broadcast(Config.SandstormPeakLines, BuildSandstormContext(), features);
+        if (storm != NewsKind.None)
+            BroadcastStorm(storm, features);
 
         // 3) 旅商
         if (_events.TickMerchant(NPC.AnyNPCs(MerchantNpcId)) && features[Feature.TravelingMerchant])
@@ -166,9 +165,72 @@ public class TerraNewsPlugin : TerrariaPlugin
         };
     }
 
-    private static Dictionary<string, string> BuildSandstormContext() => new()
+    // 按当前这场到底是雪还是沙，挑对应的模板播报。
+    private void BroadcastStorm(NewsKind kind, FeatureSwitches features)
     {
-        ["storm"] = "沙尘暴 / 暴风雪 已登陆",
+        bool blizzard = IsBlizzard();
+        Feature gate = kind == NewsKind.SandstormStarted ? Feature.Sandstorm : Feature.SandstormPeak;
+        if (!features[gate])
+            return;
+
+        List<string> lines = (kind, blizzard) switch
+        {
+            (NewsKind.SandstormStarted, false) => Config.SandstormLines,
+            (NewsKind.SandstormStarted, true) => Config.BlizzardLines,
+            (NewsKind.SandstormMaxed, false) => Config.SandstormPeakLines,
+            _ => Config.BlizzardPeakLines
+        };
+
+        Broadcast(lines, BuildSandstormContext(blizzard), features);
+    }
+
+    // 原版的沙尘暴与暴风雪是同一个 Sandstorm 事件，雪和沙是按玩家所在生物群系
+    // 表现出来的（客户端判定写死为 ZoneSnow && ZoneRain），所以这里看在线玩家：
+    // 有人在雪地里就当暴风雪，有人在沙漠里就当沙尘暴，都没人时退回世界扫描。
+    private static bool IsBlizzard()
+    {
+        bool anySand = false;
+        for (int i = 0; i < Main.maxPlayers; i++)
+        {
+            Player player = Main.player[i];
+            if (!player.active)
+                continue;
+
+            if (player.ZoneSnow && player.ZoneRain)
+                return true;
+            anySand |= player.ZoneSandstorm;
+        }
+
+        return !anySand && Main.maxTilesX > 0 && WorldHasMoreSnowThanSand();
+    }
+
+    // 空服（管理员手动查天气）或所有在线玩家都在屋里时的兜底：抽样地表明层
+    // 比较雪块与沙块的数量。抽样只为得出一个名字，不值得扫全图。
+    private static bool WorldHasMoreSnowThanSand()
+    {
+        int snow = 0, sand = 0;
+        int surface = (int)Main.worldSurface + 20;
+        for (int x = 0; x < Main.maxTilesX; x += 8)
+        {
+            for (int y = surface; y < surface + 40 && y < Main.maxTilesY; y++)
+            {
+                if (!WorldGen.InWorld(x, y)) continue;
+
+                // 雪原地表是雪块，沙漠地表是沙块，数这两种就够判断这场是雪还是沙。
+                switch (Main.tile[x, y].type)
+                {
+                    case TileID.SnowBlock: snow++; break;
+                    case TileID.Sand: sand++; break;
+                }
+            }
+        }
+
+        return snow > sand;
+    }
+
+    private static Dictionary<string, string> BuildSandstormContext(bool blizzard) => new()
+    {
+        ["storm"] = blizzard ? "暴风雪" : "沙尘暴",
         ["severity"] = WorldEventWatcher.SeverityText(Sandstorm.Severity),
         ["remaining"] = GameTime.FormatDuration(Sandstorm.TimeLeft),
         ["time"] = GameClock(),
@@ -305,7 +367,7 @@ public class TerraNewsPlugin : TerrariaPlugin
             if (Gate(args, Feature.Sandstorm) != GateResult.Ok)
                 return;
 
-            Broadcast(Config.SandstormLines, BuildSandstormContext(), features);
+            BroadcastStorm(NewsKind.SandstormStarted, features);
             return;
         }
 
