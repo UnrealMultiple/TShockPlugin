@@ -184,39 +184,40 @@ public class TerraNewsPlugin : TerrariaPlugin
         Broadcast(lines, BuildSandstormContext(blizzard), features);
     }
 
-    // 原版的沙尘暴与暴风雪是同一个 Sandstorm 事件，雪和沙是按玩家所在生物群系
-    // 表现出来的（客户端判定写死为 ZoneSnow && ZoneRain），所以这里看在线玩家：
-    // 有人在雪地里就当暴风雪，有人在沙漠里就当沙尘暴，都没人时退回世界扫描。
+    // 原版的沙尘暴与暴风雪是同一个 Sandstorm 事件，客户端按 player.ZoneSnow &&
+    // player.ZoneRain 决定是黄沙还是暴雪。可这两个标志在专用服务器上不可靠：
+    // ZoneRain = Main.raining && Y <= worldSurface 是全局的、可靠，但 ZoneSnow 来自
+    // 客户端算的 Main.SceneMetrics，服务器上读到的是过期值——"一直下雨"的种子又让
+    // ZoneRain 恒为真，于是 ZoneSnow && ZoneRain 退化成只看 ZoneSnow，随便一个玩家
+    // 就能把沙尘暴误判成暴风雪。
+    //
+    // 所以不问玩家，改看地形：抽样地表明层，数雪块和沙块谁多。这个结果只跟世界本身
+    // 有关，缓存一次即可。世界里两种地形都有时无法两全，按 StormType 配置由服主定夺。
+    private static bool? _worldIsSnowy;
+
     private static bool IsBlizzard()
     {
-        bool anySand = false;
-        for (int i = 0; i < Main.maxPlayers; i++)
+        return Config.StormType switch
         {
-            Player player = Main.player[i];
-            if (!player.active)
-                continue;
-
-            if (player.ZoneSnow && player.ZoneRain)
-                return true;
-            anySand |= player.ZoneSandstorm;
-        }
-
-        return !anySand && Main.maxTilesX > 0 && WorldHasMoreSnowThanSand();
+            "sandstorm" => false,
+            "blizzard" => true,
+            _ => _worldIsSnowy ??= ScanSurfaceForSnow()
+        };
     }
 
-    // 空服（管理员手动查天气）或所有在线玩家都在屋里时的兜底：抽样地表明层
-    // 比较雪块与沙块的数量。抽样只为得出一个名字，不值得扫全图。
-    private static bool WorldHasMoreSnowThanSand()
+    // 抽样扫描地表明层。沙漠地表是沙块(32)，雪原地表是雪块(51)，数这两种就够。
+    private static bool ScanSurfaceForSnow()
     {
         int snow = 0, sand = 0;
-        int surface = (int)Main.worldSurface + 20;
-        for (int x = 0; x < Main.maxTilesX; x += 8)
+        int top = (int)Main.worldSurface - 8;
+        int bottom = (int)Main.worldSurface + 56;
+
+        for (int x = 0; x < Main.maxTilesX; x += 4)
         {
-            for (int y = surface; y < surface + 40 && y < Main.maxTilesY; y++)
+            for (int y = top; y < bottom && y < Main.maxTilesY; y++)
             {
                 if (!WorldGen.InWorld(x, y)) continue;
 
-                // 雪原地表是雪块，沙漠地表是沙块，数这两种就够判断这场是雪还是沙。
                 switch (Main.tile[x, y].type)
                 {
                     case TileID.SnowBlock: snow++; break;
@@ -225,6 +226,8 @@ public class TerraNewsPlugin : TerrariaPlugin
             }
         }
 
+        TShock.Log.Info($"[TerraNews] 地形判定：雪块 {snow} 格，沙块 {sand} 格"
+            + $" → 这场按{(snow > sand ? "暴风雪" : "沙尘暴")}播报。");
         return snow > sand;
     }
 
@@ -423,6 +426,7 @@ public class TerraNewsPlugin : TerrariaPlugin
     {
         LoadConfig();
         _events.Reset();
+        _worldIsSnowy = null;
         _pluginStart = DateTime.UtcNow;
         _ready = false;
         RegisterCommand();

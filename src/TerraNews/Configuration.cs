@@ -49,6 +49,10 @@ public class TerraNewsConfig
     [JsonProperty("SandstormPeakSeverity")]
     public float SandstormPeakSeverity { get; set; } = 0.95f;
 
+    // 沙尘暴与暴风雪怎么区分：auto（按地形扫描）/ sandstorm（一律沙尘暴）/ blizzard（一律暴风雪）。
+    [JsonProperty("StormType")]
+    public string StormType { get; set; } = "auto";
+
     // 货架每行放几个图标；0 = 不换行。
     [JsonProperty("MerchantItemsPerLine")]
     public int MerchantItemsPerLine { get; set; } = 5;
