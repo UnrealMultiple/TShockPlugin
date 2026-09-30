@@ -1,6 +1,6 @@
 # TerraNews 泰拉新闻
 
-- 作者: MiMo
+- 作者: 不是现在
 - 出处: TShock插件库
 - 每天 04:30 全服播报今日渔夫任务鱼与今日月相；沙尘暴、旅商到访时同步播报
 - 任务鱼和旅商货架用原版可交互物品图标展示，**鼠标悬停即可查看详情**
@@ -137,5 +137,3 @@
 ## 反馈
 
 - 问题反馈：https://github.com/UnrealMultiple/TShockPlugin/issues
-- TShock 交流群：816771079
-- TRHub：https://trhub.cn ；BBSTR：https://bbstr.net ；TR 主页：https://tr.monika.love
