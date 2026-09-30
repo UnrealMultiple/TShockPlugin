@@ -3,16 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace TerraNews;
 
-/// <summary>One rendered chat line: the text to send plus the RGB to send it in.</summary>
+// 一行渲染好的聊天内容：文本加上发送时使用的 RGB。
 public readonly record struct ChatLine(string Text, byte R, byte G, byte B);
 
-/// <summary>
-/// Resolves a chat line's base colour so TShock can send real RGB instead of default white.
-/// A single tag wrapping the whole line ([c/4FC3F7:...], closing bracket matched from the end
-/// so an [i:2451] inside it does not truncate it) is stripped and applied here; several
-/// inline tags ([c/FFD966:label] [c/FFFFFF:value]) cannot be told apart from item tags by
-/// bracket matching, so the line passes through and the client renders the colours itself.
-/// </summary>
+// 解析一行的基础颜色，好让 TShock 真正按 RGB 发送，而不是一律走客户端默认白。
+// 只有一个颜色标签且包住整行时（[c/4FC3F7:...]，结尾的 ] 从行尾反向匹配，这样行内
+// 夹着的 [i:2451] 不会把它截断），剥掉标签并在本层用其颜色；多个行内标签
+// （[c/FFD966:标签] [c/FFFFFF:值]）在括号配对上与物品标签无法区分，故原样透传，
+// 交由客户端自行渲染行内颜色——原版也是这么做的。
 public static class ChatLineParser
 {
     private static readonly Regex ItemTag = new(@"\[i:(\d+)\]", RegexOptions.Compiled);
@@ -22,20 +20,20 @@ public static class ChatLineParser
         if (string.IsNullOrEmpty(line))
             return new ChatLine(string.Empty, 255, 255, 255);
 
-        // Not a line we own: leave it exactly as the admin wrote it.
+        // 不是我们托管的行：按管理员写的样子原样发出。
         if (!line!.StartsWith("[c/", StringComparison.OrdinalIgnoreCase))
             return new ChatLine(line, 255, 255, 255);
 
-        // A colour tag is exactly "[c/" + 6 hex digits + ":".
+        // 颜色标签的格式恰好是 "[c/" + 6 位十六进制 + ":"。
         if (line.Length < 11 || line[9] != ':')
             return new ChatLine(line, 255, 255, 255);
 
-        // More than one colour tag: leave the inline colours to the client.
+        // 有多个颜色标签：行内颜色交给客户端。
         if (line.IndexOf("[c/", 10, StringComparison.OrdinalIgnoreCase) >= 0)
             return new ChatLine(line, 255, 255, 255);
 
-        // The tag wraps the whole line, so its closing bracket is the last one and anything
-        // between belongs to the payload. A suffix after it means it does not close here.
+        // 标签包住整行，所以它的右括号就是行尾那个，中间的都算正文。
+        // 后面还有内容就说明这个右括号并没有闭合它。
         int close = line.LastIndexOf(']');
         if (close != line.Length - 1)
             return new ChatLine(line, 255, 255, 255);
@@ -49,7 +47,7 @@ public static class ChatLineParser
             (byte)(rgb & 0xFF));
     }
 
-    /// <summary>Rewrites [i:2451] to [物品#2451] so a plain text log stays readable.</summary>
+    // 把 [i:2451] 改写成 [物品#2451]，让纯文本日志仍然可读。
     public static string ToLogText(string? text) =>
         ItemTag.Replace(text ?? string.Empty, "[物品#$1]");
 }

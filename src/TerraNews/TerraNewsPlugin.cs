@@ -7,24 +7,21 @@ using TShockAPI;
 
 namespace TerraNews;
 
-/// <summary>
-/// 泰拉新闻 / TerraNews - a small TShock news desk: the 04:30 Angler quest fish and moon,
-/// sandstorm / blizzard onset, and the Traveling Merchant's shelf. Driven from
-/// ServerApi.Hooks.GameUpdate, which TShock raises from Main.Update - and a dedicated server
-/// only calls Main.Update while a client is connected, so news only ever reaches a populated
-/// server.
-/// </summary>
+// 泰拉新闻：一个小型 TShock 新闻台。每天 04:30 播报渔夫任务鱼与月相，
+// 沙尘暴/暴风雪登陆，以及旅商到访的货架。全部挂在 ServerApi.Hooks.GameUpdate 上，
+// 而 TShock 只在 Main.Update 内部触发它 —— 专用服务器仅在有客户端连接时才调用
+// Main.Update，所以新闻只会发往有人的服务器。
 [ApiVersion(2, 1)]
 public class TerraNewsPlugin : TerrariaPlugin
 {
     public const string ConfigFileName = "TerraNews.json";
 
-    /// <summary>Terraria NPC type of the Traveling Merchant.</summary>
+    // 旅商的 Terraria NPC 类型号。
     public const int MerchantNpcId = 368;
 
     public override string Name => "TerraNews";
     public override string Author => "TerraNews";
-    public override Version Version => new(1, 3, 0);
+    public override Version Version => new(1, 4, 0);
     public override string Description => GetString("泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。");
 
     private static string ConfigPath => Path.Combine(TShock.SavePath, ConfigFileName);
@@ -107,8 +104,7 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         if (warmingUp || !Config.Enabled)
         {
-            // Keep the state machines advancing even while muted, so re-enabling mid-day
-            // does not replay an edge that has already gone past.
+            // 即使静默也继续推进状态机，这样中途重新开启时不会重播已经过去的边沿。
             _trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks);
             _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
             _events.TickMerchant(NPC.AnyNPCs(MerchantNpcId));
@@ -117,29 +113,29 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         _ready = true;
 
-        // 1) the daily board - strictly inside the 04:30 window, never later in the day
+        // 1) 每日看板 —— 严格限制在 04:30 窗口内，绝不在当天更晚的时候补播
         if (_trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks))
         {
-            // The window is consumed either way; only the announcement is optional.
+            // 窗口无论是否播报都会被消耗掉，区别只在于要不要真的发出去。
             _trigger.MarkAnnounced();
 
             if (features[Feature.DailyQuestBoard])
                 Broadcast(Config.DailyLines, BuildDailyContext(features), features);
         }
 
-        // 2) weather
+        // 2) 天气
         NewsKind storm = _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
         if (storm == NewsKind.SandstormStarted && features[Feature.Sandstorm])
             Broadcast(Config.SandstormLines, BuildSandstormContext(), features);
         else if (storm == NewsKind.SandstormMaxed && features[Feature.SandstormPeak])
             Broadcast(Config.SandstormPeakLines, BuildSandstormContext(), features);
 
-        // 3) the travelling merchant
+        // 3) 旅商
         if (_events.TickMerchant(NPC.AnyNPCs(MerchantNpcId)) && features[Feature.TravelingMerchant])
             BroadcastMerchant(features);
     }
 
-    /// <summary>Net ID of today's quest fish (Main.anglerQuestItemNetIDs[Main.anglerQuest]).</summary>
+    // 今日任务鱼的 Net ID（Main.anglerQuestItemNetIDs[Main.anglerQuest]）。
     public static int CurrentQuestFishId
     {
         get
@@ -150,32 +146,18 @@ public class TerraNewsPlugin : TerrariaPlugin
         }
     }
 
-    /// <summary>Current game clock as HH:mm.</summary>
+    // 当前游戏时刻，形如 HH:mm。
     public static string GameClock() => GameTime.Format(Main.time, Main.dayTime);
 
+    // 每日播报的可替换变量。鱼的一切信息都在 {icon} 的悬停提示里，这里只给得出 ID。
     private static Dictionary<string, string> BuildDailyContext(FeatureSwitches features)
     {
         int netId = CurrentQuestFishId;
-        QuestFish.TryGet(netId, out QuestFishHint? hint);
-
-        string vanilla = SafeVanillaName(netId);
-        string nameZh = hint?.NameZh ?? string.Empty;
-        bool location = features[Feature.FishingLocation];
         bool moon = features[Feature.MoonPhase];
 
         return new Dictionary<string, string>
         {
             ["icon"] = features[Feature.QuestFishIcon] ? $"[i:{netId}]" : string.Empty,
-            ["name"] = NameText(nameZh, vanilla),
-            ["name_zh"] = nameZh,
-            ["name_en"] = hint?.NameEn ?? string.Empty,
-            ["name_vanilla"] = vanilla,
-            ["biome"] = location ? hint?.Biome ?? "未知" : string.Empty,
-            ["depth"] = location && hint is not null ? QuestFish.DepthText(hint) : string.Empty,
-            ["yrange"] = location && hint is not null && Main.worldSurface > 0
-                ? QuestFish.DepthRangeText(hint.Depth, Main.worldSurface, Main.rockLayer)
-                : string.Empty,
-            ["tip"] = location ? hint?.Tip ?? "向任意渔夫询问即可领取今日任务" : string.Empty,
             ["angler"] = features[Feature.AnglerStatus] ? AnglerStatus() : string.Empty,
             ["moon"] = moon ? MoonPhases.Name(Main.moonPhase) : string.Empty,
             ["moon_bonus"] = moon ? MoonPhases.FishingBonusText(Main.moonPhase) : string.Empty,
@@ -208,30 +190,7 @@ public class TerraNewsPlugin : TerrariaPlugin
         Broadcast(lines, BuildMerchantContext(stock), features);
     }
 
-    private static string NameText(string zh, string vanilla) => Config.ResolvedNameSource switch
-    {
-        "zh" => string.IsNullOrWhiteSpace(zh) ? vanilla : zh,
-        "vanilla" => string.IsNullOrWhiteSpace(vanilla) ? zh : vanilla,
-        _ => string.IsNullOrWhiteSpace(zh)
-            ? vanilla
-            : string.IsNullOrWhiteSpace(vanilla) || string.Equals(zh, vanilla, StringComparison.OrdinalIgnoreCase)
-                ? zh
-                : $"{zh}（{vanilla}）"
-    };
-
-    private static string SafeVanillaName(int netId)
-    {
-        try
-        {
-            return netId <= 0 ? string.Empty : Lang.GetItemNameValue(netId) ?? string.Empty;
-        }
-        catch
-        {
-            return string.Empty;
-        }
-    }
-
-    /// <summary>Plain text only: the caller wraps it in its own tag, or a nested one shows literally.</summary>
+    // 渔夫状态。只能输出纯文本，因为外层颜色标签被剥掉后嵌套标签会变成字面文本。
     private static string AnglerStatus()
     {
         if (Main.anglerQuestFinished)
@@ -241,10 +200,8 @@ public class TerraNewsPlugin : TerrariaPlugin
         return "状态：渔夫在岗，可前往接取 / 交付任务";
     }
 
-    /// <summary>
-    /// Substitutes every {placeholder} in a template, drops lines whose placeholders all
-    /// belong to switched-off features, and resolves the leading colour tag.
-    /// </summary>
+    // 替换模板里的 {占位符}，丢掉占位符全部属于已关闭功能的那几行，
+    // 再解析行首的颜色标签。
     private static ChatLine[] BuildLines(List<string> templates, Dictionary<string, string> context, FeatureSwitches? features)
     {
         var result = new List<ChatLine>(templates.Count);
@@ -281,7 +238,7 @@ public class TerraNewsPlugin : TerrariaPlugin
             target.SendMessage(row.Text, row.R, row.G, row.B);
     }
 
-    /// <summary>Mirrors a broadcast into the log, rewriting [i:ID] to [物品#ID] since no client renders it there.</summary>
+    // 把播报镜像进日志，并把 [i:ID] 改写成 [物品#ID] —— 日志里没有客户端来渲染图标。
     private static void LogRendered(ChatLine[] rendered, FeatureSwitches features)
     {
         if (!features.ServerLog)
@@ -294,7 +251,7 @@ public class TerraNewsPlugin : TerrariaPlugin
         TShock.Log.Info(sb.ToString().TrimEnd());
     }
 
-    // ------------------------------------------------------------------ commands
+    // 指令部分
 
     private void RegisterCommand()
     {
@@ -325,7 +282,7 @@ public class TerraNewsPlugin : TerrariaPlugin
         string sub = args.Parameters.Count > 0 ? args.Parameters[0].ToLowerInvariant() : string.Empty;
         FeatureSwitches features = Config.Features;
 
-        // A command is never blocked by the master switch when it is the switch itself.
+        // 指令就是开关本身的时候，总开关不该拦住它。
         if (sub is not ("reload" or "重载" or "reloadconfig") && !Config.Enabled)
         {
             args.Player.SendErrorMessage(GetString("泰拉新闻已在配置中关闭（Enabled=false）。管理员可用 /terranews reload 重新载入。"));
@@ -370,7 +327,7 @@ public class TerraNewsPlugin : TerrariaPlugin
             return;
         }
 
-        // Bare /terranews: everyone who may run it gets today's board.
+        // 单独输入 /terranews：每个有权限的人都会拿到今日看板。
         if (Config.ResolvedCommandPermission is { } node && !args.Player.HasPermission(node))
         {
             args.Player.SendErrorMessage(GetString($"你没有权限使用该命令（需要 {node}）。"));
@@ -382,7 +339,7 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     private enum GateResult { Ok, Denied, Disabled }
 
-    /// <summary>Admin check plus the per-feature switch check, in the order an admin expects.</summary>
+    // 管理员校验 + 功能开关校验，按管理员预期的顺序给出提示。
     private static GateResult Gate(CommandArgs args, Feature? feature)
     {
         if (!args.Player.HasPermission(Config.ResolvedAdminPermission))

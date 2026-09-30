@@ -3,14 +3,13 @@ using Newtonsoft.Json.Linq;
 
 namespace TerraNews;
 
-/// <summary>1.0/1.1 flat booleans mapped onto the Features block, for keys the new file omits.</summary>
+// 1.0/1.1 的平铺布尔键，映射到后来的 Features 块，只在新文件没有该键时生效。
 public static class LegacyFeatureKeys
 {
     public static readonly IReadOnlyDictionary<string, Feature> Map = new Dictionary<string, Feature>(StringComparer.OrdinalIgnoreCase)
     {
         ["ShowItemIcon"] = Feature.QuestFishIcon,
         ["ShowMoonPhase"] = Feature.MoonPhase,
-        ["ShowDepthRange"] = Feature.FishingLocation,
         ["ShowAnglerStatus"] = Feature.AnglerStatus,
         ["AnnounceSandstorm"] = Feature.Sandstorm,
         ["AnnounceSandstormPeak"] = Feature.SandstormPeak,
@@ -19,66 +18,59 @@ public static class LegacyFeatureKeys
     };
 }
 
-/// <summary>Plain JSON POCO so the config round-trips through the server folder and hot-reloads.</summary>
+// 纯 JSON POCO，配置放在服务端目录下并支持热重载。
 public class TerraNewsConfig
 {
-    /// <summary>Master switch: silent when false, except /terranews reload so it can be flipped back.</summary>
+    // 总开关：关闭时保持静默，但 /terranews reload 仍可用，好把它再打开而不必重启。
     [JsonProperty("Enabled")]
     public bool Enabled { get; set; } = true;
 
-    /// <summary>Per-feature switches; all default on so a fresh config runs the full bulletin.</summary>
+    // 每项功能单独开关，默认全开，所以新配置直接就是完整播报。
     [JsonProperty("Features", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public FeatureSwitches Features { get; set; } = new();
 
-    /// <summary>Game time hour (0-23) of the daily broadcast; 04:30 is when the Angler rolls a new quest.</summary>
+    // 每日播报的游戏内小时（0-23）；04:30 正是渔夫换新任务的时刻。
     [JsonProperty("BroadcastHour")]
     public int BroadcastHour { get; set; } = 4;
 
-    /// <summary>Game time minute (0-59) of the daily broadcast.</summary>
+    // 每日播报的游戏内分钟（0-59）。
     [JsonProperty("BroadcastMinute")]
     public int BroadcastMinute { get; set; } = 30;
 
-    /// <summary>Trigger window in game minutes; the default 30 covers 04:30-05:00.</summary>
+    // 触发窗口，单位是游戏分钟；默认 30 即覆盖 04:30-05:00。
     [JsonProperty("TriggerWindowSeconds")]
     public int TriggerWindowSeconds { get; set; } = 30;
 
-    /// <summary>How long (real seconds) to stay quiet after the plugin loads.</summary>
+    // 插件加载后保持静默多久（真实秒）。
     [JsonProperty("StartupDelaySeconds")]
     public int StartupDelaySeconds { get; set; } = 5;
 
-    /// <summary>Severity (0-1) at which the storm counts as "peak".</summary>
+    // 风暴强度达到多少（0-1）算作"最强"。
     [JsonProperty("SandstormPeakSeverity")]
     public float SandstormPeakSeverity { get; set; } = 0.95f;
 
-    /// <summary>How many merchant icons fit on one chat line; 0 = never wrap.</summary>
+    // 货架每行放几个图标；0 = 不换行。
     [JsonProperty("MerchantItemsPerLine")]
     public int MerchantItemsPerLine { get; set; } = 5;
 
-    /// <summary>Fish name source: zh | vanilla | both.</summary>
-    [JsonProperty("NameSource")]
-    public string NameSource { get; set; } = "both";
-
-    /// <summary>Log one line per second with the state the trigger is watching.</summary>
+    // 每秒输出一行触发器正在观察的状态。
     [JsonProperty("Diagnostics")]
     public bool Diagnostics { get; set; }
 
-    /// <summary>Permission node for /terranews; empty = everyone.</summary>
+    // /terranews 的权限节点；留空 = 所有人。
     [JsonProperty("CommandPermission")]
     public string CommandPermission { get; set; } = "";
 
-    /// <summary>Permission node for the admin subcommands; empty = tshock.admin.</summary>
+    // 管理子命令的权限节点；留空 = tshock.admin。
     [JsonProperty("AdminPermission")]
     public string AdminPermission { get; set; } = "";
 
-    /// <summary>Extra aliases for /terranews.</summary>
+    // /terranews 的额外别名。
     [JsonProperty("CommandAliases", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public string[] CommandAliases { get; set; } = { "新闻", "泰拉新闻", "news" };
 
-    /// <summary>
-    /// Daily board, deliberately terse because the {icon} hover tooltip already says the rest.
-    /// Placeholders: {icon} {name} {name_zh} {name_en} {name_vanilla} {biome} {depth}
-    /// {yrange} {tip} {angler} {time} {id} {moon} {moon_bonus}
-    /// </summary>
+    // 每日看板，刻意做得很短，因为 {icon} 的悬停提示已经包含了其余信息。
+    // 占位符：{icon} {angler} {time} {id} {moon} {moon_bonus}
     [JsonProperty("DailyLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> DailyLines { get; set; } = new()
     {
@@ -88,7 +80,7 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    /// <summary>The 1.2.0 default board, kept only so an upgrade can recognise and swap it.</summary>
+    // 1.2.0 的默认看板，仅为升级时能认出来并替换掉而保留。
     internal static readonly string[] LegacyDailyLines =
     {
         "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
@@ -100,7 +92,7 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    /// <summary>Sandstorm / blizzard. Placeholders: {storm} {severity} {remaining} {time} {moon}.</summary>
+    // 沙尘暴/暴风雪。占位符：{storm} {severity} {remaining} {time} {moon}。
     [JsonProperty("SandstormLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> SandstormLines { get; set; } = new()
     {
@@ -110,7 +102,7 @@ public class TerraNewsConfig
         "[c/888888:沙漠起黄沙，雪原飞暴雪，出行注意（游戏时间 {time}）]"
     };
 
-    /// <summary>Sandstorm at full intensity. Same placeholders as SandstormLines.</summary>
+    // 风暴达到最强时的补报，占位符与 SandstormLines 相同。
     [JsonProperty("SandstormPeakLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> SandstormPeakLines { get; set; } = new()
     {
@@ -120,7 +112,7 @@ public class TerraNewsConfig
         "[c/888888:能见度极差，建议尽快返回城镇（游戏时间 {time}）]"
     };
 
-    /// <summary>Travelling Merchant. Placeholders: {items} {count} {time} {moon}.</summary>
+    // 旅商到访。占位符：{items} {count} {time} {moon}。
     [JsonProperty("MerchantLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> MerchantLines { get; set; } = new()
     {
@@ -138,14 +130,6 @@ public class TerraNewsConfig
     public string ResolvedAdminPermission =>
         string.IsNullOrWhiteSpace(AdminPermission) ? "tshock.admin" : AdminPermission;
 
-    [JsonIgnore]
-    public string ResolvedNameSource =>
-        (NameSource ?? "both").Trim().ToLowerInvariant() switch
-        {
-            "zh" or "cn" or "chinese" => "zh",
-            "vanilla" or "en" or "en_us" => "vanilla",
-            _ => "both"
-        };
 
     public void Sanitize()
     {
@@ -155,7 +139,6 @@ public class TerraNewsConfig
         StartupDelaySeconds = Math.Clamp(StartupDelaySeconds, 0, 60);
         MerchantItemsPerLine = Math.Clamp(MerchantItemsPerLine, 0, 12);
         SandstormPeakSeverity = Math.Clamp(SandstormPeakSeverity, 0.5f, 1f);
-        NameSource = ResolvedNameSource;
 
         Features ??= new FeatureSwitches();
 
@@ -195,9 +178,8 @@ public class TerraNewsConfig
             MigrateDailyTemplates(cfg);
             cfg.Sanitize();
 
-            // Write the upgraded shape back so the admin sees the new block rather than
-            // editing a file whose keys we quietly stopped reading; a read-only folder must
-            // not stop the plugin from running.
+            // 把升级后的结构写回去，这样管理员看到的是新字段，而不是一份我们
+            // 已经悄悄不再读取的旧键；只读的配置目录不该让插件跑不起来。
             try
             {
                 Save(path, cfg);
@@ -215,7 +197,7 @@ public class TerraNewsConfig
         }
     }
 
-    /// <summary>1.0's flat booleans, folded into Features only where the new key is absent.</summary>
+    // 1.0 的平铺布尔键，只在新的 Features 块里缺该键时才搬进去。
     private static void MigrateLegacySwitches(TerraNewsConfig cfg, string json)
     {
         JObject root;
@@ -242,10 +224,8 @@ public class TerraNewsConfig
         }
     }
 
-    /// <summary>
-    /// Swaps the untouched 1.2.0 wording for the new default, so upgrading really changes
-    /// what players see. DailyLines edited in any way are the admin's wording and left alone.
-    /// </summary>
+    // 把仍然是 1.2.0 出货文案的 DailyLines 换成新默认，让升级真的改变玩家看到的东西。
+    // 任何一处被手工改过的 DailyLines 都原样保留——那是管理员自己的措辞。
     private static void MigrateDailyTemplates(TerraNewsConfig cfg)
     {
         if (cfg.DailyLines is null || cfg.DailyLines.Count != LegacyDailyLines.Length)

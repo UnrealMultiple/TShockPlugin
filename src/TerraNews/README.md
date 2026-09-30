@@ -42,8 +42,7 @@
   "Features": {
     "DailyQuestBoard": true,      // 04:30 的整条每日播报
     "QuestFishIcon": true,        // 任务鱼的可交互图标
-    "FishingLocation": true,      // 钓鱼地点、深度、Y 区间、提示
-    "AnglerStatus": true,         // 渔夫当前状态
+    "AnglerStatus": true,         // 渔夫当前状态（仅在自定义模板里用到）
     "MoonPhase": true,            // 今日月相
     "Sandstorm": true,            // 沙尘暴 / 暴风雪开始时的预警
     "SandstormPeak": true,        // 风暴达到峰值时的补报
@@ -56,7 +55,6 @@
   "StartupDelaySeconds": 5,       // 插件加载后的静默期
   "SandstormPeakSeverity": 0.95,  // 风暴峰值阈值
   "MerchantItemsPerLine": 5,      // 货架每行图标数，0 = 不换行
-  "NameSource": "both",           // 鱼名来源：zh | vanilla | both
   "Diagnostics": false,           // 每秒一行诊断日志
   "CommandPermission": "",        // 留空 = 所有人
   "AdminPermission": "",          // 留空 = tshock.admin
@@ -90,22 +88,19 @@
 
 ### 占位符
 
-- 每日：`{icon}` `{name}` `{name_zh}` `{name_en}` `{name_vanilla}` `{biome}` `{depth}`
-  `{yrange}` `{tip}` `{angler}` `{time}` `{id}` `{moon}` `{moon_bonus}`
+- 每日：`{icon}` `{angler}` `{time}` `{id}` `{moon}` `{moon_bonus}`
 - 天气：`{storm}` `{severity}` `{remaining}` `{time}` `{moon}`
 - 旅商：`{items}` `{count}` `{time}` `{moon}`
 
-> 默认模板故意很简短，任务鱼的名称与钓法都在 `{icon}` 的悬停提示里。所有占位符都**依然可用**，
-> 想换回完整看板只需改写 `DailyLines`，例如：
+> **任务鱼只有 ID**：名称、产地、深度、钓法全部来自原版物品标签 `{icon}` 的悬停提示，
+> 插件不再自带 41 条鱼的介绍数据。想自定义看板只需改写 `DailyLines`，例如：
 > ```json5
 > "DailyLines": [
 >   "[c/4FC3F7:========== 泰拉新闻 · 今日渔夫任务 ==========]",
->   "[c/FFD966:任务鱼] [c/FFFFFF:{icon} {name}]",
->   "[c/FFD966:钓鱼地点] [c/FFFFFF:{biome} · {depth}{yrange}]",
->   "[c/FFD966:提示] [c/FFFFFF:{tip}]",
+>   "[c/FFD966:任务鱼] [c/FFFFFF:{icon}]",
 >   "[c/B39DDB:今日月相] [c/FFFFFF:{moon} · {moon_bonus}]",
 >   "[c/7FD4FF:{angler}]",
->   "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
+>   "[c/888888:（游戏时间 {time}）鱼 ID {id}]"
 > ]
 > ```
 > 注意 `{angler}` 只能输出纯文本，不能自带颜色标签。
@@ -113,11 +108,18 @@
 ### 开关行为
 
 - 关掉某项后，**依赖它的整行会消失**，不会留下没有内容的标签
-- 默认模板不使用 `{biome}` `{depth}` `{tip}` `{angler}` `{moon_bonus}`，所以默认配置下
-  `FishingLocation` 与 `AnglerStatus` 两个开关不影响输出，改写 `DailyLines` 后才会生效
+- 默认模板不使用 `{angler}` `{moon_bonus}`，所以默认配置下 `AnglerStatus` 不影响输出，
+  改写 `DailyLines` 后才会生效
 - 手动调用已关闭的功能会明确告知原因
 
 ## 更新日志
+
+### v1.4.0
+- 删除内置的 41 条任务鱼介绍数据：名称、产地、深度、钓法全部来自原版物品标签的悬停提示，
+  发送图标只需要 ID
+- 随之移除 `{name}` `{name_zh}` `{name_en}` `{name_vanilla}` `{biome}` `{depth}` `{yrange}`
+  `{tip}` 八个占位符、`FishingLocation` 开关与 `NameSource` 配置
+- 注释统一为中文并去掉所有 `<summary>`，保留的是踩坑原因而非叙述
 
 ### v1.3.0
 - 改用仓库统一的 `GetString` 国际化机制，补充 `i18n` 翻译模板

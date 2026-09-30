@@ -1,10 +1,7 @@
 namespace TerraNews;
 
-/// <summary>
-/// Game clock helpers. Main.time restarts at 0 at 04:30 and again at 19:30, 1 in-game minute
-/// is 60 ticks, and the clock runs at 60x - so the Angler rolls the day's quest fish on the
-/// very frame the day half begins.
-/// </summary>
+// 游戏时钟换算。Main.time 在 04:30 与 19:30 各归零一次，1 游戏分钟 = 60 刻，
+// 时钟以 60 倍速运行 —— 所以天亮那一帧正是渔夫换新任务的那一帧。
 public static class GameTime
 {
     public const double TicksPerGameMinute = 60.0;
@@ -13,10 +10,7 @@ public static class GameTime
     public const double NightLengthTicks = 32400.0;
     public const double MinutesPerCycle = 1440.0;
 
-    /// <summary>
-    /// Offset in ticks from the half-day reset (04:30 or 19:30) at which the trigger fires.
-    /// Times before 04:30 map into the night that precedes that dawn.
-    /// </summary>
+    // 触发时刻相对半日归零点的刻数偏移；04:30 之前的时间归入它前方的那个夜晚。
     public static double TriggerOffsetTicks(int hour, int minute)
     {
         double minutes = hour * 60 + minute;
@@ -25,13 +19,9 @@ public static class GameTime
         return NightLengthTicks - (DawnMinutes - minutes) * TicksPerGameMinute;
     }
 
-    /// <summary>
-    /// True only while the trigger moment is inside its own open window. The window is
-    /// deliberately narrow: a dedicated server only ticks the world while a client is
-    /// connected, so a server empty at 04:30 has no 04:30 to report and must not announce a
-    /// stale task in the afternoon instead. The width is in game minutes, so 30 covers
-    /// 04:30-05:00.
-    /// </summary>
+    // 只在触发点落入自己那扇窄窗内才为真。窗口刻意很窄：专用服务器只在有客户端
+    // 连接时才推进世界，所以 04:30 空服的服务器根本没有 04:30 可报，更不该在下午
+    // 拿一条过期的任务凑数。宽度单位是游戏分钟，30 即覆盖 04:30-05:00。
     public static bool IsInWindow(int hour, int minute, double time, bool dayTime, double windowTicks)
     {
         bool requestIsDaytime = hour * 60 + minute >= DawnMinutes;
@@ -42,7 +32,7 @@ public static class GameTime
         return time >= offset && time < offset + windowTicks;
     }
 
-    /// <summary>Formats the current game clock as HH:mm.</summary>
+    // 把当前游戏时刻格式化成 HH:mm。
     public static string Format(double time, bool dayTime)
     {
         double minutes = (dayTime ? DawnMinutes : DuskMinutes) + time / TicksPerGameMinute;
@@ -53,7 +43,7 @@ public static class GameTime
         return $"{(int)minutes / 60:00}:{(int)minutes % 60:00}";
     }
 
-    /// <summary>Formats a tick span as "8 小时 20 分".</summary>
+    // 把刻数格式化成 "8 小时 20 分"。
     public static string FormatDuration(double ticks)
     {
         int minutes = (int)(ticks / TicksPerGameMinute);
@@ -62,20 +52,18 @@ public static class GameTime
     }
 }
 
-/// <summary>
-/// Fires at most once per half day, and only inside the trigger window. Counting Main.time
-/// restarts gives a monotonic half-day id, which survives lag, /time set jumps and restarts.
-/// </summary>
+// 每个半日最多播一次，且只在触发窗内。靠数 Main.time 归零的次数得到单调递增的
+// 半日编号，这样卡顿、/time set 跳变和重启都不会让它重复播报。
 public sealed class HalfDayTrigger
 {
     private double _lastTime = -1;
 
     public int HalfDayIndex { get; private set; }
 
-    /// <summary>Half-day id for which a broadcast was already sent; -1 means none yet.</summary>
+    // 已经播报过的半日编号，-1 表示还没有播过。
     public int AnnouncedHalfDay { get; private set; } = -1;
 
-    /// <summary>Advances the counter for one server tick; true on the tick to broadcast.</summary>
+    // 推进一个服务器刻；返回 true 表示这一刻该播报了。
     public bool Tick(double time, bool dayTime, int hour, int minute, double windowTicks)
     {
         if (_lastTime >= 0 && time < _lastTime)
@@ -86,6 +74,6 @@ public sealed class HalfDayTrigger
                && GameTime.IsInWindow(hour, minute, time, dayTime, windowTicks);
     }
 
-    /// <summary>Records the broadcast as already sent for the current half day.</summary>
+    // 记下当前半日已播报。
     public void MarkAnnounced() => AnnouncedHalfDay = HalfDayIndex;
 }

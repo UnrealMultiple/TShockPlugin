@@ -8,18 +8,15 @@ public enum NewsKind
     MerchantArrived
 }
 
-/// <summary>
-/// Rising-edge detection for the world events TerraNews reports on. The merchant is NPC 368
-/// and her stock lives in Main.travelShop, re-rolled by Chest.SetupTravelShop() just before
-/// she spawns.
-/// </summary>
+// 世界事件的上升沿检测。旅商是 NPC 368，她的货架在 Main.travelShop 里，
+// 由 Chest.SetupTravelShop() 在刷出她之前重新掷出。
 public sealed class WorldEventWatcher
 {
     private bool _stormWasHappening;
     private bool _stormMaxAnnounced;
     private bool _merchantWasPresent;
 
-    /// <summary>Set false by /terranews reload so the next tick reports current state as new.</summary>
+    // /terranews reload 会把它清零，好让下一刻把当前状态当作新事件报出去。
     public void Reset()
     {
         _stormWasHappening = false;
@@ -27,15 +24,14 @@ public sealed class WorldEventWatcher
         _merchantWasPresent = false;
     }
 
-    /// <summary>Feeds one tick of storm state. Returns the storm event, if any.</summary>
+    // 喂进一个服务器刻的风暴状态，返回这一刻的事件（没有则 None）。
     public NewsKind TickSandstorm(bool happening, float severity, float maxSeverityThreshold)
     {
         NewsKind kind = NewsKind.None;
 
         if (happening && !_stormWasHappening)
         {
-            // A storm can begin already at full intensity; don't follow it with a "it got
-            // worse" bulletin for the same storm.
+            // 风暴可能一上来就是满强度，那就别再为同一场风暴补一条"变强了"。
             _stormMaxAnnounced = severity >= maxSeverityThreshold;
             kind = NewsKind.SandstormStarted;
         }
@@ -45,7 +41,7 @@ public sealed class WorldEventWatcher
         }
         else if (!_stormMaxAnnounced && severity >= maxSeverityThreshold)
         {
-            // Intensity ramps up over time; tell people when it peaks.
+            // 强度会随时间爬升，到顶时通知一声。
             _stormMaxAnnounced = true;
             kind = NewsKind.SandstormMaxed;
         }
@@ -54,7 +50,7 @@ public sealed class WorldEventWatcher
         return kind;
     }
 
-    /// <summary>One tick of merchant presence; true on the tick she shows up.</summary>
+    // 喂进一个服务器刻的旅商在否，在她出现的那一刻返回 true。
     public bool TickMerchant(bool present)
     {
         bool arrived = present && !_merchantWasPresent;
@@ -70,7 +66,7 @@ public sealed class WorldEventWatcher
         return "初起";
     }
 
-    /// <summary>Merchant's de-duplicated stock; Main.travelShop is 40 slots where 0 means empty.</summary>
+    // 旅商货架去重后的商品；Main.travelShop 是 40 格定长数组，0 表示空位。
     public static List<int> MerchantStock(int[]? travelShop)
     {
         var items = new List<int>();
@@ -84,7 +80,7 @@ public sealed class WorldEventWatcher
         return items;
     }
 
-    /// <summary>Renders a stock list as hoverable item icons only, no names.</summary>
+    // 把货架渲染成只有可悬停图标、没有名称的一行。
     public static string MerchantIconRow(IReadOnlyList<int> stock, string separator = " ")
     {
         if (stock.Count == 0)
@@ -93,7 +89,7 @@ public sealed class WorldEventWatcher
         return string.Join(separator, stock.Select(id => "[i:" + id + "]"));
     }
 
-    /// <summary>Emits the {items} line once per row of perLine; perLine &lt;= 0 disables wrapping.</summary>
+    // 把含 {items} 的行按每行 perLine 个图标展开；perLine <= 0 表示不换行。
     public static List<string> ExpandItemLines(List<string>? templates, IReadOnlyList<int> stock, int perLine)
     {
         if (perLine <= 0 || templates is null)

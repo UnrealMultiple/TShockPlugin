@@ -1,6 +1,6 @@
 namespace TerraNews;
 
-/// <summary>Moon phase name and its fishing power effect, read from Main.moonPhase (0-7).</summary>
+// 月相名称与钓鱼力加成，读取 Main.moonPhase（0-7）。
 public static class MoonPhases
 {
     private static readonly string[] Names =
@@ -8,7 +8,7 @@ public static class MoonPhases
         "满月", "亏凸月", "下弦月", "残月", "新月", "娥眉月", "上弦月", "盈凸月"
     };
 
-    // Verbatim from Player.Fishing_GetPowerMultiplier() in Terraria 1.4.5.
+    // 逐字取自 Terraria 1.4.5 的 Player.Fishing_GetPowerMultiplier()。
     private static readonly double[] Multipliers = { 1.05, 1.05, 1.00, 1.00, 1.00, 1.00, 1.00, 1.05 };
 
     public static string Name(int phase) => Names[Wrap(phase)];

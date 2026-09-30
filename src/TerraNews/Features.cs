@@ -2,12 +2,11 @@ using System.Text.RegularExpressions;
 
 namespace TerraNews;
 
-/// <summary>Every independently switchable piece of news.</summary>
+// 每一项可以单独开关的新闻。
 public enum Feature
 {
     DailyQuestBoard = 0,
     QuestFishIcon,
-    FishingLocation,
     AnglerStatus,
     MoonPhase,
     Sandstorm,
@@ -16,12 +15,11 @@ public enum Feature
     ServerLog
 }
 
-/// <summary>The on/off block; every switch defaults to on.</summary>
+// 开关组，默认为全开。
 public class FeatureSwitches
 {
     public bool DailyQuestBoard { get; set; } = true;
     public bool QuestFishIcon { get; set; } = true;
-    public bool FishingLocation { get; set; } = true;
     public bool AnglerStatus { get; set; } = true;
     public bool MoonPhase { get; set; } = true;
     public bool Sandstorm { get; set; } = true;
@@ -35,7 +33,6 @@ public class FeatureSwitches
     {
         Feature.DailyQuestBoard => DailyQuestBoard,
         Feature.QuestFishIcon => QuestFishIcon,
-        Feature.FishingLocation => FishingLocation,
         Feature.AnglerStatus => AnglerStatus,
         Feature.MoonPhase => MoonPhase,
         Feature.Sandstorm => Sandstorm,
@@ -51,7 +48,6 @@ public class FeatureSwitches
         {
             case Feature.DailyQuestBoard: DailyQuestBoard = value; break;
             case Feature.QuestFishIcon: QuestFishIcon = value; break;
-            case Feature.FishingLocation: FishingLocation = value; break;
             case Feature.AnglerStatus: AnglerStatus = value; break;
             case Feature.MoonPhase: MoonPhase = value; break;
             case Feature.Sandstorm: Sandstorm = value; break;
@@ -61,14 +57,13 @@ public class FeatureSwitches
         }
     }
 
-    /// <summary>"任务鱼图标=开 月相=关, ..." for the startup line.</summary>
+    // 拼成 "任务鱼图标=开 月相=关, ..."，用于启动日志。
     public string Summary() => string.Join(" ", All.Select(f => $"{Label(f)}={(this[f] ? "开" : "关")}"));
 
     private static string Label(Feature feature) => feature switch
     {
         Feature.DailyQuestBoard => "每日任务播报",
         Feature.QuestFishIcon => "任务鱼图标",
-        Feature.FishingLocation => "钓鱼地点",
         Feature.AnglerStatus => "渔夫状态",
         Feature.MoonPhase => "月相",
         Feature.Sandstorm => "沙尘暴播报",
@@ -79,16 +74,12 @@ public class FeatureSwitches
     };
 }
 
-/// <summary>Links a template placeholder to the feature that owns it.</summary>
+// 占位符与它所属功能的对应关系。
 public static class FeatureMap
 {
     private static readonly Dictionary<string, Feature> Owners = new(StringComparer.OrdinalIgnoreCase)
     {
         ["icon"] = Feature.QuestFishIcon,
-        ["biome"] = Feature.FishingLocation,
-        ["depth"] = Feature.FishingLocation,
-        ["yrange"] = Feature.FishingLocation,
-        ["tip"] = Feature.FishingLocation,
         ["angler"] = Feature.AnglerStatus,
         ["moon"] = Feature.MoonPhase,
         ["moon_bonus"] = Feature.MoonPhase
@@ -96,12 +87,8 @@ public static class FeatureMap
 
     private static readonly Regex Placeholder = new(@"\{(\w+)\}", RegexOptions.Compiled);
 
-    /// <summary>
-    /// A line is dropped when every placeholder it uses belongs to a disabled feature, so
-    /// switching 月相 off removes the moon line instead of leaving a dangling label. Static
-    /// lines are always kept, and a line mixing a disabled placeholder with a live one stays
-    /// with the disabled part rendering empty.
-    /// </summary>
+    // 某个占位符所属的功能被关掉时整行不播，避免只剩一个空标签。纯静态行始终保留；
+    // 混有关闭与开启占位符的行照播，关闭的那部分渲染成空字符串。
     public static bool ShouldRender(string? template, FeatureSwitches? features)
     {
         if (string.IsNullOrEmpty(template))

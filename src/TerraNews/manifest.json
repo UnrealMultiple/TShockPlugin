@@ -1,10 +1,4 @@
 {
-  "README.en-US": {
-    "Description": "Daily Angler quest, moon phase, sandstorm and travelling merchant news"
-  },
-  "README.es-ES": {
-    "Description": "Noticias diarias del pescador, fase lunar, tormenta de arena y mercader viajero"
-  },
   "README": {
     "Description": "每日渔夫任务、月相、沙尘暴与旅商播报"
   }
