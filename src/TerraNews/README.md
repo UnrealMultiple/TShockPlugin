@@ -32,8 +32,7 @@
     "QuestFishIcon": true,        // 任务鱼的可交互图标
     "AnglerStatus": true,         // 渔夫当前状态（仅在自定义模板里用到）
     "MoonPhase": true,            // 今日月相
-    "Sandstorm": true,            // 沙尘暴 / 暴风雪开始时的预警
-    "SandstormPeak": true,        // 风暴达到峰值时的补报
+    "Sandstorm": true,            // 沙尘暴 / 暴风雪的预警
     "TravelingMerchant": true,    // 旅商货架播报
     "ServerLog": true             // 同时写入 TShock 日志
   },
@@ -41,7 +40,6 @@
   "BroadcastMinute": 30,          // 每日播报分钟（游戏内）
   "TriggerWindowSeconds": 30,     // 触发窗口，单位是游戏内分钟
   "StartupDelaySeconds": 5,       // 插件加载后的静默期
-  "SandstormPeakSeverity": 0.95,  // 风暴峰值阈值
   "StormType": "auto",            // auto | sandstorm | blizzard
   "MerchantItemsPerLine": 5,      // 货架每行图标数，0 = 不换行
   "Diagnostics": false,           // 每秒一行诊断日志
@@ -52,23 +50,11 @@
   ],
   "SandstormLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FFD966:{storm}已登陆]",
-    "[c/FFFFFF:强度 {severity}]"
+    "[c/FFD966:{storm}已登陆]"
   ],
   "BlizzardLines": [
     "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FFD966:{storm}已登陆]",
-    "[c/FFFFFF:强度 {severity}]"
-  ],
-  "SandstormPeakLines": [
-    "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FF6B6B:{storm}已达最强]",
-    "[c/FFFFFF:强度 {severity}]"
-  ],
-  "BlizzardPeakLines": [
-    "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-    "[c/FF6B6B:{storm}已达最强]",
-    "[c/FFFFFF:强度 {severity}]"
+    "[c/FFD966:{storm}已登陆]"
   ],
   "MerchantLines": [
     "[c/4FC3F7:========== 泰拉新闻 · 旅商到访 ==========]",
@@ -81,7 +67,7 @@
 ### 占位符
 
 - 每日：`{icon}` `{angler}` `{id}` `{moon}` `{moon_bonus}` `{time}`
-- 天气：`{storm}` `{severity}` `{remaining}` `{time}` `{moon}`
+- 天气：`{storm}` `{remaining}` `{time}` `{moon}`
 - 旅商：`{items}` `{count}` `{time}` `{moon}`
 
 > 默认模板只用到其中一部分，想加就自己写进 `DailyLines`。
@@ -154,14 +140,12 @@
 | `sandstorm` | 一律播报沙尘暴 |
 | `blizzard` | 一律播报暴风雪 |
 
-四套模板对应四种情况：
+两套模板对应沙与雪两种情况，**风暴只在出现的那一刻播一次**，不跟进强度变化：
 
 | 模板 | 用途 |
 |:--|:--|
 | `SandstormLines` | 沙尘暴开始 |
 | `BlizzardLines` | 暴风雪开始 |
-| `SandstormPeakLines` | 沙尘暴达到最强 |
-| `BlizzardPeakLines` | 暴风雪达到最强 |
 
 #### 实机验证记录
 
@@ -175,9 +159,8 @@
 - **必须先有客户端连上**。专用服务器无玩家在线时世界不推进，自动播报不会发生。
 - **控制台复现不出暴风雪场景**。`/worldevent` 的合法事件类型里没有 `blizzard`，
   只能用 `/worldevent sandstorm` 制造，再靠地形决定播报成哪一种。
-- **峰值补报要等强度自然爬升**。只有 `Sandstorm.Severity` 越过
-  `SandstormPeakSeverity`（默认 0.95）才会触发 `*PeakLines`，短时间反复开关风暴
-  是到不了这个阈值的。
+- **`/worldevent sandstorm` 是开关**，已经在下会把它停掉。反复调用即可反复制造
+  「开始播报 → 结束」这条上升沿。
 
 ### 开关行为
 
@@ -191,7 +174,7 @@
 首个发布版本。功能：
 
 - 每天游戏内 04:30 全服播报今日渔夫任务鱼与今日月相，任务鱼用可悬停的原版物品图标
-- 沙尘暴 / 暴风雪开始与达到最强时播报预警，沙漠与雪原分开播报，可用 `StormType` 固定
+- 沙尘暴 / 暴风雪出现时各播报一次，沙漠与雪原分开播报，可用 `StormType` 固定
 - 旅商到访时播报今日货架（纯图标，可悬停）
 - 全部自动播报，不注册任何指令
 

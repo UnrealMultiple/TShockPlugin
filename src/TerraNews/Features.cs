@@ -10,7 +10,6 @@ public enum Feature
     AnglerStatus,
     MoonPhase,
     Sandstorm,
-    SandstormPeak,
     TravelingMerchant,
     ServerLog
 }
@@ -23,7 +22,6 @@ public class FeatureSwitches
     public bool AnglerStatus { get; set; } = true;
     public bool MoonPhase { get; set; } = true;
     public bool Sandstorm { get; set; } = true;
-    public bool SandstormPeak { get; set; } = true;
     public bool TravelingMerchant { get; set; } = true;
     public bool ServerLog { get; set; } = true;
 
@@ -36,7 +34,6 @@ public class FeatureSwitches
         Feature.AnglerStatus => AnglerStatus,
         Feature.MoonPhase => MoonPhase,
         Feature.Sandstorm => Sandstorm,
-        Feature.SandstormPeak => SandstormPeak,
         Feature.TravelingMerchant => TravelingMerchant,
         Feature.ServerLog => ServerLog,
         _ => true
@@ -51,7 +48,6 @@ public class FeatureSwitches
             case Feature.AnglerStatus: AnglerStatus = value; break;
             case Feature.MoonPhase: MoonPhase = value; break;
             case Feature.Sandstorm: Sandstorm = value; break;
-            case Feature.SandstormPeak: SandstormPeak = value; break;
             case Feature.TravelingMerchant: TravelingMerchant = value; break;
             case Feature.ServerLog: ServerLog = value; break;
         }
@@ -66,8 +62,7 @@ public class FeatureSwitches
         Feature.QuestFishIcon => "任务鱼图标",
         Feature.AnglerStatus => "渔夫状态",
         Feature.MoonPhase => "月相",
-        Feature.Sandstorm => "沙尘暴播报",
-        Feature.SandstormPeak => "沙尘暴最强补报",
+        Feature.Sandstorm => "风暴播报",
         Feature.TravelingMerchant => "旅商播报",
         Feature.ServerLog => "写入服务端日志",
         _ => feature.ToString()

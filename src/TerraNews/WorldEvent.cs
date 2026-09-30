@@ -1,45 +1,19 @@
 namespace TerraNews;
 
-public enum NewsKind
-{
-    None,
-    SandstormStarted,
-    SandstormMaxed,
-    MerchantArrived
-}
-
-// 世界事件的上升沿检测。旅商是 NPC 368，她的货架在 Main.travelShop 里，
-// 由 Chest.SetupTravelShop() 在刷出她之前重新掷出。
+// 世界事件的上升沿检测，只在事件出现的那一刻报一次，不跟进强度变化。
+// 旅商是 NPC 368，她的货架在 Main.travelShop 里，由 Chest.SetupTravelShop()
+// 在刷出她之前重新掷出。
 public sealed class WorldEventWatcher
 {
     private bool _stormWasHappening;
-    private bool _stormMaxAnnounced;
     private bool _merchantWasPresent;
 
-    // 喂进一个服务器刻的风暴状态，返回这一刻的事件（没有则 None）。
-    public NewsKind TickSandstorm(bool happening, float severity, float maxSeverityThreshold)
+    // 喂进一个服务器刻的风暴状态，在它开始的那一刻返回 true。
+    public bool TickSandstorm(bool happening)
     {
-        NewsKind kind = NewsKind.None;
-
-        if (happening && !_stormWasHappening)
-        {
-            // 风暴可能一上来就是满强度，那就别再为同一场风暴补一条"变强了"。
-            _stormMaxAnnounced = severity >= maxSeverityThreshold;
-            kind = NewsKind.SandstormStarted;
-        }
-        else if (!happening)
-        {
-            _stormMaxAnnounced = false;
-        }
-        else if (!_stormMaxAnnounced && severity >= maxSeverityThreshold)
-        {
-            // 强度会随时间爬升，到顶时通知一声。
-            _stormMaxAnnounced = true;
-            kind = NewsKind.SandstormMaxed;
-        }
-
+        bool started = happening && !_stormWasHappening;
         _stormWasHappening = happening;
-        return kind;
+        return started;
     }
 
     // 喂进一个服务器刻的旅商在否，在她出现的那一刻返回 true。
@@ -48,14 +22,6 @@ public sealed class WorldEventWatcher
         bool arrived = present && !_merchantWasPresent;
         _merchantWasPresent = present;
         return arrived;
-    }
-
-    public static string SeverityText(float severity)
-    {
-        if (severity >= 0.95f) return "狂暴";
-        if (severity >= 0.70f) return "猛烈";
-        if (severity >= 0.40f) return "渐强";
-        return "初起";
     }
 
     // 旅商货架去重后的商品；Main.travelShop 是 40 格定长数组，0 表示空位。

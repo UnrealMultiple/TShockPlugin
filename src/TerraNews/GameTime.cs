@@ -10,13 +10,20 @@ public static class GameTime
     public const double NightLengthTicks = 32400.0;
     public const double MinutesPerCycle = 1440.0;
 
-    // 触发时刻相对半日归零点的刻数偏移；04:30 之前的时间归入它前方的那个夜晚。
+    // 某个钟点算不算夜晚。白天是 04:30–19:29，其余（19:30–04:29）都算夜晚。
+    private static bool IsNightMinutes(double minutes) =>
+        minutes < DawnMinutes || minutes >= DuskMinutes;
+
+    // 触发时刻相对它所属那个半日归零点的刻数偏移。
     public static double TriggerOffsetTicks(int hour, int minute)
     {
         double minutes = hour * 60 + minute;
-        if (minutes >= DawnMinutes)
-            return (minutes - DawnMinutes) * TicksPerGameMinute;
-        return NightLengthTicks - (DawnMinutes - minutes) * TicksPerGameMinute;
+
+        if (minutes >= DawnMinutes && minutes < DuskMinutes)
+            return (minutes - DawnMinutes) * TicksPerGameMinute;          // 白天，从 04:30 起算
+        if (minutes >= DuskMinutes)
+            return (minutes - DuskMinutes) * TicksPerGameMinute;          // 夜晚开头，从 19:30 起算
+        return NightLengthTicks - (DawnMinutes - minutes) * TicksPerGameMinute;  // 00:00–04:29，上一夜的末尾
     }
 
     // 只在触发点落入自己那扇窄窗内才为真。窗口刻意很窄：专用服务器只在有客户端
@@ -24,8 +31,8 @@ public static class GameTime
     // 拿一条过期的任务凑数。宽度单位是游戏分钟，30 即覆盖 04:30-05:00。
     public static bool IsInWindow(int hour, int minute, double time, bool dayTime, double windowTicks)
     {
-        bool requestIsDaytime = hour * 60 + minute >= DawnMinutes;
-        if (requestIsDaytime != dayTime)
+        // 触发点必须落在和它同一半日里，否则夜间配置会被拿去白天的 Main.time 上比。
+        if (IsNightMinutes(hour * 60 + minute) == dayTime)
             return false;
 
         double offset = TriggerOffsetTicks(hour, minute);
@@ -52,11 +59,14 @@ public static class GameTime
     }
 }
 
-// 每个半日最多播一次，且只在触发窗内。靠数 Main.time 归零的次数得到单调递增的
-// 半日编号，这样卡顿、/time set 跳变和重启都不会让它重复播报。
+// 每个半日最多播一次，且只在触发窗内。半日编号靠数昼夜翻转得到：Main.dayTime 在
+// 04:30 和 19:30 各翻转一次，而这两处 Main.time 必定归零。反过来，管理员用 /time
+// 在同一半日内把时间调小（比如 10:00 退回 05:00）并不会翻转 dayTime，因此闩锁不会被
+// 误重置、不会重播。
 public sealed class HalfDayTrigger
 {
     private double _lastTime = -1;
+    private bool _lastDayTime;
 
     public int HalfDayIndex { get; private set; }
 
@@ -66,10 +76,11 @@ public sealed class HalfDayTrigger
     // 推进一个服务器刻；返回 true 表示这一刻该播报了。
     public bool Tick(double time, bool dayTime, int hour, int minute, double windowTicks)
     {
-        if (_lastTime >= 0 && time < _lastTime)
+        if (_lastTime >= 0 && dayTime != _lastDayTime)
             HalfDayIndex++;
 
         _lastTime = time;
+        _lastDayTime = dayTime;
         return AnnouncedHalfDay != HalfDayIndex
                && GameTime.IsInWindow(hour, minute, time, dayTime, windowTicks);
     }

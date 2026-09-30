@@ -12,13 +12,12 @@ public static class LegacyFeatureKeys
         ["ShowMoonPhase"] = Feature.MoonPhase,
         ["ShowAnglerStatus"] = Feature.AnglerStatus,
         ["AnnounceSandstorm"] = Feature.Sandstorm,
-        ["AnnounceSandstormPeak"] = Feature.SandstormPeak,
         ["AnnounceMerchant"] = Feature.TravelingMerchant,
         ["LogToConsole"] = Feature.ServerLog
     };
 }
 
-// 纯 JSON POCO，配置放在服务端目录下并支持热重载。
+// 纯 JSON POCO，配置放在服务端目录下，改动后需重启服务器。
 public class TerraNewsConfig
 {
     // 总开关：关闭时插件完全静默，得改配置再重启才会生效。
@@ -44,10 +43,6 @@ public class TerraNewsConfig
     // 插件加载后保持静默多久（真实秒）。
     [JsonProperty("StartupDelaySeconds")]
     public int StartupDelaySeconds { get; set; } = 5;
-
-    // 风暴强度达到多少（0-1）算作"最强"。
-    [JsonProperty("SandstormPeakSeverity")]
-    public float SandstormPeakSeverity { get; set; } = 0.95f;
 
     // 沙尘暴与暴风雪怎么区分：auto（按地形扫描）/ sandstorm（一律沙尘暴）/ blizzard（一律暴风雪）。
     [JsonProperty("StormType")]
@@ -85,13 +80,13 @@ public class TerraNewsConfig
         "[c/888888:（游戏时间 {time}）输入 /terranews 可随时重新查看今日任务]"
     };
 
-    // 沙尘暴。占位符：{storm} {severity} {remaining} {time} {moon}。
+    // 沙尘暴。只在风暴出现的那一刻播一次，不跟进强度。
+    // 占位符：{storm} {remaining} {time} {moon}。
     [JsonProperty("SandstormLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<string> SandstormLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FFD966:{storm}已登陆]",
-        "[c/FFFFFF:强度 {severity}]"
+        "[c/FFD966:{storm}已登陆]"
     };
 
     // 暴风雪。占位符与沙尘暴相同；原版只有一个 Sandstorm 事件，雪与沙按地形区分，
@@ -100,26 +95,7 @@ public class TerraNewsConfig
     public List<string> BlizzardLines { get; set; } = new()
     {
         "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FFD966:{storm}已登陆]",
-        "[c/FFFFFF:强度 {severity}]"
-    };
-
-    // 沙尘暴达到最强时的补报，占位符与 SandstormLines 相同。
-    [JsonProperty("SandstormPeakLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
-    public List<string> SandstormPeakLines { get; set; } = new()
-    {
-        "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FF6B6B:{storm}已达最强]",
-        "[c/FFFFFF:强度 {severity}]"
-    };
-
-    // 暴风雪达到最强时的补报，占位符与 BlizzardLines 相同。
-    [JsonProperty("BlizzardPeakLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
-    public List<string> BlizzardPeakLines { get; set; } = new()
-    {
-        "[c/E0A458:========== 泰拉新闻 · 天气预警 ==========]",
-        "[c/FF6B6B:{storm}已达最强]",
-        "[c/FFFFFF:强度 {severity}]"
+        "[c/FFD966:{storm}已登陆]"
     };
 
     // 旅商到访。占位符：{items} {count} {time} {moon}。
@@ -138,7 +114,6 @@ public class TerraNewsConfig
         TriggerWindowSeconds = Math.Clamp(TriggerWindowSeconds, 1, 120);
         StartupDelaySeconds = Math.Clamp(StartupDelaySeconds, 0, 60);
         MerchantItemsPerLine = Math.Clamp(MerchantItemsPerLine, 0, 12);
-        SandstormPeakSeverity = Math.Clamp(SandstormPeakSeverity, 0.5f, 1f);
 
         Features ??= new FeatureSwitches();
 
@@ -148,15 +123,13 @@ public class TerraNewsConfig
             SandstormLines = new List<string> { "[c/FFD966:{storm}已登陆]" };
         if (BlizzardLines is null || BlizzardLines.Count == 0)
             BlizzardLines = new List<string>(SandstormLines);
-        if (SandstormPeakLines is null || SandstormPeakLines.Count == 0)
-            SandstormPeakLines = new List<string>(SandstormLines);
-        if (BlizzardPeakLines is null || BlizzardPeakLines.Count == 0)
-            BlizzardPeakLines = new List<string>(SandstormPeakLines);
         if (MerchantLines is null || MerchantLines.Count == 0)
             MerchantLines = new List<string> { "[c/4FC3F7:旅商到访] [c/FFFFFF:{items}]" };
     }
 
-    public static TerraNewsConfig Load(string path, out string? error)
+    // error 是"配置读不出来"，warn 是"读出来了但没能写回去"。两者分开报，
+    // 因为后者的处理方式不同：读失败会退回默认值，写失败只是迁移结果留在了内存里。
+    public static TerraNewsConfig Load(string path, out string? error, Action<string>? warn = null)
     {
         error = null;
         try
@@ -182,13 +155,15 @@ public class TerraNewsConfig
             cfg.Sanitize();
 
             // 把升级后的结构写回去，这样管理员看到的是新字段，而不是一份我们
-            // 已经悄悄不再读取的旧键；只读的配置目录不该让插件跑不起来。
+            // 已经悄悄不再读取的旧键。回写失败不该让插件跑不起来，但必须让管理员
+            // 知道迁移没落盘，否则重启一次就白迁移一次。
             try
             {
                 Save(path, cfg);
             }
-            catch
+            catch (Exception ex)
             {
+                warn?.Invoke($"配置升级后的回写失败（{ex.Message}）。本次运行仍使用升级后的配置，但重启后会丢失。");
             }
 
             return cfg;

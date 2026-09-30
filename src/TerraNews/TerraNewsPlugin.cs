@@ -55,7 +55,10 @@ public class TerraNewsPlugin : TerrariaPlugin
             return;
         }
 
-        TShock.Log.Info(GetString($"[TerraNews] 已加载。总开关=开；每日播报 {Config.BroadcastHour:00}:{Config.BroadcastMinute:00}（游戏内时间，窗口 {Config.TriggerWindowSeconds}s = 04:30–05:00）。"));
+        // TriggerWindowSeconds 这个键名有历史包袱，实际单位是游戏分钟（见 TriggerWindowTicks），
+        // 所以窗口终点直接加它、不除 60。
+        int windowEnd = (Config.BroadcastHour * 60 + Config.BroadcastMinute + Config.TriggerWindowSeconds) % 1440;
+        TShock.Log.Info(GetString($"[TerraNews] 已加载。总开关=开；每日播报 {Config.BroadcastHour:00}:{Config.BroadcastMinute:00}（游戏内时间，窗口 {Config.TriggerWindowSeconds} 游戏分钟，即到 {windowEnd / 60:00}:{windowEnd % 60:00}）。"));
         TShock.Log.Info(GetString($"[TerraNews] 功能开关：{Config.Features.Summary()}"));
         TShock.Log.Info(GetString("[TerraNews] 任务鱼图标使用原版聊天物品标签 [i:物品ID]，玩家可悬停查看详情。"));
     }
@@ -73,7 +76,11 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     private void LoadConfig()
     {
-        Config = TerraNewsConfig.Load(ConfigPath, out string? error);
+        Config = TerraNewsConfig.Load(
+            ConfigPath,
+            out string? error,
+            message => TShock.Log.Warn(GetString($"[TerraNews] {message}")));
+
         if (!string.IsNullOrEmpty(error))
             TShock.Log.Error(GetString($"[TerraNews] 配置读取失败（{error}），已使用默认配置。"));
     }
@@ -93,7 +100,7 @@ public class TerraNewsPlugin : TerrariaPlugin
                 $"[TerraNews][diag] dayTime={dayTime} time={time:0.0} clock={GameClock()} "
                 + $"halfDay={_trigger.HalfDayIndex} announced={_trigger.AnnouncedHalfDay} "
                 + $"quest={CurrentQuestFishId} moon={Main.moonPhase} storm={Sandstorm.Happening} "
-                + $"severity={Sandstorm.Severity:0.00} merchant={NPC.AnyNPCs(MerchantNpcId)}"));
+                + $"merchant={NPC.AnyNPCs(MerchantNpcId)}"));
         }
 
         _pluginStart ??= DateTime.UtcNow;
@@ -101,9 +108,11 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         if (warmingUp || !Config.Enabled)
         {
-            // 即使静默也继续推进状态机，这样中途重新开启时不会重播已经过去的边沿。
+            // 两个事件监视器要照常推进，否则静默期里发生过的风暴、旅商会在解除静默
+            // 后被当成刚发生而补播一条。每日窗口不消耗：服务器若恰好在窗口内启动，
+            // 静默期结束时玩家仍应看到当天看板，把这条吞掉才是真丢信息。
             _trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks);
-            _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
+            _events.TickSandstorm(Sandstorm.Happening);
             _events.TickMerchant(NPC.AnyNPCs(MerchantNpcId));
             return;
         }
@@ -120,10 +129,9 @@ public class TerraNewsPlugin : TerrariaPlugin
                 Broadcast(Config.DailyLines, BuildDailyContext(features), features);
         }
 
-        // 2) 天气
-        NewsKind storm = _events.TickSandstorm(Sandstorm.Happening, Sandstorm.Severity, Config.SandstormPeakSeverity);
-        if (storm != NewsKind.None)
-            BroadcastStorm(storm, features);
+        // 2) 天气 —— 只在风暴出现的那一刻播一次
+        if (_events.TickSandstorm(Sandstorm.Happening))
+            BroadcastStorm(IsBlizzard(), features);
 
         // 3) 旅商
         if (_events.TickMerchant(NPC.AnyNPCs(MerchantNpcId)) && features[Feature.TravelingMerchant])
@@ -161,23 +169,13 @@ public class TerraNewsPlugin : TerrariaPlugin
         };
     }
 
-    // 按当前这场到底是雪还是沙，挑对应的模板播报。
-    private void BroadcastStorm(NewsKind kind, FeatureSwitches features)
+    // 按当前这场到底是雪还是沙，挑对应的模板播报。只在风暴出现的那一刻播一次。
+    private void BroadcastStorm(bool blizzard, FeatureSwitches features)
     {
-        bool blizzard = IsBlizzard();
-        Feature gate = kind == NewsKind.SandstormStarted ? Feature.Sandstorm : Feature.SandstormPeak;
-        if (!features[gate])
+        if (!features[Feature.Sandstorm])
             return;
 
-        List<string> lines = (kind, blizzard) switch
-        {
-            (NewsKind.SandstormStarted, false) => Config.SandstormLines,
-            (NewsKind.SandstormStarted, true) => Config.BlizzardLines,
-            (NewsKind.SandstormMaxed, false) => Config.SandstormPeakLines,
-            _ => Config.BlizzardPeakLines
-        };
-
-        Broadcast(lines, BuildSandstormContext(blizzard), features);
+        Broadcast(blizzard ? Config.BlizzardLines : Config.SandstormLines, BuildSandstormContext(blizzard), features);
     }
 
     // 原版的沙尘暴与暴风雪是同一个 Sandstorm 事件，客户端按 player.ZoneSnow &&
@@ -230,7 +228,6 @@ public class TerraNewsPlugin : TerrariaPlugin
     private static Dictionary<string, string> BuildSandstormContext(bool blizzard) => new()
     {
         ["storm"] = blizzard ? "暴风雪" : "沙尘暴",
-        ["severity"] = WorldEventWatcher.SeverityText(Sandstorm.Severity),
         ["remaining"] = GameTime.FormatDuration(Sandstorm.TimeLeft),
         ["time"] = GameClock(),
         ["moon"] = MoonPhases.Name(Main.moonPhase)
