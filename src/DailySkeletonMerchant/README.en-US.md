@@ -47,6 +47,9 @@ Aliases: `/skeletonmerchant`, `/骷髅商人`, `/骷髅`.
   - `No standable spot within 40 tiles of the world spawn` — the spawn area is all water and walls; regenerate or move the spawn.
 - He disappears while nobody is around — that is the design: no player within 50 tiles, he leaves.
 - Cannot find him — `/skeleton status` prints the anchor coordinates. He does not wander far from it, but he does walk around the area like vanilla.
+- Two notes for admins testing this:
+  - `/skeleton despawn` also uses up the day's visit; wait for the next game day if you want the check to run again.
+  - An idle server does not advance the world, and `/time` neither crosses the night nor increments the moon phase. The plugin treats "a new day" as one of: day/night flipped, moon phase changed, or the clock moved clearly backwards. Jumping back and forth between the exact same clock (`22:00` → `04:30` → `22:00`) therefore counts as the same day. Normal play, where the world advances by itself, is unaffected.
 
 ## Changelog
 
