@@ -1,204 +1,289 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DailyMerchant\n"
-"POT-Creation-Date: 2026-09-30 09:00:00+0000\n"
-"PO-Revision-Date: 2026-09-30 09:00:00+0000\n"
+"POT-Creation-Date: 2026-10-01 10:49:56+0800\n"
+"PO-Revision-Date: 2026-10-01 10:49:57+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
-#: ../../DailyMerchant.cs:31
-msgid "让旅商每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到，生成与播报仍走原版。"
-msgstr "Daily Travelling Merchant: vanilla only gives him about a 22% chance per day, this makes him show up every day; spawning and broadcasts stay vanilla."
 
-#: ../../DailyMerchant.cs:219
-msgid "原版已放行"
-msgstr "Vanilla allowed it"
-
-#: ../../DailyMerchant.cs:227
-msgid "原版拒绝：月食天不生成旅商"
-msgstr "Vanilla refused: no merchant during an eclipse"
-
-#: ../../DailyMerchant.cs:230
-msgid "原版拒绝：夜晚不生成旅商"
-msgstr "Vanilla refused: no merchant at night"
-
-#: ../../DailyMerchant.cs:233
-msgid "原版拒绝：入侵进行中"
-msgstr "Vanilla refused: an invasion is in progress"
-
-#: ../../DailyMerchant.cs:239
-#, csharp-format
-msgid "原版拒绝：场上已有旅商（槽位 {0}，生命 {1}）"
-msgstr "Vanilla refused: a merchant is already here (slot {0}, life {1})"
-
-#: ../../DailyMerchant.cs:262
-msgid "原版拒绝：既没有已入住的城镇 NPC，也没有可搬入的空房"
-msgstr "Vanilla refused: no housed town NPC and no empty room to move one into"
-
-#: ../../DailyMerchant.cs:263
-msgid "原版拒绝：TownManager 找不到可用的落脚点"
-msgstr "Vanilla refused: TownManager could not find a usable spot"
-
-#: ../../DailyMerchant.cs:275
-#, csharp-format
-msgid "原版已通过全部条件（有 {0} 位已入住 NPC）但仍没生成：活跃 NPC {1}/{2}"
-msgstr "Vanilla passed every condition ({0} housed NPCs) but still did not spawn: active NPCs {1}/{2}"
-
-#: ../../DailyMerchant.cs:310
-msgid "旅商当前不在场"
-msgstr "The merchant is not here right now"
-
-#: ../../DailyMerchant.cs:320
-msgid "现在是夜晚（原版入夜后不再来）"
-msgstr "It is night (vanilla stops after dusk)"
-
-#: ../../DailyMerchant.cs:322
-msgid "日晷 / Moondial 生效中（原版此时不掷骰）"
-msgstr "A Sundial / Moondial is active (vanilla does not roll then)"
-
-#: ../../DailyMerchant.cs:324
-#, csharp-format
-msgid "已过上午4:30 + {0} 分钟"
-msgstr "Past 4:30 AM + {0} minutes"
-
-#: ../../DailyMerchant.cs:326
-msgid "月食天不生成旅商"
-msgstr "No merchant during an eclipse"
-
-#: ../../DailyMerchant.cs:330
-#, csharp-format
-msgid "城镇里只有 {0} 位 NPC，原版要求至少 2 位"
-msgstr "The town only has {0} NPCs, vanilla needs at least 2"
-
-#: ../../DailyMerchant.cs:334
-#, csharp-format
-msgid "城镇里有 {0} 位 NPC，但都没住进房子，原版没有落脚点（静默等待中）"
-msgstr "The town has {0} NPCs but none of them is housed, vanilla has no spot (waiting silently)"
-
-#: ../../DailyMerchant.cs:336
-msgid "条件已满足，正在按原版生成"
-msgstr "All conditions met, spawning the vanilla way"
-
-#: ../../DailyMerchant.cs:346
-msgid "让旅商每天到访（/merchant summon|despawn|check|status）"
-msgstr "Makes the Travelling Merchant visit daily (/merchant summon|despawn|check|status)"
-
-#: ../../DailyMerchant.cs:375
-msgid "场上已经有旅商了。"
-msgstr "There is already a merchant here."
-
-#: ../../DailyMerchant.cs:379
-msgid "已召唤，旅商现在在城镇里。"
-msgstr "Summoned; the merchant is now in town."
-
-#: ../../DailyMerchant.cs:384
-msgid "召唤失败："
-msgstr "Summon failed: "
-
-#: ../../DailyMerchant.cs:392
-msgid "场上本来就没有旅商。"
-msgstr "There was no merchant here in the first place."
-
-#: ../../DailyMerchant.cs:398
-msgid "已请旅商离场。"
-msgstr "Sent the merchant away."
-
-#: ../../DailyMerchant.cs:409
-msgid "已手动判定一次："
-msgstr "Ran one arrival check manually: "
-
-#: ../../DailyMerchant.cs:420
-msgid "指令用法："
-msgstr "Command usage:"
-
-#: ../../DailyMerchant.cs:421
-msgid "立刻召唤旅商（/merchant 召唤）"
-msgstr "Summon the merchant right away (/merchant 召唤)"
-
-#: ../../DailyMerchant.cs:422
-msgid "请旅商离场（/merchant 离开）"
-msgstr "Send the merchant away (/merchant 离开)"
-
-#: ../../DailyMerchant.cs:423
-msgid "手动跑一次到访判定（/merchant 检查）"
-msgstr "Run one arrival check manually (/merchant 检查)"
-
-#: ../../DailyMerchant.cs:424
+#: ../../DailyMerchant.cs:851
 msgid "查看到访状态与城镇条件（/merchant 状态）"
 msgstr "Show arrival status and town conditions (/merchant 状态)"
 
-#: ../../DailyMerchant.cs:433
-msgid "启用中"
-msgstr "Enabled"
+#: ../../DailyMerchant.cs:818
+msgid "场上本来就没有旅商。"
+msgstr "There was no merchant here in the first place."
 
-#: ../../DailyMerchant.cs:434
-msgid "旅商 NPC ID ="
-msgstr "Merchant NPC ID ="
+#: ../../DailyMerchant.cs:880
+msgid "场上骷髅商人"
+msgstr "Skeleton Merchants on field"
 
-#: ../../DailyMerchant.cs:435
-msgid "每天到访"
-msgstr "Daily arrival"
-
-#: ../../DailyMerchant.cs:435
-msgid "原版 22.12%"
-msgstr "vanilla 22.12%"
-
-#: ../../DailyMerchant.cs:436
-msgid "窗口"
-msgstr "Window"
-
-#: ../../DailyMerchant.cs:436
-msgid "上午4:30 起"
-msgstr "from 4:30 AM for"
-
-#: ../../DailyMerchant.cs:436
-msgid "分钟"
-msgstr "minutes"
-
-#: ../../DailyMerchant.cs:437
-msgid "当前："
-msgstr "Now: "
-
-#: ../../DailyMerchant.cs:438
+#: ../../DailyMerchant.cs:867
 msgid "场上旅商"
 msgstr "merchants on the field"
 
-#: ../../DailyMerchant.cs:438
-msgid "位"
-msgstr ", position"
+#: ../../DailyMerchant.cs:801
+msgid "场上已经有旅商了。"
+msgstr "There is already a merchant here."
 
-#: ../../DailyMerchant.cs:438
-msgid "位置"
-msgstr "position"
-
-#: ../../DailyMerchant.cs:439
+#: ../../DailyMerchant.cs:868
 msgid "城镇："
 msgstr "Town: "
 
-#: ../../DailyMerchant.cs:439
-msgid "位 NPC（已入住"
-msgstr " NPCs (housed"
+#: ../../DailyMerchant.cs:414
+msgid "城镇里有 {0} 位 NPC，但都没住进房子，原版没有落脚点（静默等待中）"
+msgstr "The town has {0} NPCs but none of them is housed, vanilla has no spot (waiting silently)"
 
-#: ../../DailyMerchant.cs:440
-msgid "待搬入空房"
-msgstr ", rooms waiting to be filled"
+#: ../../DailyMerchant.cs:410
+msgid "城镇里只有 {0} 位 NPC，原版要求至少 2 位"
+msgstr "The town only has {0} NPCs, vanilla needs at least 2"
 
-#: ../../DailyMerchant.cs:440
-msgid "判定已跑"
-msgstr "checks run"
+#: ../../DailyMerchant.cs:881
+msgid "出生点："
+msgstr "World spawn: "
 
-#: ../../DailyMerchant.cs:441
+#: ../../DailyMerchant.cs:865
+msgid "窗口"
+msgstr "Window"
+
+#: ../../DailyMerchant.cs:870
 msgid "次（每秒 1 次自动，空服不跑）"
 msgstr " times (once per second automatically, not on an empty server)"
 
-#: ../../DailyMerchant.cs:442
+#: ../../DailyMerchant.cs:869
+msgid "待搬入空房"
+msgstr ", rooms waiting to be filled"
+
+#: ../../DailyMerchant.cs:866
+#: ../../DailyMerchant.cs:878
+msgid "当前："
+msgstr "Now: "
+
+#: ../../DailyMerchant.cs:388
+msgid "当前不在场"
+msgstr "not here"
+
+#: ../../DailyMerchant.cs:865
+msgid "分钟"
+msgstr "minutes"
+
+#: ../../DailyMerchant.cs:127
+#: ../../DailyMerchant.cs:128
+msgid "关"
+msgstr "off"
+
+#: ../../DailyMerchant.cs:732
+msgid "今天已经安排过了（不会再出现）"
+msgstr "Already handled for today (he will not show up again)"
+
+#: ../../DailyMerchant.cs:127
+#: ../../DailyMerchant.cs:128
+msgid "开"
+msgstr "on"
+
+#: ../../DailyMerchant.cs:875
+msgid "骷髅商人 NPC ID ="
+msgstr "Skeleton Merchant NPC ID = "
+
+#: ../../DailyMerchant.cs:877
+msgid "离场条件"
+msgstr "leave condition"
+
+#: ../../DailyMerchant.cs:848
+msgid "立刻召唤旅商（/merchant 召唤）"
+msgstr "Summon the merchant right away (/merchant 召唤)"
+
+#: ../../DailyMerchant.cs:863
+msgid "旅商 NPC ID ="
+msgstr "Merchant NPC ID ="
+
+#: ../../DailyMerchant.cs:797
+msgid "旅商每日到访已在配置里关闭。"
+msgstr "The daily Travelling Merchant is switched off in the config."
+
+#: ../../DailyMerchant.cs:765
+msgid "旅商与骷髅商人每日到访（/merchant summon|despawn|check|status）"
+msgstr "Daily Travelling Merchant and Skeleton Merchant (/merchant summon|despawn|check|status)"
+
+#: ../../DailyMerchant.cs:864
+msgid "每天到访"
+msgstr "Daily arrival"
+
+#: ../../DailyMerchant.cs:876
+msgid "每天上午 4:30 起一次"
+msgstr "once a day from 4:30 AM"
+
+#: ../../DailyMerchant.cs:871
+#: ../../DailyMerchant.cs:882
 msgid "判定："
 msgstr "Check: "
 
-#: ../../DailyMerchant.cs:443
+#: ../../DailyMerchant.cs:869
+msgid "判定已跑"
+msgstr "checks run"
+
+#: ../../DailyMerchant.cs:126
+msgid "配置已重载：旅商 {0}，骷髅商人 {1}"
+msgstr "Config reloaded: travelling merchant {0}, skeleton merchant {1}"
+
+#: ../../DailyMerchant.cs:862
+#: ../../DailyMerchant.cs:874
+msgid "启用中"
+msgstr "Enabled"
+
+#: ../../DailyMerchant.cs:849
+msgid "请旅商离场（/merchant 离开）"
+msgstr "Send the merchant away (/merchant 离开)"
+
+#: ../../DailyMerchant.cs:47
+msgid "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人每天上午固定出现在出生点附近。"
+msgstr "Both the Travelling Merchant and the Skeleton Merchant show up every day: vanilla only gives the Travelling Merchant about a 22% chance per day, this makes him show up every day, and the Skeleton Merchant appears near the world spawn every morning."
+
+#: ../../DailyMerchant.cs:738
+msgid "日晷 / Moondial 生效中"
+msgstr "The Sundial / Moondial is in effect"
+
+#: ../../DailyMerchant.cs:400
+msgid "日晷 / Moondial 生效中（原版此时不掷骰）"
+msgstr "A Sundial / Moondial is active (vanilla does not roll then)"
+
+#: ../../DailyMerchant.cs:406
+msgid "入侵进行中（原版此时不生成旅商）"
+msgstr "An invasion is going on (vanilla spawns no Travelling Merchant then)"
+
+#: ../../DailyMerchant.cs:865
+msgid "上午4:30 起"
+msgstr "from 4:30 AM for"
+
+#: ../../DailyMerchant.cs:850
+msgid "手动跑一次到访判定（/merchant 检查）"
+msgstr "Run one arrival check manually (/merchant 检查)"
+
+#: ../../DailyMerchant.cs:877
+msgid "天黑即走"
+msgstr "he leaves at nightfall"
+
+#: ../../DailyMerchant.cs:746
+msgid "条件已满足，将出现在出生点附近"
+msgstr "conditions are met, he will appear near the world spawn"
+
+#: ../../DailyMerchant.cs:416
+msgid "条件已满足，正在按原版生成"
+msgstr "All conditions met, spawning the vanilla way"
+
+#: ../../DailyMerchant.cs:867
+#: ../../DailyMerchant.cs:880
+msgid "位"
+msgstr ", position"
+
+#: ../../DailyMerchant.cs:868
+msgid "位 NPC（已入住"
+msgstr " NPCs (housed"
+
+#: ../../DailyMerchant.cs:867
+#: ../../DailyMerchant.cs:880
+msgid "位置"
+msgstr "position"
+
+#: ../../DailyMerchant.cs:735
+msgid "现在是夜晚（明天上午再来）"
+msgstr "It is night (come back tomorrow morning)"
+
+#: ../../DailyMerchant.cs:398
+msgid "现在是夜晚（原版入夜后不再来）"
+msgstr "It is night (vanilla stops after dusk)"
+
+#: ../../DailyMerchant.cs:864
+msgid "已关闭"
+msgstr "switched off"
+
+#: ../../DailyMerchant.cs:402
+#: ../../DailyMerchant.cs:741
+msgid "已过上午4:30 + {0} 分钟"
+msgstr "Past 4:30 AM + {0} minutes"
+
+#: ../../DailyMerchant.cs:824
+msgid "已请旅商离场。"
+msgstr "Sent the merchant away."
+
+#: ../../DailyMerchant.cs:835
+#: ../../DailyMerchant.cs:836
+msgid "已手动判定一次："
+msgstr "Ran one arrival check manually: "
+
+#: ../../DailyMerchant.cs:729
+msgid "已在场（今天不再生成第二只）"
+msgstr "already here (no second one today)"
+
+#: ../../DailyMerchant.cs:871
+#: ../../DailyMerchant.cs:882
+msgid "已在配置里关闭"
+msgstr "switched off in the config"
+
+#: ../../DailyMerchant.cs:805
+msgid "已召唤，旅商现在在城镇里。"
+msgstr "Summoned; the merchant is now in town."
+
+#: ../../DailyMerchant.cs:864
+msgid "原版 22.12%"
+msgstr "vanilla 22.12%"
+
+#: ../../DailyMerchant.cs:319
+msgid "原版拒绝：场上已有旅商（槽位 {0}，生命 {1}）"
+msgstr "Vanilla refused: a merchant is already here (slot {0}, life {1})"
+
+#: ../../DailyMerchant.cs:342
+msgid "原版拒绝：既没有已入住的城镇 NPC，也没有可搬入的空房"
+msgstr "Vanilla refused: no housed town NPC and no empty room to move one into"
+
+#: ../../DailyMerchant.cs:313
+msgid "原版拒绝：入侵进行中"
+msgstr "Vanilla refused: an invasion is in progress"
+
+#: ../../DailyMerchant.cs:310
+msgid "原版拒绝：夜晚不生成旅商"
+msgstr "Vanilla refused: no merchant at night"
+
+#: ../../DailyMerchant.cs:307
+msgid "原版拒绝：月食天不生成旅商"
+msgstr "Vanilla refused: no merchant during an eclipse"
+
+#: ../../DailyMerchant.cs:343
+msgid "原版拒绝：TownManager 找不到可用的落脚点"
+msgstr "Vanilla refused: TownManager could not find a usable spot"
+
+#: ../../DailyMerchant.cs:872
 msgid "原版生成："
 msgstr "Vanilla spawn: "
 
+#: ../../DailyMerchant.cs:299
+msgid "原版已放行"
+msgstr "Vanilla allowed it"
+
+#: ../../DailyMerchant.cs:355
+msgid "原版已通过全部条件（有 {0} 位已入住 NPC）但仍没生成：活跃 NPC {1}/{2}"
+msgstr "Vanilla passed every condition ({0} housed NPCs) but still did not spawn: active NPCs {1}/{2}"
+
+#: ../../DailyMerchant.cs:404
+msgid "月食天不生成旅商"
+msgstr "No merchant during an eclipse"
+
+#: ../../DailyMerchant.cs:879
+msgid "月相"
+msgstr "moon phase"
+
+#: ../../DailyMerchant.cs:744
+msgid "暂无玩家在线，等有人进服再判定"
+msgstr "no player online, waiting for someone to join"
+
+#: ../../DailyMerchant.cs:810
+msgid "召唤失败："
+msgstr "Summon failed: "
+
+#: ../../DailyMerchant.cs:847
+msgid "指令用法："
+msgstr "Command usage:"
