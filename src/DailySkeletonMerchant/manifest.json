@@ -1,0 +1,11 @@
+{
+  "README.en-US": {
+    "Description": "A Skeleton Merchant shows up once a day near the world spawn point"
+  },
+  "README": {
+    "Description": "骷髅商人每天上午固定出现在出生点附近"
+  },
+  "README.es-ES": {
+    "Description": "Un mercader esqueleto aparece una vez al día cerca del punto de aparición del mundo"
+  }
+}

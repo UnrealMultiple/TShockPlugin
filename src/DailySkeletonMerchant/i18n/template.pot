@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DailySkeletonMerchant\n"
+"POT-Creation-Date: 2026-10-01 09:19:26+0800\n"
+"PO-Revision-Date: 2026-10-01 09:19:27+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+
+#: ../../DailySkeletonMerchant.cs:546
+msgid "查看每日到访状态（/骷髅商人 状态）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:503
+msgid "场上本来就没有骷髅商人。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:560
+msgid "场上骷髅商人"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:479
+msgid "场上已经有骷髅商人了。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:411
+msgid "场上已有骷髅商人，插件不干预"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:561
+msgid "出生点："
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:429
+#, csharp-format
+msgid "出生点附近 {0} 格内找不到能站立的位置"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:485
+msgid "出生点附近找不到能站立的位置。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:557
+msgid "窗口"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:566
+msgid "次（每秒 1 次自动，空服不跑）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:558
+msgid "当前："
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:557
+msgid "分钟"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:565
+msgid "格"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:563
+msgid "今日："
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:414
+msgid "今天已经安排过了（不会再出现）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:555
+msgid "骷髅商人 NPC ID ="
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:391
+msgid "骷髅商人当前不在场"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:450
+msgid "骷髅商人每日到访（/skeleton summon|despawn|check|status）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:27
+msgid "骷髅商人每天上午出现在出生点附近"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:565
+msgid "离场半径"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:543
+msgid "立刻召唤到出生点附近（/骷髅商人 召唤）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:562
+msgid "锚点"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:559
+msgid "每天清晨 4:30 递增，货品随之更换"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:556
+msgid "每天上午 4:30 起一次"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:567
+msgid "判定："
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:566
+msgid "判定已跑"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:554
+msgid "启用中"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:544
+msgid "请他离场，今天不再出现（/骷髅商人 离开）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:420
+msgid "日晷 / Moondial 生效中"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:557
+msgid "上午4:30 起"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:545
+msgid "手动跑一次到访判定（/骷髅商人 检查）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:431
+msgid "条件已满足，将出现在出生点附近（{0}, {1}）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:564
+msgid "未安排"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:562
+msgid "未找到"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:560
+msgid "位"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:560
+msgid "位置"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:417
+msgid "现在是夜晚（明天上午再来）"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:564
+msgid "已安排"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:423
+msgid "已过上午4:30 + {0} 分钟"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:510
+msgid "已请骷髅商人离场（今天不会再出现）。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:521
+msgid "已手动判定一次："
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:497
+msgid "已召唤，他今天就在这里了。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:559
+msgid "月相"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:426
+msgid "暂无玩家在线，等有人进服再判定"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:491
+msgid "召唤失败：NPC 槽位不足。"
+msgstr ""
+
+#: ../../DailySkeletonMerchant.cs:542
+msgid "指令用法："
+msgstr ""
+

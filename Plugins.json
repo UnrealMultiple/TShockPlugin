@@ -902,6 +902,29 @@
     "HotReload": true
   },
   {
+    "Name": "DailySkeletonMerchant",
+    "Version": "1.0",
+    "Author": "不是现在",
+    "Description": {
+      "en-US": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "de-DE": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "it-IT": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "fr-FR": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "es-ES": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "ru-RU": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "zh-CN": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "pt-BR": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "pl-PL": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "ja-JP": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "ko-KR": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM.",
+      "zh-Hant": "A Skeleton Merchant shows up once a day at a fixed spot near the world spawn; vanilla stock, refreshed every morning at 4:30 AM."
+    },
+    "AssemblyName": "DailySkeletonMerchant",
+    "Path": "DailySkeletonMerchant.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "DamageRuleLoot",
     "Version": "1.3.5.1",
     "Author": "羽学 西江小子",

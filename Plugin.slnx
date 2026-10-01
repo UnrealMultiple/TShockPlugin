@@ -45,6 +45,7 @@
   <Project Path="src/DamageRuleLoot/DamageRuleLoot.csproj" />
   <Project Path="src/DamageStatistic/DamageStatistic.csproj" />
   <Project Path="src/DataSync/DataSync.csproj" />
+  <Project Path="src/DailySkeletonMerchant/DailySkeletonMerchant.csproj" />
   <Project Path="src/DeathDrop/DeathDrop.csproj" />
   <Project Path="src/DailyMerchant/DailyMerchant.csproj" />
   <Project Path="src/DeltaForce.Core/DeltaForce.Core.csproj" />
