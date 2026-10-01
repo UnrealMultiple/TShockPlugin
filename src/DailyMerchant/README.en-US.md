@@ -93,29 +93,6 @@ as someone is in the world, the stock refreshes by itself the next morning.
 > One vanilla detail: those area checks use **the position of the player who opens the shop**, not the
 > merchant's position.
 
-## Troubleshooting
-
-The plugin states exactly why a merchant did not show up (its diagnostic is available in game via `/merchant`):
-
-```
-[旅商] 城镇：2 位 NPC（已入住 0，待搬入空房 0）
-[旅商] 判定：城镇里有 2 位 NPC，但都没住进房子，原版没有落脚点（静默等待中）
-[旅商] 原版生成：原版拒绝：既没有已入住的城镇 NPC，也没有可搬入的空房
-[骷髅商人] 当前：白天 04:31，月相 1，场上骷髅商人 0 位，位置 当前不在场
-[骷髅商人] 出生点：(3568, 1837)，判定：条件已满足，将出现在出生点附近
-```
-
-- `已入住 0` → no town NPC owns a house, so vanilla refuses to spawn him; wait until the town NPCs are housed.
-- Sundial / Moondial active → vanilla does not roll at all while that is the case.
-- Night or past the window → try again the next morning.
-- Skeleton Merchant `出生点附近没人` → nobody is near the spawn point, so nothing is spawned; walk over and he appears.
-- Switched off → the diagnostic reports `已在配置里关闭`.
-
-**Empty server note**: a Terraria dedicated server does not advance the world with nobody online,
-so the once-per-second automatic roll does not run. As soon as someone joins it resumes on its own.
-From the console you can always force one roll manually (this is also what the
-automated test loop uses).
-
 ## Changelog
 
 ### v1.1

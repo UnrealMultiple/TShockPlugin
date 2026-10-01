@@ -50,7 +50,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
     public DailyMerchantPlugin(Main game) : base(game) { }
 
     private const string LogPrefix = "[DailyMerchant] ";
-    private const string CommandPermission = "tshock.admin";
 
     /// <summary>到访窗口：上午 4:30 起 450 分钟 = 中午 12 点，与原版一致（只用于旅商）。</summary>
     private const int ArrivalWindowMinutes = 450;
@@ -80,10 +79,8 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
     internal static DailyMerchantConfig Config = new();
 
-    private Command? _command;
     private long _lastScanAt;
     private bool _worldReady;
-    private long _scanCount;
 
     // ---- 旅商状态
     private bool _arrivedThisDay;
@@ -102,13 +99,12 @@ public class DailyMerchantPlugin : TerrariaPlugin
         LoadConfig();
         GeneralHooks.ReloadEvent += ReloadConfig;
 
-        RegisterCommand();
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
 
         TShock.Log.ConsoleInfo(
             $"{LogPrefix}v{Version} 已加载：旅商 NPC ID = {NPCID.TravellingMerchant}（流动旅商），每天到访 100%（原版 22.12%）；" +
             $"骷髅商人 NPC ID = {NPCID.SkeletonMerchant}，白天出生点附近有人时在固定锚点生成一只，走远/入夜后的去留由原版决定。" +
-            $"开关在 DailyMerchant.json（默认都开），命令 /merchant（权限 {CommandPermission}）。");
+            $"开关在 DailyMerchant.json（默认都开）。");
     }
 
     protected override void Dispose(bool disposing)
@@ -117,7 +113,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
-            RemoveCommand();
         }
 
         base.Dispose(disposing);
@@ -180,8 +175,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// </summary>
     private void RunScan()
     {
-        _scanCount++;
-
         // 天黑 = 今天结束，旅商名额重置。
         if (Main.dayTime != _wasDayTime)
         {
@@ -228,7 +221,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
             if (!_warnedNoHousing)
             {
                 _warnedNoHousing = true;
-                TShock.Log.ConsoleDebug($"{LogPrefix}{LastVanillaBlock}；静默等待中…");
+                TShock.Log.ConsoleDebug($"{LogPrefix}原版暂未放行旅商（城镇里还没有落脚点），静默等待中…");
             }
 
             return;
@@ -237,15 +230,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
         // 到访/离场由游戏自己播报，这里不再往控制台刷常态输出。
         _arrivedThisDay = true;
         _warnedNoHousing = false;
-    }
-
-    /// <summary>把游戏内时刻换算成 HH:MM：白天 0 刻 = 4:30，夜晚 0 刻 = 19:30。</summary>
-    private static string Clock()
-    {
-        double hours = (Main.dayTime ? 4.5 + Main.time / 3600.0 : 19.5 + Main.time / 3600.0) % 24.0;
-        int h = (int)hours;
-        int m = (int)((hours - h) * 60.0);
-        return $"{h:00}:{m:00}";
     }
 
     /// <summary>原版的城镇 NPC 数量要求：不含护士(37)、骷髅旅商(453)、旅商自己。</summary>
@@ -269,101 +253,13 @@ public class DailyMerchantPlugin : TerrariaPlugin
         return count;
     }
 
-    /// <summary>统计城镇 NPC：总数 / 已入住 / 虽无房但有空房可搬（仅用于 status 诊断）。</summary>
-    private static void Town(out int town, out int housed, out int withRoom)
-    {
-        town = housed = withRoom = 0;
-
-        for (int i = 0; i < Main.maxNPCs; i++)
-        {
-            NPC? npc = Main.npc[i];
-            if (npc == null || !npc.active || !npc.townNPC || npc.life <= 0)
-                continue;
-
-            int type = npc.netID;
-            if (type == 37 || type == NPCID.SkeletonMerchant || type == NPCID.TravellingMerchant)
-                continue;
-
-            town++;
-
-            if (!npc.homeless && (npc.homeTileX > 0 || npc.homeTileY > 0))
-            {
-                housed++;
-                continue;
-            }
-
-            if (WorldGen.TownManager.HasRoom(type, out _))
-                withRoom++;
-        }
-    }
-
     /// <summary>调用原版生成。返回 false 表示原版拒绝（条件不满足）。</summary>
     private static bool TryVanillaSpawn()
     {
         int before = CountMerchants();
         WorldGen.SpawnTravelNPC();
-        bool ok = CountMerchants() > before;
-        LastVanillaBlock = ok ? GetString("原版已放行") : ExplainVanillaBlock();
-        return ok;
+        return CountMerchants() > before;
     }
-
-    /// <summary>按原版 SpawnTravelNPC 的判断顺序逐条复算，说明它到底卡在哪一步。</summary>
-    private static string ExplainVanillaBlock()
-    {
-        if (Main.eclipse)
-            return GetString("原版拒绝：月食天不生成旅商");
-
-        if (!Main.dayTime)
-            return GetString("原版拒绝：夜晚不生成旅商");
-
-        if (Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0)
-            return GetString("原版拒绝：入侵进行中");
-
-        for (int i = 0; i < Main.maxNPCs; i++)
-        {
-            NPC? npc = Main.npc[i];
-            if (npc != null && npc.active && npc.type == NPCID.TravellingMerchant)
-                return Format(GetString("原版拒绝：场上已有旅商（槽位 {0}，生命 {1}）"), i, npc.life);
-        }
-
-        int homes = 0;
-        for (int i = 0; i < Main.maxNPCs; i++)
-        {
-            NPC? npc = Main.npc[i];
-            if (npc != null && npc.active && npc.townNPC && npc.type != 37 && !npc.homeless)
-                homes++;
-        }
-
-        if (homes == 0)
-        {
-            int rooms = 0;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC? npc = Main.npc[i];
-                if (npc != null && npc.active && npc.townNPC && npc.type != 37 && npc.homeless &&
-                    WorldGen.TownManager.HasRoom(npc.type, out _))
-                    rooms++;
-            }
-
-            return rooms == 0
-                ? GetString("原版拒绝：既没有已入住的城镇 NPC，也没有可搬入的空房")
-                : GetString("原版拒绝：TownManager 找不到可用的落脚点");
-        }
-
-        // 走到这里原版一定会调 NPC.NewNPC；如果仍然没出现，多半是生成点被占或槽位耗尽。
-        int active = 0;
-        for (int i = 0; i < Main.maxNPCs; i++)
-        {
-            NPC? npc = Main.npc[i];
-            if (npc != null && npc.active)
-                active++;
-        }
-
-        return Format(GetString("原版已通过全部条件（有 {0} 位已入住 NPC）但仍没生成：活跃 NPC {1}/{2}"), homes, active, Main.maxNPCs);
-    }
-
-    /// <summary>最近一次原版生成的结果说明，status 里会显示。</summary>
-    private static string LastVanillaBlock { get; set; } = "尚未尝试";
 
     private static int CountMerchants()
     {
@@ -377,50 +273,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
         }
 
         return count;
-    }
-
-    private static string Where(int netId)
-    {
-        var spots = new List<string>();
-
-        for (int i = 0; i < Main.maxNPCs && spots.Count < 5; i++)
-        {
-            NPC? npc = Main.npc[i];
-            if (npc == null || !npc.active || npc.life <= 0 || npc.netID != netId)
-                continue;
-
-            spots.Add($"({(int)(npc.position.X / 16f)}, {(int)(npc.position.Y / 16f)})");
-        }
-
-        return spots.Count == 0 ? GetString("当前不在场") : string.Join("、", spots);
-    }
-
-    /// <summary>当前"能不能来"的诊断文案，供 status 使用。</summary>
-    private static bool InWindow() =>
-        Main.dayTime && Main.time < ArrivalWindowMinutes * 60.0 && !Main.IsFastForwardingTime();
-
-    private static string BlockReason(bool inWindow)
-    {
-        if (!Main.dayTime)
-            return GetString("现在是夜晚（原版入夜后不再来）");
-        if (Main.IsFastForwardingTime())
-            return GetString("日晷 / Moondial 生效中（原版此时不掷骰）");
-        if (!inWindow)
-            return Format(GetString("已过上午4:30 + {0} 分钟"), ArrivalWindowMinutes);
-        if (Main.eclipse)
-            return GetString("月食天不生成旅商");
-        if (Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0)
-            return GetString("入侵进行中（原版此时不生成旅商）");
-
-        int town = CountTownNpcs();
-        if (town < 2)
-            return Format(GetString("城镇里只有 {0} 位 NPC，原版要求至少 2 位"), town);
-
-        Town(out _, out int housed, out int withRoom);
-        if (housed == 0 && withRoom == 0)
-            return Format(GetString("城镇里有 {0} 位 NPC，但都没住进房子，原版没有落脚点（静默等待中）"), town);
-
-        return GetString("条件已满足，正在按原版生成");
     }
 
     // ============================================================== 骷髅商人（NPC 453）
@@ -696,25 +548,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
         return count;
     }
 
-    /// <summary>骷髅商人当前"能不能来"的诊断文案，供 status 使用。</summary>
-    private string SkeletonBlockReason()
-    {
-        if (!Main.dayTime)
-            return GetString("现在是夜晚（白天再来）");
-
-        if (CountSkeletons() > 0)
-            return GetString("已在场（不会生成第二只）");
-
-        if (!TryGetAnchor(out Point tile, out _))
-            return GetString("出生点附近找不到能站立的位置");
-
-        int near = CountPlayersNear(AnchorWorld(tile), PresenceRadiusPx);
-        if (near == 0)
-            return Format(GetString("出生点附近没人（等有玩家走近再生成，判定半径 {0} 像素）"), PresenceRadiusPx);
-
-        return GetString("条件已满足，将出现在出生点附近");
-    }
-
     /// <summary>
     /// 带占位符的文案统一这样拼：先取译文（没有译文时返回原文模板），再自己填值。
     /// 不能写成 GetString($"…{0}…", args) —— GetText.NET 8 的 FormattableStringAdapter 会先把
@@ -723,132 +556,4 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// </summary>
     private static string Format(string template, params object?[] args)
         => string.Format(template, args);
-
-    // ------------------------------------------------------------------ 命令
-
-    private void RegisterCommand()
-    {
-        RemoveCommand();
-        _command = new Command(CommandPermission, OnCommand, "merchant", "旅商", "dailymerchant")
-        {
-            HelpText = GetString("旅商与骷髅商人每日到访（/merchant summon|despawn|check|status）"),
-            AllowServer = true
-        };
-        Commands.ChatCommands.Add(_command);
-    }
-
-    private void RemoveCommand()
-    {
-        if (_command == null)
-            return;
-
-        Commands.ChatCommands.RemoveAll(x => x.CommandDelegate == OnCommand);
-        _command = null;
-    }
-
-    private void OnCommand(CommandArgs args)
-    {
-        // 命令也算一次"世界已载入"的确认，否则首个命令的操作会被世界初始化顺手清掉。
-        EnsureWorldReady();
-
-        TSPlayer player = args.Player;
-        string sub = args.Parameters.Count > 0 ? args.Parameters[0].ToLowerInvariant() : "help";
-
-        switch (sub)
-        {
-            case "help" or "帮助" or "?":
-                SendHelp(player);
-                break;
-
-            case "summon" or "s" or "召唤" or "来":
-                if (!Config.TravellingMerchantEnabled)
-                {
-                    player.SendInfoMessage(GetString("旅商每日到访已在配置里关闭。"));
-                }
-                else if (CountMerchants() > 0)
-                {
-                    player.SendInfoMessage(GetString("场上已经有旅商了。"));
-                }
-                else if (TryVanillaSpawn())
-                {
-                    player.SendInfoMessage($"§e[旅商] §7{GetString("已召唤，旅商现在在城镇里。")}");
-                }
-                else
-                {
-                    // 召唤是管理员显式操作，这里必须说清楚为什么没成。
-                    player.SendErrorMessage($"§e[旅商] §7{GetString("召唤失败：")}{BlockReason(InWindow())}。");
-                }
-
-                break;
-
-            case "despawn" or "d" or "离开" or "送走":
-                if (CountMerchants() == 0)
-                {
-                    player.SendInfoMessage(GetString("场上本来就没有旅商。"));
-                    break;
-                }
-
-                WorldGen.UnspawnTravelNPC();   // 原版自己播报"xxx 离开了"
-                _arrivedThisDay = false;
-                player.SendInfoMessage($"§e[旅商] §7{GetString("已请旅商离场。")}");
-                break;
-
-            case "status" or "st" or "状态":
-                SendStatus(player);
-                break;
-
-            case "check" or "tick" or "检查" or "判定":
-                // 空服时世界不推进、自动判定不会触发，这里手动跑一次（也是自动化测试的入口）。
-                _lastScanAt = Environment.TickCount64;
-                RunScan();
-                player.SendInfoMessage($"§e[旅商] §7{GetString("已手动判定一次：")}§f{BlockReason(InWindow())}§7");
-                player.SendInfoMessage($"§e[骷髅商人] §7{GetString("已手动判定一次：")}§f{SkeletonBlockReason()}§7");
-                break;
-
-            default:
-                SendHelp(player);
-                break;
-        }
-    }
-
-    private static void SendHelp(TSPlayer player)
-    {
-        player.SendInfoMessage("§e[旅商] §7" + GetString("指令用法："));
-        player.SendInfoMessage("§f/merchant summon §7— " + GetString("立刻召唤旅商（/merchant 召唤）"));
-        player.SendInfoMessage("§f/merchant despawn §7— " + GetString("请旅商离场（/merchant 离开）"));
-        player.SendInfoMessage("§f/merchant check §7— " + GetString("手动跑一次到访判定（/merchant 检查）"));
-        player.SendInfoMessage("§f/merchant status §7— " + GetString("查看到访状态与城镇条件（/merchant 状态）"));
-    }
-
-    private void SendStatus(TSPlayer player)
-    {
-        DailyMerchantConfig config = Config;
-        bool travelOn = config.TravellingMerchantEnabled;
-        bool skeletonOn = config.SkeletonMerchantEnabled;
-        bool inWindow = InWindow();
-        Town(out int town, out int housed, out int withRoom);
-
-        player.SendInfoMessage($"§e[旅商] §7{GetString("启用中")} · " +
-                               $"{GetString("旅商 NPC ID =")} §f{NPCID.TravellingMerchant}§7 · " +
-                               $"{GetString("每天到访")} §f{(travelOn ? "100%" : GetString("已关闭"))}§7（{GetString("原版 22.12%")}）· " +
-                               $"{GetString("窗口")} §f{GetString("上午4:30 起")} {ArrivalWindowMinutes} {GetString("分钟")}§7");
-        player.SendInfoMessage($"§e[旅商] §7{GetString("当前：")}{(Main.dayTime ? "白天" : "夜晚")} §f{Clock()}§7，" +
-                               $"{GetString("场上旅商")} §f{CountMerchants()}§7 {GetString("位")}，{GetString("位置")} §f{Where(NPCID.TravellingMerchant)}§7");
-        player.SendInfoMessage($"§e[旅商] §7{GetString("城镇：")}§f{town}§7 {GetString("位 NPC（已入住")} §f{housed}§7，" +
-                               $"{GetString("待搬入空房")} §f{withRoom}§7）· {GetString("判定已跑")} §f{_scanCount}§7 " +
-                               $"{GetString("次（每秒 1 次自动，空服不跑）")}");
-        player.SendInfoMessage($"§e[旅商] §7{GetString("判定：")}§f{(travelOn ? BlockReason(inWindow) : GetString("已在配置里关闭"))}§7");
-        player.SendInfoMessage($"§e[旅商] §7{GetString("原版生成：")}§f{LastVanillaBlock}§7");
-
-        player.SendInfoMessage($"§e[骷髅商人] §7{GetString("启用中")} · " +
-                               $"{GetString("骷髅商人 NPC ID =")} §f{NPCID.SkeletonMerchant}§7 · " +
-                               $"{GetString("生成条件")} §f{GetString("白天 + 出生点附近有人 + 场上没有")}§7 · " +
-                               $"{GetString("走远或入夜后的去留由原版按距离卸载决定，插件不干预")}");
-        player.SendInfoMessage($"§e[骷髅商人] §7{GetString("当前：")}{(Main.dayTime ? "白天" : "夜晚")} §f{Clock()}§7，" +
-                               $"{GetString("月相")} §f{Main.moonPhase}§7，" +
-                               $"{GetString("场上骷髅商人")} §f{CountSkeletons()}§7 {GetString("位")}，{GetString("位置")} §f{Where(NPCID.SkeletonMerchant)}§7");
-        player.SendInfoMessage($"§e[骷髅商人] §7{GetString("出生点：")}§f({Main.spawnTileX}, {Main.spawnTileY})§7，" +
-                               $"{GetString("锚点附近玩家")} §f{(TryGetAnchor(out Point tile, out _) ? CountPlayersNear(AnchorWorld(tile), PresenceRadiusPx) : 0)}§7 {GetString("位")} · " +
-                               $"{GetString("判定：")}§f{(skeletonOn ? SkeletonBlockReason() : GetString("已在配置里关闭"))}§7");
-    }
 }
