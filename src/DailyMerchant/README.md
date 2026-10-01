@@ -81,7 +81,7 @@
 
 ## 更新日志
 
-### v2.0
+### v1.1
 
 - 合并原 DailySkeletonMerchant：骷髅商人每天上午 4:30 在出生点附近出现一次，天黑离场
 - 新增配置文件 `DailyMerchant.json`，旅商与骷髅商人各一个开关，默认都开，支持 `/tconfig reload`

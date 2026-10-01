@@ -99,7 +99,7 @@ automated test loop uses).
 
 ## Changelog
 
-### v2.0
+### v1.1
 
 - Merges the former DailySkeletonMerchant plugin: the Skeleton Merchant now shows up near the spawn
   point every morning from 4:30 AM and leaves at nightfall

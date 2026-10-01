@@ -42,7 +42,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
 {
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "不是现在";
-    public override Version Version => new(2, 0);
+    public override Version Version => new(1, 1);
     public override string Description =>
         GetString("让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人每天上午固定出现在出生点附近。");
 

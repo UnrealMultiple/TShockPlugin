@@ -880,7 +880,7 @@
   },
   {
     "Name": "DailyMerchant",
-    "Version": "2.0",
+    "Version": "1.1",
     "Author": "不是现在",
     "Description": {
       "en-US": "Travelling Merchant and Skeleton Merchant both show up every day; each can be switched off in DailyMerchant.json.",
