@@ -126,16 +126,8 @@ public class DailySkeletonMerchant : TerrariaPlugin
     private void OnUpdate(EventArgs args)
     {
         // Terraria 空服不推进世界（GameUpdate 也不触发），有人进服后这里会自动补上判定。
-        bool ready = !Main.gameMenu && Main.maxTilesX > 100;
-        if (!ready)
-        {
-            _worldReady = false;
-            _handledThisDay = false;
-            _spawnedIndex = -1;
+        if (!EnsureWorldReady())
             return;
-        }
-
-        EnsureWorldReady();
 
         if (Environment.TickCount64 - _lastScanAt < ScanIntervalMs)
             return;
@@ -144,15 +136,25 @@ public class DailySkeletonMerchant : TerrariaPlugin
         RunScan();
     }
 
-    private void EnsureWorldReady()
+    /// <summary>
+    /// 世界没载入（主菜单、世界数据还没准备好）时返回 false，此时不做任何判定。
+    /// 只有在"就绪状态发生变化"的那一次才重置当天状态，之后都是空操作——
+    /// 否则空服时第一个判定来自 /skeleton 这类命令，会把命令刚记下的东西顺手清掉。
+    /// </summary>
+    private bool EnsureWorldReady()
     {
-        if (_worldReady)
-            return;
+        bool ready = !Main.gameMenu && Main.maxTilesX > 100;
+        if (ready == _worldReady)
+            return ready;
 
-        _worldReady = true;
+        _worldReady = ready;
+        if (!ready)
+            return false;
+
         _handledThisDay = false;
-        _spawnedIndex = -1;
+        _spawnedIndex = -1;   // 换了世界 / 地图，NPC 槽位记录作废
         TShock.Log.ConsoleDebug($"{LogPrefix}世界已载入（{(Main.dayTime ? "白天" : "夜晚")}），开始每日到访判定。");
+        return true;
     }
 
     /// <summary>
@@ -161,7 +163,9 @@ public class DailySkeletonMerchant : TerrariaPlugin
     /// </summary>
     private void RunScan()
     {
-        EnsureWorldReady();
+        if (!EnsureWorldReady())
+            return;
+
         UpdateDayState();
         _scanCount++;
 
@@ -375,6 +379,21 @@ public class DailySkeletonMerchant : TerrariaPlugin
     private static bool AnyPlayerNear(Vector2 center, float radius) =>
         CountPlayersNear(center, radius) > 0;
 
+    /// <summary>骷髅商人附近（离场半径内）的在线玩家数，排查"为什么不离场"用。</summary>
+    private static int NearbyPlayerCount()
+    {
+        int count = 0;
+
+        for (int i = 0; i < Main.maxNPCs; i++)
+        {
+            NPC? npc = Main.npc[i];
+            if (npc != null && npc.active && npc.netID == MerchantId)
+                count += CountPlayersNear(npc.Center, LeaveRadiusPx);
+        }
+
+        return count;
+    }
+
     private static string Where()
     {
         var spots = new List<string>();
@@ -465,6 +484,10 @@ public class DailySkeletonMerchant : TerrariaPlugin
     private void OnCommand(CommandArgs args)
     {
         TSPlayer player = args.Player;
+
+        // 命令也算一次"世界已载入"的确认，否则首个命令的操作会被世界初始化顺手清掉。
+        EnsureWorldReady();
+
         string sub = args.Parameters.Count > 0 ? args.Parameters[0].ToLowerInvariant() : "help";
 
         switch (sub)
@@ -550,6 +573,7 @@ public class DailySkeletonMerchant : TerrariaPlugin
     {
         int alive = CountMerchants();
         bool hasAnchor = TryFindAnchor(out Point tile);
+        int near = NearbyPlayerCount();
 
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("启用中")} · " +
                                $"{GetString("骷髅商人 NPC ID =")} §f{MerchantId}§7 · " +
@@ -563,6 +587,7 @@ public class DailySkeletonMerchant : TerrariaPlugin
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("今日：")}§f" +
                                (_handledThisDay ? GetString("已安排") : GetString("未安排")) + "§7 · " +
                                $"{GetString("离场半径")} §f{LeaveRadiusPx / 16f}{GetString("格")}§7 · " +
+                               $"{GetString("附近玩家")} §f{near}§7 · " +
                                $"{GetString("判定已跑")} §f{_scanCount}§7 {GetString("次（每秒 1 次自动，空服不跑）")}");
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("判定：")}§f{BlockReason()}§7");
     }
