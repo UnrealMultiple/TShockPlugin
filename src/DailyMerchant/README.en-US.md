@@ -12,7 +12,7 @@ One plugin, two merchants, one switch each, both enabled by default:
 | `启用骷髅商人每日到访` | on | The Skeleton Merchant (NPC 453) appears near the world spawn every morning |
 
 The file is created on first start in the TShock config directory (`TShock.SavePath`, usually `tshock/DailyMerchant.json` on the server);
-edit it and run `/tconfig reload` to apply it without a restart.
+edit it and restart the server to apply it.
 
 ## Travelling Merchant (NPC 368)
 
@@ -135,7 +135,7 @@ automated test loop uses).
 - Merges the former DailySkeletonMerchant plugin: the Skeleton Merchant now shows up near the spawn
   point while a player is nearby during the day; his comings and goings are left to vanilla
 - Adds the `DailyMerchant.json` config file with one switch per merchant, both on by default,
-  reloadable with `/tconfig reload`
+  applied on the next server restart; the plugin also listens for TShock's config-reload event, so servers running TSConfig can hot-reload it
 - The automatic roll now uses a real-time interval (1 second) instead of a frame count
 - Adds the invasion case to the Travelling Merchant diagnostics
 

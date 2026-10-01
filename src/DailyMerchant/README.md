@@ -11,7 +11,7 @@
 | `启用旅商每日到访` | 开 | 旅商（NPC 368）每天必到 |
 | `启用骷髅商人每日到访` | 开 | 骷髅商人（NPC 453）白天在出生点附近有人时来一只 |
 
-配置文件首次启动时自动生成在 TShock 的配置目录（`TShock.SavePath` 下，服务器上通常是 `tshock/DailyMerchant.json`），改完用 `/tconfig reload` 热重载。
+配置文件首次启动时自动生成在 TShock 的配置目录（`TShock.SavePath` 下，服务器上通常是 `tshock/DailyMerchant.json`），改完**重启服务器**生效。本插件也监听 TShock 的配置重载事件，服务器上装了 TSConfig 插件的话可以用它热重载。
 
 ## 旅商（NPC 368）
 
@@ -114,7 +114,7 @@
 ### v1.1
 
 - 合并原 DailySkeletonMerchant：骷髅商人白天在出生点附近有人时出现；走远或入夜后的去留交给原版
-- 新增配置文件 `DailyMerchant.json`，旅商与骷髅商人各一个开关，默认都开，支持 `/tconfig reload`
+- 新增配置文件 `DailyMerchant.json`，旅商与骷髅商人各一个开关，默认都开（改完重启生效）
 - 自动判定改为按真实时间间隔（1 秒），不再按帧计数
 - 旅商诊断补上入侵期间的原因说明
 

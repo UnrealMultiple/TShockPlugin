@@ -466,8 +466,11 @@ public class DailyMerchantPlugin : TerrariaPlugin
         Event($"骷髅商人已出现：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
     }
 
-    /// <summary>一天只发生几次的关键事件，用 ConsoleInfo 才落得进 server.log（ConsoleDebug 只在内存里）。</summary>
-    private static void Event(string message) => TShock.Log.ConsoleInfo($"{LogPrefix}{message}");
+    /// <summary>
+    /// 留一条排查用的线索，但只走 ConsoleDebug：它既不写日志文件也不往控制台刷，
+    /// 插件在服务器上保持安静。加载时那行横幅之外，任何运行期事件都不输出。
+    /// </summary>
+    private static void Event(string message) => TShock.Log.ConsoleDebug($"{LogPrefix}{message}");
 
     private static Vector2 AnchorWorld(Point tile) => new(tile.X * 16, tile.Y * 16);
 
