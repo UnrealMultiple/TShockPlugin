@@ -25,7 +25,7 @@ namespace DM;
 ///
 /// 二、骷髅商人（NPC 453）
 /// 原版的骷髅商人只在地牢里随机刷出，没有每日到访这回事。插件让他每天上午 4:30
-/// 在出生点附近出现一次，天黑就走（离场条件与旅商一致：看游戏时间，不看玩家距离）。
+/// 在出生点附近出现一次；离场条件：时间到了（天黑）而且附近没有玩家，他才走。
 ///   * 位置：出生点附近逐圈搜索出来的固定锚点（脚下实地、身体两格与两侧为空、不泡水、
 ///     不在地牢砖/蓝砖上）；种子按队伍分配出生点时（Main.teamBasedSpawnsSeed）从所有出生点里随机挑一个；
 ///   * 出生点站不住人时先按 40 格找，全都不行再放宽到 120 格；
@@ -67,6 +67,9 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// <summary>所有出生点都找不到位置时的兜底搜索半径。</summary>
     private const int AnchorSearchFallbackRadius = 120;
 
+    /// <summary>骷髅商人离场半径（像素）：天黑之后，800 像素内没人他才走。</summary>
+    private const float LeaveRadiusPx = 800f;
+
     /// <summary>锚点与地图边缘保持的距离。</summary>
     private const int MapMargin = 25;
 
@@ -84,6 +87,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
     // ---- 骷髅商人状态
     private bool _skeletonArrivedThisDay;
+    private int _skeletonIndex = -1;
     private bool _skeletonAtDay;
     private double _skeletonAtTime;
     private int _skeletonAtMoonPhase;
@@ -452,7 +456,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
         if (!Config.SkeletonMerchantEnabled)
             return;
 
-        SkeletonLeaveAtNight();
+        SkeletonLeave();
 
         if (_skeletonArrivedThisDay)
             return;
@@ -485,40 +489,67 @@ public class DailyMerchantPlugin : TerrariaPlugin
             return;
         }
 
-        if (!SpawnSkeleton(tile))
+        if (!SpawnSkeleton(tile, out int index))
         {
             TShock.Log.ConsoleDebug($"{LogPrefix}生成失败（NPC 槽位不足或位置被占），稍后重试。");
             return;
         }
 
+        _skeletonIndex = index;
         MarkSkeletonHandled();
         TShock.Log.ConsoleDebug($"{LogPrefix}骷髅商人已出现：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
     }
 
     /// <summary>
-    /// 离场条件与旅商一致：天黑就走，不看玩家离多远。
-    /// 清场方式和原版 UnspawnTravelNPC 一样（清 active/life + 广播 23 号包），
-    /// 场上不管是插件生成的还是洞穴刷到的，天黑一起走，保证"每天上午来一个"。
+    /// 离场条件：时间到了（天黑）**并且**附近没有玩家，他才走。
+    ///
+    /// - 只是天黑、身边还有人 → 他照常站着，不会突然消失；
+    /// - 天黑且没人了 → 清场方式和原版 UnspawnTravelNPC 一样（清 active/life + 广播 23 号包）；
+    /// - 玩家在的时候他不会被打断，第二天清晨也还在（场上已有就不生成第二个）；
+    /// - 走掉之后当天不再出现，第二天上午再来。
+    /// 只处理插件自己生成的那一只，洞穴里刷到的、别的插件召唤的一概不动。
     /// </summary>
-    private static void SkeletonLeaveAtNight()
+    private void SkeletonLeave()
     {
-        if (Main.dayTime)
+        if (Main.dayTime)   // 时间没到，他照常站着
             return;
 
-        int count = 0;
+        if (_skeletonIndex < 0)
+            return;
 
-        for (int i = 0; i < Main.maxNPCs; i++)
+        NPC? npc = Main.npc[_skeletonIndex];
+        if (npc == null || !npc.active || npc.life <= 0 || npc.netID != NPCID.SkeletonMerchant)
         {
-            NPC? npc = Main.npc[i];
-            if (npc == null || !npc.active || npc.life <= 0 || npc.netID != NPCID.SkeletonMerchant)
-                continue;
-
-            DespawnNpc(i);
-            count++;
+            _skeletonIndex = -1;   // 已经被打死或者被别人清掉了
+            return;
         }
 
-        if (count > 0)
-            TShock.Log.ConsoleDebug($"{LogPrefix}入夜，场上 {count} 位骷髅商人离场。");
+        // 时间到了，但附近还有人，就先不消失。
+        int nearby = CountPlayersNear(npc.position);
+        if (nearby > 0)
+            return;
+
+        DespawnNpc(_skeletonIndex);
+        _skeletonIndex = -1;
+        TShock.Log.ConsoleDebug($"{LogPrefix}天黑且附近无人，骷髅商人离场。");
+    }
+
+    /// <summary>离场半径 800 像素（50 格），与原版 NPC 反卸载距离一致。</summary>
+    private static int CountPlayersNear(Vector2 position)
+    {
+        int count = 0;
+
+        for (int i = 0; i < Main.maxPlayers; i++)
+        {
+            Player? player = Main.player[i];
+            if (player == null || !player.active)
+                continue;
+
+            if (Vector2.Distance(player.position, position) <= LeaveRadiusPx)
+                count++;
+        }
+
+        return count;
     }
 
     private static void DespawnNpc(int index)
@@ -534,11 +565,14 @@ public class DailyMerchantPlugin : TerrariaPlugin
             NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
     }
 
-    private static bool SpawnSkeleton(Point tile)
+    private static bool SpawnSkeleton(Point tile, out int index)
     {
-        int index = NPC.NewNPC(new EntitySource_SpawnNPC(), tile.X * 16 + 8, tile.Y * 16, NPCID.SkeletonMerchant);
+        index = NPC.NewNPC(new EntitySource_SpawnNPC(), tile.X * 16 + 8, tile.Y * 16, NPCID.SkeletonMerchant);
         if (index < 0 || index >= Main.maxNPCs)
+        {
+            index = -1;
             return false;
+        }
 
         NPC npc = Main.npc[index];
 
@@ -874,7 +908,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("启用中")} · " +
                                $"{GetString("骷髅商人 NPC ID =")} §f{NPCID.SkeletonMerchant}§7 · " +
                                $"{GetString("每天上午 4:30 起一次")} · " +
-                               $"{GetString("离场条件")} §f{GetString("天黑即走")}§7");
+                               $"{GetString("离场条件")} §f{Format(GetString("天黑且 {0} 像素内无人"), LeaveRadiusPx)}§7");
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("当前：")}{(Main.dayTime ? "白天" : "夜晚")} §f{Clock()}§7，" +
                                $"{GetString("月相")} §f{Main.moonPhase}§7，" +
                                $"{GetString("场上骷髅商人")} §f{CountSkeletons()}§7 {GetString("位")}，{GetString("位置")} §f{Where(NPCID.SkeletonMerchant)}§7");

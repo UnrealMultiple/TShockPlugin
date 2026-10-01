@@ -46,10 +46,11 @@ Killing the merchant in the morning re-rolls him the next day, keeping the vanil
 - **Awkward spawn fallback**: world generation often leaves the spawn point unusable (inside a wall, in
   water, on a floating platform), so each candidate is searched within 40 tiles first and, if nothing
   stands, again within 120 tiles.
-- **He leaves at nightfall**: the leave condition matches the Travelling Merchant's — it follows the
-  **in-game clock, not player distance**. The clear-out is the vanilla `UnspawnTravelNPC` recipe (reset
-  `active`/`life` + send packet 23) and takes every Skeleton Merchant on the field, whoever spawned it,
-  so that "one arrives every morning" always holds.
+- **He leaves when it is night AND nobody is around**: leaving requires both — nightfall **and** no player
+  within 800 pixels (50 tiles). When it is simply night but someone is still next to him he keeps standing
+  there and never vanishes; he leaves once the last player walks away. The clear-out is the vanilla
+  `UnspawnTravelNPC` recipe (reset `active`/`life` + send packet 23) and only touches the one this plugin
+  spawned — dungeon spawns and other plugins' NPCs are never touched.
 - **Once per game day**, killing him does not queue a replacement; he returns the next morning.
 - **Never interferes**: if a Skeleton Merchant is already on the field (dungeon spawn, another plugin),
   no second one is created that day.
@@ -102,7 +103,7 @@ automated test loop uses).
 ### v1.1
 
 - Merges the former DailySkeletonMerchant plugin: the Skeleton Merchant now shows up near the spawn
-  point every morning from 4:30 AM and leaves at nightfall
+  point every morning from 4:30 AM, and leaves when it is night and nobody is nearby
 - Adds the `DailyMerchant.json` config file with one switch per merchant, both on by default,
   reloadable with `/tconfig reload`
 - The automatic roll now uses a real-time interval (1 second) instead of a frame count
