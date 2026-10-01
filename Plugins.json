@@ -2865,6 +2865,29 @@
     "HotReload": true
   },
   {
+    "Name": "TerraNews",
+    "Version": "1.0.0",
+    "Author": "不是现在",
+    "Description": {
+      "en-US": "TerraNews: broadcasts the Angler's quest fish and the moon phase at 04:30, sandstorm warnings, and the Traveling Merchant's shelf.",
+      "de-DE": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "it-IT": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "fr-FR": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "es-ES": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "ru-RU": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "zh-CN": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "pt-BR": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "pl-PL": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "ja-JP": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "ko-KR": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
+      "zh-Hant": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。"
+    },
+    "AssemblyName": "TerraNews",
+    "Path": "TerraNews.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
     "Name": "TimeRate",
     "Version": "1.2.3.1",
     "Author": "羽学",

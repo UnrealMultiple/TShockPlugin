@@ -199,6 +199,7 @@
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' como un juego'' |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 0.0% | Ejecuta comandos en regiones |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 0.0% | Solicitud de teletransporte |  |
+| [TerraNews](./src/TerraNews/README.md) | 0.0% | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
 | [TimeRate](./src/TimeRate/README.md) | 0.0% | Modifica la aceleración del tiempo usando comandos, y soporta el sueño de los jugadores para activar eventos |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 0.0% | Guarda el estado del temporizador |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | 0.0% | Casa rápida de NPC |  |
