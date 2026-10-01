@@ -148,7 +148,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// <summary>
     /// 世界没载入（主菜单、世界数据还没准备好）时返回 false，此时不做任何判定。
     /// 只有在"就绪状态发生变化"的那一次才重置状态，之后都是空操作——
-    /// 否则空服时第一个判定来自 /merchant 这类命令，会把命令刚记下的东西顺手清掉。
+    /// 否则像配置重载这类"非判定路径"会顺手把刚记下的东西清掉。
     /// </summary>
     private bool EnsureWorldReady()
     {
@@ -170,8 +170,8 @@ public class DailyMerchantPlugin : TerrariaPlugin
     }
 
     /// <summary>
-    /// 一次到访判定。每秒自动跑一次，也可以用 /merchant check 手动跑一次
-    /// （空服时世界不推进，自动判定不会触发，测试或排查时可用手动触发）。
+    /// 一次到访判定。每秒自动跑一次。
+    /// 空服时世界不推进，GameUpdate 不触发，所以没人在线时判定不会跑；有人进服后自动补上。
     /// </summary>
     private void RunScan()
     {

@@ -7,7 +7,8 @@ namespace DM;
 /// 插件配置：两个商人各一个开关，默认都开。
 ///
 /// 用仓库里通用的做法（参照 DamageRuleLoot）：配置文件放在 TShock 配置目录下，
-/// 叫 DailyMerchant.json，不存在就按默认值写一份；改完用 /tconfig reload 热重载。
+/// 叫 DailyMerchant.json，不存在就按默认值写一份；改完重启服务器生效
+/// （服务器上装了 TSConfig 的话也能走 TShock 的配置重载事件）。
 /// </summary>
 public class DailyMerchantConfig
 {
@@ -21,10 +22,10 @@ public class DailyMerchantConfig
 
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "DailyMerchant.json");
 
-    public void Write() =>
-        File.WriteAllText(FilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
-
-    /// <summary>读配置；文件不存在或损坏时回落到默认值并重写一份，保证服务器总能起来。</summary>
+    /// <summary>
+    /// 读配置。任何一步出岔子（文件不存在、内容坏了、读不了、写不回）都退回默认值，
+    /// 绝不让异常冒到插件初始化——否则一个坏掉的配置文件就能让整个服务器起不来。
+    /// </summary>
     public static DailyMerchantConfig Read()
     {
         if (File.Exists(FilePath))
@@ -35,14 +36,27 @@ public class DailyMerchantConfig
                 if (loaded != null)
                     return loaded;
             }
-            catch (JsonException)
+            catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
             {
-                // 落到下面按默认值重建。
+                // 内容损坏、被锁住或没有读权限：都落到下面按默认值重建。
             }
         }
 
         var config = new DailyMerchantConfig();
-        config.Write();
+
+        try
+        {
+            config.Write();
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            // 默认配置写不出去（例如配置目录只读）时，内存里的默认值照样能用，
+            // 只是这次不会留下配置文件；不为此让服务器起不来。
+        }
+
         return config;
     }
+
+    public void Write() =>
+        File.WriteAllText(FilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
 }
