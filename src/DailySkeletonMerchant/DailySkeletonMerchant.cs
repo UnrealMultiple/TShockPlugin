@@ -410,7 +410,8 @@ public class DailySkeletonMerchant : TerrariaPlugin
         if (WorldGen.SolidTile(x - 1, y) || WorldGen.SolidTile(x + 1, y))
             return false;
 
-        if (Main.tile[x, y].liquid > 0 || Main.tile[x, y - 1].liquid > 0)
+        // 脚下、身体、两侧都不能泡在液体里（地面方块也算：被水淹没的实心方块不能当落脚点）。
+        if (floor.liquid > 0 || Main.tile[x, y].liquid > 0 || Main.tile[x, y - 1].liquid > 0)
             return false;
 
         if (Main.tile[x - 1, y].liquid > 0 || Main.tile[x + 1, y].liquid > 0)
