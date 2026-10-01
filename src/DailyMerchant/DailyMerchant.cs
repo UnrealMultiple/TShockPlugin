@@ -24,16 +24,17 @@ namespace DM;
 /// 黄昏离场、月食/入侵暂停、天黑后原版自动请他离开，这些都是原版行为，插件不重复实现。
 ///
 /// 二、骷髅商人（NPC 453）
-/// 原版的骷髅商人只在地牢里随机刷出，没有每日到访这回事。插件让他每天上午 4:30
-/// 在出生点附近出现一次；离场条件：时间到了（天黑）而且附近没有玩家，他才走。
+/// 原版的骷髅商人只在地牢里随机刷出，没有每日到访这回事。插件只做一件事：
+/// 白天、出生点附近有玩家、场上又没有骷髅商人的时候，在出生点附近的固定锚点生成一只。
+/// 除此之外一概不管：
+///   * 玩家走远了、晚上没人的时候，他会不会消失——由原版自己的"离所有玩家 2000 像素就卸载"决定，
+///     插件不干预、也不补位；
+///   * 场上已经有骷髅商人（洞穴刷到的、别的插件召唤的、昨天留下的）时不再生成第二只；
+///   * 被打死了也不管，等白天有人走近出生点时自然再来一只。
 ///   * 位置：出生点附近逐圈搜索出来的固定锚点（脚下实地、身体两格与两侧为空、不泡水、
 ///     不在地牢砖/蓝砖上）；种子按队伍分配出生点时（Main.teamBasedSpawnsSeed）从所有出生点里随机挑一个；
-///   * 出生点站不住人时先按 40 格找，全都不行再放宽到 120 格；
 ///   * 货品完全沿用原版：客户端按 Main.moonPhase 现场计算（Chest.SetupShop + ShopHelper
-///     .GetSkeletonMerchantPrices），而 moonPhase 在每天清晨 4:30 由 Main.UpdateTime 递增一次，
-///     所以插件不缓存、不广播、不改写任何商店数据；
-///   * 场上已经有骷髅商人（洞穴刷到的、别的插件召唤的）时当天不生成第二只；
-///   * 一个游戏日只来一次，被打死也不补位。
+///     .GetSkeletonMerchantPrices），插件不缓存、不广播、不改写任何商店数据。
 ///
 /// 两者各有一个开关（配置文件 DailyMerchant.json，默认都开），关掉哪个就完全不做哪边的事。
 /// </summary>
@@ -44,14 +45,14 @@ public class DailyMerchantPlugin : TerrariaPlugin
     public override string Author => "不是现在";
     public override Version Version => new(1, 1);
     public override string Description =>
-        GetString("让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人每天上午固定出现在出生点附近。");
+        GetString("让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。");
 
     public DailyMerchantPlugin(Main game) : base(game) { }
 
     private const string LogPrefix = "[DailyMerchant] ";
     private const string CommandPermission = "tshock.admin";
 
-    /// <summary>到访窗口：上午 4:30 起 450 分钟 = 中午 12 点，与原版一致。</summary>
+    /// <summary>到访窗口：上午 4:30 起 450 分钟 = 中午 12 点，与原版一致（只用于旅商）。</summary>
     private const int ArrivalWindowMinutes = 450;
 
     /// <summary>
@@ -67,14 +68,12 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// <summary>所有出生点都找不到位置时的兜底搜索半径。</summary>
     private const int AnchorSearchFallbackRadius = 120;
 
-    /// <summary>补位半径（像素）：略小于原版 2000 像素的卸载半径，保证补回来就不会再被清。</summary>
-    private const float RespawnRadiusPx = 1900f;
-
-    /// <summary>两次补位之间的最小间隔（毫秒），防止来回抖动。</summary>
-    private const long RespawnCooldownMs = 5000;
-
-    /// <summary>骷髅商人离场半径（像素）：天黑之后，800 像素内没人他才走。</summary>
-    private const float LeaveRadiusPx = 800f;
+    /// <summary>
+    /// "出生点附近有人"的判定半径（像素）。
+    /// 取原版按距离卸载 NPC 的同一个半径（2000 像素 = 125 格）：这么近的玩家在，
+    /// 原版就不会把刚生成的骷髅商人卸载掉——所以我们只在这种时候生成，不会"刚出现就自己没了"。
+    /// </summary>
+    private const float PresenceRadiusPx = 2000f;
 
     /// <summary>锚点与地图边缘保持的距离。</summary>
     private const int MapMargin = 25;
@@ -91,14 +90,10 @@ public class DailyMerchantPlugin : TerrariaPlugin
     private bool _wasDayTime = true;
     private bool _warnedNoHousing;
 
-    // ---- 骷髅商人状态
-    private bool _skeletonArrivedThisDay;
-    private static int _skeletonIndex = -1;
-    private static long _lastRespawnAt;
-    private static bool _despawnTimerLogged;
-    private bool _skeletonAtDay;
-    private double _skeletonAtTime;
-    private int _skeletonAtMoonPhase;
+    // ---- 骷髅商人锚点（算一次就固定下来，避免每秒重算）
+    private static bool _anchorCached;
+    private static Point _anchorTile;
+    private static Point _anchorSpawn;
 
     // ------------------------------------------------------------------ 生命周期
 
@@ -112,7 +107,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         TShock.Log.ConsoleInfo(
             $"{LogPrefix}v{Version} 已加载：旅商 NPC ID = {NPCID.TravellingMerchant}（流动旅商），每天到访 100%（原版 22.12%）；" +
-            $"骷髅商人 NPC ID = {NPCID.SkeletonMerchant}，每天上午 4:30 起在出生点附近出现一次、天黑离场。" +
+            $"骷髅商人 NPC ID = {NPCID.SkeletonMerchant}，白天出生点附近有人时在固定锚点生成一只，走远/入夜后的去留由原版决定。" +
             $"开关在 DailyMerchant.json（默认都开），命令 /merchant（权限 {CommandPermission}）。");
     }
 
@@ -157,7 +152,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
     /// <summary>
     /// 世界没载入（主菜单、世界数据还没准备好）时返回 false，此时不做任何判定。
-    /// 只有在"就绪状态发生变化"的那一次才重置当天状态，之后都是空操作——
+    /// 只有在"就绪状态发生变化"的那一次才重置状态，之后都是空操作——
     /// 否则空服时第一个判定来自 /merchant 这类命令，会把命令刚记下的东西顺手清掉。
     /// </summary>
     private bool EnsureWorldReady()
@@ -168,10 +163,13 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         _worldReady = ready;
         if (!ready)
+        {
+            _anchorCached = false;
             return false;
+        }
 
         _arrivedThisDay = false;
-        _skeletonArrivedThisDay = false;
+        _anchorCached = false;
         TShock.Log.ConsoleDebug($"{LogPrefix}世界已载入（{(Main.dayTime ? "白天" : "夜晚")}），开始判定到访。");
         return true;
     }
@@ -184,20 +182,17 @@ public class DailyMerchantPlugin : TerrariaPlugin
     {
         _scanCount++;
 
-        // 天黑 = 今天结束，两个商人的名额一起重置。
+        // 天黑 = 今天结束，旅商名额重置。
         if (Main.dayTime != _wasDayTime)
         {
             if (!Main.dayTime)
             {
                 _arrivedThisDay = false;
                 _warnedNoHousing = false;
-                _skeletonArrivedThisDay = false;
             }
 
             _wasDayTime = Main.dayTime;
         }
-
-        UpdateSkeletonDay();
 
         TravelScan();
         SkeletonScan();
@@ -431,193 +426,52 @@ public class DailyMerchantPlugin : TerrariaPlugin
     // ============================================================== 骷髅商人（NPC 453）
 
     /// <summary>
-    /// 标记"骷髅商人今天的名额已用掉"，并记住当时的昼夜、时钟与月相。
+    /// 骷髅商人的全部判定——就这一条：
+    ///
+    ///   白天  +  场上没有骷髅商人  +  锚点附近（2000 像素）有玩家  →  在固定锚点生成一只
+    ///
+    /// 其余情况插件一律什么都不做：
+    ///   * 玩家走远了他会不会消失：原版"离所有玩家 2000 像素就卸载"，插件不管；
+    ///   * 晚上有人就留着、没人就让他走：同样是原版按距离卸载，插件不管，也不补位。
+    ///
+    /// "有人才生成"这一条同时保证不会刚出现就被原版清掉——这么近的玩家在，原版不会卸载他。
     /// </summary>
-    private void MarkSkeletonHandled()
-    {
-        _skeletonArrivedThisDay = true;
-        _skeletonAtDay = Main.dayTime;
-        _skeletonAtTime = Main.time;
-        _skeletonAtMoonPhase = Main.moonPhase;
-    }
-
-    /// <summary>
-    /// 判断骷髅商人是否已经进入新的一天，三个信号任一变化就算新的一天：
-    /// 1. 昼夜不同 —— 采样到的翻转（正常游玩时每秒都会采到）；
-    /// 2. 月相不同 —— 原版 Main.UpdateTime 在每天清晨 4:30 自己 +1，这是游戏自己的日计数器；
-    /// 3. 时钟明显倒退 —— 管理员用 /time 跳回清晨。
-    /// 必须在每次判定里跑，不能只靠 GameUpdate：空服时它根本不触发。
-    /// </summary>
-    private void UpdateSkeletonDay()
-    {
-        if (!_skeletonArrivedThisDay)
-            return;
-
-        if (Main.dayTime != _skeletonAtDay ||
-            Main.moonPhase != _skeletonAtMoonPhase ||
-            Main.time < _skeletonAtTime - 120.0)
-            _skeletonArrivedThisDay = false;
-    }
-
     private void SkeletonScan()
     {
         if (!Config.SkeletonMerchantEnabled)
             return;
 
-        SkeletonUpdate();
-
-        if (_skeletonArrivedThisDay)
+        if (!Main.dayTime)          // 晚上不生成
             return;
 
-        if (!Main.dayTime)
+        if (CountSkeletons() > 0)   // 已经有一个了（洞穴刷到的、昨天留下的、别的插件召唤的）
             return;
 
-        if (Main.time >= ArrivalWindowMinutes * 60.0)
-            return;
-
-        if (Main.IsFastForwardingTime())   // 日晷 / Moondial 生效时原版不刷怪
-            return;
-
-        // 场上已经有骷髅商人（洞穴里刷到的、别的插件召唤的）：
-        // 按需求"插件不加干预"，今天就让游戏自己来。
-        if (CountSkeletons() > 0)
-        {
-            MarkSkeletonHandled();
-            Event("场上已有骷髅商人，插件今天不干预。");
-            return;
-        }
-
-        // 没人在线就不占用今天的机会，等有人进服再判定。
-        if (!AnyPlayerOnline())
-            return;
-
-        if (!TryFindAnchor(out Point tile, out Point spawn))
+        if (!TryGetAnchor(out Point tile, out Point spawn))
         {
             TShock.Log.ConsoleDebug($"{LogPrefix}出生点附近找不到能站立的位置（常规半径 {AnchorSearchRadius} 格、兜底半径 {AnchorSearchFallbackRadius} 格都试过），本次跳过。");
             return;
         }
 
-        if (!SpawnSkeleton(tile, out int index))
+        // 锚点附近没人就先不生成：没人看着他，生成出来也只会被原版卸载。
+        if (CountPlayersNear(AnchorWorld(tile), PresenceRadiusPx) == 0)
+            return;
+
+        if (!SpawnSkeleton(tile, out _))
         {
             TShock.Log.ConsoleDebug($"{LogPrefix}生成失败（NPC 槽位不足或位置被占），稍后重试。");
             return;
         }
 
-        _skeletonIndex = index;
-        _despawnTimerLogged = false;
-        MarkSkeletonHandled();
         Event($"骷髅商人已出现：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
     }
 
-    /// <summary>
-    /// 每秒调用一次：维护跟踪状态 + 判定离场。
-    ///
-    /// 离场要同时满足两个条件：时间到了（天黑）**并且**附近 800 像素没有玩家。
-    /// 只是天黑、身边还有人的时候他会照常站着，不会突然消失。
-    ///
-    /// 另外原版还有一套"按距离卸载"：NPC 离所有玩家 2000 像素（125 格）之外，
-    /// 原版就会给他 timeLeft 倒计时，计时走完就把他清掉。骷髅商人不是城镇 NPC，照样适用，
-    /// 所以玩家一走远他就没了（洞穴里原版的骷髅商人也是这样）。两个对策：
-    ///   1. 每秒把 timeLeft 按回 0 —— 他就一直留在出生点；
-    ///   2. 万一还是被清掉了（别的插件动过、换了游戏版本），只要有玩家在出生点附近就补回原位，
-    ///      最多每 5 秒补一次，不会来回抖动；被打死的（血量归零）不补。
-    /// </summary>
-    private void SkeletonUpdate()
-    {
-        // 先看跟踪的那只还在不在。
-        if (_skeletonIndex >= 0)
-        {
-            NPC? tracked = Main.npc[_skeletonIndex];
-
-            if (tracked == null || !tracked.active || tracked.netID != NPCID.SkeletonMerchant)
-            {
-                bool killed = tracked != null && tracked.life <= 0;   // active=false 但血还在 = 被原版卸载
-                _skeletonIndex = -1;
-
-                Event(killed
-                    ? "骷髅商人被击杀（血量归零），当天不补位。"
-                    : "骷髅商人不在场了（不是被击杀，判定为被原版卸载或被别的插件清掉），尝试在原位补回。");
-
-                if (!killed)
-                    RespawnSkeletonIfNeeded();
-            }
-            else if (tracked.timeLeft > 0)
-            {
-                // 原版的"离太远就卸载"倒计时：看到它被置正就说明原版确实打算清他。
-                if (!_despawnTimerLogged)
-                {
-                    _despawnTimerLogged = true;
-                    Event($"原版开始对骷髅商人卸载倒计时（timeLeft={tracked.timeLeft}），已按回 0。");
-                }
-
-                tracked.timeLeft = 0;
-            }
-        }
-
-        if (Main.dayTime)   // 时间没到，他照常站着
-            return;
-
-        if (_skeletonIndex < 0)
-            return;
-
-        NPC? npc = Main.npc[_skeletonIndex];
-
-        // 时间到了，但附近还有人，就先不消失。
-        if (CountPlayersNear(npc!.position) > 0)
-            return;
-
-        DespawnNpc(_skeletonIndex);
-        _skeletonIndex = -1;
-        Event("天黑且附近无人，骷髅商人离场。");
-    }
-
-    /// <summary>
-    /// 兜底补位：他被原版按距离清掉了、而锚点附近有玩家时，在同一个锚点重新生成。
-    /// 打死的不补位。
-    ///
-    /// 补位半径取 1900 像素，比原版 2000 像素的卸载半径略小：这样"能被补回来"必然意味着
-    /// "补回来之后原版也不会再清他"，不会出现补一次被清一次的抖动。
-    /// 玩家人在更远的地方时不补——反正没人看得见，等他走回出生点附近，一秒内就补上。
-    /// </summary>
-    private void RespawnSkeletonIfNeeded()
-    {
-        // 当天名额已经用过才需要补位；被打死的（血量归零）不补。
-        if (!_skeletonArrivedThisDay)
-            return;
-
-        long now = Environment.TickCount64;
-        if (now - _lastRespawnAt < RespawnCooldownMs)
-            return;
-
-        if (!TryFindAnchor(out Point tile, out Point spawn))
-            return;
-
-        Vector2 world = new(tile.X * 16, tile.Y * 16);
-        if (CountPlayersNear(world, RespawnRadiusPx) == 0)
-            return;   // 没人看着就不刷，避免来回抖动
-
-        if (!SpawnSkeleton(tile, out int index))
-            return;
-
-        _skeletonIndex = index;
-        _lastRespawnAt = now;
-        Event($"他被原版清掉后已在原位补回：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
-    }
-
-    /// <summary>离场半径 800 像素（50 格），与原版 NPC 反卸载距离一致。</summary>
     /// <summary>一天只发生几次的关键事件，用 ConsoleInfo 才落得进 server.log（ConsoleDebug 只在内存里）。</summary>
     private static void Event(string message) => TShock.Log.ConsoleInfo($"{LogPrefix}{message}");
 
-    /// <summary>锚点（插件每天选定的那个固定格子）在世界坐标里的位置，补位判定与状态显示都用它。</summary>
-    private static Vector2 AnchorWorld()
-    {
-        if (TryFindAnchor(out Point tile, out _))
-            return new Vector2(tile.X * 16, tile.Y * 16);
+    private static Vector2 AnchorWorld(Point tile) => new(tile.X * 16, tile.Y * 16);
 
-        return new Vector2(Main.spawnTileX * 16, Main.spawnTileY * 16);
-    }
-
-    private static int CountPlayersNear(Vector2 position, float radius = LeaveRadiusPx)
+    private static int CountPlayersNear(Vector2 position, float radius)
     {
         int count = 0;
 
@@ -632,19 +486,6 @@ public class DailyMerchantPlugin : TerrariaPlugin
         }
 
         return count;
-    }
-
-    private static void DespawnNpc(int index)
-    {
-        if (index < 0 || index >= Main.maxNPCs)
-            return;
-
-        NPC npc = Main.npc[index];
-        npc.active = false;
-        npc.life = 0;
-
-        if (Main.netMode == 2)
-            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
     }
 
     private static bool SpawnSkeleton(Point tile, out int index)
@@ -663,14 +504,35 @@ public class DailyMerchantPlugin : TerrariaPlugin
         npc.homeless = true;
         npc.netUpdate = true;
 
-        // 原版会把离所有玩家 2000 像素（125 格）之外的 NPC 慢慢卸载掉，骷髅商人不是城镇 NPC，
-        // 照常适用——玩家一走远他就没了。timeLeft 就是原版那个卸载倒计时，
-        // 每秒由 SkeletonUpdate 把它按回 0，他就能一直留在出生点待到天黑。
-        npc.timeLeft = 0;
-
         if (Main.netMode == 2)
             NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
 
+        return true;
+    }
+
+    /// <summary>
+    /// 锚点只算一次就固定下来：同一个出生点每次算出来的位置是同一个格子，缓存起来也省得每秒重搜一圈。
+    /// 世界切换（载入 / 退出）时由 EnsureWorldReady 作废。
+    /// </summary>
+    private static bool TryGetAnchor(out Point tile, out Point spawn)
+    {
+        if (_anchorCached)
+        {
+            tile = _anchorTile;
+            spawn = _anchorSpawn;
+            return true;
+        }
+
+        if (!TryFindAnchor(out tile, out spawn))
+        {
+            tile = Point.Zero;
+            spawn = Point.Zero;
+            return false;
+        }
+
+        _anchorTile = tile;
+        _anchorSpawn = spawn;
+        _anchorCached = true;
         return true;
     }
 
@@ -831,38 +693,21 @@ public class DailyMerchantPlugin : TerrariaPlugin
         return count;
     }
 
-    private static bool AnyPlayerOnline()
-    {
-        for (int i = 0; i < Main.maxPlayers; i++)
-        {
-            Player? player = Main.player[i];
-            if (player != null && player.active)
-                return true;
-        }
-
-        return false;
-    }
-
     /// <summary>骷髅商人当前"能不能来"的诊断文案，供 status 使用。</summary>
     private string SkeletonBlockReason()
     {
-        if (Main.dayTime && CountSkeletons() > 0)
-            return GetString("已在场（今天不再生成第二只）");
-
-        if (_skeletonArrivedThisDay)
-            return GetString("今天已经安排过了（不会再出现）");
-
         if (!Main.dayTime)
-            return GetString("现在是夜晚（明天上午再来）");
+            return GetString("现在是夜晚（白天再来）");
 
-        if (Main.IsFastForwardingTime())
-            return GetString("日晷 / Moondial 生效中");
+        if (CountSkeletons() > 0)
+            return GetString("已在场（不会生成第二只）");
 
-        if (Main.time >= ArrivalWindowMinutes * 60.0)
-            return Format(GetString("已过上午4:30 + {0} 分钟"), ArrivalWindowMinutes);
+        if (!TryGetAnchor(out Point tile, out _))
+            return GetString("出生点附近找不到能站立的位置");
 
-        if (!AnyPlayerOnline())
-            return GetString("暂无玩家在线，等有人进服再判定");
+        int near = CountPlayersNear(AnchorWorld(tile), PresenceRadiusPx);
+        if (near == 0)
+            return Format(GetString("出生点附近没人（等有玩家走近再生成，判定半径 {0} 像素）"), PresenceRadiusPx);
 
         return GetString("条件已满足，将出现在出生点附近");
     }
@@ -994,16 +839,13 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("启用中")} · " +
                                $"{GetString("骷髅商人 NPC ID =")} §f{NPCID.SkeletonMerchant}§7 · " +
-                               $"{GetString("每天上午 4:30 起一次")} · " +
-                               $"{GetString("离场条件")} §f{Format(GetString("天黑且 {0} 像素内无人"), LeaveRadiusPx)}§7");
+                               $"{GetString("生成条件")} §f{GetString("白天 + 出生点附近有人 + 场上没有")}§7 · " +
+                               $"{GetString("走远或入夜后的去留由原版按距离卸载决定，插件不干预")}");
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("当前：")}{(Main.dayTime ? "白天" : "夜晚")} §f{Clock()}§7，" +
                                $"{GetString("月相")} §f{Main.moonPhase}§7，" +
                                $"{GetString("场上骷髅商人")} §f{CountSkeletons()}§7 {GetString("位")}，{GetString("位置")} §f{Where(NPCID.SkeletonMerchant)}§7");
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("出生点：")}§f({Main.spawnTileX}, {Main.spawnTileY})§7，" +
+                               $"{GetString("锚点附近玩家")} §f{(TryGetAnchor(out Point tile, out _) ? CountPlayersNear(AnchorWorld(tile), PresenceRadiusPx) : 0)}§7 {GetString("位")} · " +
                                $"{GetString("判定：")}§f{(skeletonOn ? SkeletonBlockReason() : GetString("已在配置里关闭"))}§7");
-        player.SendInfoMessage($"§e[骷髅商人] §7{GetString("内部：")}§f{GetString("跟踪槽位")} {_skeletonIndex}§7，" +
-                               $"{GetString("当天名额")} {(_skeletonArrivedThisDay ? GetString("已用") : GetString("未用"))}§7，" +
-                               $"{GetString("判定已跑")} §f{_scanCount}§7 {GetString("次")}§7，" +
-                               $"{GetString("锚点附近(1900px)玩家")} §f{CountPlayersNear(AnchorWorld())}§7 {GetString("位")}§7");
     }
 }
