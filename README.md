@@ -192,6 +192,7 @@
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |
 | [SwitchCommands](./src/SwitchCommands/README.md) | 区域执行指令 |  |
 | [TeleportRequest](./src/TeleportRequest/README.md) | 传送请求 |  |
+| [TerraNews](./src/TerraNews/README.md) | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
 | [TimeRate](./src/TimeRate/README.md) | 时间加速插件 |  |
 | [TimerKeeper](./src/TimerKeeper/README.md) | 保存计时器状态 |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.md) | NPC 快速回家 |  |

@@ -144,6 +144,7 @@
   <Project Path="src/SurvivalCrisis/SurvivalCrisis.csproj" />
   <Project Path="src/SwitchCommands/SwitchCommands.csproj" />
   <Project Path="src/TeleportRequest/TeleportRequest.csproj" />
+  <Project Path="src/TerraNews/TerraNews.csproj" />
   <Project Path="src/TimeRate/TimeRate.csproj" />
   <Project Path="src/TimerKeeper/TimerKeeper.csproj" />
   <Project Path="src/TownNPCHomes/TownNPCHomes.csproj" />
