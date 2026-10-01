@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DailyMerchant\n"
-"POT-Creation-Date: 2026-10-01 11:08:32+0800\n"
-"PO-Revision-Date: 2026-10-01 11:08:32+0800\n"
+"POT-Creation-Date: 2026-10-01 12:05:10+0800\n"
+"PO-Revision-Date: 2026-10-01 12:05:10+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,132 +10,153 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../DailyMerchant.cs:885
+#: ../../DailyMerchant.cs:972
 msgid "查看到访状态与城镇条件（/merchant 状态）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:852
+#: ../../DailyMerchant.cs:939
 msgid "场上本来就没有旅商。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:914
+#: ../../DailyMerchant.cs:1001
 msgid "场上骷髅商人"
 msgstr ""
 
-#: ../../DailyMerchant.cs:901
+#: ../../DailyMerchant.cs:988
 msgid "场上旅商"
 msgstr ""
 
-#: ../../DailyMerchant.cs:835
+#: ../../DailyMerchant.cs:922
 msgid "场上已经有旅商了。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:902
+#: ../../DailyMerchant.cs:989
 msgid "城镇："
 msgstr ""
 
-#: ../../DailyMerchant.cs:418
+#: ../../DailyMerchant.cs:426
 msgid "城镇里有 {0} 位 NPC，但都没住进房子，原版没有落脚点（静默等待中）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:414
+#: ../../DailyMerchant.cs:422
 msgid "城镇里只有 {0} 位 NPC，原版要求至少 2 位"
 msgstr ""
 
-#: ../../DailyMerchant.cs:915
+#: ../../DailyMerchant.cs:1002
 msgid "出生点："
 msgstr ""
 
-#: ../../DailyMerchant.cs:899
+#: ../../DailyMerchant.cs:986
 msgid "窗口"
 msgstr ""
 
-#: ../../DailyMerchant.cs:904
+#: ../../DailyMerchant.cs:1006
+msgid "次"
+msgstr ""
+
+#: ../../DailyMerchant.cs:991
 msgid "次（每秒 1 次自动，空服不跑）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:903
+#: ../../DailyMerchant.cs:990
 msgid "待搬入空房"
 msgstr ""
 
-#: ../../DailyMerchant.cs:900
-#: ../../DailyMerchant.cs:912
+#: ../../DailyMerchant.cs:987
+#: ../../DailyMerchant.cs:999
 msgid "当前："
 msgstr ""
 
-#: ../../DailyMerchant.cs:392
+#: ../../DailyMerchant.cs:400
 msgid "当前不在场"
 msgstr ""
 
-#: ../../DailyMerchant.cs:899
+#: ../../DailyMerchant.cs:1005
+msgid "当天名额"
+msgstr ""
+
+#: ../../DailyMerchant.cs:986
 msgid "分钟"
 msgstr ""
 
-#: ../../DailyMerchant.cs:131
-#: ../../DailyMerchant.cs:132
+#: ../../DailyMerchant.cs:1004
+msgid "跟踪槽位"
+msgstr ""
+
+#: ../../DailyMerchant.cs:139
+#: ../../DailyMerchant.cs:140
 msgid "关"
 msgstr ""
 
-#: ../../DailyMerchant.cs:766
+#: ../../DailyMerchant.cs:853
 msgid "今天已经安排过了（不会再出现）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:131
-#: ../../DailyMerchant.cs:132
+#: ../../DailyMerchant.cs:139
+#: ../../DailyMerchant.cs:140
 msgid "开"
 msgstr ""
 
-#: ../../DailyMerchant.cs:909
+#: ../../DailyMerchant.cs:996
 msgid "骷髅商人 NPC ID ="
 msgstr ""
 
-#: ../../DailyMerchant.cs:911
+#: ../../DailyMerchant.cs:998
 msgid "离场条件"
 msgstr ""
 
-#: ../../DailyMerchant.cs:882
+#: ../../DailyMerchant.cs:969
 msgid "立刻召唤旅商（/merchant 召唤）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:897
+#: ../../DailyMerchant.cs:984
 msgid "旅商 NPC ID ="
 msgstr ""
 
-#: ../../DailyMerchant.cs:831
+#: ../../DailyMerchant.cs:918
 msgid "旅商每日到访已在配置里关闭。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:799
+#: ../../DailyMerchant.cs:886
 msgid "旅商与骷髅商人每日到访（/merchant summon|despawn|check|status）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:898
+#: ../../DailyMerchant.cs:1007
+msgid "锚点附近(1900px)玩家"
+msgstr ""
+
+#: ../../DailyMerchant.cs:985
 msgid "每天到访"
 msgstr ""
 
-#: ../../DailyMerchant.cs:910
+#: ../../DailyMerchant.cs:997
 msgid "每天上午 4:30 起一次"
 msgstr ""
 
-#: ../../DailyMerchant.cs:905
-#: ../../DailyMerchant.cs:916
+#: ../../DailyMerchant.cs:1004
+msgid "内部："
+msgstr ""
+
+#: ../../DailyMerchant.cs:992
+#: ../../DailyMerchant.cs:1003
 msgid "判定："
 msgstr ""
 
-#: ../../DailyMerchant.cs:903
+#: ../../DailyMerchant.cs:990
+#: ../../DailyMerchant.cs:1006
 msgid "判定已跑"
 msgstr ""
 
-#: ../../DailyMerchant.cs:130
+#: ../../DailyMerchant.cs:138
 msgid "配置已重载：旅商 {0}，骷髅商人 {1}"
 msgstr ""
 
-#: ../../DailyMerchant.cs:896
-#: ../../DailyMerchant.cs:908
+#: ../../DailyMerchant.cs:983
+#: ../../DailyMerchant.cs:995
 msgid "启用中"
 msgstr ""
 
-#: ../../DailyMerchant.cs:883
+#: ../../DailyMerchant.cs:970
 msgid "请旅商离场（/merchant 离开）"
 msgstr ""
 
@@ -143,148 +164,157 @@ msgstr ""
 msgid "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人每天上午固定出现在出生点附近。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:772
+#: ../../DailyMerchant.cs:859
 msgid "日晷 / Moondial 生效中"
 msgstr ""
 
-#: ../../DailyMerchant.cs:404
+#: ../../DailyMerchant.cs:412
 msgid "日晷 / Moondial 生效中（原版此时不掷骰）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:410
+#: ../../DailyMerchant.cs:418
 msgid "入侵进行中（原版此时不生成旅商）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:899
+#: ../../DailyMerchant.cs:986
 msgid "上午4:30 起"
 msgstr ""
 
-#: ../../DailyMerchant.cs:884
+#: ../../DailyMerchant.cs:971
 msgid "手动跑一次到访判定（/merchant 检查）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:911
+#: ../../DailyMerchant.cs:998
 msgid "天黑且 {0} 像素内无人"
 msgstr ""
 
-#: ../../DailyMerchant.cs:780
+#: ../../DailyMerchant.cs:867
 msgid "条件已满足，将出现在出生点附近"
 msgstr ""
 
-#: ../../DailyMerchant.cs:420
+#: ../../DailyMerchant.cs:428
 msgid "条件已满足，正在按原版生成"
 msgstr ""
 
-#: ../../DailyMerchant.cs:901
-#: ../../DailyMerchant.cs:914
+#: ../../DailyMerchant.cs:1005
+msgid "未用"
+msgstr ""
+
+#: ../../DailyMerchant.cs:988
+#: ../../DailyMerchant.cs:1001
+#: ../../DailyMerchant.cs:1007
 msgid "位"
 msgstr ""
 
-#: ../../DailyMerchant.cs:902
+#: ../../DailyMerchant.cs:989
 msgid "位 NPC（已入住"
 msgstr ""
 
-#: ../../DailyMerchant.cs:901
-#: ../../DailyMerchant.cs:914
+#: ../../DailyMerchant.cs:988
+#: ../../DailyMerchant.cs:1001
 msgid "位置"
 msgstr ""
 
-#: ../../DailyMerchant.cs:769
+#: ../../DailyMerchant.cs:856
 msgid "现在是夜晚（明天上午再来）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:402
+#: ../../DailyMerchant.cs:410
 msgid "现在是夜晚（原版入夜后不再来）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:898
+#: ../../DailyMerchant.cs:985
 msgid "已关闭"
 msgstr ""
 
-#: ../../DailyMerchant.cs:406
-#: ../../DailyMerchant.cs:775
+#: ../../DailyMerchant.cs:414
+#: ../../DailyMerchant.cs:862
 msgid "已过上午4:30 + {0} 分钟"
 msgstr ""
 
-#: ../../DailyMerchant.cs:858
+#: ../../DailyMerchant.cs:945
 msgid "已请旅商离场。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:869
-#: ../../DailyMerchant.cs:870
+#: ../../DailyMerchant.cs:956
+#: ../../DailyMerchant.cs:957
 msgid "已手动判定一次："
 msgstr ""
 
-#: ../../DailyMerchant.cs:763
+#: ../../DailyMerchant.cs:1005
+msgid "已用"
+msgstr ""
+
+#: ../../DailyMerchant.cs:850
 msgid "已在场（今天不再生成第二只）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:905
-#: ../../DailyMerchant.cs:916
+#: ../../DailyMerchant.cs:992
+#: ../../DailyMerchant.cs:1003
 msgid "已在配置里关闭"
 msgstr ""
 
-#: ../../DailyMerchant.cs:839
+#: ../../DailyMerchant.cs:926
 msgid "已召唤，旅商现在在城镇里。"
 msgstr ""
 
-#: ../../DailyMerchant.cs:898
+#: ../../DailyMerchant.cs:985
 msgid "原版 22.12%"
 msgstr ""
 
-#: ../../DailyMerchant.cs:323
+#: ../../DailyMerchant.cs:331
 msgid "原版拒绝：场上已有旅商（槽位 {0}，生命 {1}）"
 msgstr ""
 
-#: ../../DailyMerchant.cs:346
+#: ../../DailyMerchant.cs:354
 msgid "原版拒绝：既没有已入住的城镇 NPC，也没有可搬入的空房"
 msgstr ""
 
-#: ../../DailyMerchant.cs:317
+#: ../../DailyMerchant.cs:325
 msgid "原版拒绝：入侵进行中"
 msgstr ""
 
-#: ../../DailyMerchant.cs:314
+#: ../../DailyMerchant.cs:322
 msgid "原版拒绝：夜晚不生成旅商"
 msgstr ""
 
-#: ../../DailyMerchant.cs:311
+#: ../../DailyMerchant.cs:319
 msgid "原版拒绝：月食天不生成旅商"
 msgstr ""
 
-#: ../../DailyMerchant.cs:347
+#: ../../DailyMerchant.cs:355
 msgid "原版拒绝：TownManager 找不到可用的落脚点"
 msgstr ""
 
-#: ../../DailyMerchant.cs:906
+#: ../../DailyMerchant.cs:993
 msgid "原版生成："
 msgstr ""
 
-#: ../../DailyMerchant.cs:303
+#: ../../DailyMerchant.cs:311
 msgid "原版已放行"
 msgstr ""
 
-#: ../../DailyMerchant.cs:359
+#: ../../DailyMerchant.cs:367
 msgid "原版已通过全部条件（有 {0} 位已入住 NPC）但仍没生成：活跃 NPC {1}/{2}"
 msgstr ""
 
-#: ../../DailyMerchant.cs:408
+#: ../../DailyMerchant.cs:416
 msgid "月食天不生成旅商"
 msgstr ""
 
-#: ../../DailyMerchant.cs:913
+#: ../../DailyMerchant.cs:1000
 msgid "月相"
 msgstr ""
 
-#: ../../DailyMerchant.cs:778
+#: ../../DailyMerchant.cs:865
 msgid "暂无玩家在线，等有人进服再判定"
 msgstr ""
 
-#: ../../DailyMerchant.cs:844
+#: ../../DailyMerchant.cs:931
 msgid "召唤失败："
 msgstr ""
 
-#: ../../DailyMerchant.cs:881
+#: ../../DailyMerchant.cs:968
 msgid "指令用法："
 msgstr ""
 

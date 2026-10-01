@@ -67,8 +67,8 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// <summary>所有出生点都找不到位置时的兜底搜索半径。</summary>
     private const int AnchorSearchFallbackRadius = 120;
 
-    /// <summary>补位半径（像素）：出生点附近这个距离内有玩家，被卸载了才补回来。</summary>
-    private const float RespawnRadiusPx = 6000f;
+    /// <summary>补位半径（像素）：略小于原版 2000 像素的卸载半径，保证补回来就不会再被清。</summary>
+    private const float RespawnRadiusPx = 1900f;
 
     /// <summary>两次补位之间的最小间隔（毫秒），防止来回抖动。</summary>
     private const long RespawnCooldownMs = 5000;
@@ -95,6 +95,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
     private bool _skeletonArrivedThisDay;
     private static int _skeletonIndex = -1;
     private static long _lastRespawnAt;
+    private static bool _despawnTimerLogged;
     private bool _skeletonAtDay;
     private double _skeletonAtTime;
     private int _skeletonAtMoonPhase;
@@ -482,7 +483,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
         if (CountSkeletons() > 0)
         {
             MarkSkeletonHandled();
-            TShock.Log.ConsoleDebug($"{LogPrefix}场上已有骷髅商人，插件今天不干预。");
+            Event("场上已有骷髅商人，插件今天不干预。");
             return;
         }
 
@@ -503,8 +504,9 @@ public class DailyMerchantPlugin : TerrariaPlugin
         }
 
         _skeletonIndex = index;
+        _despawnTimerLogged = false;
         MarkSkeletonHandled();
-        TShock.Log.ConsoleDebug($"{LogPrefix}骷髅商人已出现：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
+        Event($"骷髅商人已出现：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
     }
 
     /// <summary>
@@ -532,12 +534,23 @@ public class DailyMerchantPlugin : TerrariaPlugin
                 bool killed = tracked != null && tracked.life <= 0;   // active=false 但血还在 = 被原版卸载
                 _skeletonIndex = -1;
 
+                Event(killed
+                    ? "骷髅商人被击杀（血量归零），当天不补位。"
+                    : "骷髅商人不在场了（不是被击杀，判定为被原版卸载或被别的插件清掉），尝试在原位补回。");
+
                 if (!killed)
                     RespawnSkeletonIfNeeded();
             }
             else if (tracked.timeLeft > 0)
             {
-                tracked.timeLeft = 0;   // 别让原版按距离把他卸载掉
+                // 原版的"离太远就卸载"倒计时：看到它被置正就说明原版确实打算清他。
+                if (!_despawnTimerLogged)
+                {
+                    _despawnTimerLogged = true;
+                    Event($"原版开始对骷髅商人卸载倒计时（timeLeft={tracked.timeLeft}），已按回 0。");
+                }
+
+                tracked.timeLeft = 0;
             }
         }
 
@@ -555,17 +568,21 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         DespawnNpc(_skeletonIndex);
         _skeletonIndex = -1;
-        TShock.Log.ConsoleDebug($"{LogPrefix}天黑且附近无人，骷髅商人离场。");
+        Event("天黑且附近无人，骷髅商人离场。");
     }
 
     /// <summary>
-    /// 兜底补位：他被原版按距离清掉了、而出生点附近还有玩家时，在同一个锚点重新生成。
-    /// 打死的不补位。补位后玩家离锚点 2000 像素以上还会再被清，所以这里不无限补：
-    /// 一是必须有玩家在附近才补，二是两次补位至少隔 5 秒。
+    /// 兜底补位：他被原版按距离清掉了、而锚点附近有玩家时，在同一个锚点重新生成。
+    /// 打死的不补位。
+    ///
+    /// 补位半径取 1900 像素，比原版 2000 像素的卸载半径略小：这样"能被补回来"必然意味着
+    /// "补回来之后原版也不会再清他"，不会出现补一次被清一次的抖动。
+    /// 玩家人在更远的地方时不补——反正没人看得见，等他走回出生点附近，一秒内就补上。
     /// </summary>
     private void RespawnSkeletonIfNeeded()
     {
-        if (!_skeletonArrivedThisDay || Main.dayTime)
+        // 当天名额已经用过才需要补位；被打死的（血量归零）不补。
+        if (!_skeletonArrivedThisDay)
             return;
 
         long now = Environment.TickCount64;
@@ -584,10 +601,22 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         _skeletonIndex = index;
         _lastRespawnAt = now;
-        TShock.Log.ConsoleDebug($"{LogPrefix}他被原版按距离清掉了，已在原位补回：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
+        Event($"他被原版清掉后已在原位补回：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
     }
 
     /// <summary>离场半径 800 像素（50 格），与原版 NPC 反卸载距离一致。</summary>
+    /// <summary>一天只发生几次的关键事件，用 ConsoleInfo 才落得进 server.log（ConsoleDebug 只在内存里）。</summary>
+    private static void Event(string message) => TShock.Log.ConsoleInfo($"{LogPrefix}{message}");
+
+    /// <summary>锚点（插件每天选定的那个固定格子）在世界坐标里的位置，补位判定与状态显示都用它。</summary>
+    private static Vector2 AnchorWorld()
+    {
+        if (TryFindAnchor(out Point tile, out _))
+            return new Vector2(tile.X * 16, tile.Y * 16);
+
+        return new Vector2(Main.spawnTileX * 16, Main.spawnTileY * 16);
+    }
+
     private static int CountPlayersNear(Vector2 position, float radius = LeaveRadiusPx)
     {
         int count = 0;
@@ -972,5 +1001,9 @@ public class DailyMerchantPlugin : TerrariaPlugin
                                $"{GetString("场上骷髅商人")} §f{CountSkeletons()}§7 {GetString("位")}，{GetString("位置")} §f{Where(NPCID.SkeletonMerchant)}§7");
         player.SendInfoMessage($"§e[骷髅商人] §7{GetString("出生点：")}§f({Main.spawnTileX}, {Main.spawnTileY})§7，" +
                                $"{GetString("判定：")}§f{(skeletonOn ? SkeletonBlockReason() : GetString("已在配置里关闭"))}§7");
+        player.SendInfoMessage($"§e[骷髅商人] §7{GetString("内部：")}§f{GetString("跟踪槽位")} {_skeletonIndex}§7，" +
+                               $"{GetString("当天名额")} {(_skeletonArrivedThisDay ? GetString("已用") : GetString("未用"))}§7，" +
+                               $"{GetString("判定已跑")} §f{_scanCount}§7 {GetString("次")}§7，" +
+                               $"{GetString("锚点附近(1900px)玩家")} §f{CountPlayersNear(AnchorWorld())}§7 {GetString("位")}§7");
     }
 }
