@@ -51,6 +51,7 @@ Killing the merchant in the morning re-rolls him the next day, keeping the vanil
   there and never vanishes; he leaves once the last player walks away. The clear-out is the vanilla
   `UnspawnTravelNPC` recipe (reset `active`/`life` + send packet 23) and only touches the one this plugin
   spawned — dungeon spawns and other plugins' NPCs are never touched.
+- **He is never unloaded by distance**: vanilla clears NPCs farther than 2000 pixels (125 tiles) from every player, and the Skeleton Merchant is not a town NPC, so walking away made him vanish. The plugin keeps the vanilla despawn timer at zero every second and puts him back at the same anchor if he is cleared anyway while a player is nearby (a kill still does not get a replacement).
 - **Once per game day**, killing him does not queue a replacement; he returns the next morning.
 - **Never interferes**: if a Skeleton Merchant is already on the field (dungeon spawn, another plugin),
   no second one is created that day.

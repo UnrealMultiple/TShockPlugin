@@ -67,6 +67,12 @@ public class DailyMerchantPlugin : TerrariaPlugin
     /// <summary>所有出生点都找不到位置时的兜底搜索半径。</summary>
     private const int AnchorSearchFallbackRadius = 120;
 
+    /// <summary>补位半径（像素）：出生点附近这个距离内有玩家，被卸载了才补回来。</summary>
+    private const float RespawnRadiusPx = 6000f;
+
+    /// <summary>两次补位之间的最小间隔（毫秒），防止来回抖动。</summary>
+    private const long RespawnCooldownMs = 5000;
+
     /// <summary>骷髅商人离场半径（像素）：天黑之后，800 像素内没人他才走。</summary>
     private const float LeaveRadiusPx = 800f;
 
@@ -87,7 +93,8 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
     // ---- 骷髅商人状态
     private bool _skeletonArrivedThisDay;
-    private int _skeletonIndex = -1;
+    private static int _skeletonIndex = -1;
+    private static long _lastRespawnAt;
     private bool _skeletonAtDay;
     private double _skeletonAtTime;
     private int _skeletonAtMoonPhase;
@@ -456,7 +463,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
         if (!Config.SkeletonMerchantEnabled)
             return;
 
-        SkeletonLeave();
+        SkeletonUpdate();
 
         if (_skeletonArrivedThisDay)
             return;
@@ -501,16 +508,39 @@ public class DailyMerchantPlugin : TerrariaPlugin
     }
 
     /// <summary>
-    /// 离场条件：时间到了（天黑）**并且**附近没有玩家，他才走。
+    /// 每秒调用一次：维护跟踪状态 + 判定离场。
     ///
-    /// - 只是天黑、身边还有人 → 他照常站着，不会突然消失；
-    /// - 天黑且没人了 → 清场方式和原版 UnspawnTravelNPC 一样（清 active/life + 广播 23 号包）；
-    /// - 玩家在的时候他不会被打断，第二天清晨也还在（场上已有就不生成第二个）；
-    /// - 走掉之后当天不再出现，第二天上午再来。
-    /// 只处理插件自己生成的那一只，洞穴里刷到的、别的插件召唤的一概不动。
+    /// 离场要同时满足两个条件：时间到了（天黑）**并且**附近 800 像素没有玩家。
+    /// 只是天黑、身边还有人的时候他会照常站着，不会突然消失。
+    ///
+    /// 另外原版还有一套"按距离卸载"：NPC 离所有玩家 2000 像素（125 格）之外，
+    /// 原版就会给他 timeLeft 倒计时，计时走完就把他清掉。骷髅商人不是城镇 NPC，照样适用，
+    /// 所以玩家一走远他就没了（洞穴里原版的骷髅商人也是这样）。两个对策：
+    ///   1. 每秒把 timeLeft 按回 0 —— 他就一直留在出生点；
+    ///   2. 万一还是被清掉了（别的插件动过、换了游戏版本），只要有玩家在出生点附近就补回原位，
+    ///      最多每 5 秒补一次，不会来回抖动；被打死的（血量归零）不补。
     /// </summary>
-    private void SkeletonLeave()
+    private void SkeletonUpdate()
     {
+        // 先看跟踪的那只还在不在。
+        if (_skeletonIndex >= 0)
+        {
+            NPC? tracked = Main.npc[_skeletonIndex];
+
+            if (tracked == null || !tracked.active || tracked.netID != NPCID.SkeletonMerchant)
+            {
+                bool killed = tracked != null && tracked.life <= 0;   // active=false 但血还在 = 被原版卸载
+                _skeletonIndex = -1;
+
+                if (!killed)
+                    RespawnSkeletonIfNeeded();
+            }
+            else if (tracked.timeLeft > 0)
+            {
+                tracked.timeLeft = 0;   // 别让原版按距离把他卸载掉
+            }
+        }
+
         if (Main.dayTime)   // 时间没到，他照常站着
             return;
 
@@ -518,15 +548,9 @@ public class DailyMerchantPlugin : TerrariaPlugin
             return;
 
         NPC? npc = Main.npc[_skeletonIndex];
-        if (npc == null || !npc.active || npc.life <= 0 || npc.netID != NPCID.SkeletonMerchant)
-        {
-            _skeletonIndex = -1;   // 已经被打死或者被别人清掉了
-            return;
-        }
 
         // 时间到了，但附近还有人，就先不消失。
-        int nearby = CountPlayersNear(npc.position);
-        if (nearby > 0)
+        if (CountPlayersNear(npc!.position) > 0)
             return;
 
         DespawnNpc(_skeletonIndex);
@@ -534,8 +558,37 @@ public class DailyMerchantPlugin : TerrariaPlugin
         TShock.Log.ConsoleDebug($"{LogPrefix}天黑且附近无人，骷髅商人离场。");
     }
 
+    /// <summary>
+    /// 兜底补位：他被原版按距离清掉了、而出生点附近还有玩家时，在同一个锚点重新生成。
+    /// 打死的不补位。补位后玩家离锚点 2000 像素以上还会再被清，所以这里不无限补：
+    /// 一是必须有玩家在附近才补，二是两次补位至少隔 5 秒。
+    /// </summary>
+    private void RespawnSkeletonIfNeeded()
+    {
+        if (!_skeletonArrivedThisDay || Main.dayTime)
+            return;
+
+        long now = Environment.TickCount64;
+        if (now - _lastRespawnAt < RespawnCooldownMs)
+            return;
+
+        if (!TryFindAnchor(out Point tile, out Point spawn))
+            return;
+
+        Vector2 world = new(tile.X * 16, tile.Y * 16);
+        if (CountPlayersNear(world, RespawnRadiusPx) == 0)
+            return;   // 没人看着就不刷，避免来回抖动
+
+        if (!SpawnSkeleton(tile, out int index))
+            return;
+
+        _skeletonIndex = index;
+        _lastRespawnAt = now;
+        TShock.Log.ConsoleDebug($"{LogPrefix}他被原版按距离清掉了，已在原位补回：出生点 ({spawn.X}, {spawn.Y}) → 位置 ({tile.X}, {tile.Y})。");
+    }
+
     /// <summary>离场半径 800 像素（50 格），与原版 NPC 反卸载距离一致。</summary>
-    private static int CountPlayersNear(Vector2 position)
+    private static int CountPlayersNear(Vector2 position, float radius = LeaveRadiusPx)
     {
         int count = 0;
 
@@ -545,7 +598,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
             if (player == null || !player.active)
                 continue;
 
-            if (Vector2.Distance(player.position, position) <= LeaveRadiusPx)
+            if (Vector2.Distance(player.position, position) <= radius)
                 count++;
         }
 
@@ -580,6 +633,11 @@ public class DailyMerchantPlugin : TerrariaPlugin
         // 按无家 NPC 处理才不会去寻路回"家"，与原版造旅商时的做法一致。
         npc.homeless = true;
         npc.netUpdate = true;
+
+        // 原版会把离所有玩家 2000 像素（125 格）之外的 NPC 慢慢卸载掉，骷髅商人不是城镇 NPC，
+        // 照常适用——玩家一走远他就没了。timeLeft 就是原版那个卸载倒计时，
+        // 每秒由 SkeletonUpdate 把它按回 0，他就能一直留在出生点待到天黑。
+        npc.timeLeft = 0;
 
         if (Main.netMode == 2)
             NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
