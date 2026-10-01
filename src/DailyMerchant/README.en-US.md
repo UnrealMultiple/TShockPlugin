@@ -93,21 +93,9 @@ as someone is in the world, the stock refreshes by itself the next morning.
 > One vanilla detail: those area checks use **the position of the player who opens the shop**, not the
 > merchant's position.
 
-## Commands
-
-| Syntax | Permission | Description |
-|--------|:----:|:----:|
-| /merchant summon | tshock.admin | Summon the travelling merchant right away (/merchant 召唤) |
-| /merchant despawn | tshock.admin | Send him away via vanilla `UnspawnTravelNPC` (/merchant 离开) |
-| /merchant check | tshock.admin | Run one arrival roll manually (both merchants) |
-| /merchant status | tshock.admin | Clock, moon phase, counts, town housing diagnostics, switches (/merchant 状态) |
-
-Aliases: `/merchant`, `/旅商`, `/dailymerchant`.
-` summon`/`despawn` only affect the Travelling Merchant; the Skeleton Merchant is only spawned by the rule above and has no summon/despawn.
-
 ## Troubleshooting
 
-`/merchant status` tells you exactly why he did not show up:
+The plugin states exactly why a merchant did not show up (its diagnostic is available in game via `/merchant`):
 
 ```
 [旅商] 城镇：2 位 NPC（已入住 0，待搬入空房 0）
@@ -121,11 +109,11 @@ Aliases: `/merchant`, `/旅商`, `/dailymerchant`.
 - Sundial / Moondial active → vanilla does not roll at all while that is the case.
 - Night or past the window → try again the next morning.
 - Skeleton Merchant `出生点附近没人` → nobody is near the spawn point, so nothing is spawned; walk over and he appears.
-- Switched off → status reports `已在配置里关闭`.
+- Switched off → the diagnostic reports `已在配置里关闭`.
 
 **Empty server note**: a Terraria dedicated server does not advance the world with nobody online,
 so the once-per-second automatic roll does not run. As soon as someone joins it resumes on its own.
-From the console you can always force one roll with `/merchant check` (this is also what the
+From the console you can always force one roll manually (this is also what the
 automated test loop uses).
 
 ## Changelog
@@ -142,4 +130,4 @@ automated test loop uses).
 ### v1.0
 - First release: raises the vanilla 22.12% daily arrival chance to 100%
 - Skips silently when the conditions are not met, never force-places the merchant
-- Adds `/merchant check` plus vanilla rejection-reason diagnostics
+- Adds a manual trigger for the arrival roll plus vanilla rejection-reason diagnostics
