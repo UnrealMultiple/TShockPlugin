@@ -22,41 +22,19 @@ public class DailyMerchantConfig
 
     public static readonly string FilePath = Path.Combine(TShock.SavePath, "DailyMerchant.json");
 
-    /// <summary>
-    /// 读配置。任何一步出岔子（文件不存在、内容坏了、读不了、写不回）都退回默认值，
-    /// 绝不让异常冒到插件初始化——否则一个坏掉的配置文件就能让整个服务器起不来。
-    /// </summary>
-    public static DailyMerchantConfig Read()
-    {
-        if (File.Exists(FilePath))
-        {
-            try
-            {
-                DailyMerchantConfig? loaded = JsonConvert.DeserializeObject<DailyMerchantConfig>(File.ReadAllText(FilePath));
-                if (loaded != null)
-                    return loaded;
-            }
-            catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
-            {
-                // 内容损坏、被锁住或没有读权限：都落到下面按默认值重建。
-            }
-        }
-
-        var config = new DailyMerchantConfig();
-
-        try
-        {
-            config.Write();
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
-        {
-            // 默认配置写不出去（例如配置目录只读）时，内存里的默认值照样能用，
-            // 只是这次不会留下配置文件；不为此让服务器起不来。
-        }
-
-        return config;
-    }
-
     public void Write() =>
         File.WriteAllText(FilePath, JsonConvert.SerializeObject(this, Formatting.Indented));
+
+    /// <summary>读配置；文件不存在就按默认值写一份。</summary>
+    public static DailyMerchantConfig Read()
+    {
+        if (!File.Exists(FilePath))
+        {
+            var config = new DailyMerchantConfig();
+            config.Write();
+            return config;
+        }
+
+        return JsonConvert.DeserializeObject<DailyMerchantConfig>(File.ReadAllText(FilePath)) ?? new DailyMerchantConfig();
+    }
 }

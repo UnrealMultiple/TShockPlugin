@@ -68,11 +68,11 @@ public class DailyMerchantPlugin : TerrariaPlugin
     private const int AnchorSearchFallbackRadius = 120;
 
     /// <summary>
-    /// "出生点附近有人"的判定半径（像素）。
-    /// 取原版按距离卸载 NPC 的同一个半径（2000 像素 = 125 格）：这么近的玩家在，
-    /// 原版就不会把刚生成的骷髅商人卸载掉——所以我们只在这种时候生成，不会"刚出现就自己没了"。
+    /// "出生点附近有人"的判定半径：125 格。
+    /// 正好等于原版按距离卸载 NPC 的半径——这么近的玩家在，原版就不会把刚生成的骷髅商人卸载掉，
+    /// 所以我们只在这种时候生成，不会"刚出现就自己没了"。
     /// </summary>
-    private const float PresenceRadiusPx = 2000f;
+    private const float PresenceRadiusPx = 125 * 16;
 
     /// <summary>锚点与地图边缘保持的距离。</summary>
     private const int MapMargin = 25;
@@ -80,7 +80,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
     internal static DailyMerchantConfig Config = new();
 
     private long _lastScanAt;
-    private bool _worldReady;
+    private string? _worldName;
 
     // ---- 旅商状态
     private bool _arrivedThisDay;
@@ -134,9 +134,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
     private void OnUpdate(EventArgs args)
     {
-        // Terraria 空服不推进世界（GameUpdate 也不触发），有人进服后这里会自动补上判定。
-        if (!EnsureWorldReady())
-            return;
+        ResetOnWorldChange();
 
         if (Environment.TickCount64 - _lastScanAt < ScanIntervalMs)
             return;
@@ -145,36 +143,24 @@ public class DailyMerchantPlugin : TerrariaPlugin
         RunScan();
     }
 
-    /// <summary>
-    /// 世界没载入（主菜单、世界数据还没准备好）时返回 false，此时不做任何判定。
-    /// 只有在"就绪状态发生变化"的那一次才重置状态，之后都是空操作——
-    /// 否则像配置重载这类"非判定路径"会顺手把刚记下的东西清掉。
-    /// </summary>
-    private bool EnsureWorldReady()
+    /// <summary>换世界就清掉当天的状态，避免把上一个世界的进度带过来。</summary>
+    private void ResetOnWorldChange()
     {
-        bool ready = !Main.gameMenu && Main.maxTilesX > 100;
-        if (ready == _worldReady)
-            return ready;
+        string? name = Main.ActiveWorldFileData?.Name;
+        if (name == _worldName)
+            return;
 
-        _worldReady = ready;
-        if (!ready)
-        {
-            _anchorCached = false;
-            return false;
-        }
-
+        _worldName = name;
         _arrivedThisDay = false;
         _anchorCached = false;
-        TShock.Log.ConsoleDebug($"{LogPrefix}世界已载入（{(Main.dayTime ? "白天" : "夜晚")}），开始判定到访。");
-        return true;
     }
 
-    /// <summary>
-    /// 一次到访判定。每秒自动跑一次。
-    /// 空服时世界不推进，GameUpdate 不触发，所以没人在线时判定不会跑；有人进服后自动补上。
-    /// </summary>
+    /// <summary>一次到访判定。每秒自动跑一次。GameUpdate 只在有人在线时触发，所以判定不会空跑。</summary>
     private void RunScan()
     {
+        if (Main.gameMenu)   // 主菜单/世界没载入
+            return;
+
         // 天黑 = 今天结束，旅商名额重置。
         if (Main.dayTime != _wasDayTime)
         {
@@ -359,15 +345,13 @@ public class DailyMerchantPlugin : TerrariaPlugin
         npc.homeless = true;
         npc.netUpdate = true;
 
-        if (Main.netMode == 2)
-            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);
-
+        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, index);   // 插件跑在服务端，固定是多人模式
         return true;
     }
 
     /// <summary>
     /// 锚点只算一次就固定下来：同一个出生点每次算出来的位置是同一个格子，缓存起来也省得每秒重搜一圈。
-    /// 世界切换（载入 / 退出）时由 EnsureWorldReady 作废。
+    /// 世界切换时由 ResetOnWorldChange 作废。
     /// </summary>
     private static bool TryGetAnchor(out Point tile, out Point spawn)
     {
