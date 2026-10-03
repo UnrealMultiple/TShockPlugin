@@ -1,11 +1,11 @@
 {
   "README.en-US": {
-    "Description": "Daily Travelling Merchant: vanilla only gives him a ~22% chance per day, this makes him show up every day"
+    "Description": "The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch"
   },
   "README.es-ES": {
-    "Description": "Mercader itinerante diario: el vanilla solo le da un ~22% de probabilidad por día, aquí llega todos los días"
+    "Description": "El mercader viajero y el mercader esqueleto aparecen todos los días, cada uno con su propio interruptor"
   },
   "README": {
-    "Description": "旅商每日到访：原版每天只有约 22% 机会，这里改成每天必到"
+    "Description": "旅商与骷髅商人每天到访，各自可单独开关"
   }
 }
