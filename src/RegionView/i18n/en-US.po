@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:11+0000\n"
-"PO-Revision-Date: 2025-05-20 01:20\n"
+"POT-Creation-Date: 2026-09-27 17:10:59+0000\n"
+"PO-Revision-Date: 2026-09-28 03:30\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Region {0} does not contain any tiles. (Size found: {1} × {2})\n"
 "Use [c/FF8080:/region resize] to fix it."
 
 #: ../../Region.cs:212
-#: ../../Region.cs:255
+#: ../../Region.cs:257
 msgid "区域尚未设置虚拟图块。"
 msgstr "Region has not yet been set up for virtual tiles."
 

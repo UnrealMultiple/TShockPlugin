@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-05-06 06:37:44+0000\n"
-"PO-Revision-Date: 2026-05-07 02:38\n"
+"POT-Creation-Date: 2026-09-02 13:08:07+0000\n"
+"PO-Revision-Date: 2026-09-03 02:50\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr ""
 msgid "=== 货币兑换关系图 ==="
 msgstr ""
 
-#: ../../Extensions/TSPlayerExtension.cs:30
+#: ../../Extensions/TSPlayerExtension.cs:162
 #, csharp-format
 msgid "EconomicAPI 执行命令报错:{0}"
 msgstr "EconomicCore command execution error: {0}"
@@ -222,10 +222,9 @@ msgstr ""
 msgid "不能给自己转账"
 msgstr ""
 
-#: ../../Economics.cs:125
-#, csharp-format
-msgid "世界名称: {0}"
-msgstr "World name: {0}"
+#: ../../Extensions/TSPlayerExtension.cs:56
+msgid "丛林"
+msgstr ""
 
 #: ../../Services/CurrencyService.cs:63
 #, csharp-format
@@ -236,7 +235,7 @@ msgstr ""
 msgid "你只能在游戏中使用此命令!"
 msgstr "You can only use this command in the game!"
 
-#: ../../Economics.cs:140
+#: ../../Economics.cs:190
 #, csharp-format
 msgid "你因死亡掉落{0:F0}个{1}!"
 msgstr "You dropped {0:F0} {1} upon death!"
@@ -282,18 +281,47 @@ msgstr ""
 msgid "加载货币数据失败: {0}"
 msgstr ""
 
+#: ../../Extensions/TSPlayerExtension.cs:80
+msgid "发光蘑菇"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:72
+msgid "和平蜡烛"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:337
 msgid "在没有名字参数情况下，只能在游戏中使用此命令!"
 msgstr "This command can only be used in game without name parameters!"
 
-#: ../../Economics.cs:124
-#, csharp-format
-msgid "在线人数: {0}/{1}"
-msgstr "Online players: {0}/{1}"
+#: ../../Extensions/TSPlayerExtension.cs:27
+#: ../../Extensions/TSPlayerExtension.cs:92
+msgid "地下"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:84
+msgid "地下沙漠"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:40
+msgid "地牢"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:29
+#: ../../Extensions/TSPlayerExtension.cs:100
+msgid "地狱"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:136
+msgid "墓地"
+msgstr ""
 
 #: ../../Services/CurrencyService.cs:175
 #, csharp-format
 msgid "增加 {0} 失败: {1}"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:120
+msgid "大理石"
 msgstr ""
 
 #: ../../ConfigFiles/CurrencyConfig.cs:81
@@ -301,30 +329,35 @@ msgstr ""
 msgid "套利循环: {0} (套利倍数: {1:F4}x)"
 msgstr ""
 
+#: ../../Economics.cs:170
+msgid "存活"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:128
+msgid "宝石洞窟"
+msgstr ""
+
+#: ../../Economics.cs:167
+msgid "已完成"
+msgstr ""
+
+#: ../../Economics.cs:170
+msgid "已死亡"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:185
 #, csharp-format
 msgid "已清空 `{0}` 的所有货币: {1}"
 msgstr ""
-
-#: ../../Economics.cs:121
-#, csharp-format
-msgid "当前延迟: {0:F1}ms"
-msgstr "Current latency: {0:F1}ms"
 
 #: ../../Command/BankCommand.cs:249
 #, csharp-format
 msgid "当前无人拥有 {0}"
 msgstr ""
 
-#: ../../Economics.cs:126
-#, csharp-format
-msgid "当前生命: {0}/{1}"
-msgstr "Current health: {0}/{1}"
-
-#: ../../Economics.cs:127
-#, csharp-format
-msgid "当前魔力: {0}/{1}"
-msgstr "Current mana: {0}/{1}"
+#: ../../Extensions/TSPlayerExtension.cs:144
+msgid "微光"
+msgstr ""
 
 #: ../../Command/BankCommand.cs:143
 #, csharp-format
@@ -359,7 +392,7 @@ msgstr ""
 msgid "挖掘矿物"
 msgstr ""
 
-#: ../../Economics.cs:25
+#: ../../Economics.cs:24
 msgid "提供经济系统API"
 msgstr "Provides economic system API"
 
@@ -392,12 +425,45 @@ msgstr ""
 msgid "更新货币数据失败 [{0}, {1}]: {2}"
 msgstr ""
 
+#: ../../Economics.cs:167
+msgid "未完成"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:270
 msgid "未检测到任何兑换循环"
 msgstr ""
 
+#: ../../Economics.cs:163
+msgid "未死亡"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:148
+msgid "森林"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:68
+msgid "水蜡烛"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:112
+msgid "沙尘暴"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:76
+msgid "沙漠"
+msgstr ""
+
 #: ../../Services/CurrencyService.cs:133
 msgid "没有指定要扣除的货币"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:28
+#: ../../Extensions/TSPlayerExtension.cs:96
+msgid "洞穴"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:104
+msgid "海滩"
 msgstr ""
 
 #: ../../Command/BankCommand.cs:46
@@ -415,10 +481,9 @@ msgstr ""
 msgid "源货币名称不能为空"
 msgstr ""
 
-#: ../../Economics.cs:122
-#, csharp-format
-msgid "玩家名称: {0}"
-msgstr "Player name: {0}"
+#: ../../Extensions/TSPlayerExtension.cs:64
+msgid "猩红"
+msgstr ""
 
 #: ../../Services/CurrencyService.cs:15
 #: ../../Services/CurrencyService.cs:31
@@ -438,9 +503,38 @@ msgstr ""
 msgid "目标货币名称不能为空"
 msgstr ""
 
+#: ../../Extensions/TSPlayerExtension.cs:48
+msgid "神圣"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:132
+msgid "神庙"
+msgstr ""
+
+#: ../../Economics.cs:162
+msgid "空区域"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:26
+#: ../../Extensions/TSPlayerExtension.cs:88
+msgid "空岛"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:44
+msgid "腐化"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:116
+msgid "花岗岩"
+msgstr ""
+
 #: ../../Command/BankCommand.cs:47
 #, csharp-format
 msgid "获得: {0} {1}"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:124
+msgid "蜂巢"
 msgstr ""
 
 #: ../../Command/BaseCommand.cs:61
@@ -475,11 +569,6 @@ msgstr ""
 msgid "货币名称不能为空"
 msgstr ""
 
-#: ../../Economics.cs:123
-#, csharp-format
-msgid "货币数量: {0}{1}"
-msgstr "Currency amount: {0}{1}"
-
 #: ../../Services/CurrencyService.cs:78
 msgid "转入玩家名称不能为空"
 msgstr ""
@@ -500,5 +589,21 @@ msgstr ""
 
 #: ../../Services/CurrencyService.cs:207
 msgid "金额必须大于0"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:140
+msgid "阴影蜡烛"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:52
+msgid "陨石"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:108
+msgid "雨天"
+msgstr ""
+
+#: ../../Extensions/TSPlayerExtension.cs:60
+msgid "雪原"
 msgstr ""
 
