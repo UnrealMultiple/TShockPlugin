@@ -97,7 +97,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 6.7% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
-| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 100.0% | Daily Travelling Merchant: vanilla only gives him a ~22% chance per day, this makes him show up every day |  |
+| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 75.0% | The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 50.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |

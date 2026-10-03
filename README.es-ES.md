@@ -100,7 +100,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.md) | 0.0% | Generación de puntos de aparición | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 0.0% | Indicación de golpe crítico |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Permite el juego multiplataforma |  |
-| [DailyMerchant](./src/DailyMerchant/README.md) | 0.0% | Mercader itinerante diario: el vanilla solo le da un ~22% de probabilidad por día, aquí llega todos los días |  |
+| [DailyMerchant](./src/DailyMerchant/README.md) | 0.0% | El mercader viajero y el mercader esqueleto aparecen todos los días, cada uno con su propio interruptor |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 0.0% | Determinar la bolsa de tesoro caída basada en la relación de daño y transferir el cálculo de daño |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 50.0% | Mostrar el daño causado por cada jugador después de cada pelea de jefe |  |
 | [DataSync](./src/DataSync/README.md) | 0.0% | Sincronización de progreso |  |

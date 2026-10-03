@@ -93,7 +93,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.md) | 出生点建筑生成 | [LazyAPI](./src/LazyAPI/README.md) |
 | [CriticalHit](./src/CriticalHit/README.md) | 击打提示 |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 跨版本游玩 |  |
-| [DailyMerchant](./src/DailyMerchant/README.md) | 旅商每日到访：原版每天只有约 22% 机会，这里改成每天必到 |  |
+| [DailyMerchant](./src/DailyMerchant/README.md) | 旅商与骷髅商人每天到访，各自可单独开关 |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.md) | 伤害规则掉落 |  |
 | [DamageStatistic](./src/DamageStatistic/README.md) | 在每次 Boss 战后显示每个玩家造成的伤害 |  |
 | [DataSync](./src/DataSync/README.md) | 进度同步 |  |
