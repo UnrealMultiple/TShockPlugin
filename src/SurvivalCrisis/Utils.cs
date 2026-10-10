@@ -33,7 +33,7 @@ namespace SurvivalCrisis
 		{
 			for (int i = 0; i < list.Count - 1; i++)
 			{
-				int idx = rand.Next(list.Count - i - 1);
+				int idx = rand.Next(list.Count - i);
 				var temp = list[idx];
 				list[idx] = list[list.Count - i - 1];
 				list[list.Count - i - 1] = temp;
