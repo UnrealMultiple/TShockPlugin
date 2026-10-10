@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ProgressControls\n"
-"POT-Creation-Date: 2026-04-18 12:26:55+0000\n"
-"PO-Revision-Date: 2026-04-18 12:26:55+0000\n"
+"POT-Creation-Date: 2026-10-10 19:22:35+0000\n"
+"PO-Revision-Date: 2026-10-10 19:22:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,9 +85,9 @@ msgstr ""
 msgid "[计划书]重新加载配置完毕。"
 msgstr ""
 
-#: ../../PControl.Utils.cs:120
 #: ../../PControl.Initialize.cs:278
 #: ../../PControl.Initialize.cs:279
+#: ../../PControl.Utils.cs:120
 #, csharp-format
 msgid "{0} 删除成功"
 msgstr ""
