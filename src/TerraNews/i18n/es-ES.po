@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2026-10-01 15:52:53+0000\n"
+"PO-Revision-Date: 2026-10-02 03:57\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/src/TerraNews/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1671\n"
+"Language: es_ES\n"
+
+#: ../../TerraNewsPlugin.cs:82
+#, csharp-format
+msgid "[TerraNews] {0}"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:63
+msgid "[TerraNews] 任务鱼图标使用原版聊天物品标签 [i:物品ID]，玩家可悬停查看详情。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:62
+#, csharp-format
+msgid "[TerraNews] 功能开关：{0}"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:54
+msgid "[TerraNews] 已加载，但配置中 Enabled=false，插件保持静默。改完 tshock/TerraNews.json 后需重启服务器。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:61
+#, csharp-format
+msgid "[TerraNews] 已加载。总开关=开；每日播报 {0:00}:{1:00}（游戏内时间，窗口 {2} 游戏分钟，即到 {3:00}:{4:00}）。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:85
+#, csharp-format
+msgid "[TerraNews] 配置读取失败（{0}），已使用默认配置。"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:100
+#, csharp-format
+msgid "[TerraNews][diag] dayTime={0} time={1:0.0} clock={2} halfDay={0} announced={1} quest={0} moon={1} storm={2} merchant={0}"
+msgstr ""
+
+#: ../../TerraNewsPlugin.cs:26
+msgid "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。"
+msgstr ""
+

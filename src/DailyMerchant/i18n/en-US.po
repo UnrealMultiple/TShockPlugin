@@ -1,31 +1,37 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DailyMerchant\n"
-"POT-Creation-Date: 2026-10-01 12:47:09+0800\n"
-"PO-Revision-Date: 2026-10-01 12:47:09+0800\n"
+"Project-Id-Version: tshock-chinese-plugin\n"
+"POT-Creation-Date: 2026-10-03 00:55:08+0000\n"
+"PO-Revision-Date: 2026-10-03 03:42\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: tshock-chinese-plugin\n"
+"X-Crowdin-Project-ID: 751499\n"
+"X-Crowdin-Language: en\n"
+"X-Crowdin-File: /master/src/DailyMerchant/i18n/template.pot\n"
+"X-Crowdin-File-ID: 1665\n"
+"Language: en_US\n"
 
 #: ../../DailyMerchant.cs:129
 #: ../../DailyMerchant.cs:130
 msgid "关"
-msgstr "off"
+msgstr ""
 
 #: ../../DailyMerchant.cs:129
 #: ../../DailyMerchant.cs:130
 msgid "开"
-msgstr "on"
-
-#: ../../DailyMerchant.cs:128
-msgid "配置已重载：旅商 {0}，骷髅商人 {1}"
-msgstr "Config reloaded: travelling merchant {0}, skeleton merchant {1}"
+msgstr ""
 
 #: ../../DailyMerchant.cs:48
 msgid "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。"
-msgstr "Makes both merchants show up daily: the vanilla Travelling Merchant only shows up about 22% of days, here he always does; the Skeleton Merchant appears near the spawn point whenever a player is nearby during the day."
+msgstr ""
+
+#: ../../DailyMerchant.cs:128
+msgid "配置已重载：旅商 {0}，骷髅商人 {1}"
+msgstr ""
 
