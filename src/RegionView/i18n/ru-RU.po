@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-01-29 16:03:11+0000\n"
-"PO-Revision-Date: 2025-04-13 02:42\n"
+"POT-Creation-Date: 2026-09-27 17:10:59+0000\n"
+"PO-Revision-Date: 2026-09-28 03:30\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Регион {0} не содержит блоков. (Размер на�
 "Используйте [c/FF8080:/region resize], чтобы исправить это."
 
 #: ../../Region.cs:212
-#: ../../Region.cs:255
+#: ../../Region.cs:257
 msgid "区域尚未设置虚拟图块。"
 msgstr "Границы ещё не отображены."
 
