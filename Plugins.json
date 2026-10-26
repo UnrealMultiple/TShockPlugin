@@ -883,7 +883,7 @@
     "Version": "1.1",
     "Author": "不是现在",
     "Description": {
-      "en-US": "Makes both merchants show up daily: the vanilla Travelling Merchant only shows up about 22% of days, here he always does; the Skeleton Merchant appears near the spawn point whenever a player is nearby during the day.",
+      "en-US": "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。",
       "de-DE": "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。",
       "it-IT": "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。",
       "fr-FR": "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。",
@@ -2869,7 +2869,7 @@
     "Version": "1.0.0",
     "Author": "不是现在",
     "Description": {
-      "en-US": "TerraNews: broadcasts the Angler's quest fish and the moon phase at 04:30, sandstorm warnings, and the Traveling Merchant's shelf.",
+      "en-US": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
       "de-DE": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
       "it-IT": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",
       "fr-FR": "泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。",

@@ -61,7 +61,7 @@
 
 | Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
-| [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 0.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.en-US.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -97,7 +97,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 6.7% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
-| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 75.0% | The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch |  |
+| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 0.0% | The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 50.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |
@@ -111,15 +111,15 @@
 | [Dummy](./src/Dummy/README.en-US.md) | 100.0% | Dummy client |  |
 | [DumpTerrariaID](./src/DumpTerrariaID/README.en-US.md) | 100.0% | Dump Terraria IDs |  |
 | [DwTP](./src/DwTP/README.en-US.md) | 100.0% | Positioning Teleport |  |
-| [Economics.Core](./src/Economics.Core/README.en-US.md) | 17.5% | Economic plugin prerequisite |  |
+| [Economics.Core](./src/Economics.Core/README.en-US.md) | 8.5% | Economic plugin prerequisite |  |
 | [Economics.Deal](./src/Economics.Deal/README.en-US.md) | 83.9% | Trading plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.NPC](./src/Economics.NPC/README.en-US.md) | 100.0% | Custom monster rewards | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.Script]() |
 | [Economics.Plugin](./src/Economics.Plugin/README.md) | 0.0% | JavaScript plugin | [Economics.Script]() |
 | [Economics.Projectile](./src/Economics.Projectile/README.en-US.md) | 100.0% | Custom projectiles | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Regain](./src/Economics.Regain/README.en-US.md) | 100.0% | Item recycling | [Economics.Core](./src/Economics.Core/README.en-US.md) |
-| [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 93.5% | RPG plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
+| [Economics.RPG](./src/Economics.RPG/README.en-US.md) | 93.1% | RPG plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [Economics.Shop](./src/Economics.Shop/README.en-US.md) | 94.1% | Shop plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
-| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 71.0% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
+| [Economics.Skill](./src/Economics.Skill/README.en-US.md) | 70.6% | Skill plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.Task](./src/Economics.Task/README.en-US.md) | 100.0% | Task plugin | [Economics.Core](./src/Economics.Core/README.en-US.md) [Economics.RPG](./src/Economics.RPG/README.en-US.md) |
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
@@ -196,7 +196,7 @@
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' like game' |  |
 | [SwitchCommands](./src/SwitchCommands/README.en-US.md) | 100.0% | Execute commands in region |  |
 | [TeleportRequest](./src/TeleportRequest/README.en-US.md) | 100.0% | Teleport request |  |
-| [TerraNews](./src/TerraNews/README.md) | 100.0% | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
+| [TerraNews](./src/TerraNews/README.md) | 0.0% | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | 100.0% | NPC quick home |  |
