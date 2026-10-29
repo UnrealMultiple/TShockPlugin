@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -16,7 +16,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
 
     public override string Name => "BossLock";
 
-    public override Version Version => new (2, 0, 0, 2);
+    public override Version Version => new (2, 0, 0, 5);
     
 
     public override void Initialize()
@@ -95,6 +95,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
             args.Player.SendInfoMessage(GetString("[i:43]有效子命令列表:\n") +
                                         GetString("/bl list 列出所有定时进度配置\n") +
                                         GetString("/bl reset 重置进度配置\n") +
+                                        GetString("/bl reset auto 按配置的下一个北京时间重置进度\n") +
                                         GetString("/bl edit 修改进度配置\n") +
                                         GetString("/bl unlock 解锁进度"));
             return;
@@ -109,12 +110,13 @@ public class BossLock(Main game) : TerrariaPlugin(game)
                 {
                     try
                     {
-                        time = DateTime.ParseExact(args.Parameters[1], "yyyy-MM-dd-HH:mm:ss", null);
+                        time = string.Equals(args.Parameters[1], "auto", StringComparison.OrdinalIgnoreCase)
+                            ? new DateTimeOffset(GetResetBaseTime(DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(8)).DateTime), TimeSpan.FromHours(8)).LocalDateTime
+                            : DateTime.ParseExact(args.Parameters[1], "yyyy-MM-dd-HH:mm:ss", null);
                     }
                     catch
                     {
-                        args.Player.SendErrorMessage(GetString($"日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n") +
-                                                     GetString("例如: 2007-05-24-23:59:59"));
+                        args.Player.SendErrorMessage(GetString("日期或自动重置时刻配置错误! 日期格式: yyyy-MM-dd-HH:mm:ss；BossLock.json 的 AutoResetTimes 必须是非空的 HH:mm 时刻列表。"));
                         return;
                     }
                 }
@@ -217,6 +219,13 @@ public class BossLock(Main game) : TerrariaPlugin(game)
     }
 
     
+    internal static DateTime GetResetBaseTime(DateTime resetLocalTime)
+    {
+        return ResetSchedule.Next(resetLocalTime, Config.Settings.AutoResetTimes);
+    }
+
+    internal static bool IsLocked(TimeSpan remaining) => remaining > TimeSpan.Zero;
+
     private static void NpcSpawn(NpcSpawnEventArgs args)
     {
         foreach (var bossTime in Config.Settings.Locks)
@@ -230,7 +239,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
             if (bossData == null) { return; }
             var targetTime = DateTime.ParseExact(bossData, "yyyy-MM-dd-HH:mm:ss", null);
             var timeSpan = targetTime - DateTime.Now;
-            if (timeSpan.Seconds <= 0)
+            if (!IsLocked(timeSpan))
             {
                 continue;
             }
@@ -240,10 +249,11 @@ public class BossLock(Main game) : TerrariaPlugin(game)
                 continue;
             }
             
+            var bossName = Main.npc[args.NpcId].FullName;
             Main.npc[args.NpcId].active = false;
             Main.npc[args.NpcId].type = 0;
             TSPlayer.All.SendData(PacketTypes.NpcUpdate, null, args.NpcId);
-            TSPlayer.All.SendErrorMessage(GetString($"[i:43][c/AF4BFF:{Main.npc[args.NpcId].FullName}]还没到解锁时间, 被禁止生成!"));
+            TSPlayer.All.SendErrorMessage(GetString($"[i:43][c/AF4BFF:{bossName}]还没到解锁时间, 被禁止生成!"));
             TSPlayer.All.SendWarningMessage(GetString($"解锁时间: [c/32FF82:{Utils.TimeFormat(bossData)}] [c/FFFFFF:({Math.Round(timeSpan.TotalSeconds, 1)}秒)]"));
             
         }

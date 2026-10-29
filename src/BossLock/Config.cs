@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using TShockAPI;
 namespace BossLock;
 
@@ -7,6 +7,8 @@ public class Config
     private static string ConfigPath= Path.Combine(TShock.SavePath, "BossLock.json");
 
     internal static Config Settings = new ();
+
+    public string[] AutoResetTimes = ["09:00", "21:00"];
     
     public Lock[] Locks =
     [
