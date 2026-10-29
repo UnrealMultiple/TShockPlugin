@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
 using TShockAPI;
 
@@ -12,11 +12,6 @@ public static class Utils
 
         foreach (var i in chest.Chest.item)
         {
-            if (i == null || i.IsAir)
-            {
-                continue;
-            }
-
             GiveItemByDrop(args.Player, i.type, i.stack, i.prefix);
         }
 
@@ -33,25 +28,10 @@ public static class Utils
 
     private static void GiveItemByDrop(TSPlayer plr, int type, int stack, int prefix)
     {
-        // 1.4.5 的空物品生成会返回 400（网络生成哨兵），不能作为奖励槽同步。
-        if (type <= 0 || stack <= 0)
-        {
-            return;
-        }
-
         var number = Item.NewItem(new EntitySource_DebugCommand(), plr.TPlayer.Center, type, stack, prefix,
             NewItemOwnership.None, null, null, true);
-        if (number < 0 || number >= Main.maxItems || Main.item[number].IsAir)
-        {
-            throw new InvalidOperationException("Unable to create reward item.");
-        }
-
-        var item = Main.item[number];
-        item.playerIndexTheItemIsReservedFor = plr.Index;
-        item.timeSinceTheItemHasBeenReservedForSomeone = 0;
-        item.timeToKeepReservation = WorldItem.DefaultGrabDelay;
+        Main.item[number].playerIndexTheItemIsReservedFor = plr.Index;
         plr.SendData(PacketTypes.ItemDrop, number: number, number2: 1f);
-        // 1.4.5 的 ItemOwner 包新增保留时长，客户端和服务端必须一致。
-        plr.SendData(PacketTypes.ItemOwner, null, number, item.timeToKeepReservation);
+        plr.SendData(PacketTypes.ItemOwner, null, number);
     }
 }

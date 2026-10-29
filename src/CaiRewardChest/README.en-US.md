@@ -26,14 +26,6 @@
 None
 ```
 
-## Changelog
-
-### v2026.10.29.1
-- Adapt reward drops to Terraria 1.4.5 WorldItem ownership synchronization, including reservation duration.
-- Skip empty slots and non-positive stacks; validate spawned item indices instead of sending sentinel slot 400.
-- Keep claim limits, commands, database format and the reward-chest quick-stack prohibition unchanged.
-- Verified on an isolated Terraria 1.4.5.8 / TShock 6.2.1 server: empty slots, item indices, reservation duration, stacks/prefixes, claims across accounts and duplicate rejection, and blocked quick stacking. Actual client pickup still requires in-game verification.
-
 ## FeedBack
 
 - Github Issue -> TShockPlugin Repo: https://github.com/UnrealMultiple/TShockPlugin

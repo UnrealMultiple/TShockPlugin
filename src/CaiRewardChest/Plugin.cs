@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using On.OTAPI;
 using Terraria;
 using TerrariaApi.Server;
@@ -21,7 +21,7 @@ public class CaiRewardChest : TerrariaPlugin
     public override string Description => GetString("奖励箱！！");
 
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(2026, 10, 29, 1);
+    public override Version Version => new Version(2026, 09, 28, 2);
 
 
     public override void Initialize()
