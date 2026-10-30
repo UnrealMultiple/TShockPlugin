@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-10-10 19:22:35+0000\n"
-"PO-Revision-Date: 2026-10-11 03:51\n"
+"POT-Creation-Date: 2026-10-29 15:37:15+0000\n"
+"PO-Revision-Date: 2026-10-30 04:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -91,9 +91,9 @@ msgstr ""
 msgid "[计划书]重新加载配置完毕。"
 msgstr ""
 
+#: ../../PControl.Utils.cs:120
 #: ../../PControl.Initialize.cs:278
 #: ../../PControl.Initialize.cs:279
-#: ../../PControl.Utils.cs:120
 #, csharp-format
 msgid "{0} 删除成功"
 msgstr ""
@@ -1028,6 +1028,31 @@ msgstr ""
 msgid "自动重置计划已启用，将在从现在起{0}后自动重置"
 msgstr ""
 
+#: ../../PControl.cs:19
+msgid "计划书"
+msgstr ""
+
+#: ../../PControl.Initialize.cs:1373
+#: ../../PControl.Initialize.cs:1701
+#: ../../PControl.Initialize.cs:1956
+msgid "计划时机不恰当，请1秒后重试"
+msgstr ""
+
+#: ../../PControl.Utils.cs:297
+#: ../../PControl.Utils.cs:298
+#: ../../PControl.Utils.cs:299
+#, csharp-format
+msgid "请不要对自动执行的指令进行套娃！[/{0}]"
+msgstr ""
+
+#: ../../PControl.Initialize.cs:2036
+msgid "请输入数字0,1,2或3"
+msgstr ""
+
+#: ../../PControl.Initialize.cs:2007
+msgid "请输入数字1,2或3"
+msgstr ""
+
 #: ../../PControl.Initialize.cs:1618
 msgid "警告，并未开启自动重启计划，你的修改不会有任何效果"
 msgstr ""
@@ -1088,31 +1113,6 @@ msgstr ""
 
 #: ../../PControl.Initialize.cs:1918
 msgid "警告：手动重置计划倒计时时间太长，已超过自动重置计划时间，如果突然使用stop指令中断，自动重置可能立刻开始生效，不建议这么做"
-msgstr ""
-
-#: ../../PControl.cs:19
-msgid "计划书"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:1373
-#: ../../PControl.Initialize.cs:1701
-#: ../../PControl.Initialize.cs:1956
-msgid "计划时机不恰当，请1秒后重试"
-msgstr ""
-
-#: ../../PControl.Utils.cs:297
-#: ../../PControl.Utils.cs:298
-#: ../../PControl.Utils.cs:299
-#, csharp-format
-msgid "请不要对自动执行的指令进行套娃！[/{0}]"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:2036
-msgid "请输入数字0,1,2或3"
-msgstr ""
-
-#: ../../PControl.Initialize.cs:2007
-msgid "请输入数字1,2或3"
 msgstr ""
 
 #: ../../PControl.Initialize.cs:347
