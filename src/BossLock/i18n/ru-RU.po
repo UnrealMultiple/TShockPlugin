@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-08-02 19:13:08+0000\n"
-"PO-Revision-Date: 2025-08-03 01:44\n"
+"POT-Creation-Date: 2026-10-29 15:36:35+0000\n"
+"PO-Revision-Date: 2026-10-30 04:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Crowdin-File-ID: 1606\n"
 "Language: ru_RU\n"
 
-#: ../../BossLock.cs:145
+#: ../../BossLock.cs:147
 #, csharp-format
 msgid "[BossLock]初始化完成!开服时间设为:{0}"
 msgstr ""
@@ -26,7 +26,7 @@ msgstr ""
 msgid "[BossLock]定时进度已重载!"
 msgstr ""
 
-#: ../../BossLock.cs:128
+#: ../../BossLock.cs:130
 #, csharp-format
 msgid "[BossLock]检测到重复配置: {0} ({1})"
 msgstr ""
@@ -56,7 +56,7 @@ msgstr ""
 msgid "[i:1370]当前进度: [c/AF4BFF:{0}]"
 msgstr ""
 
-#: ../../BossLock.cs:246
+#: ../../BossLock.cs:256
 #, csharp-format
 msgid "[i:43][c/AF4BFF:{0}]还没到解锁时间, 被禁止生成!"
 msgstr ""
@@ -65,30 +65,30 @@ msgstr ""
 msgid "[i:43]有效子命令列表:\n"
 msgstr ""
 
-#: ../../BossLock.cs:180
+#: ../../BossLock.cs:182
 msgid "[i:50]日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n"
 msgstr ""
 
-#: ../../BossLock.cs:191
+#: ../../BossLock.cs:193
 msgid "[i:50]格式错误!正确格式:/bl unlock <NPC ID>"
 msgstr ""
 
-#: ../../BossLock.cs:164
+#: ../../BossLock.cs:166
 #, csharp-format
 msgid "[i:50]没有关于{0}({1})的限制配置!"
 msgstr ""
 
-#: ../../BossLock.cs:170
-#: ../../BossLock.cs:210
+#: ../../BossLock.cs:172
+#: ../../BossLock.cs:212
 msgid "[i:50]请输入正确ID!"
 msgstr ""
 
-#: ../../BossLock.cs:214
+#: ../../BossLock.cs:216
 #, csharp-format
 msgid "{0}({1})已解锁!"
 msgstr ""
 
-#: ../../BossLock.cs:185
+#: ../../BossLock.cs:187
 #, csharp-format
 msgid "{0}({1})的开打时间已设为{2:yyyy-MM-dd HH:mm:ss}"
 msgstr ""
@@ -103,7 +103,7 @@ msgstr ""
 msgid "{0}前"
 msgstr ""
 
-#: ../../BossLock.cs:98
+#: ../../BossLock.cs:99
 msgid "/bl edit 修改进度配置\n"
 msgstr ""
 
@@ -111,11 +111,15 @@ msgstr ""
 msgid "/bl list 列出所有定时进度配置\n"
 msgstr ""
 
+#: ../../BossLock.cs:98
+msgid "/bl reset auto 按配置的下一个北京时间重置进度\n"
+msgstr ""
+
 #: ../../BossLock.cs:97
 msgid "/bl reset 重置进度配置\n"
 msgstr ""
 
-#: ../../BossLock.cs:99
+#: ../../BossLock.cs:100
 msgid "/bl unlock 解锁进度"
 msgstr ""
 
@@ -164,8 +168,7 @@ msgstr ""
 msgid "今天HH:mm"
 msgstr ""
 
-#: ../../BossLock.cs:117
-#: ../../BossLock.cs:181
+#: ../../BossLock.cs:183
 msgid "例如: 2007-05-24-23:59:59"
 msgstr ""
 
@@ -226,8 +229,8 @@ msgstr ""
 msgid "日"
 msgstr ""
 
-#: ../../BossLock.cs:116
-msgid "日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n"
+#: ../../BossLock.cs:119
+msgid "日期或自动重置时刻配置错误! 日期格式: yyyy-MM-dd-HH:mm:ss；BossLock.json 的 AutoResetTimes 必须是非空的 HH:mm 时刻列表。"
 msgstr ""
 
 #: ../../Utils.cs:37
@@ -242,7 +245,7 @@ msgstr ""
 msgid "月总"
 msgstr ""
 
-#: ../../BossLock.cs:156
+#: ../../BossLock.cs:158
 msgid "格式错误!正确格式:/bl edit <NPC ID> <预定日期>"
 msgstr ""
 
@@ -258,7 +261,7 @@ msgstr ""
 msgid "血肉墙"
 msgstr ""
 
-#: ../../BossLock.cs:247
+#: ../../BossLock.cs:257
 #, csharp-format
 msgid "解锁时间: [c/32FF82:{0}] [c/FFFFFF:({1}秒)]"
 msgstr ""
