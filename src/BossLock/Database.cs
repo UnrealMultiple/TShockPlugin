@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System.Data;
 using Terraria;
 using TShockAPI;
@@ -20,8 +20,17 @@ public static class Database
 
     public static string? LoadBoss(int npcId)
     {
-        using var result = Db.QueryReader("SELECT * FROM boss_lock WHERE npc_id=@0;", npcId);
-        return result.Read() ? result.Get<string>("time") : null;
+        string? latest = null;
+        foreach (var member in BossGroup.Members(npcId))
+        {
+            using var result = Db.QueryReader("SELECT time FROM boss_lock WHERE npc_id = @0;", member);
+            while (result.Read())
+            {
+                var time = result.Get<string>("time");
+                if (latest == null || string.CompareOrdinal(time, latest) > 0) { latest = time; }
+            }
+        }
+        return latest;
     }
 
     public static void SendAllBoss(CommandArgs args)
@@ -37,6 +46,7 @@ public static class Database
 
             });
         }
+        dataInfos = dataInfos.GroupBy(i => BossGroup.Root(i.BossId)).Select(g => new Lock { BossId = g.Key, Time = g.Max(i => i.Time)! }).ToList();
         dataInfos.Sort((x, y) => DateTime.ParseExact(x.Time, "yyyy-MM-dd-HH:mm:ss", null).CompareTo(DateTime.ParseExact(y.Time, "yyyy-MM-dd-HH:mm:ss", null)));
         args.Player.SendInfoMessage(GetString("BossLock配置列表:"));
         foreach (var i in dataInfos)
@@ -54,10 +64,14 @@ public static class Database
             var time = result.Get<string>("time");
             if (DateTime.ParseExact(time, "yyyy-MM-dd-HH:mm:ss", null) > DateTime.Now)
             {
-                locks.Add(result.Get<int>("npc_id"), Utils.TimeFormat(time));
+                var root = BossGroup.Root(result.Get<int>("npc_id"));
+                if (!locks.TryGetValue(root, out var previous) || string.CompareOrdinal(time, previous) > 0)
+                {
+                    locks[root] = time;
+                }
             }
         }
-        return locks;
+        return locks.ToDictionary(entry => entry.Key, entry => Utils.TimeFormat(entry.Value));
     }
         
     public static void SendAllBossSimple(CommandArgs args)
@@ -73,6 +87,7 @@ public static class Database
 
             });
         }
+        dataInfos = dataInfos.GroupBy(i => BossGroup.Root(i.BossId)).Select(g => new Lock { BossId = g.Key, Time = g.Max(i => i.Time)! }).ToList();
         dataInfos.Sort((x, y) => DateTime.ParseExact(x.Time, "yyyy-MM-dd-HH:mm:ss", null).CompareTo(DateTime.ParseExact(y.Time, "yyyy-MM-dd-HH:mm:ss", null)));
         args.Player.SendInfoMessage(GetString("[BossLock列表]"));
         foreach (var i in dataInfos)
@@ -94,6 +109,7 @@ public static class Database
             });
         }
         var emj = plr.RealPlayer ? "[i:43]" : "📝"; 
+        dataInfos = dataInfos.GroupBy(i => BossGroup.Root(i.BossId)).Select(g => new Lock { BossId = g.Key, Time = g.Max(i => i.Time)! }).ToList();
         dataInfos.Sort((x, y) => DateTime.ParseExact(x.Time, "yyyy-MM-dd-HH:mm:ss", null).CompareTo(DateTime.ParseExact(y.Time, "yyyy-MM-dd-HH:mm:ss", null)));
         for (var i =0;i<dataInfos.Count;i++)
         {
@@ -116,7 +132,48 @@ public static class Database
         
     public static void UpdateTime(int npcId, string newTime)
     {
-        Db.Query("UPDATE boss_lock SET time=@0 WHERE npc_id=@1;",newTime, npcId);
+        WriteRows(new Dictionary<int, string> { [BossGroup.Root(npcId)] = newTime }, false);
+    }
+
+    internal static void ReplaceAll(IReadOnlyDictionary<int, string> rows) => WriteRows(rows, true);
+
+    private static void WriteRows(IReadOnlyDictionary<int, string> rows, bool replaceAll)
+    {
+        // 使用独立连接，避免事务状态影响 TShock/其他插件共享的连接。
+        using var connection = (IDbConnection)Activator.CreateInstance(Db.GetType())!;
+        connection.ConnectionString = Db.ConnectionString;
+        connection.Open();
+        using var transaction = connection.BeginTransaction();
+        using var command = connection.CreateCommand();
+        command.Transaction = transaction;
+        if (replaceAll)
+        {
+            command.CommandText = "DELETE FROM boss_lock;";
+            command.ExecuteNonQuery();
+        }
+        else
+        {
+            command.CommandText = "DELETE FROM boss_lock WHERE npc_id = @id;";
+            var memberId = command.CreateParameter();
+            memberId.ParameterName = "@id";
+            memberId.DbType = DbType.Int32;
+            command.Parameters.Add(memberId);
+            foreach (var member in rows.Keys.SelectMany(BossGroup.Members).Distinct())
+            {
+                memberId.Value = member;
+                command.ExecuteNonQuery();
+            }
+        }
+        foreach (var row in rows)
+        {
+            command.Parameters.Clear();
+            command.CommandText = "INSERT INTO boss_lock (npc_id, time) VALUES (@id, @time);";
+            var id = command.CreateParameter(); id.ParameterName = "@id"; id.Value = row.Key;
+            var time = command.CreateParameter(); time.ParameterName = "@time"; time.Value = row.Value;
+            command.Parameters.Add(id); command.Parameters.Add(time);
+            command.ExecuteNonQuery();
+        }
+        transaction.Commit();
     }
 
     public static void ClearDb()
