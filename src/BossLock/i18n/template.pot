@@ -1,14 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BossLock\n"
-"POT-Creation-Date: 2026-10-29 15:36:35+0000\n"
-"PO-Revision-Date: 2026-10-29 15:36:35+0000\n"
+"POT-Creation-Date: 2026-10-31 05:59:34+0000\n"
+"PO-Revision-Date: 2026-10-31 05:59:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
+
+#: ../../SpawnGuard.cs:67
+#, csharp-format
+msgid "[BossLock] {0} 被禁止生成。"
+msgstr ""
 
 #: ../../BossLock.cs:147
 #, csharp-format
@@ -19,27 +24,30 @@ msgstr ""
 msgid "[BossLock]定时进度已重载!"
 msgstr ""
 
-#: ../../BossLock.cs:130
-#, csharp-format
-msgid "[BossLock]检测到重复配置: {0} ({1})"
+#: ../../BossLock.cs:116
+msgid "[BossLock]配置读取失败，现有进度保持不变。"
 msgstr ""
 
-#: ../../Database.cs:77
+#: ../../BossLock.cs:144
+msgid "[BossLock]重置失败，已有进度未替换。请检查配置和数据库。"
+msgstr ""
+
+#: ../../Database.cs:92
 msgid "[BossLock列表]"
 msgstr ""
 
-#: ../../Database.cs:104
-#: ../../Database.cs:106
+#: ../../Database.cs:120
+#: ../../Database.cs:122
 #, csharp-format
 msgid "[c/32FF82:{0}] [c/FFFFFF:(/locklist 查看详细)]"
 msgstr ""
 
-#: ../../Database.cs:105
+#: ../../Database.cs:121
 #, csharp-format
 msgid "[c/AF4BFF:{0}]已解锁! [c/AF4BFF:{1}]的解锁时间为:"
 msgstr ""
 
-#: ../../Database.cs:103
+#: ../../Database.cs:119
 #, csharp-format
 msgid "[c/AF4BFF:{0}]的解锁时间为:"
 msgstr ""
@@ -49,46 +57,41 @@ msgstr ""
 msgid "[i:1370]当前进度: [c/AF4BFF:{0}]"
 msgstr ""
 
-#: ../../BossLock.cs:256
-#, csharp-format
-msgid "[i:43][c/AF4BFF:{0}]还没到解锁时间, 被禁止生成!"
-msgstr ""
-
 #: ../../BossLock.cs:95
 msgid ""
 "[i:43]有效子命令列表:\n"
 msgstr ""
 
-#: ../../BossLock.cs:182
+#: ../../BossLock.cs:183
 msgid ""
 "[i:50]日期格式错误!正确格式: yyyy-MM-dd-HH:mm:ss\n"
 msgstr ""
 
-#: ../../BossLock.cs:193
+#: ../../BossLock.cs:194
 msgid "[i:50]格式错误!正确格式:/bl unlock <NPC ID>"
 msgstr ""
 
-#: ../../BossLock.cs:166
+#: ../../BossLock.cs:167
 #, csharp-format
 msgid "[i:50]没有关于{0}({1})的限制配置!"
 msgstr ""
 
-#: ../../BossLock.cs:172
-#: ../../BossLock.cs:212
+#: ../../BossLock.cs:173
+#: ../../BossLock.cs:213
 msgid "[i:50]请输入正确ID!"
 msgstr ""
 
-#: ../../BossLock.cs:216
+#: ../../BossLock.cs:217
 #, csharp-format
 msgid "{0}({1})已解锁!"
 msgstr ""
 
-#: ../../BossLock.cs:187
+#: ../../BossLock.cs:188
 #, csharp-format
 msgid "{0}({1})的开打时间已设为{2:yyyy-MM-dd HH:mm:ss}"
 msgstr ""
 
-#: ../../Database.cs:44
+#: ../../Database.cs:54
 #, csharp-format
 msgid "{0}({1})解锁时间为:[c/32FF82:{2}]"
 msgstr ""
@@ -122,7 +125,7 @@ msgstr ""
 msgid "/bl unlock 解锁进度"
 msgstr ""
 
-#: ../../Database.cs:41
+#: ../../Database.cs:51
 msgid "BossLock配置列表:"
 msgstr ""
 
@@ -167,7 +170,7 @@ msgstr ""
 msgid "今天HH:mm"
 msgstr ""
 
-#: ../../BossLock.cs:183
+#: ../../BossLock.cs:184
 msgid "例如: 2007-05-24-23:59:59"
 msgstr ""
 
@@ -224,11 +227,16 @@ msgstr ""
 msgid "新三王"
 msgstr ""
 
+#: ../../NpcIdConverter.cs:63
+#, csharp-format
+msgid "无效的 NpcId（{0}）：请使用数字 ID 或文档中支持的中文 Boss 名称。"
+msgstr ""
+
 #: ../../Utils.cs:65
 msgid "日"
 msgstr ""
 
-#: ../../BossLock.cs:119
+#: ../../BossLock.cs:130
 msgid ""
 "日期或自动重置时刻配置错误! 日期格式: yyyy-MM-dd-HH:mm:ss；BossLock.json 的 AutoResetTimes "
 "必须是非空的 HH:mm 时刻列表。"
@@ -254,6 +262,10 @@ msgstr ""
 msgid "石巨人"
 msgstr ""
 
+#: ../../SpawnGuard.cs:66
+msgid "缺少有效的进度时间记录，请管理员使用 /bl edit 设置该 Boss 的解锁时间。"
+msgstr ""
+
 #: ../../Utils.cs:90
 msgid "美杜莎"
 msgstr ""
@@ -262,9 +274,9 @@ msgstr ""
 msgid "血肉墙"
 msgstr ""
 
-#: ../../BossLock.cs:257
+#: ../../SpawnGuard.cs:65
 #, csharp-format
-msgid "解锁时间: [c/32FF82:{0}] [c/FFFFFF:({1}秒)]"
+msgid "解锁时间: {0}"
 msgstr ""
 
 #: ../../Utils.cs:88
