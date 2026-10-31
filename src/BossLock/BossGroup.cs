@@ -18,7 +18,7 @@ internal static class BossGroup
         [NPCID.Golem, NPCID.GolemHead, NPCID.GolemFistLeft, NPCID.GolemFistRight, NPCID.GolemHeadFree],
         [NPCID.Pumpking, NPCID.PumpkingBlade],
         [NPCID.MartianSaucerCore, NPCID.MartianSaucer, NPCID.MartianSaucerTurret, NPCID.MartianSaucerCannon],
-        [NPCID.MoonLordCore, NPCID.MoonLordHead, NPCID.MoonLordHand, NPCID.MoonLordFreeEye],
+        [NPCID.MoonLordCore, NPCID.MoonLordHead, NPCID.MoonLordHand, NPCID.MoonLordFreeEye, NPCID.MoonLordLeechBlob],
         [NPCID.CultistBoss, NPCID.CultistBossClone],
         [NPCID.PirateShip, NPCID.PirateShipCannon]
     ];

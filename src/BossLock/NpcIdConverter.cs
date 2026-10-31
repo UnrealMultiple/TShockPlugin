@@ -47,10 +47,12 @@ public sealed class NpcIdConverter : JsonConverter<int>
     public override int ReadJson(JsonReader reader, Type objectType, int existingValue,
         bool hasExistingValue, JsonSerializer serializer)
     {
-        if (reader.TokenType == JsonToken.Integer && reader.Value is long number &&
+        if (reader.TokenType == JsonToken.Integer && int.TryParse(
+            Convert.ToString(reader.Value, System.Globalization.CultureInfo.InvariantCulture),
+            System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var number) &&
             number >= 0 && number < NPCID.Count)
         {
-            return (int)number;
+            return number;
         }
         if (reader.TokenType == JsonToken.String)
         {
@@ -58,7 +60,7 @@ public sealed class NpcIdConverter : JsonConverter<int>
             if (int.TryParse(value, out var id) && id >= 0 && id < NPCID.Count) { return id; }
             if (Names.TryGetValue(value, out id)) { return id; }
         }
-        throw new JsonSerializationException($"无效的 NpcId（{reader.Path}）：请使用数字 ID 或文档中支持的中文 Boss 名称。");
+        throw new JsonSerializationException(GetString($"无效的 NpcId（{reader.Path}）：请使用数字 ID 或文档中支持的中文 Boss 名称。"));
     }
 
     public override void WriteJson(JsonWriter writer, int value, JsonSerializer serializer) => writer.WriteValue(value);
