@@ -16,7 +16,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
 
     public override string Name => "BossLock";
 
-    public override Version Version => new (2, 0, 0, 5);
+    public override Version Version => new (2, 0, 0, 6);
     
 
     public override void Initialize()
@@ -24,7 +24,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
         Database.Init();
         Config.Settings.Read();
         Config.Settings.Write();
-        ServerApi.Hooks.NpcSpawn.Register(this, NpcSpawn);
+        SpawnGuard.Register(this);
         PlayerHooks.PlayerPostLogin += this.PlayerHooksOnPlayerPostLogin;
         Commands.ChatCommands.Add(new Command("bosslock", Setting, "bosslock", "bl", "tb"));
         Commands.ChatCommands.Add(new Command(ProcessList, "locklist", "进度列表"));
@@ -37,7 +37,7 @@ public class BossLock(Main game) : TerrariaPlugin(game)
         {
             var asm = Assembly.GetExecutingAssembly();
             Commands.ChatCommands.RemoveAll(c => c.CommandDelegate.Method.DeclaringType?.Assembly == asm);
-            ServerApi.Hooks.NpcSpawn.Deregister(this, NpcSpawn);
+            SpawnGuard.Deregister(this);
             PlayerHooks.PlayerPostLogin -= this.PlayerHooksOnPlayerPostLogin;
             GeneralHooks.ReloadEvent -= this.Reload;
         }
@@ -105,6 +105,17 @@ public class BossLock(Main game) : TerrariaPlugin(game)
             case "重置":
             case "初始化":
             case "reset":
+                try
+                {
+                    // reset 必须读取刚编辑的磁盘配置，不能把旧内存配置覆盖回去。
+                    Config.Settings.Read();
+                }
+                catch (Exception ex)
+                {
+                    TShock.Log.Error(ex.ToString());
+                    args.Player.SendErrorMessage(GetString("[BossLock]配置读取失败，现有进度保持不变。"));
+                    return;
+                }
                 var time = DateTime.Now;
                 if (args.Parameters.Count == 2)
                 {
@@ -120,29 +131,18 @@ public class BossLock(Main game) : TerrariaPlugin(game)
                         return;
                     }
                 }
-                Database.ClearDb();
-                Config.Settings.Write();
-                var currentBoss = new List<int>();
-                foreach (var i in Config.Settings.Locks)
+                try
                 {
-                    if (currentBoss.Contains(i.NpcId))
-                    {
-                        args.Player.SendWarningMessage(GetString($"[BossLock]检测到重复配置: {Lang.GetNPCNameValue(i.NpcId)} ({i.NpcId})"));
-                        continue;
-                    }
-
-                    DateTime startTime;
-                    if (i.LockSeconds == -1)
-                    {
-                        startTime = DateTime.MaxValue;
-                    }
-                    else
-                    {
-                        startTime = time + TimeSpan.FromSeconds(i.LockSeconds);
-                    }
-                    
-                    Database.AddBoss(i.NpcId, startTime.ToString("yyyy-MM-dd-HH:mm:ss"));
-                    currentBoss.Add(i.NpcId);
+                    var rows = BossGroup.Configured().ToDictionary(i => i.NpcId, i =>
+                        (i.LockSeconds == -1 ? DateTime.MaxValue : time.AddSeconds(i.LockSeconds))
+                        .ToString("yyyy-MM-dd-HH:mm:ss"));
+                    Database.ReplaceAll(rows);
+                }
+                catch (Exception ex)
+                {
+                    TShock.Log.Error(ex.ToString());
+                    args.Player.SendErrorMessage(GetString("[BossLock]重置失败，已有进度未替换。请检查配置和数据库。"));
+                    return;
                 }
                 args.Player.SendSuccessMessage(GetString($"[BossLock]初始化完成!开服时间设为:{Utils.TimeFormat(time.ToString("yyyy-MM-dd-HH:mm:ss"))}"));
                 return;
@@ -161,7 +161,8 @@ public class BossLock(Main game) : TerrariaPlugin(game)
                 try
                 {
                     
-                    if (Database.LoadBoss(int.Parse(args.Parameters[1])) == null)
+                    if (Database.LoadBoss(int.Parse(args.Parameters[1])) == null &&
+                        !Config.Settings.Locks.Any(i => BossGroup.Root(i.NpcId) == BossGroup.Root(int.Parse(args.Parameters[1]))))
                     {
                         args.Player.SendErrorMessage(GetString($"[i:50]没有关于{Lang.GetNPCNameValue(int.Parse(args.Parameters[1]))}({int.Parse(args.Parameters[1])})的限制配置!"));
                         return;
@@ -226,36 +227,4 @@ public class BossLock(Main game) : TerrariaPlugin(game)
 
     internal static bool IsLocked(TimeSpan remaining) => remaining > TimeSpan.Zero;
 
-    private static void NpcSpawn(NpcSpawnEventArgs args)
-    {
-        foreach (var bossTime in Config.Settings.Locks)
-        {
-            if (Main.npc[args.NpcId].netID != bossTime.NpcId)
-            {
-                continue;
-            }
-
-            var bossData = Database.LoadBoss(Main.npc[args.NpcId].netID);
-            if (bossData == null) { return; }
-            var targetTime = DateTime.ParseExact(bossData, "yyyy-MM-dd-HH:mm:ss", null);
-            var timeSpan = targetTime - DateTime.Now;
-            if (!IsLocked(timeSpan))
-            {
-                continue;
-            }
-
-            if (!Main.npc[args.NpcId].active)
-            {
-                continue;
-            }
-            
-            var bossName = Main.npc[args.NpcId].FullName;
-            Main.npc[args.NpcId].active = false;
-            Main.npc[args.NpcId].type = 0;
-            TSPlayer.All.SendData(PacketTypes.NpcUpdate, null, args.NpcId);
-            TSPlayer.All.SendErrorMessage(GetString($"[i:43][c/AF4BFF:{bossName}]还没到解锁时间, 被禁止生成!"));
-            TSPlayer.All.SendWarningMessage(GetString($"解锁时间: [c/32FF82:{Utils.TimeFormat(bossData)}] [c/FFFFFF:({Math.Round(timeSpan.TotalSeconds, 1)}秒)]"));
-            
-        }
-    }
 }
