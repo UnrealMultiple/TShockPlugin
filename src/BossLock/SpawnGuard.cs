@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using TerrariaApi.Server;
 using TShockAPI;
 
@@ -93,12 +94,12 @@ internal static class SpawnGuard
 
     private static void SpawnSkeletron(On.Terraria.NPC.orig_SpawnSkeletron orig, int player, bool redHat)
     {
-        if (!Block(35)) { orig(player, redHat); }
+        if (!Block(NPCID.SkeletronHead)) { orig(player, redHat); }
     }
 
     private static void SpawnWof(On.Terraria.NPC.orig_SpawnWOF orig, Vector2 position)
     {
-        if (!Block(113)) { orig(position); }
+        if (!Block(NPCID.WallofFlesh)) { orig(position); }
     }
 
     private static void SpawnBoss(On.Terraria.NPC.orig_SpawnBoss orig, int x, int y, int type,
@@ -110,7 +111,7 @@ internal static class SpawnGuard
     private static bool SpawnMechQueen(On.Terraria.NPC.orig_SpawnMechQueen orig, int player)
     {
         // 在原版查找机械骷髅王索引前检查整场组合召唤，避免删掉主体后访问 -1。
-        foreach (var root in new[] { 127, 125, 134 })
+        foreach (var root in new[] { NPCID.SkeletronPrime, NPCID.Retinazer, NPCID.TheDestroyer })
         {
             if (Block(root)) { return false; }
         }

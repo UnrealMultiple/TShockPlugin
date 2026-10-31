@@ -20,12 +20,15 @@ public static class Database
 
     public static string? LoadBoss(int npcId)
     {
-        using var result = Db.QueryReader($"SELECT time FROM boss_lock WHERE npc_id IN ({string.Join(',', BossGroup.Members(npcId))});");
         string? latest = null;
-        while (result.Read())
+        foreach (var member in BossGroup.Members(npcId))
         {
-            var time = result.Get<string>("time");
-            if (latest == null || string.CompareOrdinal(time, latest) > 0) { latest = time; }
+            using var result = Db.QueryReader("SELECT time FROM boss_lock WHERE npc_id = @0;", member);
+            while (result.Read())
+            {
+                var time = result.Get<string>("time");
+                if (latest == null || string.CompareOrdinal(time, latest) > 0) { latest = time; }
+            }
         }
         return latest;
     }
@@ -143,9 +146,24 @@ public static class Database
         using var transaction = connection.BeginTransaction();
         using var command = connection.CreateCommand();
         command.Transaction = transaction;
-        command.CommandText = replaceAll ? "DELETE FROM boss_lock;"
-            : $"DELETE FROM boss_lock WHERE npc_id IN ({string.Join(',', rows.Keys.SelectMany(BossGroup.Members).Distinct())});";
-        command.ExecuteNonQuery();
+        if (replaceAll)
+        {
+            command.CommandText = "DELETE FROM boss_lock;";
+            command.ExecuteNonQuery();
+        }
+        else
+        {
+            command.CommandText = "DELETE FROM boss_lock WHERE npc_id = @id;";
+            var memberId = command.CreateParameter();
+            memberId.ParameterName = "@id";
+            memberId.DbType = DbType.Int32;
+            command.Parameters.Add(memberId);
+            foreach (var member in rows.Keys.SelectMany(BossGroup.Members).Distinct())
+            {
+                memberId.Value = member;
+                command.ExecuteNonQuery();
+            }
+        }
         foreach (var row in rows)
         {
             command.Parameters.Clear();
