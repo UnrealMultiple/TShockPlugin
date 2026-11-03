@@ -187,6 +187,7 @@
 | [SmartRegions](./src/SmartRegions/README.md) | 智能区域 |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 生成基础建设 |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 服主特权 |  |
+| [Starfall](./src/Starfall/README.md) | 服务端控制坠落之星生成速率、掉落与天气事件倍率 |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | PC端模板文本管理插件 |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 禁地表弹幕插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 类among us小游戏 |  |

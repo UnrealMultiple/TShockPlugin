@@ -64,7 +64,7 @@
 
 | Nombre del plugin | Porcentaje de traducción | Descripcion del Plugin  | Dependencias |
 | :-: | :-: | :-: | :-: |
-| [AdditionalPylons](./src/AdditionalPylons/README.md) | 0.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
+| [AdditionalPylons](./src/AdditionalPylons/README.md) | 90.0% | Colocar más pilones | [LazyAPI](./src/LazyAPI/README.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.md) | 0.0% | AI聊天插件 |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.md) | 0.0% | Mejora la funcionalidad de la caja de anuncios | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
@@ -194,6 +194,7 @@
 | [SmartRegions](./src/SmartRegions/README.md) | 0.0% | Regiones inteligentes |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 0.0% | Genera infraestructura básica |  |
 | [SpclPerm](./src/SpclPerm/README.md) | 0.0% | Privilegios del propietario del servidor |  |
+| [Starfall](./src/Starfall/README.md) | 0.0% | 服务端控制坠落之星生成速率、掉落与天气事件倍率 |  |
 | [StatusTextManager](./src/StatusTextManager/README.md) | 100.0% | Plugin para gestionar el texto de estado en PC |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.md) | 0.0% | Prohibir proyectiles en la superficie  | [LazyAPI](./src/LazyAPI/README.md) |
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' como un juego'' |  |

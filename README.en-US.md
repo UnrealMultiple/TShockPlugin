@@ -61,7 +61,7 @@
 
 | Plugin Name | Translation Percentage | Plugin Description | Dependencies |
 | :-: | :-: | :-: | :-: |
-| [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 0.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AdditionalPylons](./src/AdditionalPylons/README.en-US.md) | 100.0% | Place more Pylons | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AIChatPlugin](./src/AIChatPlugin/README.en-US.md) | 100.0% | AIChatPlugin |  |
 | [AnnouncementBoxPlus](./src/AnnouncementBoxPlus/README.en-US.md) | 100.0% | Enhance Broadcast Box Functionality | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -191,6 +191,7 @@
 | [SmartRegions](./src/SmartRegions/README.en-US.md) | 100.0% | Smart regions |  |
 | [SpawnInfra](./src/SpawnInfra/README.md) | 100.0% | Generate basic infrastructure |  |
 | [SpclPerm](./src/SpclPerm/README.en-US.md) | 100.0% | Server owner privileges |  |
+| [Starfall](./src/Starfall/README.md) | 0.0% | 服务端控制坠落之星生成速率、掉落与天气事件倍率 |  |
 | [StatusTextManager](./src/StatusTextManager/README.en-US.md) | 100.0% | PC status text management plugin |  |
 | [SurfaceBlock](./src/SurfaceBlock/README.en-US.md) | 100.0% | Prohibit surface projectiles | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' like game' |  |

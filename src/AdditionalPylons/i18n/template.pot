@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AdditionalPylons\n"
-"POT-Creation-Date: 2026-09-19 06:57:29+0000\n"
-"PO-Revision-Date: 2026-09-19 06:57:29+0000\n"
+"POT-Creation-Date: 2026-11-03 12:21:38+0000\n"
+"PO-Revision-Date: 2026-11-03 12:21:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,11 +10,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../AdditionalPylonsPlugin.cs:175
+#: ../../AdditionalPylonsPlugin.cs:43
+msgid "[AdditionalPylons] 晶塔无需城镇环境: {0}, 远离晶塔也可传送: {1}"
+msgstr ""
+
+#: ../../AdditionalPylonsPlugin.cs:205
+msgid "[AdditionalPylons] 玩家 {0} 的晶塔传送被拒绝 ({1})"
+msgstr ""
+
+#: ../../AdditionalPylonsPlugin.cs:217
+msgid "[AdditionalPylons] 玩家 {0} 通过晶塔网络传送到 ({1},{2}) (类型 {3})"
+msgstr ""
+
+#: ../../AdditionalPylonsPlugin.cs:305
 msgid "当前手持晶塔数量已达到上限。"
 msgstr ""
 
-#: ../../AdditionalPylonsPlugin.cs:17
+#: ../../AdditionalPylonsPlugin.cs:20
 msgid "自定义各类晶塔数量上限，可配置跳过城镇 NPC 和群落检查"
 msgstr ""
 

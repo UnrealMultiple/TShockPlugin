@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Starfall\n"
-"POT-Creation-Date: 2026-10-12 00:00:00+0000\n"
-"PO-Revision-Date: 2026-10-12 00:00:00+0000\n"
+"POT-Creation-Date: 2026-11-03 12:22:33+0000\n"
+"PO-Revision-Date: 2026-11-03 12:22:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10,6 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: GetText.NET Extractor\n"
 
-#: ../../StarfallPlugin.cs:28
+#: ../../StarfallPlugin.cs:30
 msgid "服务端控制坠落之星生成速率、掉落与天气事件倍率。"
 msgstr ""
+
