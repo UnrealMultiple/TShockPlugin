@@ -9,7 +9,11 @@ public enum Feature
     QuestFishIcon,
     AnglerStatus,
     MoonPhase,
+    MoonSale,
     Sandstorm,
+    WindyDay,
+    Eclipse,
+    BloodMoon,
     TravelingMerchant,
     ServerLog
 }
@@ -21,7 +25,11 @@ public class FeatureSwitches
     public bool QuestFishIcon { get; set; } = true;
     public bool AnglerStatus { get; set; } = true;
     public bool MoonPhase { get; set; } = true;
+    public bool MoonSale { get; set; } = true;
     public bool Sandstorm { get; set; } = true;
+    public bool WindyDay { get; set; } = true;
+    public bool Eclipse { get; set; } = true;
+    public bool BloodMoon { get; set; } = true;
     public bool TravelingMerchant { get; set; } = true;
     public bool ServerLog { get; set; } = true;
 
@@ -33,7 +41,11 @@ public class FeatureSwitches
         Feature.QuestFishIcon => QuestFishIcon,
         Feature.AnglerStatus => AnglerStatus,
         Feature.MoonPhase => MoonPhase,
+        Feature.MoonSale => MoonSale,
         Feature.Sandstorm => Sandstorm,
+        Feature.WindyDay => WindyDay,
+        Feature.Eclipse => Eclipse,
+        Feature.BloodMoon => BloodMoon,
         Feature.TravelingMerchant => TravelingMerchant,
         Feature.ServerLog => ServerLog,
         _ => true
@@ -47,7 +59,11 @@ public class FeatureSwitches
             case Feature.QuestFishIcon: QuestFishIcon = value; break;
             case Feature.AnglerStatus: AnglerStatus = value; break;
             case Feature.MoonPhase: MoonPhase = value; break;
+            case Feature.MoonSale: MoonSale = value; break;
             case Feature.Sandstorm: Sandstorm = value; break;
+            case Feature.WindyDay: WindyDay = value; break;
+            case Feature.Eclipse: Eclipse = value; break;
+            case Feature.BloodMoon: BloodMoon = value; break;
             case Feature.TravelingMerchant: TravelingMerchant = value; break;
             case Feature.ServerLog: ServerLog = value; break;
         }
@@ -62,8 +78,12 @@ public class FeatureSwitches
         Feature.QuestFishIcon => "任务鱼图标",
         Feature.AnglerStatus => "渔夫状态",
         Feature.MoonPhase => "月相",
+        Feature.MoonSale => "月相特售",
         Feature.Sandstorm => "风暴播报",
-        Feature.TravelingMerchant => "旅商播报",
+        Feature.WindyDay => "大风播报",
+        Feature.Eclipse => "日食播报",
+        Feature.BloodMoon => "血月播报",
+        Feature.TravelingMerchant => "旅商货架",
         Feature.ServerLog => "写入服务端日志",
         _ => feature.ToString()
     };
@@ -77,7 +97,10 @@ public static class FeatureMap
         ["icon"] = Feature.QuestFishIcon,
         ["angler"] = Feature.AnglerStatus,
         ["moon"] = Feature.MoonPhase,
-        ["moon_bonus"] = Feature.MoonPhase
+        ["moon_bonus"] = Feature.MoonPhase,
+        ["sale"] = Feature.MoonSale,
+        ["merchant"] = Feature.TravelingMerchant,
+        ["merchant_items"] = Feature.TravelingMerchant
     };
 
     private static readonly Regex Placeholder = new(@"\{(\w+)\}", RegexOptions.Compiled);

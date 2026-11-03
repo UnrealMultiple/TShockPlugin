@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\template.targets" />
+
+	<PropertyGroup>
+		<!-- 本插件源码按“引用类型可空”关闭编写（与独立工程一致），避免可空性噪音警告 -->
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+</Project>

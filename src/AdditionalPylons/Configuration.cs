@@ -1,5 +1,6 @@
 using LazyAPI.Attributes;
 using LazyAPI.ConfigFiles;
+using TShockAPI.Hooks;
 
 namespace AdditionalPylons;
 
@@ -55,4 +56,17 @@ internal class Configuration : JsonConfigBase<Configuration>
     [LocalizedPropertyName(CultureType.Chinese, "晶塔无需城镇环境")]
     [LocalizedPropertyName(CultureType.English, "NoTownEnvironment")]
     public bool NoTownEnvironment = false;
+
+    [LocalizedPropertyName(CultureType.Chinese, "远离晶塔也可传送")]
+    [LocalizedPropertyName(CultureType.English, "TeleportFromAnywhere")]
+    public bool TeleportFromAnywhere = false;
+
+    protected override void Reload(ReloadEventArgs args)
+    {
+        base.Reload(args);
+        // Write the file back so options added by a version upgrade appear with
+        // their default values; without this an upgraded server keeps running
+        // with the new options missing from its existing config file.
+        this.SaveTo();
+    }
 }
