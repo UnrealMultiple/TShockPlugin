@@ -1,5 +1,6 @@
 using LazyAPI;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.NetModules;
 using TerrariaApi.Server;
@@ -8,11 +9,13 @@ using TShockAPI.Net;
 
 namespace AdditionalPylons;
 
+using Microsoft.Xna.Framework;
+
 [ApiVersion(2, 1)]
 public class AdditionalPylonsPlugin : LazyPlugin
 {
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new(1, 1, 1);
+    public override Version Version => new(1, 2, 1);
     public override string Author => "Stealownz,肝帝熙恩优化1449";
     public override string Description => GetString("自定义各类晶塔数量上限，可配置跳过城镇 NPC 和群落检查");
 
@@ -33,6 +36,12 @@ public class AdditionalPylonsPlugin : LazyPlugin
 
         On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonHaveEnoughNPCsAroundIt += this.IgnoreNpcRequirement;
         On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonAcceptTeleportation += this.IgnoreBiomeRequirement;
+        On.Terraria.GameContent.TeleportPylonsSystem.HandleTeleportRequest += this.OnHandleTeleportRequest;
+
+        // Surface the values actually in effect so a stale/mismatched config file is
+        // visible in the server log instead of silently falling back to the defaults.
+        TShock.Log.Info(GetString("[AdditionalPylons] 晶塔无需城镇环境: {0}, 远离晶塔也可传送: {1}"),
+            Configuration.Instance.NoTownEnvironment, Configuration.Instance.TeleportFromAnywhere);
     }
 
     protected override void Dispose(bool isDisposing)
@@ -41,6 +50,7 @@ public class AdditionalPylonsPlugin : LazyPlugin
         {
             On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonHaveEnoughNPCsAroundIt -= this.IgnoreNpcRequirement;
             On.Terraria.GameContent.TeleportPylonsSystem.DoesPylonAcceptTeleportation -= this.IgnoreBiomeRequirement;
+            On.Terraria.GameContent.TeleportPylonsSystem.HandleTeleportRequest -= this.OnHandleTeleportRequest;
 
             GetDataHandlers.PlayerUpdate.UnRegister(this.OnPlayerUpdate);
             GetDataHandlers.PlaceTileEntity.UnRegister(this.OnPlaceTileEntity);
@@ -86,6 +96,126 @@ public class AdditionalPylonsPlugin : LazyPlugin
             return true;
 
         return orig(self, info, player);
+    }
+
+    // On 1.4.5.8 engines the detour on Player.InTileEntityInteractionRange proved
+    // unreliable (the "must be near a pylon" check moved to IsTileTypeInInteractionRange,
+    // a separate implementation), so TeleportFromAnywhere no longer relies on it.
+    // Instead the whole request flow is replicated here, minus the two proximity
+    // checks. The NPC/biome sub-checks still call the vanilla public methods, which
+    // keeps the NoTownEnvironment hooks in effect for the relaxed path too.
+    private void OnHandleTeleportRequest(
+        On.Terraria.GameContent.TeleportPylonsSystem.orig_HandleTeleportRequest orig,
+        TeleportPylonsSystem self,
+        TeleportPylonInfo info,
+        int playerIndex)
+    {
+        if (Main.netMode != 2 || !Configuration.Instance.TeleportFromAnywhere)
+        {
+            orig(self, info, playerIndex);
+            return;
+        }
+
+        var player = Main.player[playerIndex];
+        string key = null;
+        bool ok = true;
+
+        if (ok)
+        {
+            int need = self.HowManyNPCsDoesPylonNeed(info, player);
+            ok = self.DoesPylonHaveEnoughNPCsAroundIt(info, need);
+            if (!ok)
+            {
+                key = "Net.CannotTeleportToPylonBecauseNotEnoughNPCs";
+            }
+        }
+        if (ok)
+        {
+            if (!NPC.downedPlantBoss && (double)info.PositionInTiles.Y > Main.worldSurface
+                && Framing.GetTileSafely(info.PositionInTiles.X, info.PositionInTiles.Y).wall == 87)
+            {
+                ok = false;
+                key = "Net.CannotTeleportToPylonBecauseAccessingLihzahrdTempleEarly";
+            }
+        }
+        if (ok)
+        {
+            self._sceneMetrics.Scan(new SceneMetricsScanSettings
+            {
+                BiomeScanCenterPositionInWorld = info.PositionInTiles.ToWorldCoordinates()
+            });
+            ok = self.DoesPylonAcceptTeleportation(info, player);
+            if (!ok)
+            {
+                key = "Net.CannotTeleportToPylonBecauseNotMeetingBiomeRequirements";
+            }
+        }
+        if (ok)
+        {
+            bool found = false;
+            int stage = 0;
+            for (int i = 0; i < self.Pylons.Count; i++)
+            {
+                var pylon = self.Pylons[i];
+                if (stage < 1)
+                {
+                    stage = 1;
+                }
+                int need = self.HowManyNPCsDoesPylonNeed(pylon, player);
+                if (!self.DoesPylonHaveEnoughNPCsAroundIt(pylon, need))
+                {
+                    continue;
+                }
+                if (stage < 2)
+                {
+                    stage = 2;
+                }
+                self._sceneMetrics.Scan(new SceneMetricsScanSettings
+                {
+                    BiomeScanCenterPositionInWorld = pylon.PositionInTiles.ToWorldCoordinates()
+                });
+                if (self.DoesPylonAcceptTeleportation(pylon, player))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                ok = false;
+                key = stage switch
+                {
+                    1 => "Net.CannotTeleportToPylonBecauseNotEnoughNPCsAtCurrentPylon",
+                    2 => "Net.CannotTeleportToPylonBecauseNotMeetingBiomeRequirements",
+                    0 => "Net.CannotTeleportToPylonBecausePlayerIsNotNearAPylon",
+                    _ => "Net.CannotTeleportToPylonBecausePlayerIsNotNearAPylon",
+                };
+            }
+        }
+
+        if (!ok)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                Terraria.Chat.ChatHelper.SendChatMessageToClient(
+                    Terraria.Localization.NetworkText.FromKey(key),
+                    Terraria.Chat.ChatColors.ServerMessage,
+                    playerIndex);
+            }
+            TShock.Log.Info(GetString("[AdditionalPylons] 玩家 {0} 的晶塔传送被拒绝 ({1})"), player.name, key);
+            return;
+        }
+
+        Vector2 newPos = info.PositionInTiles.ToWorldCoordinates() - new Vector2(0f, player.HeightOffsetBoost);
+        player.Teleport(newPos, 9, (int)info.TypeOfPylon);
+        player.velocity = Vector2.Zero;
+        if (Main.netMode == 2)
+        {
+            Terraria.RemoteClient.CheckSection(player.whoAmI, player.position);
+            NetMessage.SendData(65, -1, -1, null, 0, player.whoAmI, newPos.X, newPos.Y, 9, 0, (int)info.TypeOfPylon);
+        }
+        TShock.Log.Info(GetString("[AdditionalPylons] 玩家 {0} 通过晶塔网络传送到 ({1},{2}) (类型 {3})"),
+            player.name, info.PositionInTiles.X, info.PositionInTiles.Y, (int)info.TypeOfPylon);
     }
 
     private void OnSendTileRect(object? sender, GetDataHandlers.SendTileRectEventArgs e)
@@ -191,3 +321,4 @@ public class AdditionalPylonsPlugin : LazyPlugin
         }
     }
 }
+

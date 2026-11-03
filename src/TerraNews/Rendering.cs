@@ -65,6 +65,36 @@ public static class ChatLineParser
     public static string ToLogText(string? text) =>
         ItemTag.Replace(text ?? string.Empty, "[物品#$1]");
 
+    // 占位符可能整段变空（功能被关掉、当天没货、旅商货架是空的），于是拼出一串
+    // "泰拉日报：满月；渔夫；；旅商："。这里按「；」切成段，丢掉只剩店名没有货的残段
+    // 和空段，再重新接上，所以不会留下悬空的分号。
+    //
+    // 必须在剥掉颜色标签之后调用：模板开头那半个标签正好以「：」收尾，先清就会把
+    // 颜色标签本身当成残段丢掉。行内还留着颜色标签的写法（Parse 会原样透传，那种
+    // 写法本来就配不了物品图标）就整行跳过，免得把标签拆散。
+    //
+    // 代价：段末以全角冒号收尾的正文会被当成残段丢掉。默认模板不会写出这种段，
+    // 自定义模板若确实需要，记得在冒号后面接点东西。
+    public static string TidySeparators(string? text)
+    {
+        text ??= string.Empty;
+        if (text.Contains("[c/", StringComparison.OrdinalIgnoreCase))
+            return text;
+
+        string[] parts = text.Split('；');
+        var kept = new List<string>(parts.Length);
+
+        foreach (string part in parts)
+        {
+            string trimmed = part.Trim();
+            if (trimmed.Length == 0 || trimmed.EndsWith('：'))
+                continue;
+            kept.Add(trimmed);
+        }
+
+        return string.Join('；', kept);
+    }
+
     private static void WarnAboutItemTag(string line)
     {
         if (!line.Contains("[i:", StringComparison.Ordinal) || !Warned.Add(line))

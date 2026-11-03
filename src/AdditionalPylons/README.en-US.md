@@ -2,7 +2,7 @@
 
 - Authors: Stealownz, 肝帝熙恩优化1449
 - Source: [github](https://github.com/Adventure-Terraria-Server-Project/AdditionalPylons-Plugin)
-- Configure independent placement limits for 11 pylon types (minimum 1), with optional NPC and biome check bypasses for teleportation.
+- Configure independent placement limits for 11 pylon types (minimum 1), with optional NPC and biome check bypasses for teleportation, plus an option to teleport from anywhere.
 - The v1.1.0 update code and documentation are AI-generated; original authors and source attribution are retained.
 
 ## Commands
@@ -26,11 +26,14 @@
   "MaxUniversalPylons": 2,
   "MaxUnderworldPylons": 2,
   "MaxShimmerPylons": 2,
-  "NoTownEnvironment": false
+  "NoTownEnvironment": false,
+  "TeleportFromAnywhere": false
 }
 ```
 
 `NoTownEnvironment` defaults to `false`. When enabled, it bypasses only the server-side town NPC and biome checks, not other teleportation conditions. Changes take effect with `/reload` and are not scoped to individual player permissions. Limits below 1 are treated as 1.
+
+`TeleportFromAnywhere` defaults to `false`, keeping the vanilla "must stand near a pylon" rule. When enabled, the server temporarily skips both proximity checks (nearby pylon tile and tile-entity interaction range) for that player while a teleport request is being processed, so players farther than 60 tiles from any pylon can still teleport by clicking a destination pylon on the full-screen map. Every other interaction keeps its vanilla reach check, and the remaining teleport conditions are unchanged.
 
 ## Upgrade notes
 
@@ -42,6 +45,12 @@
 - Placement limits retain the upstream client-assisted synchronization approach, not independent server-authoritative quotas.
 
 ## Changelog
+
+### v1.2.0 (AI-generated)
+
+- Add the `TeleportFromAnywhere` option (default: off). While a teleport request is being handled, the server skips the "must be near a pylon" and tile-entity interaction range checks for that player only, so players can teleport to another pylon from anywhere via the full-screen map. Existing cleanup on pylon switching, disconnects and unload is unaffected.
+- The option only relaxes reach checks during teleport requests; chests, doors and other interactions keep their vanilla reach, and it is independent of `NoTownEnvironment`.
+- `/reload` writes the config back to its file so options added by an upgrade appear automatically with their defaults; the startup log prints the effective values of both toggles prefixed with `[AdditionalPylons]` to make mismatched config files obvious.
 
 ### v1.1.0 (AI-generated)
 

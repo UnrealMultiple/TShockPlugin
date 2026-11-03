@@ -136,6 +136,7 @@
   <Project Path="src/SmartRegions/SmartRegions.csproj" />
   <Project Path="src/SourceGen/SourceGen.csproj" />
   <Project Path="src/SpawnInfra/SpawnInfra.csproj" />
+  <Project Path="src/Starfall/Starfall.csproj" />
   <Project Path="src/SpclPerm/SpclPerm.csproj" />
   <Project Path="src/StatusTextManager/StatusTextManager.csproj" />
   <Project Path="src/Submodules/TrProtocol/src/TrProtocol.SerializerGenerator/TrProtocol.SerializerGenerator.csproj" />

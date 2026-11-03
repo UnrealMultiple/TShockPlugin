@@ -7,23 +7,20 @@ using TShockAPI;
 
 namespace TerraNews;
 
-// 泰拉新闻：一个小型 TShock 新闻台。每天 04:30 播报渔夫任务鱼与月相，
-// 沙尘暴/暴风雪登陆，以及旅商到访的货架。全部挂在 ServerApi.Hooks.GameUpdate 上，
-// 而 TShock 只在 Main.Update 内部触发它 —— 专用服务器仅在有客户端连接时才调用
-// Main.Update，所以新闻只会发往有人的服务器。
+// 泰拉新闻：一个小型 TShock 新闻台。每天 04:30 播报今日月相、渔夫任务鱼与
+// 各家随月相轮换的货架，沙尘暴/暴风雪、大风、日食、血月的特别报道，以及旅商到访。
+// 全部挂在 ServerApi.Hooks.GameUpdate 上，而 TShock 只在 Main.Update 内部触发它 ——
+// 专用服务器仅在有客户端连接时才调用 Main.Update，所以新闻只会发往有人的服务器。
 [ApiVersion(2, 1)]
 public class TerraNewsPlugin : TerrariaPlugin
 {
     public const string ConfigFileName = "TerraNews.json";
 
-    // 旅商的 Terraria NPC 类型号。
-    public const int MerchantNpcId = 368;
-
     public override string Name => "TerraNews";
     public override string Author => "不是现在";
-    // 尚未发布，版本号固定在 1.0.0。
-    public override Version Version => new(1, 0, 0);
-    public override string Description => GetString("泰拉新闻：每天 04:30 播报渔夫任务鱼与月相，沙尘暴预警，旅商到访货架播报。");
+    // 版本 1.0.1。
+    public override Version Version => new(1, 0, 1);
+    public override string Description => GetString("泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道。");
 
     private static string ConfigPath => Path.Combine(TShock.SavePath, ConfigFileName);
 
@@ -35,6 +32,10 @@ public class TerraNewsPlugin : TerrariaPlugin
     private DateTime? _pluginStart;
     private DateTime _lastDiag = DateTime.MinValue;
     private bool _ready;
+
+    // 每日看板已触发但还压在延迟期里：到 _dailyDueUtc 后才重新读取世界状态并发布。
+    private bool _dailyWaiting;
+    private DateTime _dailyDueUtc;
 
     public TerraNewsPlugin(Main game) : base(game)
     {
@@ -58,9 +59,15 @@ public class TerraNewsPlugin : TerrariaPlugin
         // TriggerWindowSeconds 这个键名有历史包袱，实际单位是游戏分钟（见 TriggerWindowTicks），
         // 所以窗口终点直接加它、不除 60。
         int windowEnd = (Config.BroadcastHour * 60 + Config.BroadcastMinute + Config.TriggerWindowSeconds) % 1440;
-        TShock.Log.Info(GetString($"[TerraNews] 已加载。总开关=开；每日播报 {Config.BroadcastHour:00}:{Config.BroadcastMinute:00}（游戏内时间，窗口 {Config.TriggerWindowSeconds} 游戏分钟，即到 {windowEnd / 60:00}:{windowEnd % 60:00}）。"));
+        TShock.Log.Info(GetString(
+            $"[TerraNews] 已加载。总开关=开；每日播报 {Config.BroadcastHour:00}:{Config.BroadcastMinute:00}"
+            + $"（游戏内时间，窗口 {Config.TriggerWindowSeconds} 游戏分钟，即到 {windowEnd / 60:00}:{windowEnd % 60:00}"
+            + $",触发后等 {Config.DailyDelaySeconds} 现实秒再检测发布）。"));
         TShock.Log.Info(GetString($"[TerraNews] 功能开关：{Config.Features.Summary()}"));
         TShock.Log.Info(GetString("[TerraNews] 任务鱼图标使用原版聊天物品标签 [i:物品ID]，玩家可悬停查看详情。"));
+        TShock.Log.Info(GetString($"[TerraNews] 月相特售对照表来源：{MoonSale.SourceGameVersion}"));
+        if (MoonSale.VersionWarning(Main.versionNumber) is { } mismatch)
+            TShock.Log.Warn(GetString(mismatch));
     }
 
     protected override void Dispose(bool disposing)
@@ -100,7 +107,7 @@ public class TerraNewsPlugin : TerrariaPlugin
                 $"[TerraNews][diag] dayTime={dayTime} time={time:0.0} clock={GameClock()} "
                 + $"halfDay={_trigger.HalfDayIndex} announced={_trigger.AnnouncedHalfDay} "
                 + $"quest={CurrentQuestFishId} moon={Main.moonPhase} storm={Sandstorm.Happening} "
-                + $"merchant={NPC.AnyNPCs(MerchantNpcId)}"));
+                + $"travelShop={Main.travelShop?.Count(id => id > 0) ?? -1}"));
         }
 
         _pluginStart ??= DateTime.UtcNow;
@@ -108,34 +115,82 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         if (warmingUp || !Config.Enabled)
         {
-            // 两个事件监视器要照常推进，否则静默期里发生过的风暴、旅商会在解除静默
-            // 后被当成刚发生而补播一条。每日窗口不消耗：服务器若恰好在窗口内启动，
+            // 事件监视器要照常推进，否则静默期里发生过的风暴、大风、日食、血月会在解除
+            // 静默后被当成刚发生而补播一条。每日窗口不消耗：服务器若恰好在窗口内启动，
             // 静默期结束时玩家仍应看到当天看板，把这条吞掉才是真丢信息。
             _trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks);
-            _events.TickSandstorm(Sandstorm.Happening);
-            _events.TickMerchant(NPC.AnyNPCs(MerchantNpcId));
+            TickEvents();
             return;
         }
 
         _ready = true;
 
-        // 1) 每日看板 —— 严格限制在 04:30 窗口内，绝不在当天更晚的时候补播
+        // 1) 每日看板 —— 严格限制在 04:30 窗口内触发，绝不在当天更晚的时候补播；
+        //    触发后再等 DailyDelaySeconds 现实秒才读取世界状态并发布
         if (_trigger.Tick(time, dayTime, Config.BroadcastHour, Config.BroadcastMinute, TriggerWindowTicks))
         {
             // 窗口无论是否播报都会被消耗掉，区别只在于要不要真的发出去。
             _trigger.MarkAnnounced();
 
             if (features[Feature.DailyQuestBoard])
-                Broadcast(Config.DailyLines, BuildDailyContext(features), features);
+            {
+                // 旅商的货架是 Chest.SetupTravelShop() 在她刷出之前才掷好的，04:30
+                // 触发帧上读到的往往还是昨天的货。压住这几秒，等原版把当天的
+                // 新货掷出来，发布时再重新检测（BuildDailyContext 到那时才拼内容）。
+                if (Config.DailyDelaySeconds > 0)
+                {
+                    _dailyWaiting = true;
+                    _dailyDueUtc = DateTime.UtcNow.AddSeconds(Config.DailyDelaySeconds);
+                }
+                else
+                {
+                    Broadcast(Config.DailyLines, BuildDailyContext(features), features);
+                }
+            }
         }
 
-        // 2) 天气 —— 只在风暴出现的那一刻播一次
+        // 延迟期到点：重新检测，再发布。到点前服务器哪怕整场没再跑一个刻（玩家
+        // 全下了），恢复推进后的第一个刻也会把这条发出去，不会丢。
+        if (_dailyWaiting && DateTime.UtcNow >= _dailyDueUtc)
+        {
+            _dailyWaiting = false;
+            Broadcast(Config.DailyLines, BuildDailyContext(Config.Features), Config.Features);
+        }
+
+        // 2) 各种一次性事件
+        TickEvents();
+    }
+
+    // 沙尘暴/暴风雪、大风、日食、血月都只在出现的那一刻播一次。
+    private void TickEvents()
+    {
+        FeatureSwitches features = Config.Features;
+
         if (_events.TickSandstorm(Sandstorm.Happening))
             BroadcastStorm(IsBlizzard(), features);
 
-        // 3) 旅商
-        if (_events.TickMerchant(NPC.AnyNPCs(MerchantNpcId)) && features[Feature.TravelingMerchant])
-            BroadcastMerchant(features);
+        // 大风只在白天有货，夜里报了就是假消息。
+        if (_events.TickWindy(Main.dayTime && Main.IsItAHappyWindyDay) && features[Feature.WindyDay])
+            BroadcastSale(Config.WindyLines, MoonSale.WindyDay(), features);
+
+        if (_events.TickEclipse(Main.eclipse) && features[Feature.Eclipse])
+            BroadcastSale(Config.EclipseLines, MoonSale.EclipseSale(), features);
+
+        if (_events.TickBloodMoon(Main.bloodMoon) && features[Feature.BloodMoon])
+            BroadcastSale(Config.BloodMoonLines, MoonSale.BloodMoonSale(WorldGen.crimson), features);
+    }
+
+    // 走 {items} 占位符的一次性播报，物品由 MoonSale 的表拼成。
+    private void BroadcastSale(List<string> lines, (Shop Shop, Lot[] Lots)[] rows, FeatureSwitches features)
+    {
+        string items = MoonSale.Render(rows);
+        Broadcast(lines, new Dictionary<string, string>
+        {
+            ["items"] = items,
+            ["count"] = rows.Sum(r => r.Lots.Length).ToString(),
+            ["time"] = GameClock(),
+            ["moon"] = MoonPhases.Name(Main.moonPhase)
+        }, features);
     }
 
     // 今日任务鱼的 Net ID（Main.anglerQuestItemNetIDs[Main.anglerQuest]）。
@@ -153,6 +208,9 @@ public class TerraNewsPlugin : TerrariaPlugin
     public static string GameClock() => GameTime.Format(Main.time, Main.dayTime);
 
     // 每日播报的可替换变量。鱼的一切信息都在 {icon} 的悬停提示里，这里只给得出 ID。
+    // {merchant} 整段自带「旅商：」前缀，货架为空时整段变空——默认模板把它单独放一行，
+    // 于是空货时那一行只剩「旅商：」，会被 TidySeparators 当成残段丢掉、整行不发。
+    // {merchant_items} 只给图标，店名由模板自己写，同样挂在 TravelingMerchant 开关下。
     private static Dictionary<string, string> BuildDailyContext(FeatureSwitches features)
     {
         int netId = CurrentQuestFishId;
@@ -164,6 +222,13 @@ public class TerraNewsPlugin : TerrariaPlugin
             ["angler"] = features[Feature.AnglerStatus] ? AnglerStatus() : string.Empty,
             ["moon"] = moon ? MoonPhases.Name(Main.moonPhase) : string.Empty,
             ["moon_bonus"] = moon ? MoonPhases.FishingBonusText(Main.moonPhase) : string.Empty,
+            ["sale"] = features[Feature.MoonSale]
+                ? MoonSale.Render(MoonSale.Today(Main.moonPhase, Main.remixWorld, Main.tenthAnniversaryWorld))
+                : string.Empty,
+            ["merchant"] = features[Feature.TravelingMerchant] ? WorldEventWatcher.MerchantRow(Main.travelShop) : string.Empty,
+            ["merchant_items"] = features[Feature.TravelingMerchant]
+                ? WorldEventWatcher.MerchantIconRow(WorldEventWatcher.MerchantStock(Main.travelShop))
+                : string.Empty,
             ["time"] = GameClock(),
             ["id"] = netId.ToString()
         };
@@ -175,7 +240,13 @@ public class TerraNewsPlugin : TerrariaPlugin
         if (!features[Feature.Sandstorm])
             return;
 
-        Broadcast(blizzard ? Config.BlizzardLines : Config.SandstormLines, BuildSandstormContext(blizzard), features);
+        Broadcast(blizzard ? Config.BlizzardLines : Config.SandstormLines,
+            new Dictionary<string, string>
+            {
+                ["storm"] = blizzard ? "暴风雪" : "沙尘暴",
+                ["time"] = GameClock(),
+                ["moon"] = MoonPhases.Name(Main.moonPhase)
+            }, features);
     }
 
     // 原版的沙尘暴与暴风雪是同一个 Sandstorm 事件，客户端按 player.ZoneSnow &&
@@ -225,29 +296,6 @@ public class TerraNewsPlugin : TerrariaPlugin
         return snow > sand;
     }
 
-    private static Dictionary<string, string> BuildSandstormContext(bool blizzard) => new()
-    {
-        ["storm"] = blizzard ? "暴风雪" : "沙尘暴",
-        ["remaining"] = GameTime.FormatDuration(Sandstorm.TimeLeft),
-        ["time"] = GameClock(),
-        ["moon"] = MoonPhases.Name(Main.moonPhase)
-    };
-
-    private static Dictionary<string, string> BuildMerchantContext(List<int> stock) => new()
-    {
-        ["items"] = WorldEventWatcher.MerchantIconRow(stock),
-        ["count"] = stock.Count.ToString(),
-        ["time"] = GameClock(),
-        ["moon"] = MoonPhases.Name(Main.moonPhase)
-    };
-
-    private void BroadcastMerchant(FeatureSwitches features)
-    {
-        var stock = WorldEventWatcher.MerchantStock(Main.travelShop);
-        var lines = WorldEventWatcher.ExpandItemLines(Config.MerchantLines, stock, Config.MerchantItemsPerLine);
-        Broadcast(lines, BuildMerchantContext(stock), features);
-    }
-
     // 渔夫状态。只能输出纯文本，因为外层颜色标签被剥掉后嵌套标签会变成字面文本。
     private static string AnglerStatus()
     {
@@ -259,7 +307,7 @@ public class TerraNewsPlugin : TerrariaPlugin
     }
 
     // 替换模板里的 {占位符}，丢掉占位符全部属于已关闭功能的那几行，
-    // 再解析行首的颜色标签。
+    // 清掉拼剩下的空段，再解析行首的颜色标签。
     private static ChatLine[] BuildLines(List<string> templates, Dictionary<string, string> context, FeatureSwitches? features)
     {
         var result = new List<ChatLine>(templates.Count);
@@ -272,7 +320,11 @@ public class TerraNewsPlugin : TerrariaPlugin
             foreach (var pair in context)
                 text = text.Replace("{" + pair.Key + "}", pair.Value);
 
-            result.Add(ChatLineParser.Parse(text));
+            // 先剥颜色标签再清空段：反过来会把行首那个半截标签当成残段丢掉。
+            ChatLine row = ChatLineParser.Parse(text);
+            string tidy = ChatLineParser.TidySeparators(row.Text);
+            if (tidy.Length > 0)
+                result.Add(row with { Text = tidy });
         }
 
         return result.ToArray();

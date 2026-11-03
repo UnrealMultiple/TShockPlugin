@@ -1,12 +1,14 @@
 namespace TerraNews;
 
 // 世界事件的上升沿检测，只在事件出现的那一刻报一次，不跟进强度变化。
-// 旅商是 NPC 368，她的货架在 Main.travelShop 里，由 Chest.SetupTravelShop()
-// 在刷出她之前重新掷出。
+// 旅商的货架不进这里：它不是上升沿事件，而是每天日报里单独成行的一段固定内容，
+// 直接读 Main.travelShop 就行，货由 Chest.SetupTravelShop() 在刷出她之前掷好。
 public sealed class WorldEventWatcher
 {
     private bool _stormWasHappening;
-    private bool _merchantWasPresent;
+    private bool _windyWasOn;
+    private bool _eclipseWasOn;
+    private bool _bloodMoonWasOn;
 
     // 喂进一个服务器刻的风暴状态，在它开始的那一刻返回 true。
     public bool TickSandstorm(bool happening)
@@ -16,12 +18,26 @@ public sealed class WorldEventWatcher
         return started;
     }
 
-    // 喂进一个服务器刻的旅商在否，在她出现的那一刻返回 true。
-    public bool TickMerchant(bool present)
+    // 大风天每天黎明掷一次，只在白天有货，所以取「白天且有风」。
+    public bool TickWindy(bool windyDaytime)
     {
-        bool arrived = present && !_merchantWasPresent;
-        _merchantWasPresent = present;
-        return arrived;
+        bool started = windyDaytime && !_windyWasOn;
+        _windyWasOn = windyDaytime;
+        return started;
+    }
+
+    public bool TickEclipse(bool on)
+    {
+        bool started = on && !_eclipseWasOn;
+        _eclipseWasOn = on;
+        return started;
+    }
+
+    public bool TickBloodMoon(bool on)
+    {
+        bool started = on && !_bloodMoonWasOn;
+        _bloodMoonWasOn = on;
+        return started;
     }
 
     // 旅商货架去重后的商品；Main.travelShop 是 40 格定长数组，0 表示空位。
@@ -39,41 +55,21 @@ public sealed class WorldEventWatcher
     }
 
     // 把货架渲染成只有可悬停图标、没有名称的一行。
-    public static string MerchantIconRow(IReadOnlyList<int> stock, string separator = " ")
+    public static string MerchantIconRow(IReadOnlyList<int> stock)
     {
         if (stock.Count == 0)
             return "（今日货架是空的）";
 
-        return string.Join(separator, stock.Select(id => "[i:" + id + "]"));
+        return string.Join(string.Empty, stock.Select(id => "[i:" + id + "]"));
     }
 
-    // 把含 {items} 的行按每行 perLine 个图标展开；perLine <= 0 表示不换行。
-    public static List<string> ExpandItemLines(List<string>? templates, IReadOnlyList<int> stock, int perLine)
+    // 旅商那一段，默认模板里单独占一行，格式和其他店一样。货架是空的就不产出
+    // 这一段：在单行模板里表现为不留悬空分号，在单独成行的默认模板里表现为
+    // 整行不发，行尾不会挂一个光秃秃的「旅商：」。Main.travelShop 由
+    // Chest.SetupTravelShop() 在刷出旅商之前掷好，所以人不在场时读到的是她上次的货。
+    public static string MerchantRow(int[]? travelShop)
     {
-        if (perLine <= 0 || templates is null)
-            return templates ?? new List<string>();
-
-        var groups = stock.Select((id, i) => new { id, i })
-            .GroupBy(x => x.i / perLine)
-            .Select(g => g.Select(x => x.id).ToList())
-            .ToList();
-
-        if (groups.Count <= 1)
-            return templates;
-
-        var expanded = new List<string>(templates.Count + groups.Count);
-        foreach (string? template in templates)
-        {
-            if (template is null || !template.Contains("{items}", StringComparison.Ordinal))
-            {
-                expanded.Add(template ?? string.Empty);
-                continue;
-            }
-
-            foreach (var group in groups)
-                expanded.Add(template.Replace("{items}", MerchantIconRow(group)));
-        }
-
-        return expanded;
+        var stock = MerchantStock(travelShop);
+        return stock.Count == 0 ? string.Empty : "旅商：" + MerchantIconRow(stock);
     }
 }
