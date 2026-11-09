@@ -1,0 +1,8 @@
+{
+  "README": {
+    "Description": "喝药自动返还玻璃瓶：延迟数秒全面结算背包流水后发放，合并堆叠/入箱/丢弃等批量操作不会误发，生长无需任何指令"
+  },
+  "README.en-US": {
+    "Description": "Automatically refunds an empty bottle for every potion drunk: batches all inventory changes over a few seconds and settles them together, so stack merging, chest deposits and trash/drops never trigger false refunds; zero commands needed"
+  }
+}
