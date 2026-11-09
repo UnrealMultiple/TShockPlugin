@@ -25,6 +25,7 @@
   <Project Path="src/BedSet/BedSet.csproj" />
   <Project Path="src/BetterWhitelist/BetterWhitelist.csproj" />
   <Project Path="src/BossLock/BossLock.csproj" />
+  <Project Path="src/BottleRefund/BottleRefund.csproj" />
   <Project Path="src/BridgeBuilder/BridgeBuilder.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
@@ -78,6 +79,7 @@
   <Project Path="src/GroundCraft/GroundCraft.csproj" />
   <Project Path="src/HardPlayerDrop/HardPlayerDrop.csproj" />
   <Project Path="src/HelpPlus/HelpPlus.csproj" />
+  <Project Path="src/HerbBloom/HerbBloom.csproj" />
   <Project Path="src/History/History.csproj" />
   <Project Path="src/HouseRegion/HouseRegion.csproj" />
   <Project Path="src/Invincibility/Invincibility.csproj" />
@@ -98,6 +100,7 @@
   <Project Path="src/Noagent/Noagent.csproj" />
   <Project Path="src/NormalDropsBags/NormalDropsBags.csproj" />
   <Project Path="src/NoteWall/NoteWall.csproj" />
+  <Project Path="src/NurseHeal/NurseHeal.csproj" />
   <Project Path="src/OnlineGiftPackage/OnlineGiftPackage.csproj" />
   <Project Path="src/PacketsStop/PacketsStop.csproj" />
   <Project Path="src/PermaBuff/PermaBuff.csproj" />
