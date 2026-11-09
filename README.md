@@ -74,6 +74,7 @@
 | [BedSet](./src/BedSet/README.md) | 设置并记录重生点 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 白名单插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BossLock](./src/BossLock/README.md) | 进度锁插件 |  |
+| [BottleRefund](./src/BottleRefund/README.md) | 喝药自动返还玻璃瓶：延迟数秒全面结算背包流水后发放，合并堆叠/入箱/丢弃等批量操作不会误发，生长无需任何指令 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 快速铺桥 | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 豆沙小游戏·建筑大师模式 | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | CaiBotLite 官方机器人适配插件 | [linq2db]() [GenerateMap](./src/GenerateMap/README.md) |
@@ -130,6 +131,7 @@
 | [GroundCraft](./src/GroundCraft/README.md) | 把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 硬核死亡掉生命水晶 |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 修复和增强 Help 命令 |  |
+| [HerbBloom](./src/HerbBloom/README.md) | 全草药常开：成熟即开花、无视昼夜/天气/月相条件，开花后永不回退；生长速度默认保持原版（可配置加速） |  |
 | [History](./src/History/README.md) | 历史图格记录 |  |
 | [HouseRegion](./src/HouseRegion/README.md) | 圈地插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 限时无敌 |  |
@@ -150,6 +152,7 @@
 | [Noagent](./src/Noagent/README.md) | 禁止代理 ip 进入 |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 普通难度宝藏袋 |  |
 | [NoteWall](./src/NoteWall/README.md) | 留言墙 | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
+| [NurseHeal](./src/NurseHeal/README.md) | 护士治疗 |  |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 在线礼包 |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 数据包拦截 |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 永久 Buff |  |

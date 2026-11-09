@@ -78,6 +78,7 @@
 | [BedSet](./src/BedSet/README.en-US.md) | 100.0% | Set and record respawn points | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.en-US.md) | 100.0% | Whitelist plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BossLock](./src/BossLock/README.md) | 1.7% | 进度锁插件 |  |
+| [BottleRefund](./src/BottleRefund/README.md) | 0.0% | Automatically refunds an empty bottle for every potion drunk: batches all inventory changes over a few seconds and settles them together, so stack merging, chest deposits and trash/drops never trigger false refunds; zero commands needed |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.en-US.md) | 100.0% | Quick bridge building | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [BuildMaster](./src/BuildMaster/README.en-US.md) | 100.0% | Red Bean Mini Game·Master Builder Mode | [MiniGamesAPI](./src/MiniGamesAPI/README.en-US.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 11.1% | CaiBotLite adapter plugin (Only support QQ) | [linq2db]() [GenerateMap](./src/GenerateMap/README.en-US.md) |
@@ -134,6 +135,7 @@
 | [GroundCraft](./src/GroundCraft/README.en-US.md) | 0.0% | Craft items by dropping ingredients together, with JSON recipes, conditions, exact matching and spiral animations |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.en-US.md) | 100.0% | Hardcore death drops life crystals |  |
 | [HelpPlus](./src/HelpPlus/README.en-US.md) | 64.3% | Fix and enhance the Help command |  |
+| [HerbBloom](./src/HerbBloom/README.md) | 0.0% | All herbs always bloom: ignore day/night, weather and moon-phase conditions and never un-bloom once bloomed; vanilla growth speed by default (acceleration configurable) |  |
 | [History](./src/History/README.en-US.md) | 100.0% | History grid record |  |
 | [HouseRegion](./src/HouseRegion/README.en-US.md) | 88.6% | Land claiming plugin | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [Invincibility](./src/Invincibility/README.en-US.md) | 100.0% | Time-limited invincibility |  |
@@ -154,6 +156,7 @@
 | [Noagent](./src/Noagent/README.en-US.md) | 100.0% | Prohibit proxy IP from entering |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.en-US.md) | 100.0% | Drop treasure bags at normal difficulty |  |
 | [NoteWall](./src/NoteWall/README.en-US.md) | 100.0% | Players can leave and view notes here. | [LazyAPI](./src/LazyAPI/README.en-US.md) [linq2db]() |
+| [NurseHeal](./src/NurseHeal/README.md) | 0.0% | Nurse auto-heal |  |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.en-US.md) | 100.0% | Online gift package |  |
 | [PacketsStop](./src/PacketsStop/README.en-US.md) | 100.0% | Packet interception |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 83.3% | Permanent buff |  |
@@ -197,7 +200,7 @@
 | [SurvivalCrisis](./src/SurvivalCrisis/README.md) | 0.0% | 'Among Us' like game' |  |
 | [SwitchCommands](./src/SwitchCommands/README.en-US.md) | 100.0% | Execute commands in region |  |
 | [TeleportRequest](./src/TeleportRequest/README.en-US.md) | 100.0% | Teleport request |  |
-| [TerraNews](./src/TerraNews/README.md) | 0.0% | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
+| [TerraNews](./src/TerraNews/README.md) | 100.0% | 每日渔夫任务、月相、沙尘暴与旅商播报 |  |
 | [TimeRate](./src/TimeRate/README.en-US.md) | 100.0% | modifying time acceleration using commands, and supporting player sleep to trigger events. |  |
 | [TimerKeeper](./src/TimerKeeper/README.en-US.md) | 100.0% | Save timer state |  |
 | [TownNPCHomes](./src/TownNPCHomes/README.en-US.md) | 100.0% | NPC quick home |  |

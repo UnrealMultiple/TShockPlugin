@@ -81,6 +81,7 @@
 | [BedSet](./src/BedSet/README.md) | 0.0% | Establecer y registrar puntos de resurrección | [LazyAPI](./src/LazyAPI/README.md) |
 | [BetterWhitelist](./src/BetterWhitelist/README.md) | 0.0% | Plugin de lista blanca | [LazyAPI](./src/LazyAPI/README.md) |
 | [BossLock](./src/BossLock/README.md) | 0.0% | 进度锁插件 |  |
+| [BottleRefund](./src/BottleRefund/README.md) | 0.0% | 喝药自动返还玻璃瓶：延迟数秒全面结算背包流水后发放，合并堆叠/入箱/丢弃等批量操作不会误发，生长无需任何指令 |  |
 | [BridgeBuilder](./src/BridgeBuilder/README.md) | 0.0% | Construcción rápida de puentes | [LazyAPI](./src/LazyAPI/README.md) |
 | [BuildMaster](./src/BuildMaster/README.md) | 0.0% | Modo Maestro Constructor para el Mini Juego Red Bean | [MiniGamesAPI](./src/MiniGamesAPI/README.md) |
 | [CaiBotLite](./src/CaiBotLite/README.md) | 0.0% | Plugin adaptador CaiBotLite (Only support QQ) | [linq2db]() [GenerateMap](./src/GenerateMap/README.md) |
@@ -137,6 +138,7 @@
 | [GroundCraft](./src/GroundCraft/README.md) | 0.0% | 把掉落物丢在一起自动合成，支持 JSON 配方、条件、精确匹配和螺旋动画 |  |
 | [HardPlayerDrop](./src/HardPlayerDrop/README.md) | 0.0% | Los jugadores en modo Hardcore sueltan corazones de vida al morir |  |
 | [HelpPlus](./src/HelpPlus/README.md) | 0.0% | Corrige y mejora el comando de ayuda |  |
+| [HerbBloom](./src/HerbBloom/README.md) | 0.0% | 全草药常开：成熟即开花、无视昼夜/天气/月相条件，开花后永不回退；生长速度默认保持原版（可配置加速） |  |
 | [History](./src/History/README.md) | 0.0% | Registra un historial en formato de tabla |  |
 | [HouseRegion](./src/HouseRegion/README.md) | 0.0% | Plugin de reclamación de tierras | [LazyAPI](./src/LazyAPI/README.md) |
 | [Invincibility](./src/Invincibility/README.md) | 0.0% | Invencibilidad limitada en el tiempo |  |
@@ -157,6 +159,7 @@
 | [Noagent](./src/Noagent/README.md) | 0.0% | Prohíbe que las IPs de proxy ingresen al servidor |  |
 | [NormalDropsBags](./src/NormalDropsBags/README.md) | 0.0% | Suelta bolsas de tesoros en dificultad normal |  |
 | [NoteWall](./src/NoteWall/README.md) | 0.0% | Los jugadores pueden dejar y ver notas aquí. | [LazyAPI](./src/LazyAPI/README.md) [linq2db]() |
+| [NurseHeal](./src/NurseHeal/README.md) | 0.0% | 护士治疗 |  |
 | [OnlineGiftPackage](./src/OnlineGiftPackage/README.md) | 0.0% | Paquete de regalos en línea |  |
 | [PacketsStop](./src/PacketsStop/README.md) | 0.0% | Interceptación de paquetes |  |
 | [PermaBuff](./src/PermaBuff/README.md) | 0.0% | Buff permanente |  |
