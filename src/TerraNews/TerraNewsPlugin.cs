@@ -8,7 +8,8 @@ using TShockAPI;
 namespace TerraNews;
 
 // 泰拉新闻：一个小型 TShock 新闻台。每天 04:30 播报今日月相、渔夫任务鱼与
-// 各家随月相轮换的货架，沙尘暴/暴风雪、大风、日食、血月的特别报道，以及旅商到访。
+// 各家随月相轮换的货架，沙尘暴/暴风雪、大风、日食、血月的特别报道，以及旅商到访；
+// 另附草药提醒：满月/血月夜死亡草、雨天水叶草、下午 3:45 火焰花，各自单独成条、单独开关。
 // 全部挂在 ServerApi.Hooks.GameUpdate 上，而 TShock 只在 Main.Update 内部触发它 ——
 // 专用服务器仅在有客户端连接时才调用 Main.Update，所以新闻只会发往有人的服务器。
 [ApiVersion(2, 1)]
@@ -18,9 +19,9 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     public override string Name => "TerraNews";
     public override string Author => "不是现在";
-    // 版本 1.0.1。
-    public override Version Version => new(1, 0, 1);
-    public override string Description => GetString("泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道。");
+    // 版本 1.1.0。
+    public override Version Version => new(1, 1, 1);
+    public override string Description => GetString("泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。");
 
     private static string ConfigPath => Path.Combine(TShock.SavePath, ConfigFileName);
 
@@ -32,6 +33,13 @@ public class TerraNewsPlugin : TerrariaPlugin
     private DateTime? _pluginStart;
     private DateTime _lastDiag = DateTime.MinValue;
     private bool _ready;
+
+    // 火焰花只在下午 3:30–7:30（游戏内）开花，3:45 过后单独提醒一条，每天最多一次。
+    // 时间从 04:30 起算，15:45 即 11 小时 15 分 = 11.25 × 每小时 3600 刻。
+    private const double FireblossomTriggerTicks = 11.25 * 3600;
+
+    private bool _wasDayTime = true;
+    private bool _fireblossomFiredToday;
 
     // 每日看板已触发但还压在延迟期里：到 _dailyDueUtc 后才重新读取世界状态并发布。
     private bool _dailyWaiting;
@@ -176,8 +184,52 @@ public class TerraNewsPlugin : TerrariaPlugin
         if (_events.TickEclipse(Main.eclipse) && features[Feature.Eclipse])
             BroadcastSale(Config.EclipseLines, MoonSale.EclipseSale(), features);
 
-        if (_events.TickBloodMoon(Main.bloodMoon) && features[Feature.BloodMoon])
-            BroadcastSale(Config.BloodMoonLines, MoonSale.BloodMoonSale(WorldGen.crimson), features);
+        // 血月的特卖与草药提醒是两条独立播报，走各自的开关（BloodMoon / BloodMoonHerb）。
+        if (_events.TickBloodMoon(Main.bloodMoon))
+        {
+            if (features[Feature.BloodMoon])
+                BroadcastSale(Config.BloodMoonLines, MoonSale.BloodMoonSale(WorldGen.crimson), features);
+
+            if (features[Feature.BloodMoonHerb])
+                BroadcastHerb(Config.BloodMoonHerbLines, features);
+        }
+
+        // 满月夜死亡草开花。血月正逢满月的那一晚不判满月（判据里排除血月），
+        // 由血月那条提醒负责，避免同一晚连发两条死亡草。
+        if (_events.TickFullMoon(!Main.dayTime && Main.moonPhase == 0 && !Main.bloodMoon) && features[Feature.FullMoonHerb])
+            BroadcastHerb(Config.FullMoonHerbLines, features);
+
+        // 下雨提醒水叶草，同样只在开始下雨的那一刻播一次。
+        if (_events.TickRain(Main.raining) && features[Feature.RainHerb])
+            BroadcastHerb(Config.RainHerbLines, features);
+
+        TickFireblossom(features);
+    }
+
+    private void TickFireblossom(FeatureSwitches features)
+    {
+        // 黎明即新的一天，把当天的已提醒标记清掉；世界停推不丢——恢复推进后的
+        // 第一个刻要么补上提醒（还在开花窗口里），要么窗口已过、不再补播。
+        if (Main.dayTime && !_wasDayTime)
+            _fireblossomFiredToday = false;
+        _wasDayTime = Main.dayTime;
+
+        if (_fireblossomFiredToday || !Main.dayTime || Main.time < FireblossomTriggerTicks)
+            return;
+
+        _fireblossomFiredToday = true;
+        if (features[Feature.FireblossomHerb])
+            BroadcastHerb(Config.FireblossomHerbLines, features);
+    }
+
+    // 草药提醒的独立播报，占位符只有 {time} 和 {moon}。
+    private void BroadcastHerb(List<string> lines, FeatureSwitches features)
+    {
+        Broadcast(lines, new Dictionary<string, string>
+        {
+            ["time"] = GameClock(),
+            ["moon"] = MoonPhases.Name(Main.moonPhase)
+        }, features);
     }
 
     // 走 {items} 占位符的一次性播报，物品由 MoonSale 的表拼成。

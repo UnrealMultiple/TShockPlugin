@@ -1,0 +1,8 @@
+{
+  "README": {
+    "Description": "全草药常开：成熟即开花、无视昼夜/天气/月相条件，开花后永不回退；生长速度默认保持原版（可配置加速）"
+  },
+  "README.en-US": {
+    "Description": "All herbs always bloom: ignore day/night, weather and moon-phase conditions and never un-bloom once bloomed; vanilla growth speed by default (acceleration configurable)"
+  }
+}

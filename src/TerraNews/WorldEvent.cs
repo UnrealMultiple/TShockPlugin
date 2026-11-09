@@ -9,6 +9,8 @@ public sealed class WorldEventWatcher
     private bool _windyWasOn;
     private bool _eclipseWasOn;
     private bool _bloodMoonWasOn;
+    private bool _fullMoonWasOn;
+    private bool _rainWasOn;
 
     // 喂进一个服务器刻的风暴状态，在它开始的那一刻返回 true。
     public bool TickSandstorm(bool happening)
@@ -37,6 +39,23 @@ public sealed class WorldEventWatcher
     {
         bool started = on && !_bloodMoonWasOn;
         _bloodMoonWasOn = on;
+        return started;
+    }
+
+    // 满月只在夜里成立，喂进「夜且相位为满月」即可，黄昏换相位的那一刻就是上升沿。
+    public bool TickFullMoon(bool on)
+    {
+        bool started = on && !_fullMoonWasOn;
+        _fullMoonWasOn = on;
+        return started;
+    }
+
+    // 下雨的上升沿。世界存盘时 Main.raining 会一并保存，读档后若天还在下，恢复推进的
+    // 第一个刻就是上升沿——和风暴、日食这些存盘事件同一种行为，不特殊处理。
+    public bool TickRain(bool raining)
+    {
+        bool started = raining && !_rainWasOn;
+        _rainWasOn = raining;
         return started;
     }
 

@@ -1,6 +1,6 @@
 # FullHealthRespawn 复活满血
 
-- 作者: MiMo
+- 作者: 不是现在
 - 出处: TShock插件库
 - 玩家复活或进服时自动恢复满血
 
