@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\template.targets" />
+
+  <!--
+    独立插件：不引用 LazyAPI，也不依赖 GetText / linq2db 等传递依赖，
+    排除 Shared/I18n.cs（它 global using 了 Localizer.I18n，会引入 GetText），
+    本插件使用纯中文固定文案，部署时只需一个 HerbBloom.dll。
+  -->
+  <ItemGroup>
+    <Compile Remove="..\Shared\I18n.cs" />
+  </ItemGroup>
+
+</Project>
