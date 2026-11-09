@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Terraria.ID;
 
 namespace TerraNews;
 
@@ -122,6 +123,37 @@ public class TerraNewsConfig
         "[c/8B0000:特别报道：血月特卖，{items}]"
     };
 
+    // 草药提醒，与上面的事件播报各自独立成条、各自独立开关（Features 里的
+    // FullMoonHerb / BloodMoonHerb / RainHerb）。死亡草在满月夜与血月夜开花、
+    // 水叶草在下雨时开花，开花时才采得到种子。血月正逢满月的那一晚只发血月那条，
+    // 同一晚不连发两条死亡草提醒。占位符只有 {time} 和 {moon}。
+    // 含 [i:物品ID] 图标的行必须用「一个颜色标签包住整行」的写法，理由同 DailyLines。
+    [JsonProperty("FullMoonHerbLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> FullMoonHerbLines { get; set; } = new()
+    {
+        $"[c/9CB767:草药提醒：今夜满月，[i:{ItemID.Deathweed}]死亡草开花了，记得采种]"
+    };
+
+    [JsonProperty("BloodMoonHerbLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> BloodMoonHerbLines { get; set; } = new()
+    {
+        $"[c/8B0000:草药提醒：血月夜，[i:{ItemID.Deathweed}]死亡草开花了，记得采种]"
+    };
+
+    [JsonProperty("RainHerbLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> RainHerbLines { get; set; } = new()
+    {
+        $"[c/4FC3F7:草药提醒：下雨了，[i:{ItemID.Waterleaf}]水叶草开花了，记得采种]"
+    };
+
+    // 火焰花在下午 3:30–7:30（游戏内）开花，或泡在岩浆里随时可采；这里在开花后的
+    // 3:45 提醒一次，每天只发这一条。占位符同上，只有 {time} 和 {moon}。
+    [JsonProperty("FireblossomHerbLines", ObjectCreationHandling = ObjectCreationHandling.Replace)]
+    public List<string> FireblossomHerbLines { get; set; } = new()
+    {
+        $"[c/E2621B:草药提醒：{{time}}，[i:{ItemID.Fireblossom}]火焰花开花了，记得采种]"
+    };
+
     public void Sanitize()
     {
         BroadcastHour = Math.Clamp(BroadcastHour, 0, 23);
@@ -144,6 +176,16 @@ public class TerraNewsConfig
             EclipseLines = new List<string> { "[c/B39DDB:特别报道：日食特卖，{items}]" };
         if (BloodMoonLines is null || BloodMoonLines.Count == 0)
             BloodMoonLines = new List<string> { "[c/8B0000:特别报道：血月特卖，{items}]" };
+
+        TerraNewsConfig defaults = new();
+        if (FullMoonHerbLines is null || FullMoonHerbLines.Count == 0)
+            FullMoonHerbLines = defaults.FullMoonHerbLines;
+        if (BloodMoonHerbLines is null || BloodMoonHerbLines.Count == 0)
+            BloodMoonHerbLines = defaults.BloodMoonHerbLines;
+        if (RainHerbLines is null || RainHerbLines.Count == 0)
+            RainHerbLines = defaults.RainHerbLines;
+        if (FireblossomHerbLines is null || FireblossomHerbLines.Count == 0)
+            FireblossomHerbLines = defaults.FireblossomHerbLines;
     }
 
     // error 是"配置读不出来"，warn 是"读出来了但没能写回去"。两者分开报，

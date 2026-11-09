@@ -14,6 +14,10 @@ public enum Feature
     WindyDay,
     Eclipse,
     BloodMoon,
+    FullMoonHerb,
+    BloodMoonHerb,
+    RainHerb,
+    FireblossomHerb,
     TravelingMerchant,
     ServerLog
 }
@@ -30,6 +34,10 @@ public class FeatureSwitches
     public bool WindyDay { get; set; } = true;
     public bool Eclipse { get; set; } = true;
     public bool BloodMoon { get; set; } = true;
+    public bool FullMoonHerb { get; set; } = true;
+    public bool BloodMoonHerb { get; set; } = true;
+    public bool RainHerb { get; set; } = true;
+    public bool FireblossomHerb { get; set; } = true;
     public bool TravelingMerchant { get; set; } = true;
     public bool ServerLog { get; set; } = true;
 
@@ -46,6 +54,10 @@ public class FeatureSwitches
         Feature.WindyDay => WindyDay,
         Feature.Eclipse => Eclipse,
         Feature.BloodMoon => BloodMoon,
+        Feature.FullMoonHerb => FullMoonHerb,
+        Feature.BloodMoonHerb => BloodMoonHerb,
+        Feature.RainHerb => RainHerb,
+        Feature.FireblossomHerb => FireblossomHerb,
         Feature.TravelingMerchant => TravelingMerchant,
         Feature.ServerLog => ServerLog,
         _ => true
@@ -64,6 +76,10 @@ public class FeatureSwitches
             case Feature.WindyDay: WindyDay = value; break;
             case Feature.Eclipse: Eclipse = value; break;
             case Feature.BloodMoon: BloodMoon = value; break;
+            case Feature.FullMoonHerb: FullMoonHerb = value; break;
+            case Feature.BloodMoonHerb: BloodMoonHerb = value; break;
+            case Feature.RainHerb: RainHerb = value; break;
+            case Feature.FireblossomHerb: FireblossomHerb = value; break;
             case Feature.TravelingMerchant: TravelingMerchant = value; break;
             case Feature.ServerLog: ServerLog = value; break;
         }
@@ -83,6 +99,10 @@ public class FeatureSwitches
         Feature.WindyDay => "大风播报",
         Feature.Eclipse => "日食播报",
         Feature.BloodMoon => "血月播报",
+        Feature.FullMoonHerb => "满月草药提醒",
+        Feature.BloodMoonHerb => "血月草药提醒",
+        Feature.RainHerb => "雨天草药提醒",
+        Feature.FireblossomHerb => "火焰花提醒",
         Feature.TravelingMerchant => "旅商货架",
         Feature.ServerLog => "写入服务端日志",
         _ => feature.ToString()
