@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2026-09-19 06:58:35+0000\n"
-"PO-Revision-Date: 2026-09-20 03:16\n"
+"POT-Creation-Date: 2026-11-09 09:33:50+0000\n"
+"PO-Revision-Date: 2026-11-10 05:52\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -1218,8 +1218,8 @@ msgstr ""
 msgid "Undid {0}'s last {1}action{2}."
 msgstr ""
 
-#: ../../WorldEdit.Commands/Undo.cs:22
 #: ../../WorldEdit.Commands/Redo.cs:22
+#: ../../WorldEdit.Commands/Undo.cs:22
 msgid "Undo system is disabled for unreal players."
 msgstr ""
 
