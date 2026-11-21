@@ -2,7 +2,7 @@
 
 - 作者: Jonesn，肝帝熙恩
 - 出处: TShock中文官方群
-- 调用`https://blackbox.ipinfo.app/lookup/`进行检测，实测效果还行
+- 默认调用`https://blackbox.ipinfo.app/lookup/`进行检测，实测效果还行；也可在配置中改用 [VPNDetection](https://vpndetection.io)（拦截 VPN 和 Tor，无需密钥：[条款](https://vpndetection.io/terms#no-key)、[隐私](https://vpndetection.io/privacy)）
 
 ## 指令
 
@@ -11,12 +11,17 @@
 ```
 
 ## 配置
-
+> 配置文件位置：tshock/Noagent.zh-CN.json
 ```json5
-暂无
+{
+  "检测服务": "blackbox" // blackbox 或 vpndetection
+}
 ```
 
 ## 更新日志
+
+### v1.0.6
+- 新增配置项「检测服务」，可改用 VPNDetection
 
 ### v1.0.0
 - 添加插件

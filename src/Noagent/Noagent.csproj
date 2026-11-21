@@ -4,4 +4,8 @@
     <PropertyGroup>
         <LangVersion>11.0</LangVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LazyAPI\LazyAPI.csproj" />
+    </ItemGroup>
 </Project>
