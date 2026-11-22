@@ -3422,5 +3422,31 @@
     "Path": "ShortCommand.dll",
     "Dependencies": [],
     "HotReload": true
+  },
+  {
+    "Name": "AutoEat",
+    "Version": "1.0.0.0",
+    "Author": "不是现在",
+    "Description": {
+      "en-US": "Auto eat & auto drink: consume food when low on HP/mana and renew only the buffs you used and just expired, with separate toggles for food/potion/buff renewal.",
+      "zh-CN": "自动进食/自动喝药：低血蓝自动吃食物，增益到期自动续（仅续你用过、刚过期的），可分别开关续食物/药水/增益"
+    },
+    "AssemblyName": "AutoEat",
+    "Path": "AutoEat.dll",
+    "Dependencies": [],
+    "HotReload": true
+  },
+  {
+    "Name": "ExplosionGuard",
+    "Version": "1.0.0",
+    "Author": "不是现在",
+    "Description": {
+      "en-US": "Explosion Guard: non-player explosions keep their damage but no longer break tiles; whitelist/blacklist supported, auto-degrades if the detour fails to bind.",
+      "zh-CN": "爆炸守卫：非玩家炮弹/爆炸保留伤害但不破坏方块，白名单/黑名单可控，绑定失败自动降级"
+    },
+    "AssemblyName": "ExplosionGuard",
+    "Path": "ExplosionGuard.dll",
+    "Dependencies": [],
+    "HotReload": true
   }
 ]
