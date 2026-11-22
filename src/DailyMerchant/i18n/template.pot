@@ -28,3 +28,15 @@ msgstr ""
 msgid "配置已重载：旅商 {0}，骷髅商人 {1}"
 msgstr ""
 
+#: DailyMerchant.cs
+msgid "强制刷新旅商货架并重播一次到货播报（全局 3 秒冷却）"
+msgstr ""
+
+#: DailyMerchant.cs
+msgid "当前场上没有旅商，无法刷新货架。"
+msgstr ""
+
+#: DailyMerchant.cs
+msgid "旅商来了！今日货架："
+msgstr ""
+

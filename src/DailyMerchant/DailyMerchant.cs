@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using System.Reflection;
+using System.Text;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -37,13 +38,20 @@ namespace DM;
 ///     .GetSkeletonMerchantPrices），插件不缓存、不广播、不改写任何商店数据。
 ///
 /// 两者各有一个开关（配置文件 DailyMerchant.json，默认都开），关掉哪个就完全不做哪边的事。
+///
+/// 三、手动刷新旅商货架（/刷新旅商，v1.2.1）
+/// 旅商的货由 Chest.SetupTravelShop() 在她刷出那刻掷定，之后不再变。指令强制重掷并同步
+/// 客户端，然后按泰拉日报「旅商到货」同款格式（货物图标行）全服播报一次。所有人可用，
+/// 全局 3 秒冷却（所有玩家共享）。「旅商刚到来」时的播报只在泰拉日报未加载时才由本插件
+/// 补上——日报在时让它自己的到货播报负责，避免重复。骷髅商人无处刷新（货是客户端按
+/// 月相现场算的），不受这条指令影响。
 /// </summary>
 [ApiVersion(2, 1)]
 public class DailyMerchantPlugin : TerrariaPlugin
 {
     public override string Name => Assembly.GetExecutingAssembly().GetName().Name!;
     public override string Author => "不是现在";
-    public override Version Version => new(1, 1);
+    public override Version Version => new(1, 2, 1);
     public override string Description =>
         GetString("让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。");
 
@@ -87,6 +95,14 @@ public class DailyMerchantPlugin : TerrariaPlugin
     private bool _wasDayTime = true;
     private bool _warnedNoHousing;
 
+    // ---- 手动刷新：全局 3 秒冷却，所有玩家共用同一个时间戳。
+    private long _lastRefreshAt;
+    private const long RefreshCooldownMs = 3000;
+
+    // 泰拉日报是否加载：在用到时现查，不能 Initialize 时固化（插件加载顺序不定）。
+    private static bool TerraNewsLoaded =>
+        ServerApi.Plugins.Any(p => p.Plugin.Name == "TerraNews");
+
     // ---- 骷髅商人锚点（算一次就固定下来，避免每秒重算）
     private static bool _anchorCached;
     private static Point _anchorTile;
@@ -101,6 +117,12 @@ public class DailyMerchantPlugin : TerrariaPlugin
 
         ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
 
+        // 无权限命令：所有人可用（Command(委托, 命令名...) 重载不带权限节点）。
+        Commands.ChatCommands.Add(new Command(OnRefreshCommand, "刷新旅商", "refreshmerchant")
+        {
+            HelpText = GetString("强制刷新旅商货架并重播一次到货播报（全局 3 秒冷却）")
+        });
+
         TShock.Log.ConsoleInfo(
             $"{LogPrefix}v{Version} 已加载：旅商 NPC ID = {NPCID.TravellingMerchant}（流动旅商），每天到访 100%（原版 22.12%）；" +
             $"骷髅商人 NPC ID = {NPCID.SkeletonMerchant}，白天出生点附近有人时在固定锚点生成一只，走远/入夜后的去留由原版决定。" +
@@ -113,6 +135,7 @@ public class DailyMerchantPlugin : TerrariaPlugin
         {
             GeneralHooks.ReloadEvent -= ReloadConfig;
             ServerApi.Hooks.GameUpdate.Deregister(this, OnUpdate);
+            Commands.ChatCommands.RemoveAll(c => c.Names.Contains("刷新旅商"));
         }
 
         base.Dispose(disposing);
@@ -128,6 +151,50 @@ public class DailyMerchantPlugin : TerrariaPlugin
         args.Player.SendInfoMessage($"§e[旅商] §7{Format(GetString("配置已重载：旅商 {0}，骷髅商人 {1}"),
             Config.TravellingMerchantEnabled ? GetString("开") : GetString("关"),
             Config.SkeletonMerchantEnabled ? GetString("开") : GetString("关"))}");
+    }
+
+    // ------------------------------------------------------------------ 手动刷新旅商
+
+    /// <summary>/刷新旅商：重掷旅商货架并全服重播一次到货播报。无权限，全局 3 秒冷却。</summary>
+    private void OnRefreshCommand(CommandArgs args)
+    {
+        if (CountMerchants() == 0)
+        {
+            args.Player.SendErrorMessage(GetString("当前场上没有旅商，无法刷新货架。"));
+            return;
+        }
+
+        long now = Environment.TickCount64;
+        if (now - _lastRefreshAt < RefreshCooldownMs)
+            return;                       // 全局冷却，静默跳过
+
+        _lastRefreshAt = now;
+
+        Chest.SetupTravelShop();          // 重掷 Main.travelShop
+        NetMessage.SendData(72);          // MessageID.TravelShop：同步货架给所有客户端
+
+        BroadcastMerchantStock();         // 按泰拉日报同款格式播报新货
+    }
+
+    /// <summary>
+    /// 播报当前旅商货架，格式对齐泰拉日报「旅商到货模板」默认行：
+    /// 「旅商来了！今日货架：[i:ID][i:ID]…」，颜色沿用其默认蓝 4FC3F7。
+    /// 图标用原版聊天标签 [i:ID]，客户端原样渲染成可悬停物品。
+    /// </summary>
+    private static void BroadcastMerchantStock()
+    {
+        var ids = new List<int>();
+        int[]? shop = Main.travelShop;
+        if (shop is not null)
+            foreach (int id in shop)
+                if (id > 0 && !ids.Contains(id))
+                    ids.Add(id);
+
+        var sb = new StringBuilder(GetString("旅商来了！今日货架："));
+        foreach (int id in ids)
+            sb.Append("[i:").Append(id).Append(']');
+
+        TSPlayer.All.SendMessage(sb.ToString(), 0x4F, 0xC3, 0xF7);
     }
 
     // ------------------------------------------------------------------ 每秒扫描
@@ -213,7 +280,15 @@ public class DailyMerchantPlugin : TerrariaPlugin
             return;
         }
 
-        // 到访/离场由游戏自己播报，这里不再往控制台刷常态输出。
+        // 到访播报：泰拉日报在时由它的到货播报负责，这里让位；日报没加载才由本插件补上。
+        // 与手动刷新共用全局 3 秒冷却，避免「刚来紧接着手动刷新」连播两次。
+        if (!TerraNewsLoaded
+            && Environment.TickCount64 - _lastRefreshAt >= RefreshCooldownMs)
+        {
+            _lastRefreshAt = Environment.TickCount64;
+            BroadcastMerchantStock();
+        }
+
         _arrivedThisDay = true;
         _warnedNoHousing = false;
     }

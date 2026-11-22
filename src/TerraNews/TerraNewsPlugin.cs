@@ -9,7 +9,8 @@ namespace TerraNews;
 
 // 泰拉新闻：一个小型 TShock 新闻台。每天 04:30 播报今日月相、渔夫任务鱼与
 // 各家随月相轮换的货架，沙尘暴/暴风雪、大风、日食、血月的特别报道，以及旅商到访；
-// 另附草药提醒：满月/血月夜死亡草、雨天水叶草、下午 3:45 火焰花，各自单独成条、单独开关。
+// 另附天亮（04:30）/天黑（19:30）提醒与草药提醒：满月/血月夜死亡草、雨天水叶草、
+// 下午 3:45 火焰花，各自单独成条、单独开关。
 // 全部挂在 ServerApi.Hooks.GameUpdate 上，而 TShock 只在 Main.Update 内部触发它 ——
 // 专用服务器仅在有客户端连接时才调用 Main.Update，所以新闻只会发往有人的服务器。
 [ApiVersion(2, 1)]
@@ -19,9 +20,9 @@ public class TerraNewsPlugin : TerrariaPlugin
 
     public override string Name => "TerraNews";
     public override string Author => "不是现在";
-    // 版本 1.1.0。
-    public override Version Version => new(1, 1, 1);
-    public override string Description => GetString("泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。");
+    // 版本 1.2.0：天亮/天黑提醒、旅商到货独立播报；延续 v1.1.2 的配置键名汉化（含英文旧键自动改名迁移）。
+    public override Version Version => new(1, 2, 0);
+    public override string Description => GetString("泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。");
 
     private static string ConfigPath => Path.Combine(TShock.SavePath, ConfigFileName);
 
@@ -44,6 +45,10 @@ public class TerraNewsPlugin : TerrariaPlugin
     // 每日看板已触发但还压在延迟期里：到 _dailyDueUtc 后才重新读取世界状态并发布。
     private bool _dailyWaiting;
     private DateTime _dailyDueUtc;
+
+    // 旅商到货已触发但还压在延迟期里：到 _merchantDueUtc 后才读货架发布。
+    private bool _merchantWaiting;
+    private DateTime _merchantDueUtc;
 
     public TerraNewsPlugin(Main game) : base(game)
     {
@@ -142,9 +147,8 @@ public class TerraNewsPlugin : TerrariaPlugin
 
             if (features[Feature.DailyQuestBoard])
             {
-                // 旅商的货架是 Chest.SetupTravelShop() 在她刷出之前才掷好的，04:30
-                // 触发帧上读到的往往还是昨天的货。压住这几秒，等原版把当天的
-                // 新货掷出来，发布时再重新检测（BuildDailyContext 到那时才拼内容）。
+                // 旅商的货架是她刷出那一刻才掷定的，已独立成 MerchantLines 到货播报；
+                // 这里的延迟只管看板本身的发布节奏（见 Configuration.DailyDelaySeconds）。
                 if (Config.DailyDelaySeconds > 0)
                 {
                     _dailyWaiting = true;
@@ -191,19 +195,82 @@ public class TerraNewsPlugin : TerrariaPlugin
                 BroadcastSale(Config.BloodMoonLines, MoonSale.BloodMoonSale(WorldGen.crimson), features);
 
             if (features[Feature.BloodMoonHerb])
-                BroadcastHerb(Config.BloodMoonHerbLines, features);
+                BroadcastNotice(Config.BloodMoonHerbLines, features);
         }
 
         // 满月夜死亡草开花。血月正逢满月的那一晚不判满月（判据里排除血月），
         // 由血月那条提醒负责，避免同一晚连发两条死亡草。
         if (_events.TickFullMoon(!Main.dayTime && Main.moonPhase == 0 && !Main.bloodMoon) && features[Feature.FullMoonHerb])
-            BroadcastHerb(Config.FullMoonHerbLines, features);
+            BroadcastNotice(Config.FullMoonHerbLines, features);
 
         // 下雨提醒水叶草，同样只在开始下雨的那一刻播一次。
         if (_events.TickRain(Main.raining) && features[Feature.RainHerb])
-            BroadcastHerb(Config.RainHerbLines, features);
+            BroadcastNotice(Config.RainHerbLines, features);
 
         TickFireblossom(features);
+        TickDawnDusk(features);
+        TickMerchant(features);
+    }
+
+    // 天亮（04:30）与天黑（19:30）。黎明/黄昏翻转那一帧 Main.time 必定归零，而服务器在
+    // 半日中途启动时读到的 time 是个大值——首帧边沿借这个差别滤掉，不把启动当时的天亮
+    // 天黑播出去。翻转后开头的 30 游戏分钟内都算数，超出则视为中途启动，静默吞掉。
+    private const double HalfDayStartGuardTicks = 30 * GameTime.TicksPerGameMinute;
+
+    private void TickDawnDusk(FeatureSwitches features)
+    {
+        bool dayTime = Main.dayTime;
+
+        if (_events.TickDawn(dayTime) && Main.time < HalfDayStartGuardTicks && features[Feature.Dawn])
+            BroadcastNotice(Config.DawnLines, features);
+
+        if (_events.TickDusk(dayTime) && Main.time < HalfDayStartGuardTicks && features[Feature.Dusk])
+            BroadcastNotice(Config.DuskLines, features);
+    }
+
+    // 旅商到货：她刷出（NPC 368 出现）那一刻才把当天的货定死，所以货架不进日报，
+    // 只在到货上升沿延迟发布（MerchantDelaySeconds）。原版货架由
+    // Chest.SetupTravelShop() 在每次刷出尝试里重掷、以她真正出场那次的掷点为准；
+    // 到货后没人再重掷，延迟到点读到的就是她这一趟卖的货。
+    private void TickMerchant(FeatureSwitches features)
+    {
+        bool present = false;
+        for (int i = 0; i < Main.maxNPCs; i++)
+        {
+            if (Main.npc[i].active && Main.npc[i].type == NPCID.TravellingMerchant)
+            {
+                present = true;
+                break;
+            }
+        }
+
+        if (_events.TickMerchant(present) && features[Feature.TravelingMerchant])
+        {
+            if (Config.MerchantDelaySeconds > 0)
+            {
+                _merchantWaiting = true;
+                _merchantDueUtc = DateTime.UtcNow.AddSeconds(Config.MerchantDelaySeconds);
+            }
+            else
+            {
+                BroadcastMerchant(features);
+            }
+        }
+
+        // 与每日看板的延迟同一种语义：到点后哪怕玩家全下线、世界停推过，
+        // 恢复推进后的第一个刻也会发出去，不会丢。
+        if (_merchantWaiting && DateTime.UtcNow >= _merchantDueUtc)
+        {
+            _merchantWaiting = false;
+            BroadcastMerchant(Config.Features);
+        }
+    }
+
+    // 旅商到货播报。复用每日看板的全部占位符，{merchant} / {merchant_items} 都读
+    // 发布那一刻的 Main.travelShop。
+    private void BroadcastMerchant(FeatureSwitches features)
+    {
+        Broadcast(Config.MerchantLines, BuildDailyContext(features), features);
     }
 
     private void TickFireblossom(FeatureSwitches features)
@@ -219,11 +286,11 @@ public class TerraNewsPlugin : TerrariaPlugin
 
         _fireblossomFiredToday = true;
         if (features[Feature.FireblossomHerb])
-            BroadcastHerb(Config.FireblossomHerbLines, features);
+            BroadcastNotice(Config.FireblossomHerbLines, features);
     }
 
-    // 草药提醒的独立播报，占位符只有 {time} 和 {moon}。
-    private void BroadcastHerb(List<string> lines, FeatureSwitches features)
+    // 独立条目的通用播报（草药提醒、天亮天黑），占位符只有 {time} 和 {moon}。
+    private void BroadcastNotice(List<string> lines, FeatureSwitches features)
     {
         Broadcast(lines, new Dictionary<string, string>
         {
@@ -259,7 +326,8 @@ public class TerraNewsPlugin : TerrariaPlugin
     // 当前游戏时刻，形如 HH:mm。
     public static string GameClock() => GameTime.Format(Main.time, Main.dayTime);
 
-    // 每日播报的可替换变量。鱼的一切信息都在 {icon} 的悬停提示里，这里只给得出 ID。
+    // 每日播报与旅商到货播报共用的可替换变量。鱼的一切信息都在 {icon} 的悬停提示里，
+    // 这里只给得出 ID。
     // {merchant} 整段自带「旅商：」前缀，货架为空时整段变空——默认模板把它单独放一行，
     // 于是空货时那一行只剩「旅商：」，会被 TidySeparators 当成残段丢掉、整行不发。
     // {merchant_items} 只给图标，店名由模板自己写，同样挂在 TravelingMerchant 开关下。
