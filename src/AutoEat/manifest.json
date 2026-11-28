@@ -1,0 +1,8 @@
+{
+  "README": {
+    "Description": "自动进食/自动喝药：低血蓝自动吃食物，增益到期自动续（仅续你用过、刚过期的），可分别开关续食物/药水/增益"
+  },
+  "README.en-US": {
+    "Description": "Auto eat & auto drink: consume food when low on HP/mana and renew only the buffs you used and just expired, with separate toggles for food/potion/buff renewal."
+  }
+}
