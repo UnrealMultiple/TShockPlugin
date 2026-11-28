@@ -36,6 +36,10 @@ namespace BottleRefund
         [JsonProperty("药水黑名单")]
         public List<int> Blacklist = new List<int>();
 
+        /// <summary>排除回血回蓝药水：开启后只有增益类药水返瓶，治疗/魔力药水喝了不返还。</summary>
+        [JsonProperty("排除回血回蓝药水")]
+        public bool ExcludeHpMpPotions = true;
+
         /// <summary>单玩家流水上限：持续批量操作导致流水超限时整批放弃（不返还），防止饿死结算。</summary>
         [JsonProperty("流水上限")]
         public int LedgerLimit = 300;

@@ -1,8 +1,8 @@
 namespace TerraNews;
 
 // 世界事件的上升沿检测，只在事件出现的那一刻报一次，不跟进强度变化。
-// 旅商的货架不进这里：它不是上升沿事件，而是每天日报里单独成行的一段固定内容，
-// 直接读 Main.travelShop 就行，货由 Chest.SetupTravelShop() 在刷出她之前掷好。
+// 旅商到货也是上升沿：货架由 Chest.SetupTravelShop() 在她刷出那一刻掷定、之后没人
+// 重掷，所以只在 NPC 368 出现时（TickMerchant）播报一次，日报里不再挂她。
 public sealed class WorldEventWatcher
 {
     private bool _stormWasHappening;
@@ -11,6 +11,8 @@ public sealed class WorldEventWatcher
     private bool _bloodMoonWasOn;
     private bool _fullMoonWasOn;
     private bool _rainWasOn;
+    private bool _dayTimeWasOn;
+    private bool _merchantWasPresent;
 
     // 喂进一个服务器刻的风暴状态，在它开始的那一刻返回 true。
     public bool TickSandstorm(bool happening)
@@ -57,6 +59,33 @@ public sealed class WorldEventWatcher
         bool started = raining && !_rainWasOn;
         _rainWasOn = raining;
         return started;
+    }
+
+    // 天亮（白天标志的上升沿）与天黑（下降沿）共用同一个昼夜状态。两个方法喂的都是
+    // Main.dayTime，每刻各调一次也互不干扰。黎明与黄昏翻转的那一帧 Main.time 必定归零
+    // （见 GameTime 头注），调用方拿这个特征滤掉「服务器在半日中途启动」的首帧边沿。
+    public bool TickDawn(bool dayTime)
+    {
+        bool started = dayTime && !_dayTimeWasOn;
+        _dayTimeWasOn = dayTime;
+        return started;
+    }
+
+    public bool TickDusk(bool dayTime)
+    {
+        bool started = !dayTime && _dayTimeWasOn;
+        _dayTimeWasOn = dayTime;
+        return started;
+    }
+
+    // 旅商到货（NPC 368 出现）的上升沿。她昨天没走成——有玩家守在附近时原版不
+    // 放人——不算新到货，不重复播报。服务器启动时她已在场，恢复推进后的第一个刻
+    // 就是上升沿，会照常播报一次，方便重启后上线的玩家知道她这一趟还在。
+    public bool TickMerchant(bool present)
+    {
+        bool arrived = present && !_merchantWasPresent;
+        _merchantWasPresent = present;
+        return arrived;
     }
 
     // 旅商货架去重后的商品；Main.travelShop 是 40 格定长数组，0 表示空位。

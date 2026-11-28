@@ -2,14 +2,14 @@ using System.Collections.Concurrent;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using TShockAPI.Hooks;
 using static TShockAPI.GetDataHandlers;
 
 namespace FullHealthRespawn;
 
 /// <summary>
 /// FullHealthRespawn - 复活满血插件
-/// 玩家复活时自动恢复到当前最大生命值
+/// 仅在玩家死亡后复活时，自动恢复到当前最大生命值
+/// 进服与魔镜/海螺等回城不再触发（v1.2.1 起按 Spawn 上下文过滤）
 /// 对所有玩家开放，无需权限，无需配置
 /// </summary>
 [ApiVersion(2, 1)]
@@ -31,7 +31,6 @@ public class FullHealthRespawn : TerrariaPlugin
     public override void Initialize()
     {
         PlayerSpawn += this.OnSpawn!;
-        ServerApi.Hooks.ServerJoin.Register(this, this.OnJoin);
         ServerApi.Hooks.GameUpdate.Register(this, this.OnUpdate);
     }
 
@@ -43,7 +42,6 @@ public class FullHealthRespawn : TerrariaPlugin
         if (disposing)
         {
             PlayerSpawn -= this.OnSpawn!;
-            ServerApi.Hooks.ServerJoin.Deregister(this, this.OnJoin);
             ServerApi.Hooks.GameUpdate.Deregister(this, this.OnUpdate);
         }
         base.Dispose(disposing);
@@ -61,23 +59,16 @@ public class FullHealthRespawn : TerrariaPlugin
     }
 
     /// <summary>
-    /// 玩家加入服务器事件
-    /// </summary>
-    private void OnJoin(JoinEventArgs args)
-    {
-        var plr = TShock.Players[args.Who];
-        if (plr == null)
-            return;
-
-        // 加入队列，等待 GameUpdate 处理
-        _restoreQueue.Enqueue(plr);
-    }
-
-    /// <summary>
-    /// 玩家出生/复活事件
+    /// 玩家死亡复活事件
+    /// 说明：原版魔镜/记忆药水/海螺等回城与死亡复活共用同一个 Spawn 包，
+    /// 仅上下文不同（回城为 RecallFromItem），因此这里按上下文过滤，只处理死亡复活。
     /// </summary>
     private void OnSpawn(object o, SpawnEventArgs args)
     {
+        // 只处理死亡复活；回城（RecallFromItem）、进服出生（SpawningIntoWorld）不触发
+        if (args.SpawnContext != PlayerSpawnContext.ReviveFromDeath)
+            return;
+
         var plr = args.Player;
 
         if (plr == null || !plr.Active)

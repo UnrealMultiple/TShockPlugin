@@ -37,6 +37,7 @@ namespace BottleRefund
     ///
     /// 药水集合：启动时全物品扫描 —— potion==true（治疗系）∪ buffType&gt;0 && consumable（增益系），
     /// 排除食物（IsFood）。瓶装水、原料、投掷类不在此集合，酿造消耗与吃饭不会误判。
+    /// v1.0.1 起默认排除回血回蓝药水（healLife/healMana &gt; 0，配置可关），只有增益药水返瓶。
     /// </summary>
     [ApiVersion(2, 1)]
     public class BottleRefundPlugin : TerrariaPlugin
@@ -44,7 +45,7 @@ namespace BottleRefund
         public override string Name => "BottleRefund";
         public override string Author => "不是现在";
         public override string Description => "喝药自动返还玻璃瓶：延迟数秒全面结算背包流水后发放，批量堆叠/入箱/丢弃不误发。";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
 
         private static string ConfigPath => Path.Combine(TShock.SavePath, "BottleRefund.json");
 
@@ -149,6 +150,9 @@ namespace BottleRefund
                 int id = kv.Key;
                 var item = kv.Value;
                 if (id <= 0 || item == null || item.stack <= 0)
+                    continue;
+                // 回血回蓝药水（healLife/healMana > 0）按配置排除，只对增益类药水返瓶
+                if (cfg.ExcludeHpMpPotions && (item.healLife > 0 || item.healMana > 0))
                     continue;
                 if (item.potion || (item.buffType > 0 && item.consumable && id < ItemID.Sets.IsFood.Length && !ItemID.Sets.IsFood[id]))
                     _potionSet.Add(id);
@@ -442,7 +446,7 @@ namespace BottleRefund
                 if (tsPlayer != null && tsPlayer.Active)
                 {
                     playerName = tsPlayer.Name;
-                    tsPlayer.GiveItem(cfg.RefundItemId, toGive);
+                    GiveRefund(tsPlayer, cfg.RefundItemId, toGive);
                 }
                 else
                 {
@@ -452,6 +456,72 @@ namespace BottleRefund
 
             if (cfg.VerboseLog && (totalDrinks > 0 || detail.Length > 0))
                 TShock.Log.ConsoleInfo("[BottleRefund] 结算 {0}：喝药x{1}，发放x{2}{3}", playerName, totalDrinks, toGive, detail);
+        }
+
+        // ------------------------------------------------------------------
+        // 返还发放：优先直塞背包槽位（SSC 玩家服务器侧镜像准确），
+        // 塞不下或非 SSC 时回落到 GiveItem（落地预约拾取）。
+        // TSPlayer.GiveItem 受全局 GiveItemsDirectly 配置控制，本服为 false 时
+        // 一律走落地路径，背包满或预约失败时瓶子会躺在地上——这里绕开该配置。
+        // ------------------------------------------------------------------
+
+        private void GiveRefund(TSPlayer plr, int type, int stack)
+        {
+            if (stack <= 0)
+                return;
+
+            int remaining = stack;
+            if (Main.ServerSideCharacter && plr.IsLoggedIn && !plr.IgnoreSSCPackets)
+                remaining = GiveIntoInventory(plr, type, remaining);
+
+            if (remaining > 0)
+                plr.GiveItem(type, remaining);
+        }
+
+        /// <summary>把物品直接写进服务器侧背包镜像并同步槽位包；返回未能塞进背包的余量。</summary>
+        private static int GiveIntoInventory(TSPlayer plr, int type, int stack)
+        {
+            var inv = plr.TPlayer.inventory;
+            if (inv == null || inv.Length < 50)
+                return stack;
+
+            Item proto = new Item();
+            proto.netDefaults(type);
+
+            // 1) 并入已有同类型堆叠（主背包 0..49）
+            for (int i = 0; i < 50 && stack > 0; i++)
+            {
+                var slot = inv[i];
+                if (slot == null || slot.type != type || slot.stack >= slot.maxStack)
+                    continue;
+                int take = Math.Min(slot.maxStack - slot.stack, stack);
+                slot.stack += take;
+                stack -= take;
+                SendItemSlotPacket(plr, i);
+            }
+
+            // 2) 空槽直接放入
+            for (int i = 0; i < 50 && stack > 0; i++)
+            {
+                var slot = inv[i];
+                if (slot != null && slot.type != 0 && slot.stack > 0)
+                    continue;
+                Item item = new Item();
+                item.netDefaults(type);
+                item.stack = Math.Min(item.maxStack, stack);
+                item.prefix = proto.prefix;
+                stack -= item.stack;
+                inv[i] = item;
+                SendItemSlotPacket(plr, i);
+            }
+
+            return stack;
+        }
+
+        /// <summary>与 TSPlayer 私有 SendItemSlotPacketFor 相同的槽位同步包。</summary>
+        private static void SendItemSlotPacket(TSPlayer plr, int slot)
+        {
+            NetMessage.SendData(5, plr.Index, -1, null, plr.Index, (float)slot, (float)plr.TPlayer.inventory[slot].prefix, 0f, 0, 0, 0);
         }
 
         private static Dictionary<int, List<Entry>> GroupByType(List<Entry> list)
