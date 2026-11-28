@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tshock-chinese-plugin\n"
-"POT-Creation-Date: 2025-03-15 02:36:44+0000\n"
-"PO-Revision-Date: 2025-03-17 01:15\n"
+"POT-Creation-Date: 2026-10-29 15:36:38+0000\n"
+"PO-Revision-Date: 2026-10-30 04:15\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "[i:{0}]你已经领取过这个奖励箱啦!"
 msgstr ""
 
-#: ../../Utils.cs:23
+#: ../../Utils.cs:28
 #, csharp-format
 msgid "[i:{0}]你打开了一个奖励箱: "
 msgstr ""
