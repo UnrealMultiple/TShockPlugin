@@ -67,6 +67,7 @@
 | [AutoAirItem](./src/AutoAirItem/README.en-US.md) | 100.0% | Automatic trash cans | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.en-US.md) | 100.0% | Automatic broadcast | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoClear](./src/AutoClear/README.en-US.md) | 37.5% | Intelligent automatic cleaning | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [AutoEat](./src/AutoEat/README.md) | 0.0% | Auto eat & auto drink: consume food when low on HP/mana and renew only the buffs you used and just expired, with separate toggles for food/potion/buff renewal. |  |
 | [AutoFish](./src/AutoFish/README.en-US.md) | 4.0% | Automatic fishing Reload | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.en-US.md) | 81.5% | Update plugins automatically in one key |  |
 | [AutoReset](./src/AutoReset/README.en-US.md) | 86.7% | Fully automatic reset | [LazyAPI](./src/LazyAPI/README.en-US.md) |
@@ -98,7 +99,7 @@
 | [CreateSpawn](./src/CreateSpawn/README.en-US.md) | 6.7% | Spawn point building generation | [LazyAPI](./src/LazyAPI/README.en-US.md) |
 | [CriticalHit](./src/CriticalHit/README.en-US.md) | 100.0% | Critical hit prompt |  |
 | [Crossplay](https://github.com/UnrealMultiple/Crossplay/blob/main/README.md) | 0.0% | Allows for cross-platform play |  |
-| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 0.0% | The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch |  |
+| [DailyMerchant](./src/DailyMerchant/README.en-US.md) | 42.9% | The Travelling Merchant and the Skeleton Merchant both show up every day, each with its own switch |  |
 | [DamageRuleLoot](./src/DamageRuleLoot/README.en-US.md) | 100.0% | Determine the drop treasure bag based on the ratio of damage and transfer damage calculation |  |
 | [DamageStatistic](./src/DamageStatistic/README.en-US.md) | 50.0% | Display damage caused by each player after each boss fight |  |
 | [DataSync](./src/DataSync/README.en-US.md) | 100.0% | Progress synchronization |  |
@@ -125,6 +126,7 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.en-US.md) | 100.0% | Weapon enhancement | [Economics.Core](./src/Economics.Core/README.en-US.md) |
 | [EndureBoost](./src/EndureBoost/README.en-US.md) | 100.0% | Grant specified buff when the player has a certain number of items |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.en-US.md) | 94.9% | Additional management commands | [LazyAPI](./src/LazyAPI/README.en-US.md) |
+| [ExplosionGuard](./src/ExplosionGuard/README.md) | 0.0% | Explosion Guard: non-player explosions keep their damage but no longer break tiles; whitelist/blacklist supported, auto-degrades if the detour fails to bind. |  |
 | [Ezperm](./src/Ezperm/README.en-US.md) | 83.3% | Batch change permissions |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Fish shop |  |
 | [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 0.0% | Restore full health on respawn |  |

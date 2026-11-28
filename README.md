@@ -63,6 +63,7 @@
 | [AutoAirItem](./src/AutoAirItem/README.md) | 自动垃圾桶插件 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 自动广播 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoClear](./src/AutoClear/README.md) | 智能自动扫地 | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoEat](./src/AutoEat/README.md) | 自动进食/自动喝药：低血蓝自动吃食物，增益到期自动续（仅续你用过、刚过期的），可分别开关续食物/药水/增益 |  |
 | [AutoFish](./src/AutoFish/README.md) | 自动钓鱼重置版 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.md) | 一键自动更新插件 |  |
 | [AutoReset](./src/AutoReset/README.md) | 完全自动重置 | [LazyAPI](./src/LazyAPI/README.md) |
@@ -121,6 +122,7 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 强化武器 | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 拥有指定数量物品给指定buff |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.md) | 更多管理指令 | [LazyAPI](./src/LazyAPI/README.md) |
+| [ExplosionGuard](./src/ExplosionGuard/README.md) | 爆炸守卫：非玩家炮弹/爆炸保留伤害但不破坏方块，白名单/黑名单可控，绑定失败自动降级 |  |
 | [Ezperm](./src/Ezperm/README.md) | 批量改权限 |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 鱼店 |  |
 | [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 复活满血 |  |

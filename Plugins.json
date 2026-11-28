@@ -473,17 +473,17 @@
     "Author": "豆沙，肝帝熙恩、Cai修改",
     "Description": {
       "en-US": "Whitelist players by checking the name of the player",
-      "de-DE": "通过检查玩家姓名的玩家白名单",
-      "it-IT": "通过检查玩家姓名的玩家白名单",
-      "fr-FR": "通过检查玩家姓名的玩家白名单",
-      "es-ES": "通过检查玩家姓名的玩家白名单",
-      "ru-RU": "通过检查玩家姓名的玩家白名单",
-      "zh-CN": "通过检查玩家姓名的玩家白名单",
-      "pt-BR": "通过检查玩家姓名的玩家白名单",
-      "pl-PL": "通过检查玩家姓名的玩家白名单",
-      "ja-JP": "通过检查玩家姓名的玩家白名单",
-      "ko-KR": "通过检查玩家姓名的玩家白名单",
-      "zh-Hant": "通过检查玩家姓名的玩家白名单"
+      "de-DE": "Whitelist players by checking the name of the player",
+      "it-IT": "Whitelist players by checking the name of the player",
+      "fr-FR": "Whitelist players by checking the name of the player",
+      "es-ES": "Whitelist players by checking the name of the player",
+      "ru-RU": "Whitelist players by checking the name of the player",
+      "zh-CN": "Whitelist players by checking the name of the player",
+      "pt-BR": "Whitelist players by checking the name of the player",
+      "pl-PL": "Whitelist players by checking the name of the player",
+      "ja-JP": "Whitelist players by checking the name of the player",
+      "ko-KR": "Whitelist players by checking the name of the player",
+      "zh-Hant": "Whitelist players by checking the name of the player"
     },
     "AssemblyName": "BetterWhitelist",
     "Path": "BetterWhitelist.dll",
@@ -517,7 +517,7 @@
   },
   {
     "Name": "BottleRefund",
-    "Version": "1.0.0",
+    "Version": "1.0.1",
     "Author": "不是现在",
     "Description": {
       "en-US": "喝药自动返还玻璃瓶：延迟数秒全面结算背包流水后发放，批量堆叠/入箱/丢弃不误发。",
@@ -903,7 +903,7 @@
   },
   {
     "Name": "DailyMerchant",
-    "Version": "1.1",
+    "Version": "1.2.1",
     "Author": "不是现在",
     "Description": {
       "en-US": "让旅商与骷髅商人每天到访：原版流动旅商每天只有约 22% 机会出现，这里改成每天必到；骷髅商人白天在出生点附近有人时就来一只。",
@@ -2935,21 +2935,21 @@
   },
   {
     "Name": "TerraNews",
-    "Version": "1.1.1",
+    "Version": "1.2.0",
     "Author": "不是现在",
     "Description": {
-      "en-US": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "de-DE": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "it-IT": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "fr-FR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "es-ES": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "ru-RU": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "zh-CN": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "pt-BR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "pl-PL": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "ja-JP": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "ko-KR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。",
-      "zh-Hant": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，满月/血月/雨天/午后附带草药采收提醒。"
+      "en-US": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "de-DE": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "it-IT": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "fr-FR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "es-ES": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "ru-RU": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "zh-CN": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "pt-BR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "pl-PL": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "ja-JP": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "ko-KR": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。",
+      "zh-Hant": "泰拉新闻：每天 04:30 播报月相、渔夫任务鱼与月相特售货架，大风、日食、血月、沙尘暴与暴风雪的特别报道，天亮天黑与满月/血月/雨天/午后附带草药采收提醒。"
     },
     "AssemblyName": "TerraNews",
     "Path": "TerraNews.dll",
@@ -3420,32 +3420,6 @@
     },
     "AssemblyName": "ShortCommand",
     "Path": "ShortCommand.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "AutoEat",
-    "Version": "1.0.0.0",
-    "Author": "不是现在",
-    "Description": {
-      "en-US": "Auto eat & auto drink: consume food when low on HP/mana and renew only the buffs you used and just expired, with separate toggles for food/potion/buff renewal.",
-      "zh-CN": "自动进食/自动喝药：低血蓝自动吃食物，增益到期自动续（仅续你用过、刚过期的），可分别开关续食物/药水/增益"
-    },
-    "AssemblyName": "AutoEat",
-    "Path": "AutoEat.dll",
-    "Dependencies": [],
-    "HotReload": true
-  },
-  {
-    "Name": "ExplosionGuard",
-    "Version": "1.0.0",
-    "Author": "不是现在",
-    "Description": {
-      "en-US": "Explosion Guard: non-player explosions keep their damage but no longer break tiles; whitelist/blacklist supported, auto-degrades if the detour fails to bind.",
-      "zh-CN": "爆炸守卫：非玩家炮弹/爆炸保留伤害但不破坏方块，白名单/黑名单可控，绑定失败自动降级"
-    },
-    "AssemblyName": "ExplosionGuard",
-    "Path": "ExplosionGuard.dll",
     "Dependencies": [],
     "HotReload": true
   }

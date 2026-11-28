@@ -70,6 +70,7 @@
 | [AutoAirItem](./src/AutoAirItem/README.md) | 0.0% | Botes de basura automáticos | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoBroadcast](./src/AutoBroadcast/README.md) | 0.0% | Transmisión automática | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoClear](./src/AutoClear/README.md) | 0.0% | Limpieza automática inteligente | [LazyAPI](./src/LazyAPI/README.md) |
+| [AutoEat](./src/AutoEat/README.md) | 0.0% | 自动进食/自动喝药：低血蓝自动吃食物，增益到期自动续（仅续你用过、刚过期的），可分别开关续食物/药水/增益 |  |
 | [AutoFish](./src/AutoFish/README.md) | 0.0% | 自动钓鱼重置版 | [LazyAPI](./src/LazyAPI/README.md) |
 | [AutoPluginManager](./src/AutoPluginManager/README.es-ES.md) | 55.4% | Actualice los complementos automáticamente con una sola tecla |  |
 | [AutoReset](./src/AutoReset/README.md) | 0.0% | Reinicio completamente automático | [LazyAPI](./src/LazyAPI/README.md) |
@@ -128,6 +129,7 @@
 | [Economics.WeaponPlus](./src/Economics.WeaponPlus/README.md) | 0.0% | Mejora de armas | [Economics.Core](./src/Economics.Core/README.md) |
 | [EndureBoost](./src/EndureBoost/README.md) | 0.0% | Otorga un buff específico cuando el jugador tiene una cantidad determinada de objetos |  |
 | [EssentialsPlus](./src/EssentialsPlus/README.es-ES.md) | 94.2% | Comandos de gestión adicionales | [LazyAPI](./src/LazyAPI/README.md) |
+| [ExplosionGuard](./src/ExplosionGuard/README.md) | 0.0% | 爆炸守卫：非玩家炮弹/爆炸保留伤害但不破坏方块，白名单/黑名单可控，绑定失败自动降级 |  |
 | [Ezperm](./src/Ezperm/README.md) | 0.0% | Cambio por lotes de permisos |  |
 | [FishShop](https://github.com/UnrealMultiple/TShockFishShop/blob/master/README.md) | 0.0% | Tienda de peces |  |
 | [FullHealthRespawn](./src/FullHealthRespawn/README.md) | 0.0% | Restaurar salud completa al reaparecer |  |
