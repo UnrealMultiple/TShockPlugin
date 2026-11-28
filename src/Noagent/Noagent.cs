@@ -1,5 +1,7 @@
+using LazyAPI;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
@@ -7,12 +9,12 @@ using TShockAPI;
 namespace Noagent;
 
 [ApiVersion(2, 1)]
-public class Noagent : TerrariaPlugin
+public class Noagent : LazyPlugin
 {
     public override string Author => "[星迹]Jonesn，肝帝熙恩更新适配1449";
     public override string Description => GetString("禁止代理登录");
     public override string Name => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name!;
-    public override Version Version => new Version(1, 0, 5, 1);
+    public override Version Version => new Version(1, 0, 6, 0);
 
     public Noagent(Main game)
         : base(game)
@@ -44,19 +46,32 @@ public class Noagent : TerrariaPlugin
             {
                 await Task.Delay(3000);
                 var ipAddress = this.Player.IP;
-                var apiUrl = $"https://blackbox.ipinfo.app/lookup/{ipAddress}";
+                var vpnDetection = Config.Instance.Provider.Equals("vpndetection", StringComparison.OrdinalIgnoreCase);
+                var apiUrl = vpnDetection
+                    ? $"https://api.vpndetection.io/{ipAddress}"
+                    : $"https://blackbox.ipinfo.app/lookup/{ipAddress}";
 
                 using var client = new HttpClient();
                 var response = await client.GetAsync(apiUrl);
                 response.EnsureSuccessStatusCode();
 
                 var responseContent = await response.Content.ReadAsStringAsync();
-                this.Result.SetResult(responseContent);
+                this.Result.SetResult(vpnDetection ? ParseVpnDetection(responseContent) : responseContent);
             }
             catch (Exception ex)
             {
                 this.Result.SetException(ex);
             }
+        }
+
+        // VPNDetection answers JSON; a VPN or Tor address maps to BlackBox's "Y"
+        private static string ParseVpnDetection(string json)
+        {
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            var flagged = (root.TryGetProperty("is_vpn", out var vpn) && vpn.ValueKind == JsonValueKind.True)
+                || (root.TryGetProperty("is_tor", out var tor) && tor.ValueKind == JsonValueKind.True);
+            return flagged ? "Y" : "N";
         }
     }
 
